@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8222637-A3D2-4F60-AB96-B57B40F53ABD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Одиноко_проживающие</RootNamespace>
+    <AssemblyName>Одиноко проживающие</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>desktop.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IPAddress">
+      <HintPath>..\..\social_incomplete\IPAddress\bin\Debug\IPAddress.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.ChartView, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.SpellChecker, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms R1 2017\Bin40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms R1 2017\Bin40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms R1 2017\Bin40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikData, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms R1 2017\Bin40\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikExport, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms R1 2017\Bin40\TelerikExport.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddAlone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAlone.Designer.cs">
+      <DependentUpon>AddAlone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="all\Date.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="all\Date.Designer.cs">
+      <DependentUpon>Date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="all\Number.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="all\Number.Designer.cs">
+      <DependentUpon>Number.cs</DependentUpon>
+    </Compile>
+    <Compile Include="commandClient.cs" />
+    <Compile Include="CommandServer.cs" />
+    <Compile Include="Configuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuration.Designer.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Country.Designer.cs">
+      <DependentUpon>Country.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete\InspectorDel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete\InspectorDel.Designer.cs">
+      <DependentUpon>InspectorDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete\SocPersonalDel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete\SocPersonalDel.Designer.cs">
+      <DependentUpon>SocPersonalDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete\SpeziolistDel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete\SpeziolistDel.Designer.cs">
+      <DependentUpon>SpeziolistDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\Inspector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\Inspector.Designer.cs">
+      <DependentUpon>Inspector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadProgram.Designer.cs">
+      <DependentUpon>LoadProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\JilUsl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\JilUsl.Designer.cs">
+      <DependentUpon>JilUsl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localization.cs" />
+    <Compile Include="menu\ExitSpeziolist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu\ExitSpeziolist.Designer.cs">
+      <DependentUpon>ExitSpeziolist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu\SocRabotnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu\SocRabotnik.Designer.cs">
+      <DependentUpon>SocRabotnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Print.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadInputBox.cs" />
+    <Compile Include="Repl.cs" />
+    <Compile Include="search\ExendedSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\ExendedSearch.Designer.cs">
+      <DependentUpon>ExendedSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search\ListHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\ListHelp.Designer.cs">
+      <DependentUpon>ListHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search\ListSurvey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\ListSurvey.Designer.cs">
+      <DependentUpon>ListSurvey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search\Family.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\Family.Designer.cs">
+      <DependentUpon>Family.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search\HelpAndObsl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\HelpAndObsl.Designer.cs">
+      <DependentUpon>HelpAndObsl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search\SearchFam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search\SearchFam.Designer.cs">
+      <DependentUpon>SearchFam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\selsovet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\selsovet.Designer.cs">
+      <DependentUpon>selsovet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\SemPol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\SemPol.Designer.cs">
+      <DependentUpon>SemPol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\SocPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\SocPersonal.Designer.cs">
+      <DependentUpon>SocPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="handbook\Speziolist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\Speziolist.Designer.cs">
+      <DependentUpon>Speziolist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Dead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\Dead.Designer.cs">
+      <DependentUpon>Dead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Dublicate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\Dublicate.Designer.cs">
+      <DependentUpon>Dublicate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Statistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\Statistic.Designer.cs">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Structures.cs" />
+    <Compile Include="handbook\TypeHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\TypeHelp.Designer.cs">
+      <DependentUpon>TypeHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Update.cs" />
+    <Compile Include="Service\Version.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\Version.Designer.cs">
+      <DependentUpon>Version.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddAlone.resx">
+      <DependentUpon>AddAlone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="all\Date.resx">
+      <DependentUpon>Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="all\Number.resx">
+      <DependentUpon>Number.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration.resx">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Country.resx">
+      <DependentUpon>Country.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete\InspectorDel.resx">
+      <DependentUpon>InspectorDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete\SocPersonalDel.resx">
+      <DependentUpon>SocPersonalDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete\SpeziolistDel.resx">
+      <DependentUpon>SpeziolistDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\Inspector.resx">
+      <DependentUpon>Inspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadProgram.resx">
+      <DependentUpon>LoadProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\JilUsl.resx">
+      <DependentUpon>JilUsl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu\ExitSpeziolist.resx">
+      <DependentUpon>ExitSpeziolist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu\SocRabotnik.resx">
+      <DependentUpon>SocRabotnik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="search\ExendedSearch.resx">
+      <DependentUpon>ExendedSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search\ListHelp.resx">
+      <DependentUpon>ListHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search\ListSurvey.resx">
+      <DependentUpon>ListSurvey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search\Family.resx">
+      <DependentUpon>Family.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search\HelpAndObsl.resx">
+      <DependentUpon>HelpAndObsl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search\SearchFam.resx">
+      <DependentUpon>SearchFam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\selsovet.resx">
+      <DependentUpon>selsovet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\SemPol.resx">
+      <DependentUpon>SemPol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\SocPersonal.resx">
+      <DependentUpon>SocPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\Speziolist.resx">
+      <DependentUpon>Speziolist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\Dead.resx">
+      <DependentUpon>Dead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\Dublicate.resx">
+      <DependentUpon>Dublicate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\Statistic.resx">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="handbook\TypeHelp.resx">
+      <DependentUpon>TypeHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\Version.resx">
+      <DependentUpon>Version.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\14_372226ae1d31cb6d206db819990ae8f0.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="desktop.ico" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\ssis-export-excel-file-task.png" />
+    <None Include="replace.gif" />
+    <None Include="form.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
