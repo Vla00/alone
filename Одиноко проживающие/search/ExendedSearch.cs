@@ -78,8 +78,40 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void сформироватьToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void сформироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string nad = null;
+            if(radRadioButton8.IsChecked)
+            {
+                nad = " ([Над. обсл.] ='принят' or [Над. обсл.] ='приостановлен' or [Над. обсл.] ='возобновлен')";
+            }
+            else
+            {
+                if(radRadioButton4.IsChecked)
+                {
+                    nad = " ([Над. обсл.] ='принят')";
+                }else
+                {
+                    if(radRadioButton5.IsChecked)
+                    {
+                        nad = " ([Над. обсл.] ='снят')";
+                    }else
+                    {
+                        if(radRadioButton7.IsChecked)
+                        {
+                            nad = " ([Над. обсл.] ='возобновлен')";
+                        }else
+                        {
+                            if(radRadioButton6.IsChecked)
+                            {
+                                nad = " ([Над. обсл.] ='приостановлен')";
+                            }
+                        }
+                    }
+                }
+            }
+
+            #region
             int c = radTreeView1.Nodes.Count;
             statusWhere = false;
             string Head;
@@ -87,45 +119,51 @@ namespace Одиноко_проживающие.search
             string Group;
             string GroupDead;            
 
-            if (RadMessageBox.Show("Показывать записи которые повторяются?", "Внимание", MessageBoxButtons.YesNo, RadMessageIcon.Question, "При соглашении в результате будут показываться категории") ==
-                DialogResult.Yes)
-            {
+            //if (RadMessageBox.Show("Показывать записи которые повторяются?", "Внимание", MessageBoxButtons.YesNo, RadMessageIcon.Question, "При соглашении в результате будут показываться категории") ==
+            //    DialogResult.Yes)
+            //{
+            //    Head = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
+		          //  selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
+		          //  alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ], category.category as [Категория]";
+
+            //    Group = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
+	           //     country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate, category.category";
+
+
+            //    HeadDead = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
+		          //  selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
+		          //  alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
+		          //  alone.date_exit as [Выезд], alone.date_sm as [Смерть], category.category as [Категория]";
+
+            //    GroupDead = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
+	           //     country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate,
+	           //     alone.date_exit, alone.date_sm, category.category";
+            //}
+            //else
+            //{
                 Head = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
 		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ], category.category as [Категория]";
-
-                Group = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	                country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate, category.category";
-
-                HeadDead = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
-		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
-		            alone.date_exit as [Выезд], alone.date_sm as [Смерть], category.category as [Категория]";
-
-                GroupDead = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	                country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate,
-	                alone.date_exit, alone.date_sm, category.category";
-            }
-            else
-            {
-                Head = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
-		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ]";
+		            alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ]";
 
                 Group = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
 	            country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate";
 
                 HeadDead = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
 		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
+		            alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
 		            alone.date_exit as [Выезд], alone.date_sm as [Смерть]";
 
                 GroupDead = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
 	                country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate,
 	                alone.date_exit, alone.date_sm";
-            }
 
-            
+            string HeadOne = @"select distinct *, 
+                    STUFF(cast((select[text()] = '; ' + t1.category
+                    from category as [t1]
+                    where t1.fk_alone = t2.key_alone
+                    for Xml path(''), type) as varchar(300)), 1, 2, '') as [катеригии]
+                from(";
+            // }
 
             string From = @" from alone inner join category on alone.key_alone = category.fk_alone
 		        inner join country on alone.fk_country = country.key_country
@@ -278,6 +316,56 @@ namespace Одиноко_проживающие.search
                 statusWhere = true;
             }
 
+            
+            if(!string.IsNullOrEmpty(nad))
+            {
+                Head += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
+                HeadDead += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
+                Group += ", l.date_operation, l.operation";
+                GroupDead += ", l.date_operation, l.operation";
+                From += @"cross apply (select * from dbo.ExtendedSearh_nad_obl() t3 where alone.key_alone = t3.key_alone) l";
+            }            
+            #endregion
+            /*if (!string.IsNullOrEmpty(nad))
+            {
+                if (statusWhere)
+                {
+                    Where += " and " + nad;
+                }
+                else
+                {
+                    Where += " " + nad;
+                }
+                statusWhere = true;
+            }else
+            {
+                if (radRadioButton8.IsChecked)
+                {
+                    if (statusWhere)
+                    {
+                        Where += " and (operation is not null)";
+                    }
+                    else
+                    {
+                        Where += " (operation is not null)";
+                    }
+                    statusWhere = true;
+                }
+            }*/
+
+            if(radCheckBox40.Checked)
+            {
+                if(statusWhere)
+                {
+                    Where += " and (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                }else
+                {
+                    Where += " (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                }
+                From += " left join survey on survey.fk_alone = alone.key_alone";
+                statusWhere = true;
+            }
+
             Hide();
             if (radRadioButton3.IsChecked)
             {
@@ -291,9 +379,20 @@ namespace Одиноко_проживающие.search
                 Where += "date_sm is null and date_exit is null)";
 
                 if (Where.Length < 10)
-                    new Family(Head + From + Group, 0).ShowDialog();
+                {
+                    if(string.IsNullOrEmpty(nad))
+                        new Family(Head + From + Group + " order by [ФИО]", 0).ShowDialog();
+                    else
+                        new Family(HeadOne + Head + From + Group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                }                    
                 else
-                    new Family(Head + From + Where + Group, 0).ShowDialog();
+                {
+                    if(string.IsNullOrEmpty(nad))
+                        new Family(Head + From + Where + Group + " order by [ФИО]", 0).ShowDialog();
+                    else
+                        new Family(HeadOne + Head + From + Where + Group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                }
+                    
             }
             else
             {
@@ -322,7 +421,11 @@ namespace Одиноко_проживающие.search
                     }
                     Where += "date_sm is not null)";
                 }
-                new Family(HeadDead + From + Where + GroupDead, 1).ShowDialog();
+
+                if(string.IsNullOrEmpty(nad))
+                    new Family(HeadDead + From + Where + GroupDead + " order by [ФИО]", 1).ShowDialog();
+                else
+                    new Family(HeadOne + HeadDead + From + Where + GroupDead + ") as t2 where " + nad + " order by [ФИО]", 1).ShowDialog();
             }
             Show();
         }
@@ -419,6 +522,24 @@ namespace Одиноко_проживающие.search
                 dateTimePicker3.Enabled = true;
                 dateTimePicker4.Enabled = true;
             }
+        }
+
+        private void radCheckBox40_Click(object sender, EventArgs e)
+        {
+            if(radCheckBox40.Checked)
+            {
+                radDateTimePicker1.Enabled = false;
+                radDateTimePicker2.Enabled = false;
+            }else
+            {
+                radDateTimePicker1.Enabled = true;
+                radDateTimePicker2.Enabled = true;
+            }
+        }
+
+        private void radDateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            SendKeys.Send(".");
         }
     }
 }

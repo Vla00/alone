@@ -27,12 +27,7 @@ namespace Одиноко_проживающие.search
         {
             InitializeComponent();
             _bindingSourceParam = _source;
-            MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
-            radGridView1.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
-            CheckForIllegalCrossThreadCalls = false;
-
-            radLabelElement1.Text = @"Загрузка данных...";
-            HandleCreated += Form_HandleCreated;
+            Inizialization();
         }
 
         public Family(string fun, byte close)
@@ -40,12 +35,7 @@ namespace Одиноко_проживающие.search
             InitializeComponent();
             _fun = fun;
             _close = close;
-            MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
-            radGridView1.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
-            CheckForIllegalCrossThreadCalls = false;
-            
-            radLabelElement1.Text = @"Загрузка данных...";
-            HandleCreated += Form_HandleCreated;
+            Inizialization();
         }
 
         public Family(string fun, string fio, string country, bool message)
@@ -55,12 +45,7 @@ namespace Одиноко_проживающие.search
             _fio = fio;
             _country = country;
             _message = message;
-            MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
-            radGridView1.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
-            CheckForIllegalCrossThreadCalls = false;
-
-            radLabelElement1.Text = @"Загрузка данных...";
-            HandleCreated += Form_HandleCreated;
+            Inizialization();
         }
 
         public Family(string fam, string name, string surname, byte close, string fun, bool message)
@@ -86,6 +71,11 @@ namespace Одиноко_проживающие.search
             else
                 _surname = ",'" + _surname + "',";
 
+            Inizialization();
+        }
+
+        private void Inizialization()
+        {
             MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
             radGridView1.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
             CheckForIllegalCrossThreadCalls = false;
@@ -113,37 +103,29 @@ namespace Одиноко_проживающие.search
                 radGridView1.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView1.EnablePaging = true;
-                    if (!string.IsNullOrEmpty(_fam) || !string.IsNullOrEmpty(_name) || !string.IsNullOrEmpty(_surname))
+
+                    if(!string.IsNullOrEmpty(_fun))
                     {
-                        _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from " + _fun + "(" + _fam + _name + _surname + _close + ") order by [ФИО]").Tables[0] };
+                        switch (_fun)
+                        {
+                            case "SearchFamily":
+                                    _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from " + _fun + "(" + _fam + _name + _surname + _close + ") order by [ФИО]").Tables[0] };
+                                break;
+                            case "ListSojitel":
+                                _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet("select * from " + _fun + "('" + _fio + "','" + _country + "') order by [ФИО]").Tables[0] };
+                                break;
+                            default:
+                                _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(_fun).Tables[0] };
+                                break;
+                        }
                     }else
                     {
-                        if(!string.IsNullOrEmpty(_fio))
+                        if (_bindingSourceParam != null)
                         {
-                            if(!string.IsNullOrEmpty(_country))
-                            {
-                                _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet("select * from " + _fun + "('" + _fio + "','" + _country + "') order by [ФИО]").Tables[0] };
-                            }
-                        }else
-                        {
-                            if (Text == "Результат расширенного поиска")
-                            {
-                                _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(_fun).Tables[0] };
-                            }
-                            else
-                            {
-                                if(_bindingSourceParam != null)
-                                {
-                                    _bindingSource = _bindingSourceParam;
-                                    radGridView1.DataSource = _bindingSource;
-                                }
-                                else
-                                {
-                                    _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from " + _fun + "() order by [ФИО]").Tables[0] };
-                                }
-                            }
+                            _bindingSource = _bindingSourceParam;
                         }
                     }
+
                     radGridView1.DataSource = _bindingSource;
 
                     if (radGridView1.Columns.Count > 0)
@@ -168,6 +150,12 @@ namespace Одиноко_проживающие.search
                         {
                             radGridView1.Columns["Адрес"].BestFit();
                             radGridView1.Columns["Адрес"].AllowFiltering = false;
+                        }
+
+                        if(radGridView1.Columns["Дата над. обсл."] != null)
+                        {
+                            radGridView1.Columns["Дата над. обсл."].AllowFiltering = false;
+                            radGridView1.Columns["Дата над. обсл."].FormatString = "{0:dd/MM/yyyy}";
                         }
 
                         if (radGridView1.Columns["Выезд"] != null)
@@ -199,22 +187,6 @@ namespace Одиноко_проживающие.search
                             }
                             
                         }
-
-
-                        //if (Text == "Поиск по фамилии")
-                        //{
-                        //}
-                        //else
-                        //{
-                        //    if (Text == "Результат расширенного поиска")
-                        //    {
-                        //        if(radGridView1.ColumnCount == 10)
-                        //        {
-                        //            radGridView1.Columns[8].FormatString = "{0:dd/MM/yyyy}";
-                        //            radGridView1.Columns[9].FormatString = "{0:dd/MM/yyyy}";
-                        //        }
-                        //    }
-                        //}
                         
                         radLabelElement1.Text = @"Записей: " + radGridView1.MasterTemplate.DataView.ItemCount;
                     }
@@ -231,7 +203,7 @@ namespace Одиноко_проживающие.search
             {
                 CommandClient commandClient = new CommandClient();
                 radLabelElement1.Text = @"Произошла ошибка при загрузке данных. Сообщите разработчику.";
-                commandClient.WriteFileError(ex, "select * from " + _fun + "() order by[ФИО]");
+                commandClient.WriteFileError(ex, _fun);
             }
         }
 
@@ -265,6 +237,25 @@ namespace Одиноко_проживающие.search
                 radGridView1.Columns[7].ExcelExportType = DisplayFormatType.Text;
                 radGridView1.Columns[2].ExcelExportType = DisplayFormatType.Custom;
                 radGridView1.Columns[2].ExcelExportFormatString = "dd.MM.yyyy";
+
+                if(radGridView1.Columns["Выезд"] != null)
+                {
+                    radGridView1.Columns["Выезд"].ExcelExportType = DisplayFormatType.Custom;
+                    radGridView1.Columns["Выезд"].ExcelExportFormatString = "dd.MM.yyyy";
+                }                    
+
+                if (radGridView1.Columns["Смерть"] != null)
+                {
+                    radGridView1.Columns["Смерть"].ExcelExportType = DisplayFormatType.Custom;
+                    radGridView1.Columns["Смерть"].ExcelExportFormatString = "dd.MM.yyyy";
+                }                    
+
+                if(radGridView1.Columns["Дата над. обсл."] != null)
+                {
+                    radGridView1.Columns["Дата над. обсл."].ExcelExportType = DisplayFormatType.Custom;
+                    radGridView1.Columns["Дата над. обсл."].ExcelExportFormatString = "dd.MM.yyyy";
+                }
+
                 ExportToExcelML exporter = new ExportToExcelML(radGridView1);
                 exporter.PagingExportOption = PagingExportOption.AllPages;
                 exporter.RunExport(saveFileDialog1.FileName);                

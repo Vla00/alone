@@ -1161,7 +1161,7 @@ namespace Одиноко_проживающие
                 if (line.Cells[0].Value != null)
                 {
                     var parameters = line.Cells[0].Value.ToString() + ",'";
-                    ///TODO доделать
+
                     if (e.PropertyName == "ФИО")
                     {
                         string text = null;
@@ -2161,7 +2161,6 @@ namespace Одиноко_проживающие
         #region Над. обслуживание
         public void SocOperationLoad()
         {
-            ///TODO сделать автоподстановку
             _loadGrid = true;
             var commandServer = new CommandServer();
             _bindingSocOperationGrid = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from SocOperationGrid(" + _keyAlone + ") order by [Дата]").Tables[0] };
@@ -2185,6 +2184,7 @@ namespace Одиноко_проживающие
                 comboColumn_operation.Name = "operati";
                 radGridView5.Columns[3] = comboColumn_operation;
                 comboColumn_operation.FieldName = "operation";
+                radGridView5.Columns[3].ReadOnly = true;
 
                 GridViewDateTimeColumn dat = new GridViewDateTimeColumn("Дата");
                 dat.Name = "date5";
@@ -2335,6 +2335,51 @@ namespace Одиноко_проживающие
             else
             {
                 RadMessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            }
+        }
+
+        private void radGridView5_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        {
+            var commandServer = new CommandServer();
+            var commandClient = new CommandClient();
+
+            if (e.Action == NotifyCollectionChangedAction.ItemChanging)
+            {
+                bool flag = false;
+                var line = (GridViewRowInfo)e.NewItems[0];
+
+                if (line.Cells[0].Value != null)
+                {
+                    var parameters = line.Cells[0].Value.ToString() + ",'";
+                    if (e.PropertyName == "fio")
+                    {
+                        flag = true;
+                        parameters += e.NewValue.ToString() + "','";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(line.Cells[1].Value.ToString()))
+                            parameters += "null,'";
+                        else
+                            parameters += line.Cells[1].Value.ToString() + "','";
+                    }
+
+                    if (e.PropertyName == "Дата")
+                    {
+                        flag = true;
+                        parameters += e.NewValue.ToString() + "'";
+                    }
+                    else
+                    {
+                        parameters += line.Cells[2].Value.ToString() + "'";
+                    }
+
+                    if (flag)
+                    {
+                        var returnSqlServer = commandServer.GetServerCommandExecReturnServer("nad_edit", parameters);
+                        AlertGridOperation(sender, e, null, "nad_edit" + line.Cells[1].Value, returnSqlServer);
+                    }
+                }
             }
         }
         #endregion

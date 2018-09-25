@@ -2009,7 +2009,6 @@ namespace Одиноко_проживающие
             this.radGridView5.MasterTemplate.AllowCellContextMenu = false;
             this.radGridView5.MasterTemplate.AllowColumnHeaderContextMenu = false;
             this.radGridView5.MasterTemplate.AllowDeleteRow = false;
-            this.radGridView5.MasterTemplate.AllowEditRow = false;
             this.radGridView5.MasterTemplate.PageSize = 50;
             this.radGridView5.MasterTemplate.ShowRowHeaderColumn = false;
             this.radGridView5.MasterTemplate.ViewDefinition = tableViewDefinition5;
@@ -2022,6 +2021,7 @@ namespace Одиноко_проживающие
             this.radGridView5.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView5_CellEditorInitialized_1);
             this.radGridView5.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView5_UserAddingRow);
             this.radGridView5.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView5_UserAddedRow);
+            this.radGridView5.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView5_RowsChanging);
             // 
             // radDesktopAlert1
             // 

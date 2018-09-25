@@ -138,7 +138,7 @@ namespace Одиноко_проживающие.Service
                 radGridView3.DataSource = _bindingSource;
 
                 GridViewDateTimeColumn dateHelp = new GridViewDateTimeColumn("Дата рождения");
-                radGridView3.Columns[2] = dateHelp;
+                radGridView3.Columns[1] = dateHelp;
                 dateHelp.Name = "date_ro";
                 dateHelp.FieldName = "date_ro";
                 dateHelp.FormatString = "{0:dd/MM/yyyy}";

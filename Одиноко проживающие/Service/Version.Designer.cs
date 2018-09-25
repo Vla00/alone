@@ -200,6 +200,10 @@ namespace Одиноко_проживающие
             Telerik.WinControls.UI.RadTreeNode radTreeNode168 = new Telerik.WinControls.UI.RadTreeNode();
             Telerik.WinControls.UI.RadTreeNode radTreeNode169 = new Telerik.WinControls.UI.RadTreeNode();
             Telerik.WinControls.UI.RadTreeNode radTreeNode170 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode171 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode172 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode173 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode174 = new Telerik.WinControls.UI.RadTreeNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Version));
             this.treeView1 = new Telerik.WinControls.UI.RadTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.treeView1)).BeginInit();
@@ -737,13 +741,25 @@ namespace Одиноко_проживающие
             radTreeNode169.Text = "При изменении ФИО отключена проверка на дубликат";
             radTreeNode170.Name = "Node170";
             radTreeNode170.Text = "Окно поиска потребляет меньше ресурсов";
+            radTreeNode171.Name = "Node171";
+            radTreeNode171.Text = "Разрешено изменение над. обсл. (кроме статуса)";
+            radTreeNode172.Name = "Node174";
+            radTreeNode172.Text = "Переработан расширенный поиск";
+            radTreeNode173.Name = "Node172";
+            radTreeNode173.Text = "В расширенный поиск добавлено \"над. обсл.\"";
+            radTreeNode174.Name = "Node173";
+            radTreeNode174.Text = "В расширенный поиск добавлено \"обследование\"";
             radTreeNode164.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
             radTreeNode165,
             radTreeNode166,
             radTreeNode167,
             radTreeNode168,
             radTreeNode169,
-            radTreeNode170});
+            radTreeNode170,
+            radTreeNode171,
+            radTreeNode172,
+            radTreeNode173,
+            radTreeNode174});
             radTreeNode164.Text = "1.0.5.3 ()";
             this.treeView1.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
             radTreeNode1,
