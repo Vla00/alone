@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Themes;
 using Одиноко_проживающие.all;
+using Одиноко_проживающие.handbook;
 using Одиноко_проживающие.menu;
 using Одиноко_проживающие.search;
 using Одиноко_проживающие.service;
@@ -20,7 +21,7 @@ namespace Одиноко_проживающие
         {
             InitializeComponent();
             Text = Text + ". Версия программы " + version;
-            ListAloneHome();
+            // ListAloneHome();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -28,7 +29,7 @@ namespace Одиноко_проживающие
         public Home(string[] args, string version)
         {
             InitializeComponent();
-            ListAloneHome();
+            //ListAloneHome();
             Text = Text + ". Версия программы " + version;
             new Version().ShowDialog();
             GC.Collect();
@@ -40,11 +41,11 @@ namespace Одиноко_проживающие
             Application.Exit();
         }
 
-        private void ListAloneHome()
-        {
-            RadMessageBox.SetThemeName(theme.ThemeName);
-            radLabelElement1.Text = @"Всего записей: " + new CommandServer().GetDataGridSet(@"select count(*) from alone where date_sm is null and date_exit is null").Tables[0].Rows[0].ItemArray[0].ToString();
-        }
+        //private void ListAloneHome()
+        //{
+        //    RadMessageBox.SetThemeName(theme.ThemeName);
+        //    radLabelElement1.Text = @"Всего записей: " + new CommandServer().GetDataGridSet(@"select count(*) from alone where date_sm is null and date_exit is null").Tables[0].Rows[0].ItemArray[0].ToString();
+        //}
 
         private void Home_KeyUp(object sender, KeyEventArgs e)
         {
@@ -61,9 +62,9 @@ namespace Одиноко_проживающие
             try
             {
                 Hide();
-                new AddAlone(true, 0).ShowDialog();
+                new Alone(true, 0).ShowDialog();
                 //Dispose();
-                ListAloneHome();
+                //ListAloneHome();
 
             }
             catch (Exception ex)
@@ -154,7 +155,7 @@ namespace Одиноко_проживающие
 
         private void Setting(object sender, EventArgs e)
         {
-            new Configuration().ShowDialog();
+            new Configuration(false).ShowDialog();
         }
         #endregion
 
@@ -246,6 +247,13 @@ namespace Одиноко_проживающие
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
+
+        private void radMenuItem10_Click_1(object sender, EventArgs e)
+        {
+            new Powered().ShowDialog();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
         #endregion
 
         #region Сервис
@@ -274,6 +282,28 @@ namespace Одиноко_проживающие
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
+
+        private void radMenuButtonItem20_Click(object sender, EventArgs e)
+        {
+           string text = RadInputBox.Show("Введите пароль для доступа", "Ввод пароля");
+           if (text == "qwertyqwe")
+           {
+               Hide();
+                new rename().ShowDialog();
+                Show();
+           }
+           else
+           {
+               if(text != "null")
+               {
+                   RadMessageBox.Show("Неверный пароль.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
+               }
+           }
+
+            
+        }
+
+        
         #endregion
 
         /*private void поОбследованиямИПомощиToolStripMenuItem_Click(object sender, EventArgs e)

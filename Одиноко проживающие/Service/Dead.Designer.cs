@@ -68,7 +68,7 @@
             this.radPageView1.Location = new System.Drawing.Point(0, 0);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(904, 466);
+            this.radPageView1.Size = new System.Drawing.Size(1188, 466);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.Text = "radPageView1";
             // 
@@ -79,18 +79,21 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(57F, 28F);
             this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(883, 418);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1167, 418);
             this.radPageViewPage1.Text = "Подбор";
             // 
             // radGridView3
             // 
-            this.radGridView3.Location = new System.Drawing.Point(492, 4);
+            this.radGridView3.Location = new System.Drawing.Point(624, 4);
             // 
             // 
             // 
+            this.radGridView3.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView3.MasterTemplate.AllowDeleteRow = false;
+            this.radGridView3.MasterTemplate.AllowEditRow = false;
             this.radGridView3.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView3.Name = "radGridView3";
-            this.radGridView3.Size = new System.Drawing.Size(388, 414);
+            this.radGridView3.Size = new System.Drawing.Size(526, 414);
             this.radGridView3.TabIndex = 1;
             this.radGridView3.Text = "radGridView3";
             // 
@@ -102,7 +105,7 @@
             // 
             this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView2.Name = "radGridView2";
-            this.radGridView2.Size = new System.Drawing.Size(483, 415);
+            this.radGridView2.Size = new System.Drawing.Size(615, 415);
             this.radGridView2.TabIndex = 0;
             this.radGridView2.Text = "radGridView2";
             // 
@@ -113,7 +116,7 @@
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(61F, 28F);
             this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(883, 418);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1167, 418);
             this.radPageViewPage2.Text = "Загрузка";
             // 
             // radGridView1
@@ -129,7 +132,7 @@
             this.radGridView1.MasterTemplate.AllowEditRow = false;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(883, 368);
+            this.radGridView1.Size = new System.Drawing.Size(1167, 368);
             this.radGridView1.TabIndex = 1;
             this.radGridView1.Text = "radGridView1";
             // 
@@ -144,7 +147,7 @@
             this.radGroupBox1.HeaderText = "Операции (ФИО, Дата рождения, Дата сметри, сельсовет, адрес";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(883, 50);
+            this.radGroupBox1.Size = new System.Drawing.Size(1167, 50);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "Операции (ФИО, Дата рождения, Дата сметри, сельсовет, адрес";
             this.radGroupBox1.ThemeName = "TelerikMetro";
@@ -154,7 +157,7 @@
             this.radProgressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radProgressBar1.Location = new System.Drawing.Point(112, 18);
             this.radProgressBar1.Name = "radProgressBar1";
-            this.radProgressBar1.Size = new System.Drawing.Size(659, 30);
+            this.radProgressBar1.Size = new System.Drawing.Size(943, 30);
             this.radProgressBar1.Step = 1;
             this.radProgressBar1.TabIndex = 3;
             this.radProgressBar1.Text = "0%";
@@ -172,7 +175,7 @@
             // radButton1
             // 
             this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radButton1.Location = new System.Drawing.Point(771, 18);
+            this.radButton1.Location = new System.Drawing.Point(1055, 18);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 30);
             this.radButton1.TabIndex = 0;
@@ -188,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 466);
+            this.ClientSize = new System.Drawing.Size(1188, 466);
             this.Controls.Add(this.radPageView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Dead";

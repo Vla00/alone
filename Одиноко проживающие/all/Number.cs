@@ -7,12 +7,12 @@ namespace Одиноко_проживающие.all
 {
     public partial class Number : Form
     {
-        TelerikMetroTheme theme = new TelerikMetroTheme();
+        readonly TelerikMetroTheme _theme = new TelerikMetroTheme();
 
         public Number()
         {
             InitializeComponent();
-            ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
+            ThemeResolutionService.ApplyThemeToControlTree(this, _theme.ThemeName);
         }
 
         private void radButton1_Click(object sender, EventArgs e)
@@ -20,7 +20,7 @@ namespace Одиноко_проживающие.all
             Hide();
             try
             {
-                new AddAlone(false, Convert.ToInt32(textBox1.Text)).ShowDialog();
+                new Alone(false, Convert.ToInt32(textBox1.Text)).ShowDialog();
             }
             catch (Exception ex)
             {

@@ -17,6 +17,7 @@ namespace Одиноко_проживающие
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
             YearsLoad();
             Soc();
+            Obsch();
         }
 
         private void PieSeriesLoad()
@@ -30,7 +31,7 @@ namespace Одиноко_проживающие
         private void YearsLoad()
         {
             var commandServer = new CommandServer();
-            BindingSource _bindingSourceRun = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select max(c.y) as [возраст (лет)], count(*) as [количество]
+            BindingSource _bindingSourceRun = new BindingSource { DataSource = commandServer.DataGridSet(@"select max(c.y) as [возраст (лет)], count(*) as [количество]
                 from (select floor(convert(int, getdate() - alone.date_ro)/365.25) as [y] 
 	                from alone
 	                where alone.date_exit is null and alone.date_sm is null) as c
@@ -48,7 +49,7 @@ namespace Одиноко_проживающие
 
         private void Soc()
         {
-            BindingSource _bindingSourceStart = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"WITH CTE AS
+            BindingSource _bindingSourceStart = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
             (
              SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
                 ORDER BY nad_obsl.date_operation DESC)
@@ -69,7 +70,7 @@ namespace Одиноко_проживающие
 
             label3.Text = _bindingSourceStart.Count.ToString();
 
-            BindingSource _bindingSourceStop = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"WITH CTE AS
+            BindingSource _bindingSourceStop = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
             (
              SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
                 ORDER BY nad_obsl.date_operation DESC)
@@ -93,49 +94,31 @@ namespace Одиноко_проживающие
 
         private void Obsch()
         {
-            BindingSource _bindingSource = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+            //string val = null;
+            BindingSource _bindingSource = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
             from alone inner join category on category.fk_alone = alone.key_alone
             where podCategory = 'пенсионер'").Tables[0] };
-            label6.Text = _bindingSource.Count.ToString();
+            //label6.Text = _bindingSource.Count.ToString();
 
+            _bindingSource = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                from category inner join alone on category.fk_alone = alone.key_alone
+                where podCategory = 'соц' and date_exit is null and date_sm is null").Tables[0] };
+            label10.Text = _bindingSource.Count.ToString();
 
+            _bindingSource = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                from category inner join alone on category.fk_alone = alone.key_alone
+                where podCategory = 'колясочник' and date_exit is null and date_sm is null").Tables[0] };
+            label9.Text = _bindingSource.Count.ToString();
+
+            _bindingSource = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                from category inner join alone on category.fk_alone = alone.key_alone
+                where podCategory = 'не пенсионер' and date_exit is null and date_sm is null").Tables[0] };
+            label5.Text = _bindingSource.Count.ToString();
+
+            _bindingSource = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                from alone
+                where date_exit is null and date_sm is null").Tables[0] };
+            label17.Text = _bindingSource.Count.ToString();
         }
-
-
-        //        CREATE FUNCTION Statistik()
-        //RETURNS
-        //@table TABLE
-        //(
-        //    cat nvarchar(100),
-        //	name nvarchar(100),
-        //	caun int
-        //) 
-        //AS
-        //begin
-
-        //    insert @table
-
-        //    select*
-        //    from(
-        //    WITH CTE AS
-        //    (
-        //     SELECT*, N= ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street
-        //        ORDER BY nad_obsl.date_operation DESC)
-        //     FROM alone
-        //     JOIN nad_obsl ON alone.key_alone = nad_obsl.fk_alone
-        //     JOIN country ON alone.fk_country = country.key_country
-        //    )
-        //    SELECT CTE.fio as [ФИО], CTE.date_ro as [Дата рождения], CTE.country as [Нас.пункт], CTE.street as [Адрес],
-        //    CTE.date_operation as [Дата операции]
-        //    FROM CTE
-        //    JOIN selsovet ON selsovet.key_selsovet = CTE.fk_selsovet
-        //    JOIN speziolist ON speziolist.key_speziolist = CTE.fk_soc_rab
-        //    JOIN operation ON operation.key_operation = CTE.fk_operation
-        //    WHERE CTE.N= 1 and operation.operation = 'принят')
-
-
-        //	return
-        //end
-
     }
 }

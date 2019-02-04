@@ -25,7 +25,7 @@ namespace Одиноко_проживающие
         private void UpdateGridView()
         {
             var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_typeHelp, typeHelp as [Тип помощи] from typeHelp order by typeHelp").Tables[0] };
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_typeHelp, typeHelp as [Тип помощи] from typeHelp order by typeHelp").Tables[0] };
             radGridView1.Invoke(new MethodInvoker(delegate ()
             {
                 radGridView1.DataSource = _bindingSource;
@@ -122,7 +122,7 @@ namespace Одиноко_проживающие
                         }
                         else
                         {
-                            new CommandServer().GetServerCommandExecNoReturnServer("TypeHelpEdit", line.Cells[0].Value.ToString() + ",'" + e.NewValue.ToString() + "'");
+                            new CommandServer().ExecNoReturnServer("TypeHelpEdit", line.Cells[0].Value.ToString() + ",'" + e.NewValue.ToString() + "'");
                         }
                     }
                 }                
@@ -132,7 +132,7 @@ namespace Одиноко_проживающие
         private void radGridView1_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_typeHelp, typeHelp as [Тип помощи] from typeHelp order by typeHelp").Tables[0] };
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_typeHelp, typeHelp as [Тип помощи] from typeHelp order by typeHelp").Tables[0] };
 
             radGridView1.Invoke(new MethodInvoker(delegate ()
             {
@@ -148,7 +148,7 @@ namespace Одиноко_проживающие
                 e.Cancel = true;
                 return;
             }
-            var returnSqlServer = new CommandServer().GetServerCommandExecReturnServer("TypeHelpAdd", "'" + e.Rows[0].Cells[1].Value.ToString() + "'");
+            var returnSqlServer = new CommandServer().ExecReturnServer("TypeHelpAdd", "'" + e.Rows[0].Cells[1].Value.ToString() + "'");
         }
 
         private void TypeHelp_FormClosing(object sender, FormClosingEventArgs e)

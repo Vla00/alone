@@ -2,19 +2,20 @@
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Telerik.WinControls;
+using System.Xml;
 
 namespace Одиноко_проживающие
 {
     public partial class LoadProgram : Form
     {
-        public string version = "1.0.5";
+        public string version = "1.3";
         public string newVersion;
         private static readonly string StrConnect = null;
         public static SqlConnection Connect = new SqlConnection(StrConnect);
         public static SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
         private BackgroundWorker helpBackgroundWorker;
         private string[] args;
+        private static ConfigurationProgram _confConnection;
 
         public LoadProgram()
         {
@@ -29,61 +30,21 @@ namespace Одиноко_проживающие
 
         public static bool InizializeConnectString()
         {
-            var commandClient = new CommandClient();
+            LoadProgram lp = new LoadProgram();
+            lp.Load_File_Configuration();
+
             try
             {
-                var sr = commandClient.ReaderFile(@"config.cfg");
-                if (sr.Length > 3)
-                {
-                    var nameBase = sr[0].Split(' ')[2];
-                    if (nameBase != null)
-                    {
-                        var nameServer = sr[1].Split(' ')[2];
-                        if (nameServer != null)
-                        {
-                            var nameUser = sr[2].Split(' ')[2];
-                            if (nameUser != null)
-                            {
-                                var password = sr[3].Split(' ')[2];
-                                if (password != null)
-                                {
-                                    ConnectBuilder.InitialCatalog = nameBase;
-                                    ConnectBuilder.DataSource = nameServer;
-                                    ConnectBuilder.IntegratedSecurity = false;
-                                    ConnectBuilder.UserID = nameUser;
-                                    ConnectBuilder.Password = password;
-                                    ConnectBuilder.ConnectTimeout = 5;
-                                    Connect.ConnectionString = ConnectBuilder.ConnectionString;
-                                    return true;
-                                }
-                                else
-                                {
-                                    MessageBox.Show(@"Не указанн пароль пользователя в конфигурационном файле.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    commandClient.WriteFileError(null, "Не указанно имя сервера в конфигурационном файле");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show(@"Не указанно имя пользователя в конфигурационном файле.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                commandClient.WriteFileError(null, "Не указанно имя сервера в конфигурационном файле");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show(@"Не указанно имя сервера в конфигурационном файле.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            commandClient.WriteFileError(null, "Не указанно имя сервера в конфигурационном файле");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show(@"Не указанно имя базы данных в конфигурационном файле.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        commandClient.WriteFileError(null, "Не указанно имя базы данных в конфигурационном файле");
-                    }
-                } else
-                {
-                    MessageBox.Show(@"Неверный конфигурационный файл. Замените config.cfg в папке с программой.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    commandClient.WriteFileError(null, "Неверный конфигурационный файл.");
-                }
+                ConnectBuilder.InitialCatalog = _confConnection.Base;
+                ConnectBuilder.DataSource = _confConnection.Source;
+                if (!string.IsNullOrEmpty(_confConnection.Port))
+                    ConnectBuilder.DataSource += "," + _confConnection.Port;
+                ConnectBuilder.IntegratedSecurity = false;
+                ConnectBuilder.UserID = _confConnection.Login;
+                ConnectBuilder.Password = _confConnection.Password;
+                ConnectBuilder.ConnectTimeout = 15;
+                Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                return true;
             }
             catch (Exception ex)
             {
@@ -94,8 +55,6 @@ namespace Одиноко_проживающие
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //var ip = new IPAddress.IpAddress();
-            //var ipList = ip.ListIp();
             helpBackgroundWorker = new BackgroundWorker();
             helpBackgroundWorker.WorkerReportsProgress = true;
             helpBackgroundWorker.WorkerSupportsCancellation = true;
@@ -117,7 +76,7 @@ namespace Одиноко_проживающие
                 {
                     label1.Text = @"Проверка подключения";
                 }));
-                if (new CommandServer().ConnectDB())
+                if (new CommandServer().ConnectDb())
                 {
                     label1.Invoke(new Action(() =>
                     {
@@ -129,7 +88,7 @@ namespace Одиноко_проживающие
                         {
                             label1.Text = @"Скачивание новых файлов";
                         }));
-                        new Update(version, newVersion);
+                        new Update(version, newVersion, _confConnection.Source);
                         return;
                     }else
                     {
@@ -154,7 +113,7 @@ namespace Одиноко_проживающие
                 else
                 {
                     MessageBox.Show(@"Нет подключения к серверу.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    new Configuration(true).ShowDialog();
                 }
             }else
             {
@@ -166,7 +125,7 @@ namespace Одиноко_проживающие
         {
             try
             {
-                string version = new CommandServer().GetComboBoxList("select val from config where name='version_db'", false)[0];
+                string version = new CommandServer().ComboBoxList("select val from config where name='version_db'", false)[0];
 
                 if (version != this.version)
                 {
@@ -180,6 +139,43 @@ namespace Одиноко_проживающие
                 new CommandClient().WriteFileError(ex, ConnectBuilder.ConnectionString);
             }finally{ }
             return false;
+        }
+
+        public void Load_File_Configuration()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                _confConnection = new ConfigurationProgram();
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "DataBase":
+                                _confConnection.Base = nod.InnerText;
+                                break;
+                            case "DataSource":
+                                _confConnection.Source = nod.InnerText;
+                                break;
+                            case "Port":
+                                _confConnection.Port = nod.InnerText;
+                                break;
+                            case "Login":
+                                _confConnection.Login = nod.InnerText;
+                                break;
+                            case "Password":
+                                _confConnection.Password = nod.InnerText;
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
         }
     }
 }

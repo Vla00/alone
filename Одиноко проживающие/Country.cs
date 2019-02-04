@@ -77,7 +77,7 @@ namespace Одиноко_проживающие
                 {
                     var commandServer = new CommandServer();
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("deleteCountry", "'" + dataGridView1.CurrentRow.Cells[1].Value + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("deleteCountry", "'" + dataGridView1.CurrentRow.Cells[1].Value + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была удалена.", @"Ошибка", MessageBoxButtons.OK,
@@ -113,7 +113,7 @@ namespace Одиноко_проживающие
             var commandServer = new CommandServer();
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = commandServer.GetDataGridSet(@"select * from ListCountry()").Tables[0];
+            dataGridView1.DataSource = commandServer.DataGridSet(@"select * from ListCountry()").Tables[0];
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addCountry", "'" + comboBox1.Text + "','" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addCountry", "'" + comboBox1.Text + "','" + textBox1.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -149,7 +149,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView1.Visible = false;
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editCountry", "'" + dataGridView1.CurrentRow.Cells[1].Value + "','" + textBox1.Text + "','" + comboBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editCountry", "'" + dataGridView1.CurrentRow.Cells[1].Value + "','" + textBox1.Text + "','" + comboBox1.Text + "'");
                     dataGridView1.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -194,7 +194,7 @@ namespace Одиноко_проживающие
         {
             var commandServer = new CommandServer();
             comboBox1.Items.Clear();
-            comboBox1.DataSource = commandServer.GetComboBoxList(@"select Selsovet from Selsovet order by Selsovet", true);
+            comboBox1.DataSource = commandServer.ComboBoxList(@"select Selsovet from Selsovet order by Selsovet", true);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Одиноко_проживающие
                 radGridView5.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView5.EnablePaging = true;
-                    _bindingSource_personel = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+                    _bindingSource_personel = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                         from spezialistView(1, 0)
                         order by [ФИО]").Tables[0] };
                     radGridView5.DataSource = _bindingSource_personel;
@@ -89,7 +89,7 @@ namespace Одиноко_проживающие
                 fio = e.Rows[0].Cells[1].Value.ToString();
 
             var parameters = "'" + fio + "','1'";
-            var returnSqlServer = new CommandServer().GetServerCommandExecNoReturnServer("speziolist_add", parameters);
+            var returnSqlServer = new CommandServer().ExecNoReturnServer("speziolist_add", parameters);
             if (returnSqlServer[1] == "0")
                 e.Cancel = true;
 
@@ -99,7 +99,7 @@ namespace Одиноко_проживающие
 
         private void radGridView5_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
-            _bindingSource_personel = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+            _bindingSource_personel = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                 from spezialistView(1, 0)
                 order by [ФИО]").Tables[0] };
 
@@ -139,7 +139,7 @@ namespace Одиноко_проживающие
                             text = e.NewValue.ToString();
                         parameters += text + "','1'";
 
-                        var returnSqlServer = new CommandServer().GetServerCommandExecReturnServer("speziolist_edit", parameters);
+                        var returnSqlServer = new CommandServer().ExecReturnServer("speziolist_edit", parameters);
                         if (returnSqlServer[1] == "0")
                             e.Cancel = true;
                         AlertOperation("speziolist_edit " + line.Cells[1].Value, returnSqlServer);
@@ -157,7 +157,7 @@ namespace Одиноко_проживающие
                 radGridView5.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView2.EnablePaging = true;
-                    _bindingSource_off = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+                    _bindingSource_off = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                         from spezialistView(1, 1)
                         order by [ФИО]").Tables[0] };
                     radGridView2.DataSource = _bindingSource_off;
@@ -201,20 +201,20 @@ namespace Одиноко_проживающие
         private void radGridViewButton_Click(object sender, EventArgs e)
         {
             if (((GridCommandCellElement)sender).Data.FieldName == "delete")
-                new CommandServer().GetServerCommandExecNoReturnServer("speziolist_del", radGridView5.CurrentRow.Cells[0].Value.ToString() + ",1");
+                new CommandServer().ExecNoReturnServer("speziolist_del", radGridView5.CurrentRow.Cells[0].Value.ToString() + ",1, null");
             else
-                new CommandServer().GetServerCommandExecNoReturnServer("speziolist_del", radGridView2.CurrentRow.Cells[0].Value.ToString() + ",0");
+                new CommandServer().ExecNoReturnServer("speziolist_del", radGridView2.CurrentRow.Cells[0].Value.ToString() + ",0, null");
             UpdateGrid();
         }
 
         private void UpdateGrid()
         {
-            _bindingSource_personel = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+            _bindingSource_personel = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                         from spezialistView(1, 0)
                         order by [ФИО]").Tables[0] };
             radGridView5.DataSource = _bindingSource_personel;
 
-            _bindingSource_off = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+            _bindingSource_off = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                         from spezialistView(1, 1)
                         order by [ФИО]").Tables[0] };
             radGridView2.DataSource = _bindingSource_off;

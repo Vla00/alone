@@ -39,12 +39,10 @@ namespace Одиноко_проживающие.service
                 radGridView1.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView1.EnablePaging = true;
-                    _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select max(alone.fio) as [ФИО], max(year(alone.date_ro)) as [год рождения], count(*) as [кол. дубликатов]
-                        from alone
-                        where alone.dublicate is null
-                        group by alone.fio, year(alone.date_ro)
-                        having count(*) > 1
-                        order by ФИО").Tables[0] };
+                    _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], count(*) as [кол.]
+                        from dublicate inner join alone on dublicate.fk_alone = alone.key_alone
+	                        inner join family on family.fk_alone = alone.key_alone
+                        group by family.family, family.name, family.surname").Tables[0] };
 
                     radGridView1.DataSource = _bindingSource;
 
@@ -53,6 +51,21 @@ namespace Одиноко_проживающие.service
                         radGridView1.Columns[0].BestFit();
                         radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                     }
+
+                    radGridView6.EnablePaging = true;
+                    _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select sojitel.fk_alone, sojitel.fio as [старое], sojitel.family as [нов. фам.], sojitel.name as [нов. имя], sojitel.surname as [новое отч.]
+	                    from sojitel
+	                    where sojitel.fio != (sojitel.family + ' ' + sojitel.name + ' ' + sojitel.surname)").Tables[0] };
+
+                    radGridView6.DataSource = _bindingSource;
+
+                    if (radGridView6.Columns.Count > 0)
+                    {
+                        radGridView6.Columns[0].IsVisible = false;
+                        radGridView6.Columns[0].BestFit();
+                        radGridView6.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                    }
+
                 }));
             }
             catch (Exception ex)
@@ -60,36 +73,12 @@ namespace Одиноко_проживающие.service
                 CommandClient commandClient = new CommandClient();
                 commandClient.WriteFileError(ex, null);
             }
-        }
-
-        private void radGridView1_Click(object sender, EventArgs e)
-        {
-            LoadGrid1();
-        }
-
-        private void LoadGrid1()
-        {
-            var commandServer = new CommandServer();
-            radGridView2.EnablePaging = true;
-            _bindingSourceDublicate = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select alone.key_alone as [Дело], alone.fio as [ФИО]
-                from alone
-                where alone.fio = '" + radGridView1.CurrentRow.Cells[0].Value.ToString() + "' and YEAR(alone.date_ro) = '" + radGridView1.CurrentRow.Cells[1].Value.ToString() + "' and dublicate is null")
-            .Tables[0] };
-
-            radGridView2.DataSource = _bindingSourceDublicate;
-            radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            radGridView2.Columns[0].BestFit();
-        }
-
-        private void radGridView2_Click(object sender, EventArgs e)
-        {
-            LoadGrid2();
-        }
+        }        
 
         private void LoadGrid2()
         {
             var commandServer = new CommandServer();
-            var dt = commandServer.GetDataGridSet(@"select * from AloneDublicate(" + radGridView2.CurrentRow.Cells[0].Value.ToString() + ")").Tables[0];
+            var dt = commandServer.DataGridSet(@"select * from AloneDublicate(" + radGridView2.CurrentRow.Cells[0].Value.ToString() + ")").Tables[0];
             radLabel2.Text = dt.Rows[0].ItemArray[0].ToString();
             radLabel4.Text = dt.Rows[0].ItemArray[1].ToString().Split(' ')[0];
             if (dt.Rows[0].ItemArray[2].ToString() == "false")
@@ -102,7 +91,7 @@ namespace Одиноко_проживающие.service
             radLabel15.Text = dt.Rows[0].ItemArray[6].ToString();
             radLabel14.Text = dt.Rows[0].ItemArray[7].ToString();
 
-            BindingSource _bs = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select category.category as [категории]
+            BindingSource _bs = new BindingSource { DataSource = commandServer.DataGridSet(@"select category.category as [категории]
                 from category
                 where category.fk_alone = " + radGridView2.CurrentRow.Cells[0].Value.ToString()).Tables[0] };
             radGridView3.DataSource = _bs;
@@ -116,59 +105,144 @@ namespace Одиноко_проживающие.service
 
         private void radGridView1_KeyDownUp(object sender, KeyEventArgs e)
         {
-            LoadGrid1();
-        }
+            DublicateDelo();
+        }        
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void radGridView5_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
-            if(RadMessageBox.Show(@"Вы точно хотите удалить запись БЕЗВОЗВРАТНО?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Question) == DialogResult.OK )
+            if (e.RowIndex > -1)
             {
-                if (radGridView2.SelectedRows.Count > 0)
+                Hide();
+                try
                 {
-                    var commandServer = new CommandServer();
-                    var returnSqlServer = commandServer.GetServerCommandExecReturnServer("AloneDelete", radGridView2.CurrentRow.Cells[0].Value.ToString());
-                    if (returnSqlServer[1] != "Успешно")
-                    {
-                        if (radGridView2.RowCount == 2)
-                        {
-                            StartDataGrid();
-                            radGridView2.DataSource = null;
-                        }
-                        else
-                        {
-                            LoadGrid1();
-                        }
-                    }
+                    new Alone(false, Convert.ToInt32(adres_radGridView.CurrentRow.Cells[0].Value)).ShowDialog();
                 }
-                else
+                catch (Exception ex)
                 {
-                    RadMessageBox.Show(@"Должна быть выделена только запись.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    var commandClient = new CommandClient();
+                    commandClient.WriteFileError(ex, null);
                 }
-            }            
+                Show();
+            }
         }
 
+        private void radGridView6_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                Hide();
+                try
+                {
+                    new Alone(false, Convert.ToInt32(radGridView6.CurrentRow.Cells[0].Value)).ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    var commandClient = new CommandClient();
+                    commandClient.WriteFileError(ex, null);
+                }
+                Show();
+            }
+        }
+
+        #region Дубликат
         private void radButton2_Click(object sender, EventArgs e)
         {
-            if(radGridView2.SelectedRows.Count > 0)
+            if (radGridView2.SelectedRows.Count > 0)
             {
                 var commandServer = new CommandServer();
-                var returnSqlServer = commandServer.GetServerCommandExecReturnServer("DublicateDelete", radGridView2.CurrentRow.Cells[0].Value.ToString());
-                if (returnSqlServer[1] != "Успешно")
-                {
-                    if(radGridView2.RowCount == 2)
+                var returnSqlServer = commandServer.ExecNoReturnServer("DublicateDelete", radGridView2.Rows[0].Cells[0].Value.ToString() + "," + radGridView2.Rows[1].Cells[0].Value.ToString() + "," + radGridView2.RowCount);
+                //if (returnSqlServer[1] != "Успешно")
+               // {
+                    if (radGridView2.RowCount == 2)
                     {
                         StartDataGrid();
                         radGridView2.DataSource = null;
-                    }else
-                    {
-                        LoadGrid1();
                     }
-                }
+                    else
+                    {
+                        DublicateDelo();
+                    }
+                //}else
+                //{
+                //    radDesktopAlert1.ContentText = returnSqlServer[0];
+                //    radDesktopAlert1.Show();
+                //}
             }
             else
             {
                 RadMessageBox.Show(@"Должна быть выделена одна запись.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
             }
         }
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            if (RadMessageBox.Show(@"Вы точно хотите объединить записи БЕЗВОЗВРАТНО?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Question) == DialogResult.OK)
+            {
+                var commandServer = new CommandServer();
+                var returnSqlServer = commandServer.ExecReturnServer("DublicateUnion", radGridView2.Rows[0].Cells[0].Value.ToString() + "," + radGridView2.Rows[1].Cells[0].Value.ToString() + "," + radGridView2.RowCount);
+                if (returnSqlServer[1] == "1")
+                {
+                    if (radGridView2.RowCount == 2)
+                    {
+                        StartDataGrid();
+                        radGridView2.DataSource = null;
+                    }
+                    else
+                    {
+                        DublicateDelo();
+                    }
+                }
+                else
+                {
+                    radDesktopAlert1.ContentText = returnSqlServer[0];
+                    radDesktopAlert1.Show();
+                }
+            }
+        }
+
+        private void radGridView1_Click(object sender, EventArgs e)
+        {
+            DublicateDelo();
+        }
+
+        private void DublicateDelo()
+        {
+            var commandServer = new CommandServer();
+            radGridView2.EnablePaging = true;
+            _bindingSourceDublicate = new BindingSource
+            {
+                DataSource = commandServer.DataGridSet(@"select alone.key_alone as [Дело], (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], 
+	                case when row_number() over (partition by family.family, family.name, family.surname order by alone.key_alone) = 1 then 'Эталон' else 'Дубликат' end as [Доп. поле]
+                from dublicate inner join alone on dublicate.fk_alone = alone.key_alone
+	                inner join family on family.fk_alone = alone.key_alone
+                where (family.family + ' ' + family.name + ' ' + family.surname) = '" + radGridView1.CurrentRow.Cells[0].Value.ToString() + "'")
+            .Tables[0]
+            };
+
+            radGridView2.DataSource = _bindingSourceDublicate;
+            radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            radGridView2.Columns[0].BestFit();
+        }
+
+        private void radGridView2_Click(object sender, EventArgs e)
+        {
+            LoadGrid2();
+        }
+        #endregion
+
+        private void radGridView2_DoubleClick(object sender, EventArgs e)
+        {
+            Hide();
+            try
+            {
+                new Alone(false, Convert.ToInt32(radGridView2.CurrentRow.Cells[0].Value)).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                var commandClient = new CommandClient();
+                commandClient.WriteFileError(ex, null);
+            }
+            Show();
+            }
     }
 }

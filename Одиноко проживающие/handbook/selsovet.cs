@@ -85,7 +85,7 @@ namespace Одиноко_проживающие
                 {
                     var commandServer = new CommandServer();
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("deleteSelsovet", "'" + dataGridView1.CurrentRow.Cells[0].Value + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("deleteSelsovet", "'" + dataGridView1.CurrentRow.Cells[0].Value + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была удалена.", @"Ошибка", MessageBoxButtons.OK,
@@ -124,7 +124,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addSelsovet", "'" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addSelsovet", "'" + textBox1.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -149,7 +149,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView1.Visible = false;
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editSelsovet", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editSelsovet", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
                     dataGridView1.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -183,7 +183,7 @@ namespace Одиноко_проживающие
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             var commandServer = new CommandServer();
-            dataGridView1.DataSource = commandServer.GetDataGridSet(@"select Selsovet as [Сельсовет] from Selsovet").Tables[0];
+            dataGridView1.DataSource = commandServer.DataGridSet(@"select Selsovet as [Сельсовет] from Selsovet").Tables[0];
         }
     }
 }

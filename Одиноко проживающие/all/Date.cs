@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
 namespace Одиноко_проживающие.all
 {
     public partial class Date : RadForm
     {
-        private string _method;
+        private readonly string _method;
         public Date(string method)
         {
             InitializeComponent();
@@ -14,24 +15,22 @@ namespace Одиноко_проживающие.all
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            switch(_method)
+            switch (_method)
             {
                 case "ListSurvey":
+                    Hide();
                     new search.ListSurvey(dateTimePicker1.Value, dateTimePicker2.Value).ShowDialog();
-                    this.Close();
+                    Close();
                     break;
                 case "ListHelp":
+                    Hide();
                     new search.ListHelp(dateTimePicker1.Value, dateTimePicker2.Value).ShowDialog();
-                    this.Close();
+                    Close();
                     break;
             }
-            //dateStart = dateTimePicker1.Value;
-            //dateEnd = dateTimePicker2.Value;
-            //statusM = true;
-            //this.Hide();
         }
 
-        private void radButton2_Click(object sender, System.EventArgs e)
+        private void radButton2_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -41,6 +40,11 @@ namespace Одиноко_проживающие.all
             Dispose();
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            SendKeys.Send(".");
         }
     }
 }

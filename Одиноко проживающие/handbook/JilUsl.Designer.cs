@@ -31,46 +31,42 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JilUsl));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new Одиноко_проживающие.MyDataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button4_3 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new Одиноко_проживающие.MyDataGridView();
             this.button3_3 = new System.Windows.Forms.Button();
             this.button1_3 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button2_3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button4_2 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new Одиноко_проживающие.MyDataGridView();
             this.button3_2 = new System.Windows.Forms.Button();
             this.button1_2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2_2 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button4_4 = new System.Windows.Forms.Button();
+            this.dataGridView4 = new Одиноко_проживающие.MyDataGridView();
             this.button3_4 = new System.Windows.Forms.Button();
             this.button1_4 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button2_4 = new System.Windows.Forms.Button();
             this.radMaskedEditBox1 = new Telerik.WinControls.UI.RadMaskedEditBox();
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            this.radListView1 = new Telerik.WinControls.UI.RadListView();
-            this.dataGridView4 = new Одиноко_проживающие.MyDataGridView();
-            this.dataGridView2 = new Одиноко_проживающие.MyDataGridView();
-            this.dataGridView3 = new Одиноко_проживающие.MyDataGridView();
-            this.dataGridView1 = new Одиноко_проживающие.MyDataGridView();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -98,6 +94,18 @@
             this.button4.Text = "Отмена";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(243, 136);
+            this.dataGridView1.TabIndex = 22;
             // 
             // button3
             // 
@@ -165,6 +173,18 @@
             this.button4_3.UseVisualStyleBackColor = false;
             this.button4_3.Click += new System.EventHandler(this.button4_3_Click);
             // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.Size = new System.Drawing.Size(243, 136);
+            this.dataGridView3.TabIndex = 28;
+            // 
             // button3_3
             // 
             this.button3_3.BackColor = System.Drawing.SystemColors.Window;
@@ -230,6 +250,18 @@
             this.button4_2.Text = "Отмена";
             this.button4_2.UseVisualStyleBackColor = false;
             this.button4_2.Click += new System.EventHandler(this.button4_2_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(243, 136);
+            this.dataGridView2.TabIndex = 28;
             // 
             // button3_2
             // 
@@ -297,6 +329,18 @@
             this.button4_4.UseVisualStyleBackColor = false;
             this.button4_4.Click += new System.EventHandler(this.button4_4_Click);
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(6, 15);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.Size = new System.Drawing.Size(243, 136);
+            this.dataGridView4.TabIndex = 28;
+            // 
             // button3_4
             // 
             this.button3_4.BackColor = System.Drawing.SystemColors.Window;
@@ -339,7 +383,7 @@
             // 
             // radMaskedEditBox1
             // 
-            this.radMaskedEditBox1.Location = new System.Drawing.Point(868, 483);
+            this.radMaskedEditBox1.Location = new System.Drawing.Point(412, 371);
             this.radMaskedEditBox1.Mask = "00/00/0000";
             this.radMaskedEditBox1.MaskType = Telerik.WinControls.UI.MaskType.Standard;
             this.radMaskedEditBox1.Name = "radMaskedEditBox1";
@@ -349,78 +393,12 @@
             this.radMaskedEditBox1.Text = "__.__.____";
             this.radMaskedEditBox1.Initialized += new System.EventHandler(this.radMaskedEditBox1_Initialized);
             // 
-            // radDropDownList1
-            // 
-            this.radDropDownList1.Location = new System.Drawing.Point(630, 365);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(214, 20);
-            this.radDropDownList1.TabIndex = 7;
-            this.radDropDownList1.Text = "radDropDownList1";
-            // 
-            // radListView1
-            // 
-            this.radListView1.Location = new System.Drawing.Point(30, 365);
-            this.radListView1.Name = "radListView1";
-            this.radListView1.Size = new System.Drawing.Size(594, 173);
-            this.radListView1.TabIndex = 8;
-            this.radListView1.Text = "radListView1";
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(6, 15);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.ReadOnly = true;
-            this.dataGridView4.RowHeadersVisible = false;
-            this.dataGridView4.Size = new System.Drawing.Size(243, 136);
-            this.dataGridView4.TabIndex = 28;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(243, 136);
-            this.dataGridView2.TabIndex = 28;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(243, 136);
-            this.dataGridView3.TabIndex = 28;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(243, 136);
-            this.dataGridView1.TabIndex = 22;
-            // 
             // JilUsl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1079, 601);
-            this.Controls.Add(this.radListView1);
-            this.Controls.Add(this.radDropDownList1);
+            this.ClientSize = new System.Drawing.Size(878, 403);
             this.Controls.Add(this.radMaskedEditBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -433,19 +411,17 @@
             this.Text = "Благоустройство жилья";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +458,5 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button2_4;
         private Telerik.WinControls.UI.RadMaskedEditBox radMaskedEditBox1;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
-        private Telerik.WinControls.UI.RadListView radListView1;
     }
 }

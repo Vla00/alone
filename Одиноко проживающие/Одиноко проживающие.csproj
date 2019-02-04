@@ -105,11 +105,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAlone.cs">
+    <Compile Include="all\OneDate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddAlone.Designer.cs">
-      <DependentUpon>AddAlone.cs</DependentUpon>
+    <Compile Include="all\OneDate.Designer.cs">
+      <DependentUpon>OneDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alones\Alone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alones\Alone.Designer.cs">
+      <DependentUpon>Alone.cs</DependentUpon>
     </Compile>
     <Compile Include="all\Date.cs">
       <SubType>Form</SubType>
@@ -122,6 +128,18 @@
     </Compile>
     <Compile Include="all\Number.Designer.cs">
       <DependentUpon>Number.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alones\Disability.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alones\Disability.Designer.cs">
+      <DependentUpon>Disability.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alones\Alone_history.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alones\Alone_history.Designer.cs">
+      <DependentUpon>Alone_history.cs</DependentUpon>
     </Compile>
     <Compile Include="commandClient.cs" />
     <Compile Include="CommandServer.cs" />
@@ -161,6 +179,12 @@
     <Compile Include="handbook\Inspector.Designer.cs">
       <DependentUpon>Inspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="handbook\Powered.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="handbook\Powered.Designer.cs">
+      <DependentUpon>Powered.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadProgram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,12 +204,6 @@
       <DependentUpon>JilUsl.cs</DependentUpon>
     </Compile>
     <Compile Include="Localization.cs" />
-    <Compile Include="menu\ExitSpeziolist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menu\ExitSpeziolist.Designer.cs">
-      <DependentUpon>ExitSpeziolist.cs</DependentUpon>
-    </Compile>
     <Compile Include="menu\SocRabotnik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,17 +236,11 @@
     <Compile Include="search\ListSurvey.Designer.cs">
       <DependentUpon>ListSurvey.cs</DependentUpon>
     </Compile>
-    <Compile Include="search\Family.cs">
+    <Compile Include="search\Result.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="search\Family.Designer.cs">
-      <DependentUpon>Family.cs</DependentUpon>
-    </Compile>
-    <Compile Include="search\HelpAndObsl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="search\HelpAndObsl.Designer.cs">
-      <DependentUpon>HelpAndObsl.cs</DependentUpon>
+    <Compile Include="search\Result.Designer.cs">
+      <DependentUpon>Result.cs</DependentUpon>
     </Compile>
     <Compile Include="search\SearchFam.cs">
       <SubType>Form</SubType>
@@ -260,6 +272,12 @@
     <Compile Include="handbook\Speziolist.Designer.cs">
       <DependentUpon>Speziolist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\rename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\rename.Designer.cs">
+      <DependentUpon>rename.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\Dead.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +296,7 @@
     <Compile Include="Service\Statistic.Designer.cs">
       <DependentUpon>Statistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\StructFile.cs" />
     <Compile Include="Structures.cs" />
     <Compile Include="handbook\TypeHelp.cs">
       <SubType>Form</SubType>
@@ -292,14 +311,23 @@
     <Compile Include="Service\Version.Designer.cs">
       <DependentUpon>Version.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddAlone.resx">
-      <DependentUpon>AddAlone.cs</DependentUpon>
+    <EmbeddedResource Include="all\OneDate.resx">
+      <DependentUpon>OneDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alones\Alone.resx">
+      <DependentUpon>Alone.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="all\Date.resx">
       <DependentUpon>Date.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="all\Number.resx">
       <DependentUpon>Number.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alones\Alone_history.resx">
+      <DependentUpon>Alone_history.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alones\Disability.resx">
+      <DependentUpon>Disability.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
@@ -319,6 +347,9 @@
     <EmbeddedResource Include="handbook\Inspector.resx">
       <DependentUpon>Inspector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="handbook\Powered.resx">
+      <DependentUpon>Powered.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadProgram.resx">
       <DependentUpon>LoadProgram.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,9 +359,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="handbook\JilUsl.resx">
       <DependentUpon>JilUsl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menu\ExitSpeziolist.resx">
-      <DependentUpon>ExitSpeziolist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menu\SocRabotnik.resx">
       <DependentUpon>SocRabotnik.cs</DependentUpon>
@@ -355,11 +383,8 @@
     <EmbeddedResource Include="search\ListSurvey.resx">
       <DependentUpon>ListSurvey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="search\Family.resx">
-      <DependentUpon>Family.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="search\HelpAndObsl.resx">
-      <DependentUpon>HelpAndObsl.cs</DependentUpon>
+    <EmbeddedResource Include="search\Result.resx">
+      <DependentUpon>Result.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="search\SearchFam.resx">
       <DependentUpon>SearchFam.cs</DependentUpon>
@@ -376,6 +401,9 @@
     <EmbeddedResource Include="handbook\Speziolist.resx">
       <DependentUpon>Speziolist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Service\rename.resx">
+      <DependentUpon>rename.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Service\Dead.resx">
       <DependentUpon>Dead.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +419,7 @@
     <EmbeddedResource Include="Service\Version.resx">
       <DependentUpon>Version.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

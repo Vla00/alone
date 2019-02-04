@@ -204,6 +204,65 @@ namespace Одиноко_проживающие
             Telerik.WinControls.UI.RadTreeNode radTreeNode172 = new Telerik.WinControls.UI.RadTreeNode();
             Telerik.WinControls.UI.RadTreeNode radTreeNode173 = new Telerik.WinControls.UI.RadTreeNode();
             Telerik.WinControls.UI.RadTreeNode radTreeNode174 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode175 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode176 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode177 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode178 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode179 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode180 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode181 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode182 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode183 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode184 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode185 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode186 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode187 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode188 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode189 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode190 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode191 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode192 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode193 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode194 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode195 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode196 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode197 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode198 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode199 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode200 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode201 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode202 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode203 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode204 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode205 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode206 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode207 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode208 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode209 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode210 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode211 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode212 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode213 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode214 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode215 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode216 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode217 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode218 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode219 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode220 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode221 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode222 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode223 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode224 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode225 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode226 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode227 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode228 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode229 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode230 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode231 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode232 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode233 = new Telerik.WinControls.UI.RadTreeNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Version));
             this.treeView1 = new Telerik.WinControls.UI.RadTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.treeView1)).BeginInit();
@@ -421,7 +480,7 @@ namespace Одиноко_проживающие
             radTreeNode43,
             radTreeNode46,
             radTreeNode56});
-            radTreeNode1.Text = "0-1.0...";
+            radTreeNode1.Text = "0";
             radTreeNode66.Name = "Node144";
             radTreeNode67.Name = "Узел0";
             radTreeNode68.Name = "Узел1";
@@ -638,17 +697,6 @@ namespace Одиноко_проживающие
             radTreeNode136.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
             radTreeNode137});
             radTreeNode136.Text = "1.0.4.1 (19.03.2018)";
-            radTreeNode66.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
-            radTreeNode67,
-            radTreeNode75,
-            radTreeNode81,
-            radTreeNode90,
-            radTreeNode94,
-            radTreeNode105,
-            radTreeNode113,
-            radTreeNode125,
-            radTreeNode136});
-            radTreeNode66.Text = "1.0.0-1.0.4";
             radTreeNode138.Name = "Node137";
             radTreeNode139.Name = "Node138";
             radTreeNode139.Text = "Закрепленные соц. работники (указывается количество на вкладках)";
@@ -726,8 +774,7 @@ namespace Одиноко_проживающие
             radTreeNode161,
             radTreeNode162,
             radTreeNode163});
-            radTreeNode153.Text = "1.0.5.2 ()";
-            radTreeNode164.Expanded = true;
+            radTreeNode153.Text = "1.0.5.2 (09.07.2018)";
             radTreeNode164.Name = "Node164";
             radTreeNode165.Name = "Node165";
             radTreeNode165.Text = "Изменена печать надомного обслуживания";
@@ -749,6 +796,8 @@ namespace Одиноко_проживающие
             radTreeNode173.Text = "В расширенный поиск добавлено \"над. обсл.\"";
             radTreeNode174.Name = "Node173";
             radTreeNode174.Text = "В расширенный поиск добавлено \"обследование\"";
+            radTreeNode175.Name = "Node175";
+            radTreeNode175.Text = "Появился новый пункт \"Сверка умерших\" (ждем пункта от разработчиков ГИССЗ)";
             radTreeNode164.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
             radTreeNode165,
             radTreeNode166,
@@ -759,15 +808,213 @@ namespace Одиноко_проживающие
             radTreeNode171,
             radTreeNode172,
             radTreeNode173,
-            radTreeNode174});
-            radTreeNode164.Text = "1.0.5.3 ()";
-            this.treeView1.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
-            radTreeNode1,
-            radTreeNode66,
+            radTreeNode174,
+            radTreeNode175});
+            radTreeNode164.Text = "1.0.6.1 (27.09.2018)";
+            radTreeNode176.Name = "Node183";
+            radTreeNode177.Name = "Node184";
+            radTreeNode177.Text = "Исправлена ошибка по добавлению над. обсл.";
+            radTreeNode176.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode177});
+            radTreeNode176.Text = "1.0.6.2 (10.10.2018)";
+            radTreeNode66.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode67,
+            radTreeNode75,
+            radTreeNode81,
+            radTreeNode90,
+            radTreeNode94,
+            radTreeNode105,
+            radTreeNode113,
+            radTreeNode125,
+            radTreeNode136,
             radTreeNode138,
             radTreeNode146,
             radTreeNode153,
-            radTreeNode164});
+            radTreeNode164,
+            radTreeNode176});
+            radTreeNode66.Text = "1.0";
+            radTreeNode178.Name = "Node212";
+            radTreeNode179.Name = "Node176";
+            radTreeNode180.Name = "Node177";
+            radTreeNode180.Text = "Из закр. соц. раб. убрана вкладка \"Завершенные\"";
+            radTreeNode181.Name = "Node178";
+            radTreeNode181.Text = "В закр. соц. раб. при нажатии на человека можно перейти в его дело";
+            radTreeNode182.Name = "Node179";
+            radTreeNode182.Text = "При заполнении нового дела ФИО заполняются раздельно";
+            radTreeNode183.Name = "Node186";
+            radTreeNode183.Text = "ФИО сожителя так же разделено";
+            radTreeNode184.Name = "Node180";
+            radTreeNode184.Text = "Изменен ввод адреса (для корректности)";
+            radTreeNode185.Name = "Node181";
+            radTreeNode185.Text = "Изменено отображение категорий в расш. поиске";
+            radTreeNode186.Name = "Node182";
+            radTreeNode186.Text = "Переработано окно поиска ошибок в базе";
+            radTreeNode187.Name = "Node185";
+            radTreeNode187.Text = "Исправлены мелкие недочеты";
+            radTreeNode188.Name = "Node187";
+            radTreeNode188.Text = "Клиентская часть программы доработана для работы через интернет";
+            radTreeNode179.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode180,
+            radTreeNode181,
+            radTreeNode182,
+            radTreeNode183,
+            radTreeNode184,
+            radTreeNode185,
+            radTreeNode186,
+            radTreeNode187,
+            radTreeNode188});
+            radTreeNode179.Text = "1.1 (07.12.2018)";
+            radTreeNode189.Name = "Node188";
+            radTreeNode190.Name = "Node189";
+            radTreeNode190.Text = "Добавлена история категорий";
+            radTreeNode191.Name = "Node190";
+            radTreeNode191.Text = "Добавлено восстановление людей которые выехали";
+            radTreeNode192.Name = "Node191";
+            radTreeNode192.Text = "Ошибки дубликатов убраны на доработку";
+            radTreeNode193.Name = "Node193";
+            radTreeNode193.Text = "Добавлена проверка на тип адреса (обязателен для заполнения)";
+            radTreeNode194.Name = "Node193";
+            radTreeNode194.Text = "Исправлены ошибки в расширенном поиске";
+            radTreeNode195.Name = "Node194";
+            radTreeNode195.Text = "Исправлен поиск сожителя при установлении \"Дата смерти\"";
+            radTreeNode189.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode190,
+            radTreeNode191,
+            radTreeNode192,
+            radTreeNode193,
+            radTreeNode194,
+            radTreeNode195});
+            radTreeNode189.Text = "1.1.1 (14.12.2018)";
+            radTreeNode196.Name = "Node195";
+            radTreeNode197.Name = "Node196";
+            radTreeNode197.Text = "Восстановлена печать закр. соц. раб.";
+            radTreeNode198.Name = "Node197";
+            radTreeNode198.Text = "Исправление мелких недочетов";
+            radTreeNode196.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode197,
+            radTreeNode198});
+            radTreeNode196.Text = "1.1.2 (17.12.2018)";
+            radTreeNode199.Name = "Node198";
+            radTreeNode200.Name = "Node199";
+            radTreeNode200.Text = "Исправлено отображение в \"Закр. соц. раб.\"";
+            radTreeNode201.Name = "Node201";
+            radTreeNode201.Text = "Иногда окно \"история категорий\" не закрывалось";
+            radTreeNode199.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode200,
+            radTreeNode201});
+            radTreeNode199.Text = "1.1.3 (20.12.2018)";
+            radTreeNode202.Name = "Node201";
+            radTreeNode203.Name = "Node202";
+            radTreeNode203.Text = "Переработан пункт поиска и исправления дубликатов";
+            radTreeNode204.Name = "Node203";
+            radTreeNode204.Text = "Исправлено отображение \"Закр. соц. раб.\"";
+            radTreeNode205.Name = "Node204";
+            radTreeNode205.Text = "В статистику добавлен новый пункт";
+            radTreeNode202.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode203,
+            radTreeNode204,
+            radTreeNode205});
+            radTreeNode202.Text = "1.1.4 (27.12.2018)";
+            radTreeNode178.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode179,
+            radTreeNode189,
+            radTreeNode196,
+            radTreeNode199,
+            radTreeNode202});
+            radTreeNode178.Text = "1.1";
+            radTreeNode206.Name = "Node205";
+            radTreeNode207.Name = "Node208";
+            radTreeNode207.Text = "Доработан алгоритм объединения дубликатов";
+            radTreeNode208.Name = "Node213";
+            radTreeNode208.Text = "На дубликат проверяется \"ФИО, год рождения\"";
+            radTreeNode209.Name = "Node212";
+            radTreeNode209.Text = "Проверка на дубликат проводится когда ввели дату рождения";
+            radTreeNode210.Name = "Node215";
+            radTreeNode210.Text = "Доработано окно дубликатов";
+            radTreeNode211.Name = "Node218";
+            radTreeNode211.Text = "Поиск дубликатов осуществляется раз в сутки";
+            radTreeNode212.Name = "Node206";
+            radTreeNode212.Text = "Исправлено отображение в некоторых окнах";
+            radTreeNode213.Name = "Node217";
+            radTreeNode213.Text = "Доработано окно результата поиска";
+            radTreeNode214.Name = "Node207";
+            radTreeNode214.Text = "Создан программный порядок ввода пенсионера";
+            radTreeNode215.Expanded = true;
+            radTreeNode215.Name = "Node209";
+            radTreeNode215.Text = "Исправлен расширенный поиск";
+            radTreeNode216.Name = "Node210";
+            radTreeNode216.Text = "Добавлены родственные отношения в \"родственики\"";
+            radTreeNode217.Name = "Node214";
+            radTreeNode217.Text = "Проведена корректировка базы по \"ФИО\" - убраны пробелы";
+            radTreeNode218.Name = "Node216";
+            radTreeNode218.Text = "В поиск добавлен пункт \"по личн. номеру\"";
+            radTreeNode219.Name = "Node220";
+            radTreeNode219.Text = "Программа стала работать через интернет";
+            radTreeNode220.Name = "Node219";
+            radTreeNode220.Text = "В пункте настроек можно настроить подключение к базе";
+            radTreeNode221.Name = "Node221";
+            radTreeNode221.Text = "Востановлено удаление соц. раб.";
+            radTreeNode222.Name = "Node222";
+            radTreeNode222.Text = "При удалении соц. раб. все люди снимаются с над. обсл.";
+            radTreeNode223.Name = "Node223";
+            radTreeNode223.Text = "Добавлен новый справочник \"Диагноз инвалидности\"";
+            radTreeNode224.Name = "Node224";
+            radTreeNode224.Text = "Добавлена возможность ввода инвалидности";
+            radTreeNode206.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode207,
+            radTreeNode208,
+            radTreeNode209,
+            radTreeNode210,
+            radTreeNode211,
+            radTreeNode212,
+            radTreeNode213,
+            radTreeNode214,
+            radTreeNode215,
+            radTreeNode216,
+            radTreeNode217,
+            radTreeNode218,
+            radTreeNode219,
+            radTreeNode220,
+            radTreeNode221,
+            radTreeNode222,
+            radTreeNode223,
+            radTreeNode224});
+            radTreeNode206.Text = "1.2 (16.01.2019)";
+            radTreeNode225.Name = "Node225";
+            radTreeNode226.Name = "Node229";
+            radTreeNode226.Text = "Изменена система обновления";
+            radTreeNode227.Name = "Node226";
+            radTreeNode227.Text = "Добавлено обновление программы через интернет";
+            radTreeNode228.Name = "Node227";
+            radTreeNode228.Text = "Изменено время ожидания ответа с сервера";
+            radTreeNode229.Name = "Node228";
+            radTreeNode229.Text = "Создана массовая замена инспекторов";
+            radTreeNode225.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode226,
+            radTreeNode227,
+            radTreeNode228,
+            radTreeNode229});
+            radTreeNode225.Text = "1.3 (27.01.2019)";
+            radTreeNode230.Expanded = true;
+            radTreeNode230.Name = "Node230";
+            radTreeNode231.Name = "Node231";
+            radTreeNode231.Text = "Удалены лишние поля в базе";
+            radTreeNode232.Name = "Node232";
+            radTreeNode232.Text = "Исправлены ошибки в отображении";
+            radTreeNode233.Name = "Node233";
+            radTreeNode233.Text = "Добавлены новые проверки на ошибки";
+            radTreeNode230.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode231,
+            radTreeNode232,
+            radTreeNode233});
+            radTreeNode230.Text = "1.4 ()";
+            this.treeView1.Nodes.AddRange(new Telerik.WinControls.UI.RadTreeNode[] {
+            radTreeNode1,
+            radTreeNode66,
+            radTreeNode178,
+            radTreeNode206,
+            radTreeNode225,
+            radTreeNode230});
             this.treeView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.treeView1.Size = new System.Drawing.Size(492, 316);
             this.treeView1.SpacingBetweenNodes = -1;

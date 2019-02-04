@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using Telerik.WinControls.Data;
+using Telerik.WinControls.Themes;
 using Telerik.WinControls.UI;
+using Одиноко_проживающие.all;
 
 namespace Одиноко_проживающие
 {
@@ -16,6 +19,7 @@ namespace Одиноко_проживающие
         BackgroundWorker myBackgroundWorker;
         BackgroundWorker myBackgroundWorkerOff;
         BackgroundWorker myBackgroundWorkerJoin;
+        TelerikMetroTheme theme = new TelerikMetroTheme();
         private bool _status = false;
         #endregion
 
@@ -23,7 +27,7 @@ namespace Одиноко_проживающие
         public SocPersonal()
         {
             InitializeComponent();
-
+            ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
             MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
             radGridView2.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
             CheckForIllegalCrossThreadCalls = false;
@@ -69,7 +73,7 @@ namespace Одиноко_проживающие
                 radGridViewSoc.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridViewSoc.EnablePaging = true;
-                    _bindingSource_soc = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+                    _bindingSource_soc = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                         from spezialistView(2,0)  order by [ФИО]").Tables[0] };
                     radGridViewSoc.DataSource = _bindingSource_soc;
 
@@ -84,6 +88,8 @@ namespace Одиноко_проживающие
                     radGridViewSoc.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                     radGridViewSoc.CommandCellClick += new CommandCellClickEventHandler(radGridViewButton_Click);
                 }));
+
+                comboBox();
             }
             catch (Exception ex)
             {
@@ -96,13 +102,15 @@ namespace Одиноко_проживающие
         private void radGridViewSoc_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource_soc = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+            _bindingSource_soc = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                 from spezialistView(2,0) order by [ФИО]").Tables[0] };
 
             radGridViewSoc.Invoke(new MethodInvoker(delegate ()
             {
                 radGridViewSoc.DataSource = _bindingSource_soc;
             }));
+
+            comboBox();
         }
 
         //добавление
@@ -134,7 +142,7 @@ namespace Одиноко_проживающие
                 fio = e.Rows[0].Cells[1].Value.ToString();
 
             var parameters = "'" + fio + "',2";
-            var returnSqlServer = commandServer.GetServerCommandExecReturnServer("speziolist_add", parameters);
+            var returnSqlServer = commandServer.ExecReturnServer("speziolist_add", parameters);
             if (returnSqlServer[1] == "0")
                 e.Cancel = true;
             AlertOperation("speziolist_add " + parameters, returnSqlServer);
@@ -172,13 +180,47 @@ namespace Одиноко_проживающие
                             text = e.NewValue.ToString();
                         parameters += text + "', 2";
 
-                        var returnSqlServer = commandServer.GetServerCommandExecReturnServer("speziolist_edit", parameters);
+                        var returnSqlServer = commandServer.ExecReturnServer("speziolist_edit", parameters);
                         if (returnSqlServer[1] == "0")
                             e.Cancel = true;
                         AlertOperation("speziolist_edit " + line.Cells[1].Value, returnSqlServer);
                     }                    
                 }
             }
+        }
+
+        private void radGridViewButton_Click(object sender, EventArgs e)
+        {
+            if (((GridCommandCellElement)sender).Data.FieldName == "delete")
+            {
+                OneDate dat = new OneDate("Дата снятия с обслуживания");
+                dat.ShowDialog();
+                DateTime dates = dat.Date_time;
+                if (dates.Year != 1)
+                {
+                    new CommandServer().ExecNoReturnServer("speziolist_del", radGridViewSoc.CurrentRow.Cells[0].Value.ToString() + ",1,'" + dates + "'");
+                    UpdateGrid();
+                }
+            }
+            else
+                if (radGridView3.CurrentRow.Cells[0].Value != null)
+            {
+                new CommandServer().ExecNoReturnServer("speziolist_del", radGridView3.CurrentRow.Cells[0].Value.ToString() + ",0,null");
+                UpdateGrid();
+            }
+        }
+
+        private void UpdateGrid()
+        {
+            _bindingSource_soc = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                        from spezialistView(2,0)
+                        order by [ФИО]").Tables[0] };
+            radGridViewSoc.DataSource = _bindingSource_soc;
+
+            _bindingSource_soc_off = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
+                        from spezialistView(2,1)
+                        order by [ФИО]").Tables[0] };
+            radGridView3.DataSource = _bindingSource_soc_off;
         }
         #endregion
 
@@ -190,7 +232,7 @@ namespace Одиноко_проживающие
                 radGridView3.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView3.EnablePaging = true;
-                    _bindingSource_soc_off = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
+                    _bindingSource_soc_off = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select *
                         from spezialistView(2,1)
                         order by [ФИО]").Tables[0] };
                     radGridView3.DataSource = _bindingSource_soc_off;
@@ -221,7 +263,7 @@ namespace Одиноко_проживающие
         {
             var commandServer = new CommandServer();
 
-            _binding = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select*
+            _binding = new BindingSource { DataSource = commandServer.DataGridSet(@"select*
                 from spezialistView(1, 0)
                 order by[ФИО]").Tables[0] };
             
@@ -241,7 +283,7 @@ namespace Одиноко_проживающие
             {
                 if (radGridViewSoc.CurrentRow.Cells[0].Value != null)
                 {
-                    _bindingSource_join = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select keys, fio as [ФИО], joi
+                    _bindingSource_join = new BindingSource { DataSource = commandServer.DataGridSet(@"select keys, fio as [ФИО], joi
                     from InspectorJoinSocView(" + radGridView1.CurrentRow.Cells[0].Value + ")").Tables[0] };
 
                     radGridView2.DataSource = _bindingSource_join;
@@ -270,14 +312,40 @@ namespace Одиноко_проживающие
             string isChecked = radGridView2.ActiveEditor.Value.ToString();
             if (isChecked == "On")
             {
-                new CommandServer().GetServerCommandExecNoReturnServer("spec_soc_add", radGridView1.CurrentRow.Cells[0].Value + "," + radGridView2.CurrentRow.Cells[0].Value);
+                new CommandServer().ExecNoReturnServer("spec_soc_add", radGridView1.CurrentRow.Cells[0].Value + "," + radGridView2.CurrentRow.Cells[0].Value);
             }
             else
             {
-                new CommandServer().GetServerCommandExecNoReturnServer("spec_soc_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+                new CommandServer().ExecNoReturnServer("spec_soc_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
             }
         }
 
+        #endregion
+
+        #region Операции
+        #region Массовая замена
+        private void comboBox()
+        {
+            var commandServer = new CommandServer();
+            radDropDownList1.Invoke(new MethodInvoker(delegate ()
+            {
+                radDropDownList1.DataSource = commandServer.ComboBoxList(@"select ФИО
+                        from spezialistView(2,0)  order by [ФИО]", true);
+            }));
+
+            radDropDownList2.Invoke(new MethodInvoker(delegate ()
+            {
+                radDropDownList2.DataSource = commandServer.ComboBoxList(@"select ФИО
+                        from spezialistView(2,0)  order by [ФИО]", true);
+            }));
+        }
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            var returns = new CommandServer().ExecReturnServer("speziolist_replacement", "'" + radDropDownList1.Text + "','" + radDropDownList2.Text + "','" + dateTimePicker1.Value + "'");
+            MessageBox.Show(returns[0], "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion
         #endregion
 
         #region Дополнительно
@@ -297,34 +365,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radGridViewButton_Click(object sender, EventArgs e)
-        {
-            if (((GridCommandCellElement)sender).Data.FieldName == "delete")
-            {
-                new CommandServer().GetServerCommandExecNoReturnServer("socRabotnik_del", radGridViewSoc.CurrentRow.Cells[0].Value.ToString() + ",1");
-                UpdateGrid();
-            }                
-            else
-                if(radGridView3.CurrentRow.Cells[0].Value != null)
-                {
-                    new CommandServer().GetServerCommandExecNoReturnServer("socRabotnik_del", radGridView3.CurrentRow.Cells[0].Value.ToString() + ",0");
-                    UpdateGrid();
-                }
-        }
-
-        private void UpdateGrid()
-        {
-            _bindingSource_soc = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
-                        from socPersonelView(0)
-                        order by [ФИО]").Tables[0] };
-            radGridViewSoc.DataSource = _bindingSource_soc;
-
-            _bindingSource_soc_off = new BindingSource { DataSource = new CommandServer().GetDataGridSet(@"select *
-                        from socPersonelView(1)
-                        order by [ФИО]").Tables[0] };
-            radGridView3.DataSource = _bindingSource_soc_off;
-        }
-        #endregion
+        
 
         private void SocPersonal_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -332,5 +373,6 @@ namespace Одиноко_проживающие
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
+        #endregion
     }
 }

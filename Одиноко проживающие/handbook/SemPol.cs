@@ -76,7 +76,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addSemPol", "'" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addSemPol", "'" + textBox1.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -101,7 +101,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView1.Visible = false;
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editSemPol", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editSemPol", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
                     dataGridView1.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -136,7 +136,7 @@ namespace Одиноко_проживающие
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             var commandServer = new CommandServer();
-            dataGridView1.DataSource = commandServer.GetDataGridSet(@"select sem_pol as [Сем. пол.]
+            dataGridView1.DataSource = commandServer.DataGridSet(@"select sem_pol as [Сем. пол.]
                 from sem_pol
                 order by sem_pol").Tables[0];
         }

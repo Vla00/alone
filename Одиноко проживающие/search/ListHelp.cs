@@ -44,9 +44,9 @@ namespace Одиноко_проживающие.search
                     radGridView1.EnablePaging = true;
 
                     if(dateS == null)
-                        _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from HelpList() order by [Дата] desc").Tables[0] };
+                        _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from HelpList() order by [Дата] desc").Tables[0] };
                     else
-                        _bindingSource = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select * from HelpList()
+                        _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from HelpList()
                     where [Дата] between '" + dateS.Value + "' and '" + dateE.Value + "'order by [Дата] desc").Tables[0] };
 
                     radGridView1.DataSource = _bindingSource;
@@ -89,7 +89,7 @@ namespace Одиноко_проживающие.search
             Hide();
             try
             {
-                new AddAlone(false, Convert.ToInt32(radGridView1.CurrentRow.Cells[0].Value)).ShowDialog();
+                new Alone(false, Convert.ToInt32(radGridView1.CurrentRow.Cells[0].Value)).ShowDialog();
             }catch(Exception ex)
             {
                 var commandClient = new CommandClient();

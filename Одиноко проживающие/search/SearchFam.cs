@@ -37,7 +37,14 @@ namespace Одиноко_проживающие.search
                     number = 2;
             }
             Hide();
-            new Family(textBox1.Text, textBox2.Text, textBox3.Text, number, "SearchFamily", true).ShowDialog();
+            if (string.IsNullOrEmpty(textBox4.Text))
+            {
+                new Result(textBox1.Text, textBox2.Text, textBox3.Text, number, "SearchFamily", true, null).ShowDialog();
+            }
+            else
+            {
+                new Alone(false, Convert.ToInt32(textBox4.Text)).ShowDialog();
+            }
             Show();
             textBox1.Focus();
         }
@@ -59,6 +66,12 @@ namespace Одиноко_проживающие.search
         {
             TextBox text = sender as TextBox;
             if (text != null) text.SelectAll();
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+                e.Handled = true;
         }
     }
 }

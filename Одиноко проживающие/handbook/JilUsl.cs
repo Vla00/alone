@@ -15,11 +15,6 @@ namespace Одиноко_проживающие
         {
             InitializeComponent();
 
-            radDropDownList1.DataSource = new CommandServer().GetDataGridSet(@"select *
-                from spezialistSurvey()").Tables[0];
-
-            radListView1.DataSource = new CommandServer().GetDataGridSet(@"select *
-                from spezialistSurvey()").Tables[0];
             button3.Visible = false;
             button4.Visible = false;
             button3_2.Visible = false;
@@ -163,7 +158,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation1)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addWoter", "'" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addWoter", "'" + textBox1.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -188,7 +183,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView1.Visible = false;
                     if (dataGridView1.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editWoter", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editWoter", "'" + dataGridView1.CurrentRow.Cells[0].Value + "','" + textBox1.Text + "'");
                     dataGridView1.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -225,7 +220,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation2)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addKanal", "'" + textBox2.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addKanal", "'" + textBox2.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -250,7 +245,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView2.Visible = false;
                     if (dataGridView2.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editKanal", "'" + dataGridView2.CurrentRow.Cells[0].Value + "','" + textBox2.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editKanal", "'" + dataGridView2.CurrentRow.Cells[0].Value + "','" + textBox2.Text + "'");
                     dataGridView2.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -285,7 +280,7 @@ namespace Одиноко_проживающие
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             var commandServer = new CommandServer();
 
-            dataGridView2.DataSource = commandServer.GetDataGridSet(@"select statusKanal as [Канализация]
+            dataGridView2.DataSource = commandServer.DataGridSet(@"select statusKanal as [Канализация]
                 from statusKanal
                 order by statusKanal").Tables[0];
         }
@@ -298,7 +293,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation3)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addPlita", "'" + textBox3.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addPlita", "'" + textBox3.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -323,7 +318,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView3.Visible = false;
                     if (dataGridView3.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editPlita", "'" + dataGridView3.CurrentRow.Cells[0].Value + "','" + textBox3.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editPlita", "'" + dataGridView3.CurrentRow.Cells[0].Value + "','" + textBox3.Text + "'");
                     dataGridView3.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -357,7 +352,7 @@ namespace Одиноко_проживающие
             dataGridView3.MultiSelect = false;
             dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             var commandServer = new CommandServer();
-            dataGridView3.DataSource = commandServer.GetDataGridSet(@"select statusPlita as [Плита]
+            dataGridView3.DataSource = commandServer.DataGridSet(@"select statusPlita as [Плита]
                 from statusPlita
                 order by statusPlita").Tables[0];
         }
@@ -370,7 +365,7 @@ namespace Одиноко_проживающие
             {
                 if (_statusOperation4)
                 {
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("addOtopl", "'" + textBox4.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("addOtopl", "'" + textBox4.Text + "'");
                     if (returnOperation[1] == "Ошибка")
                     {
                         MessageBox.Show(@"Запись не была добавленна.", @"Ошибка", MessageBoxButtons.OK,
@@ -395,7 +390,7 @@ namespace Одиноко_проживающие
                 {
                     dataGridView4.Visible = false;
                     if (dataGridView4.CurrentRow == null) return;
-                    var returnOperation = commandServer.GetServerCommandExecNoReturnServer("editOtopl", "'" + dataGridView4.CurrentRow.Cells[0].Value + "','" + textBox4.Text + "'");
+                    var returnOperation = commandServer.ExecNoReturnServer("editOtopl", "'" + dataGridView4.CurrentRow.Cells[0].Value + "','" + textBox4.Text + "'");
                     dataGridView4.Visible = true;
                     if (returnOperation[1] == "Ошибка")
                     {
@@ -429,7 +424,7 @@ namespace Одиноко_проживающие
             dataGridView4.MultiSelect = false;
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             var commandServer = new CommandServer();
-            dataGridView4.DataSource = commandServer.GetDataGridSet(@"select statusOtopl as [Отопление]
+            dataGridView4.DataSource = commandServer.DataGridSet(@"select statusOtopl as [Отопление]
                 from statusOtopl
                 order by statusOtopl").Tables[0];
         }
@@ -439,7 +434,7 @@ namespace Одиноко_проживающие
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             var commandServer = new CommandServer();
-            dataGridView1.DataSource = commandServer.GetDataGridSet(@"select statusWoter as [Водоснобжение]
+            dataGridView1.DataSource = commandServer.DataGridSet(@"select statusWoter as [Водоснобжение]
                 from statusWoter
                 order by statusWoter").Tables[0];
         }

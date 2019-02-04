@@ -48,7 +48,7 @@ namespace Одиноко_проживающие
                 radGridView5.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView5.EnablePaging = true;
-                    _bindingSource_personel = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+                    _bindingSource_personel = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                         from spezialistViewColor('0') 
                         where date_end is null
                         order by [ФИО]").Tables[0] };
@@ -78,7 +78,7 @@ namespace Одиноко_проживающие
                 radGridView2.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridView2.EnablePaging = true;
-                    _bindingSource_off = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+                    _bindingSource_off = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                         from spezialistViewColor('0') 
                         where date_end is not null
                         order by [ФИО]").Tables[0] };
@@ -212,7 +212,7 @@ namespace Одиноко_проживающие
                 fio = e.Rows[0].Cells[1].Value.ToString();
 
             var parameters = "'" + fio + "','0'";
-            var returnSqlServer = commandServer.GetServerCommandExecNoReturnServer("speziolist_add", parameters);
+            var returnSqlServer = commandServer.ExecNoReturnServer("speziolist_add", parameters);
             if (returnSqlServer[1] == "0")
                 e.Cancel = true;
 
@@ -224,7 +224,7 @@ namespace Одиноко_проживающие
         private void radGridView5_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource_personel = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+            _bindingSource_personel = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                         from spezialistViewColor('0') 
                         where date_end is null
                         order by [ФИО]").Tables[0] };
@@ -267,7 +267,7 @@ namespace Одиноко_проживающие
                             text = e.NewValue.ToString();
                         parameters += text + "','0'";
 
-                        var returnSqlServer = commandServer.GetServerCommandExecNoReturnServer("speziolist_edit", parameters);
+                        var returnSqlServer = commandServer.ExecNoReturnServer("speziolist_edit", parameters);
                         if (returnSqlServer[1] == "0")
                             e.Cancel = true;
 
@@ -286,7 +286,7 @@ namespace Одиноко_проживающие
             {
                 if (radGridView5.CurrentRow.Cells[0].Value != null)
                 {
-                    _bindingSource_personel_time = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_job_spezialist, date_start, date_end
+                    _bindingSource_personel_time = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_job_spezialist, date_start, date_end
                     from job_spezialist left join speziolist on job_spezialist.fk_spezialist = speziolist.key_speziolist
                     where fk_spezialist = " + radGridView5.CurrentRow.Cells[0].Value).Tables[0] };
                     radGridView6.DataSource = _bindingSource_personel_time;
@@ -348,7 +348,7 @@ namespace Одиноко_проживающие
                 line += "null";
             }
 
-            var returnSqlServer = commandServer.GetServerCommandExecReturnServer("job_spezialist_add", line);
+            var returnSqlServer = commandServer.ExecReturnServer("job_spezialist_add", line);
             UpdateLoadJobTime();
             AlertOperation("job_spezialist_add " + line, returnSqlServer);
         }
@@ -417,7 +417,7 @@ namespace Одиноко_проживающие
                             parameters += "'" + line.Cells[2].Value.ToString() + "'";
                     }
 
-                    var returnSqlServer = commandServer.GetServerCommandExecReturnServer("job_spezialist_edit", parameters);
+                    var returnSqlServer = commandServer.ExecReturnServer("job_spezialist_edit", parameters);
                     //UpdateLoadJobTime();
                     AlertOperation("job_spezialist_edit " + line.Cells[1].Value, returnSqlServer);
                     if(update)
@@ -464,7 +464,7 @@ namespace Одиноко_проживающие
                             text = e.NewValue.ToString();
                         parameters += text + "','0'";
 
-                        var returnSqlServer = commandServer.GetServerCommandExecReturnServer("speziolist_edit", parameters);
+                        var returnSqlServer = commandServer.ExecReturnServer("speziolist_edit", parameters);
                         if (returnSqlServer[1] == "0")
                             e.Cancel = true;
                         AlertOperation("speziolist_edit " + line.Cells[1].Value, returnSqlServer);
@@ -476,7 +476,7 @@ namespace Одиноко_проживающие
         private void radGridView6_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
         {
             var commandServer = new CommandServer();
-            commandServer.GetServerCommandExecNoReturnServer("job_spezialist_delete", e.Rows[0].Cells[0].Value.ToString());
+            commandServer.ExecNoReturnServer("job_spezialist_delete", e.Rows[0].Cells[0].Value.ToString());
             LoadGridFio();
             LoadGridFioOff();
         }
@@ -484,7 +484,7 @@ namespace Одиноко_проживающие
         private void UpdateLoadJobTime()
         {
             var commandServer = new CommandServer();
-            DataSet val = commandServer.GetDataGridSet("select * from CalcStagResultPersonel(" + radGridView5.CurrentRow.Cells[0].Value + ")");
+            DataSet val = commandServer.DataGridSet("select * from CalcStagResultPersonel(" + radGridView5.CurrentRow.Cells[0].Value + ")");
             richTextBox1.Text = "";
             if (val != null)
             {

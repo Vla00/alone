@@ -11,44 +11,49 @@ namespace Одиноко_проживающие.search
 {
     public partial class ExendedSearch : RadForm
     {
-        private List<string> country;
-        private List<string> category;
-        private List<string> help;
-        private bool statusWhere = false;
-        TelerikMetroTheme theme = new TelerikMetroTheme();
-        BackgroundWorker helpBackgroundWorker;
-        Thread countryThread;        
+        private readonly List<string> _country;
+        private readonly List<string> _category;
+        private readonly List<string> _help;
+        private bool _statusWhere;
+        private readonly TelerikMetroTheme _theme = new TelerikMetroTheme();
+        readonly BackgroundWorker _helpBackgroundWorker;
+        private Thread _countryThread;        
 
         public ExendedSearch()
         {
             InitializeComponent();
             MyRadMessageLocalizationProvider.CurrentProvider = new MyRadMessageLocalizationProvider();
-            ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
-            RadMessageBox.SetThemeName(theme.ThemeName);
-            country = new List<string>();
-            category = new List<string>();
-            help = new List<string>();
+            ThemeResolutionService.ApplyThemeToControlTree(this, _theme.ThemeName);
+            RadMessageBox.SetThemeName(_theme.ThemeName);
+            _country = new List<string>();
+            _category = new List<string>();
+            _help = new List<string>();
 
-            helpBackgroundWorker = new BackgroundWorker();
-            helpBackgroundWorker.WorkerReportsProgress = true;
-            helpBackgroundWorker.WorkerSupportsCancellation = true;
-            helpBackgroundWorker.DoWork += new DoWorkEventHandler(LoadHelp);
+            _helpBackgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true, WorkerSupportsCancellation = true
+            };
+            _helpBackgroundWorker.DoWork += LoadHelp;
+
+            radPageView5.Pages[0].Item.DrawBorder = true;
+            radPageView5.Pages[1].Item.DrawBorder = true;
+            radPageView5.Pages[2].Item.DrawBorder = true;
         }
 
         public void LoadCountry()
         {
-            List<string> countryRegion = new CommandServer().GetComboBoxList("select selsovet.selsovet from selsovet order by selsovet", true);
+            var countryRegion = new CommandServer().ComboBoxList("select selsovet.selsovet from selsovet order by selsovet", true);
 
-            foreach (string coun in countryRegion)
+            foreach (var coun in countryRegion)
             {
                 if (!string.IsNullOrEmpty(coun))
                 {
-                    radTreeView1.Invoke(new MethodInvoker(delegate ()
+                    radTreeView1.Invoke(new MethodInvoker(delegate
                     {
                         radTreeView1.Nodes.Add(coun);
-                        List<string> country = new CommandServer().GetComboBoxList("select country.country from selsovet inner join country on country.fk_selsovet = selsovet.key_selsovet where selsovet = '"
+                        var country = new CommandServer().ComboBoxList("select country.country from selsovet inner join country on country.fk_selsovet = selsovet.key_selsovet where selsovet = '"
                             + coun + "'order by country", true);
-                        foreach (string c in country)
+                        foreach (var c in country)
                         {
                             if (!string.IsNullOrEmpty(c))
                                 radTreeView1.Nodes[coun].Nodes.Add(c);
@@ -60,17 +65,17 @@ namespace Одиноко_проживающие.search
 
         private void LoadHelp(object sender, DoWorkEventArgs e)
         {
-            List<string> help = new CommandServer().GetComboBoxList(@"select typeHelp
+            var help = new CommandServer().ComboBoxList(@"select typeHelp
                 from help inner join typeHelp on help.fk_typeHelp = typeHelp.key_typeHelp
                 group by typeHelp", true);
-            countryThread = new Thread(LoadCountry);
-            countryThread.Start();
+            _countryThread = new Thread(LoadCountry);
+            _countryThread.Start();
 
-            foreach (string h in help)
+            foreach (var h in help)
             {
                 if (!string.IsNullOrEmpty(h))
                 {
-                    radTreeView2.Invoke(new MethodInvoker(delegate ()
+                    radTreeView2.Invoke(new MethodInvoker(delegate
                     {
                         radTreeView2.Nodes.Add(h);
                     }));
@@ -112,334 +117,296 @@ namespace Одиноко_проживающие.search
             }
 
             #region
-            int c = radTreeView1.Nodes.Count;
-            statusWhere = false;
-            string Head;
-            string HeadDead;
-            string Group;
-            string GroupDead;            
+            var c = radTreeView1.Nodes.Count;
+            _statusWhere = false;
 
-            //if (RadMessageBox.Show("Показывать записи которые повторяются?", "Внимание", MessageBoxButtons.YesNo, RadMessageIcon.Question, "При соглашении в результате будут показываться категории") ==
-            //    DialogResult.Yes)
-            //{
-            //    Head = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
-		          //  selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		          //  alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ], category.category as [Категория]";
-
-            //    Group = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	           //     country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate, category.category";
-
-
-            //    HeadDead = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
-		          //  selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		          //  alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
-		          //  alone.date_exit as [Выезд], alone.date_sm as [Смерть], category.category as [Категория]";
-
-            //    GroupDead = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	           //     country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate,
-	           //     alone.date_exit, alone.date_sm, category.category";
-            //}
-            //else
-            //{
-                Head = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
+            var head = @"select alone.key_alone, (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], alone.date_ro as [Дата рождения],
 		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ]";
+		            every_set.name + ' ' + adres.street +
+		            case when adres.house IS not null
+                        then ' д.' + cast(adres.house as nvarchar(50))
+                        else ''
+                    end +
+                    case when adres.housing is not null
+                        then ' корп.' + adres.housing
+                        else ''
+                    end +
+                    case when adres.apartment IS not null
+                        then ' кв.' + cast(adres.apartment AS nvarchar(50))
+                        else ''
+                    end as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ]";
 
-                Group = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	            country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate";
+                var group = @" group by alone.key_alone, family.family, family.name, family.surname, alone.date_ro, selsovet.selsovet,
+	            country.country, protivopojar.ApiDate, protivopojar.SzuDate, every_set.name, adres.street, adres.house, adres.housing, adres.apartment";
 
-                HeadDead = @"select alone.key_alone, alone.fio as [ФИО], alone.date_ro as [Дата рождения],
+                var headDead = @"select alone.key_alone, (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], alone.date_ro as [Дата рождения],
 		            selsovet.selsovet as [Сельский совет], country.country as [Населенный пункт], 
-		            alone.street as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
+		            every_set.name + ' ' + adres.street +
+		            case when adres.house IS not null
+                        then ' д.' + cast(adres.house as nvarchar(50))
+                        else ''
+                    end +
+                    case when adres.housing is not null
+                        then ' корп.' + adres.housing
+                        else ''
+                    end +
+                    case when adres.apartment IS not null
+                        then ' кв.' + cast(adres.apartment AS nvarchar(50))
+                        else ''
+                    end as [Адрес], protivopojar.ApiDate as [АПИ], protivopojar.SzuDate as [СЗУ],
 		            alone.date_exit as [Выезд], alone.date_sm as [Смерть]";
 
-                GroupDead = @" group by alone.key_alone, alone.fio, alone.date_ro, selsovet.selsovet,
-	                country.country, alone.street, protivopojar.ApiDate, protivopojar.SzuDate,
-	                alone.date_exit, alone.date_sm";
+                var groupDead = @" group by alone.key_alone, family.family, family.name, family.surname, alone.date_ro, selsovet.selsovet,
+	                country.country, protivopojar.ApiDate, protivopojar.SzuDate,
+	                alone.date_exit, alone.date_sm, every_set.name, adres.street, adres.house, adres.housing, adres.apartment";
 
-            string HeadOne = @"select distinct *, 
+            const string headOne = @"select distinct *, 
                     STUFF(cast((select[text()] = '; ' + t1.category
                     from category as [t1]
                     where t1.fk_alone = t2.key_alone
-                    for Xml path(''), type) as varchar(300)), 1, 2, '') as [катеригии]
+                    for Xml path(''), type) as nvarchar(max)), 1, 2, '') as [категории]
                 from(";
-            // }
 
-            string From = @" from alone inner join category on alone.key_alone = category.fk_alone
+            var from = @" from alone inner join category on alone.key_alone = category.fk_alone
 		        inner join country on alone.fk_country = country.key_country
 		        inner join selsovet on selsovet.key_selsovet = country.fk_selsovet
+                inner join family on family.fk_alone = alone.key_alone
+		        inner join adres on adres.fk_alone = alone.key_alone
+		        inner join every_set on every_set.key_every = adres.fk_every
 		        left join protivopojar on protivopojar.fk_alone = alone.key_alone ";
 
-            if (help.Count != 0)
+            if (_help.Count != 0)
             {
-                Head += ", typeHelp.typeHelp as [Помощь], help.dateHelp as [Дата]";
-                HeadDead += ", typeHelp.typeHelp as [Помощь], help.dateHelp as [Дата]";
-                Group += ", typeHelp, dateHelp";
-                GroupDead += ", typeHelp, dateHelp";
-                From += "left join help on help.fk_alone = alone.key_alone left join typeHelp on help.fk_typeHelp = key_typeHelp ";
+                head += ", typeHelp.typeHelp as [Помощь], help.dateHelp as [Дата]";
+                headDead += ", typeHelp.typeHelp as [Помощь], help.dateHelp as [Дата]";
+                group += ", typeHelp, dateHelp";
+                groupDead += ", typeHelp, dateHelp";
+                from += "left join help on help.fk_alone = alone.key_alone left join typeHelp on help.fk_typeHelp = key_typeHelp ";
             }
 
-            string Where = " where ";
+            var where = " where ";
 
-            if (category.Count != 0)
+            if (_category.Count != 0)
             {
                 if (radioButton1.IsChecked)
                 {
-                    for (int i = 0; i < category.Count; i++)
+                    for (var i = 0; i < _category.Count; i++)
                     {
-                        From += " join category category" + i + " on alone.key_alone = category" + i + ".fk_alone and category" + i + ".category = '" + category[i] + "' ";
+                        from += " join category category" + i + " on alone.key_alone = category" + i + ".fk_alone and category" + i + ".category = '" + _category[i] + "' ";
                     }
                 }
                 else
                 {
-                    Where += "(";
-                    for (int i = 0; i < category.Count; i++)
+                    where += "(";
+                    for (var i = 0; i < _category.Count; i++)
                     {
-                        Where += "category.category = '" + category[i] + "'";
+                        where += "category.category = '" + _category[i] + "'";
 
-                        if (i != category.Count - 1)
+                        if (i != _category.Count - 1)
                         {
                             if (radioButton1.IsChecked)
-                                Where += " and ";
+                                where += " and ";
                             else
-                                Where += " or ";
+                                where += " or ";
                         }
                         else
-                            Where += ")";
+                            where += ")";
                     }
-                    statusWhere = true;
+                    _statusWhere = true;
                 }
             }
 
-            if(help.Count != 0)
+            if(_help.Count != 0)
             {
-                if (statusWhere)
-                    Where += " and";
-                Where += " (";
-                for(int i = 0; i < help.Count; i++)
+                if (_statusWhere)
+                    where += " and";
+                where += " (";
+                for(var i = 0; i < _help.Count; i++)
                 {
-                    Where += "typeHelp.typeHelp = '" + help[i] + "'";
+                    where += "typeHelp.typeHelp = '" + _help[i] + "'";
 
-                    if (i != help.Count - 1)
+                    if (i != _help.Count - 1)
                     {
-                        Where += " or ";
+                        where += " or ";
                     }
                     else
-                        Where += ")";
+                        where += ")";
                 }
-                statusWhere = true;
+                _statusWhere = true;
             }
 
-            if (country.Count != 0)
+            if (_country.Count != 0)
             {
-                if (statusWhere)
-                    Where += " and";
-                Where += " (";
-                for (int i = 0; i < country.Count; i++)
+                if (_statusWhere)
+                    where += " and";
+                where += " (";
+                for (var i = 0; i < _country.Count; i++)
                 {
-                    Where += "country.country = '" + country[i] + "'";
+                    where += "country.country = '" + _country[i] + "'";
 
-                    if (i != country.Count - 1)
+                    if (i != _country.Count - 1)
                     {
-                        Where += " or ";
+                        where += " or ";
                     }
                     else
-                        Where += ")";
+                        where += ")";
                 }
-                statusWhere = true;
+                _statusWhere = true;
             }
 
             if (radCheckBox39.Checked)
             {
-                if(statusWhere)
+                if(_statusWhere)
                 {
-                    Where += " and (";
+                    where += " and (";
                 }else
                 {
-                    Where += " (";
+                    where += " (";
                 }
-                Where += "dateHelp >= '" + dateTimePicker3.Value.ToString() + "'";
+                where += "dateHelp >= '" + dateTimePicker3.Value.ToString() + "'";
 
                 if(dateTimePicker4.Value.Date != DateTime.Now.Date)
                 {
-                    Where += " and dateHelp <= '" + dateTimePicker4.Value.ToString() + "'";
+                    where += " and dateHelp <= '" + dateTimePicker4.Value.ToString() + "'";
                 }
-                Where += ")";
-                statusWhere = true;
+                where += ")";
+                _statusWhere = true;
             }
 
             if (dateTimePicker1.Value.Date != DateTime.Now.Date)
             {
-                if (statusWhere)
+                if (_statusWhere)
                 {
-                    Where += " and (";
+                    where += " and (";
                 }
                 else
                 {
-                    Where += " (";
+                    where += " (";
                 }
-                Where += "date_ro >= '" + dateTimePicker1.Value.ToString() + "'";
+                where += "date_ro >= '" + dateTimePicker1.Value.ToString() + "'";
 
                 if (dateTimePicker2.Value.Date != DateTime.Now.Date)
                 {
-                    Where += " and date_ro <= '" + dateTimePicker2.Value.ToString() + "'";
+                    where += " and date_ro <= '" + dateTimePicker2.Value.ToString() + "'";
                 }
-                Where += ")";
-                statusWhere = true;
+                where += ")";
+                _statusWhere = true;
             }
 
             if (checkBox7.Checked)
             {
-                if (statusWhere)
+                if (_statusWhere)
                 {
-                    Where += " and (";
+                    where += " and (";
                 }
                 else
                 {
-                    Where += " (";
+                    where += " (";
                 }
-                Where += "ApiDate = " + numericUpDown2.Value + ")";
-                statusWhere = true;
+                where += "ApiDate = " + numericUpDown2.Value + ")";
+                _statusWhere = true;
             }
 
             if (checkBox6.Checked)
             {
-                if (statusWhere)
+                if (_statusWhere)
                 {
-                    Where += " and (";
+                    where += " and (";
                 }
                 else
                 {
-                    Where += " (";
+                    where += " (";
                 }
-                Where += "SzuDate = " + numericUpDown3.Value + ")";
-                statusWhere = true;
+                where += "SzuDate = " + numericUpDown3.Value + ")";
+                _statusWhere = true;
             }
 
             
             if(!string.IsNullOrEmpty(nad))
             {
-                Head += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
-                HeadDead += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
-                Group += ", l.date_operation, l.operation";
-                GroupDead += ", l.date_operation, l.operation";
-                From += @"cross apply (select * from dbo.ExtendedSearh_nad_obl() t3 where alone.key_alone = t3.key_alone) l";
+                head += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
+                headDead += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
+                group += ", l.date_operation, l.operation";
+                groupDead += ", l.date_operation, l.operation";
+                from += @"cross apply (select * from dbo.ExtendedSearh_nad_obl() t3 where alone.key_alone = t3.key_alone) l";
             }            
             #endregion
-            /*if (!string.IsNullOrEmpty(nad))
-            {
-                if (statusWhere)
-                {
-                    Where += " and " + nad;
-                }
-                else
-                {
-                    Where += " " + nad;
-                }
-                statusWhere = true;
-            }else
-            {
-                if (radRadioButton8.IsChecked)
-                {
-                    if (statusWhere)
-                    {
-                        Where += " and (operation is not null)";
-                    }
-                    else
-                    {
-                        Where += " (operation is not null)";
-                    }
-                    statusWhere = true;
-                }
-            }*/
 
             if(radCheckBox40.Checked)
             {
-                if(statusWhere)
+                if(_statusWhere)
                 {
-                    Where += " and (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                    where += " and (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
                 }else
                 {
-                    Where += " (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                    where += " (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
                 }
-                From += " left join survey on survey.fk_alone = alone.key_alone";
-                statusWhere = true;
+                from += " left join survey on survey.fk_alone = alone.key_alone";
+                _statusWhere = true;
             }
 
             Hide();
-            if (radRadioButton3.IsChecked)
+            if (view_radio.IsChecked)
             {
-                if(statusWhere)
+                if(_statusWhere)
                 {
-                    Where += " and (";
+                    where += " and (";
                 }else
                 {
-                    Where += " (";
+                    where += " (";
                 }
-                Where += "date_sm is null and date_exit is null)";
+                where += "date_sm is null and date_exit is null)";
 
-                if (Where.Length < 10)
+                if (where.Length < 10)
                 {
                     if(string.IsNullOrEmpty(nad))
-                        new Family(Head + From + Group + " order by [ФИО]", 0).ShowDialog();
+                        new Result(headOne + head + from + group + ") as t2 order by [ФИО]", 0).ShowDialog();
                     else
-                        new Family(HeadOne + Head + From + Group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                        new Result(headOne + head + from + group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
                 }                    
                 else
                 {
                     if(string.IsNullOrEmpty(nad))
-                        new Family(Head + From + Where + Group + " order by [ФИО]", 0).ShowDialog();
+                        new Result(headOne + head + from + where + group + ") as t2 order by [ФИО]", 0).ShowDialog();
                     else
-                        new Family(HeadOne + Head + From + Where + Group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                        new Result(headOne + head + from + where + group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
                 }
                     
             }
             else
             {
-                if(radRadioButton1.IsChecked)
+                if(exit_radio.IsChecked)
                 {
-                    if(statusWhere)
+                    if(_statusWhere)
                     {
-                        Where += " and (";
+                        where += " and (";
                     }else
                     {
-                        Where += " (";
+                        where += " (";
                     }
-                    Where += "date_exit is not null)";
-                    statusWhere = true;
+                    where += "date_exit is not null)";
+                    _statusWhere = true;
                 }
 
-                if(radRadioButton2.IsChecked)
+                if(dead_radio.IsChecked)
                 {
-                    if (statusWhere)
+                    if (_statusWhere)
                     {
-                        Where += " and (";
+                        where += " and (";
                     }
                     else
                     {
-                        Where += " (";
+                        where += " (";
                     }
-                    Where += "date_sm is not null)";
+                    where += "date_sm is not null)";
                 }
 
                 if(string.IsNullOrEmpty(nad))
-                    new Family(HeadDead + From + Where + GroupDead + " order by [ФИО]", 1).ShowDialog();
+                    new Result(headOne + headDead + from + where + groupDead + ") as t2 order by [ФИО]", 1).ShowDialog();
                 else
-                    new Family(HeadOne + HeadDead + From + Where + GroupDead + ") as t2 where " + nad + " order by [ФИО]", 1).ShowDialog();
+                    new Result(headOne + headDead + from + where + groupDead + ") as t2 where " + nad + " order by [ФИО]", 1).ShowDialog();
             }
             Show();
-        }
-
-        private void Country(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                Country(c);
-            }
-
-            var cb = control as RadCheckBox;
-            if (cb == null) return;
-            var controlText = cb.Text;
         }
 
         private void radCheckBox_Click(object sender, EventArgs e)
@@ -448,17 +415,17 @@ namespace Одиноко_проживающие.search
             var text = checkBox.Text;
 
             if (!checkBox.Checked)
-                category.Add(text);
+                _category.Add(text);
             else
-                category.Remove(text);
+                _category.Remove(text);
         }
 
-        private void radCheckBoxHelp(object sender, TreeNodeCheckedEventArgs e)
+        private void RadCheckBoxHelp(object sender, TreeNodeCheckedEventArgs e)
         {
             if (e.Node.Checked)
-                help.Add(e.Node.Text);
+                _help.Add(e.Node.Text);
             else
-                help.Remove(e.Node.Text);
+                _help.Remove(e.Node.Text);
         }
 
         private void checkBox7_Click(object sender, EventArgs e)
@@ -492,16 +459,16 @@ namespace Одиноко_проживающие.search
             else
             {
                 if (e.Node.Checked)
-                    country.Add(e.Node.Text);
+                    _country.Add(e.Node.Text);
                 else
-                    country.Remove(e.Node.Text);
+                    _country.Remove(e.Node.Text);
             }
         }
 
         private void ExendedSearch_Load(object sender, EventArgs e)
         {
-            if (!helpBackgroundWorker.IsBusy)
-                helpBackgroundWorker.RunWorkerAsync();
+            if (!_helpBackgroundWorker.IsBusy)
+                _helpBackgroundWorker.RunWorkerAsync();
         }
 
         private void ExendedSearch_FormClosing(object sender, FormClosingEventArgs e)

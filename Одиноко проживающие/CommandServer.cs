@@ -11,7 +11,7 @@ namespace Одиноко_проживающие
         private SqlCommand _command;
         private SqlConnection _connect = LoadProgram.Connect;
 
-        public bool ConnectDB()
+        public bool ConnectDb()
         {
             try
             {
@@ -21,7 +21,6 @@ namespace Одиноко_проживающие
                 if(ex.Number == 53)
                 {
                     LoadProgram.InizializeConnectString();
-                    //LoadProgram.Connect.ConnectionString = LoadProgram.ConnectBuilder.ConnectionString;
                     _connect = LoadProgram.Connect;
                     try
                     {
@@ -43,17 +42,17 @@ namespace Одиноко_проживающие
         }
 
         #region Методы
-        public string[] GetServerCommandExecNoReturnServer(string nameFunction, string parameters)
+        public string[] ExecNoReturnServer(string nameFunction, string parameters)
         {
-            string[] returnServer = { };
+            string[] returnServer;
             try
             {
                 returnServer = GetServerCommandExecNoReturnRetry(nameFunction, parameters);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 new CommandClient().WriteFileError(ex, nameFunction + " " + parameters);
+                return new string[2] { "1", ""};
             }
             finally
             {
@@ -62,7 +61,7 @@ namespace Одиноко_проживающие
             return returnServer;
         }
 
-        public string[] GetServerCommandExecReturnServer(string nameFunction, string parameters)
+        public string[] ExecReturnServer(string nameFunction, string parameters)
         {
             string[] returnServer = { };
             try
@@ -81,13 +80,13 @@ namespace Одиноко_проживающие
             return returnServer;
         }
 
-        internal List<string> GetComboBoxList(string command, bool status)
+        internal List<string> ComboBoxList(string command, bool emptyLine)
         {
             var list = new List<string>();
 
             try
             {
-                list = GetComboBoxListRetry(command, status);
+                list = GetComboBoxListRetry(command, emptyLine);
             }
             catch (Exception exception)
             {
@@ -101,7 +100,7 @@ namespace Одиноко_проживающие
             return list;
         }
 
-        internal DataSet GetDataGridSet(string command)
+        internal DataSet DataGridSet(string command)
         {
             var dataSet = new DataSet();
             try
@@ -142,7 +141,7 @@ namespace Одиноко_проживающие
                 _connect.Open();
             }catch(SqlException)
             {
-                ConnectDB();
+                ConnectDb();
                 _connect.Open();
             }
             catch (Exception ex)
@@ -180,7 +179,7 @@ namespace Одиноко_проживающие
             }
             catch (SqlException)
             {
-                ConnectDB();
+                ConnectDb();
                 _connect.Open();
             }
             catch (Exception ex)
@@ -204,7 +203,7 @@ namespace Одиноко_проживающие
             return returnServer;
         }
 
-        private List<string> GetComboBoxListRetry(string command, bool status)
+        private List<string> GetComboBoxListRetry(string command, bool emptyLine)
         {
             _command = _connect.CreateCommand();
             _command.CommandType = CommandType.Text;
@@ -215,18 +214,18 @@ namespace Одиноко_проживающие
             }
             catch (SqlException)
             {
-                ConnectDB();
+                ConnectDb();
                 _connect.Open();
             }            
             var dataReader = _command.ExecuteReader();
             var list = new List<string>();
 
-            if(status)
+            if(emptyLine)
                 list.Add("");
 
             while (dataReader.Read())
             {
-                list.Add(dataReader.GetString(0).ToString());
+                list.Add(dataReader.GetString(0));
             }
             dataReader.Close();
             _connect.Close();
@@ -240,10 +239,18 @@ namespace Одиноко_проживающие
                 _connect.Open();
             }catch (SqlException)
             {
-                ConnectDB();
+                ConnectDb();
                 _connect.Open();
-            }            
-            var dataAdapter = new SqlDataAdapter(command, _connect);
+            }
+
+            _command = new SqlCommand(command, _connect);
+            _command.CommandTimeout = 0;
+            var dataAdapter = new SqlDataAdapter(_command);
+
+            //DataTable dt = new DataTable();
+            //dataAdapter.Fill(dt);
+            //return dt;
+
             var dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             return dataSet;

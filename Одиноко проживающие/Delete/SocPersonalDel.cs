@@ -62,7 +62,7 @@ namespace Одиноко_проживающие
                 radGridViewSoc.Invoke(new MethodInvoker(delegate ()
                 {
                     radGridViewSoc.EnablePaging = true;
-                    _bindingSource_soc = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+                    _bindingSource_soc = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                 from socPersonelViewColor()  order by [ФИО]").Tables[0] };
                     radGridViewSoc.DataSource = _bindingSource_soc;
 
@@ -86,7 +86,7 @@ namespace Одиноко_проживающие
         private void radGridViewSoc_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource_soc = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select *
+            _bindingSource_soc = new BindingSource { DataSource = commandServer.DataGridSet(@"select *
                 from socPersonelViewColor() order by [ФИО]").Tables[0] };
 
             radGridViewSoc.Invoke(new MethodInvoker(delegate ()
@@ -124,7 +124,7 @@ namespace Одиноко_проживающие
                 fio = e.Rows[0].Cells[1].Value.ToString();
 
             var parameters = "'" + fio + "'";
-            var returnSqlServer = commandServer.GetServerCommandExecReturnServer("socRabotnik_add", parameters);
+            var returnSqlServer = commandServer.ExecReturnServer("socRabotnik_add", parameters);
             if (returnSqlServer[1] == "0")
                 e.Cancel = true;
             //loadGridSoc();
@@ -165,7 +165,7 @@ namespace Одиноко_проживающие
                             text = e.NewValue.ToString();
                         parameters += text + "'";
 
-                        var returnSqlServer = commandServer.GetServerCommandExecReturnServer("socRabotnik_edit", parameters);
+                        var returnSqlServer = commandServer.ExecReturnServer("socRabotnik_edit", parameters);
                         if (returnSqlServer[1] == "0")
                             e.Cancel = true;
                         //loadGridSoc();
@@ -186,7 +186,7 @@ namespace Одиноко_проживающие
             {
                 if (radGridViewSoc.CurrentRow.Cells[0].Value != null)
                 {
-                    _bindingSource_soc = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_job_soc_rabotnik, date_start, date_end
+                    _bindingSource_soc = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_job_soc_rabotnik, date_start, date_end
                     from job_soc_rabotnik left join socRabotnik on job_soc_rabotnik.fk_soc_rabotnik = socRabotnik.key_socRabotnik
                     where fk_soc_rabotnik = " + radGridViewSoc.CurrentRow.Cells[0].Value).Tables[0] };
                     radGridViewSocTime.DataSource = _bindingSource_soc;
@@ -231,7 +231,7 @@ namespace Одиноко_проживающие
         private void UpdateLoadJobTime()
         {
             var commandServer = new CommandServer();
-            DataSet val = commandServer.GetDataGridSet("select * from CalcStagResultSoc(" + radGridViewSoc.CurrentRow.Cells[0].Value + ")");
+            DataSet val = commandServer.DataGridSet("select * from CalcStagResultSoc(" + radGridViewSoc.CurrentRow.Cells[0].Value + ")");
             richTextBox1.Text = "";
             if (val != null)
             {
@@ -276,7 +276,7 @@ namespace Одиноко_проживающие
                 line += "null";
             }
 
-            var returnSqlServer = commandServer.GetServerCommandExecReturnServer("job_soc_rabotnik_add", line);
+            var returnSqlServer = commandServer.ExecReturnServer("job_soc_rabotnik_add", line);
             UpdateLoadJobTime();
             AlertOperation("job_soc_rabotnik_add " + line, returnSqlServer);
         }
@@ -326,7 +326,7 @@ namespace Одиноко_проживающие
                             parameters += "'" + line.Cells[2].Value.ToString() + "'";
                     }
                     
-                    var returnSqlServer = commandServer.GetServerCommandExecReturnServer("job_soc_rabotnik_edit", parameters);
+                    var returnSqlServer = commandServer.ExecReturnServer("job_soc_rabotnik_edit", parameters);
                     UpdateLoadJobTime();
                     AlertOperation("job_soc_rabotnik_edit " + line.Cells[1].Value, returnSqlServer);
                     //radGridViewSoc.Invoke(new MethodInvoker(delegate ()
@@ -343,7 +343,7 @@ namespace Одиноко_проживающие
         private void radGridView3_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
         {
             var commandServer = new CommandServer();
-            commandServer.GetServerCommandExecNoReturnServer("job_soc_rabotnik_delete", e.Rows[0].Cells[0].Value.ToString());
+            commandServer.ExecNoReturnServer("job_soc_rabotnik_delete", e.Rows[0].Cells[0].Value.ToString());
             UpdateLoadJobTime();
             //loadGridSoc();
             //LoadGridSoc();
@@ -408,7 +408,7 @@ namespace Одиноко_проживающие
         {
             var commandServer = new CommandServer();
 
-            _binding = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select*
+            _binding = new BindingSource { DataSource = commandServer.DataGridSet(@"select*
                 from spezialistViewColor('1')
                 where date_end is null
                 order by[ФИО]").Tables[0] };
@@ -431,7 +431,7 @@ namespace Одиноко_проживающие
             {
                 if (radGridViewSoc.CurrentRow.Cells[0].Value != null)
                 {
-                    _bindingSource_join = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select keys, fio as [ФИО], joi
+                    _bindingSource_join = new BindingSource { DataSource = commandServer.DataGridSet(@"select keys, fio as [ФИО], joi
                     from InspectorJoinSocView(" + radGridView1.CurrentRow.Cells[0].Value + ")").Tables[0] };
 
                     radGridView2.DataSource = _bindingSource_join;
@@ -496,10 +496,10 @@ namespace Одиноко_проживающие
             string isChecked = radGridView2.ActiveEditor.Value.ToString();
             if(isChecked == "On")
             {
-                new CommandServer().GetServerCommandExecNoReturnServer("spec_soc_add", radGridView1.CurrentRow.Cells[0].Value + "," + radGridView2.CurrentRow.Cells[0].Value);
+                new CommandServer().ExecNoReturnServer("spec_soc_add", radGridView1.CurrentRow.Cells[0].Value + "," + radGridView2.CurrentRow.Cells[0].Value);
             }else
             {
-                new CommandServer().GetServerCommandExecNoReturnServer("spec_soc_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+                new CommandServer().ExecNoReturnServer("spec_soc_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
             }
         }
     }

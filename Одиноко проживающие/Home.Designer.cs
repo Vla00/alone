@@ -71,7 +71,6 @@ namespace Одиноко_проживающие
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem5 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem6 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem10 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem11 = new Telerik.WinControls.UI.RadMenuItem();
@@ -92,10 +91,12 @@ namespace Одиноко_проживающие
             this.radMenuButtonItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem8 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem8 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuButtonItem20 = new Telerik.WinControls.UI.RadMenuButtonItem();
+            this.radMenuItem10 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // менюToolStripMenuItem
@@ -279,7 +280,7 @@ namespace Одиноко_проживающие
             // 
             this.radLabelElement1.Name = "radLabelElement1";
             this.radStatusStrip1.SetSpring(this.radLabelElement1, false);
-            this.radLabelElement1.Text = "radLabelElement1";
+            this.radLabelElement1.Text = "";
             this.radLabelElement1.TextWrap = true;
             // 
             // radMenuItem1
@@ -334,8 +335,7 @@ namespace Одиноко_проживающие
             this.radMenuItem3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radMenuItem3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuButtonItem5,
-            this.radMenuButtonItem6,
-            this.radMenuItem10});
+            this.radMenuButtonItem6});
             this.radMenuItem3.Name = "radMenuItem3";
             this.radMenuItem3.Text = "Поиск";
             this.radMenuItem3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -358,13 +358,6 @@ namespace Одиноко_проживающие
             this.radMenuButtonItem6.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radMenuButtonItem6.Click += new System.EventHandler(this.ExendedSearch);
             // 
-            // radMenuItem10
-            // 
-            this.radMenuItem10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radMenuItem10.Name = "radMenuItem10";
-            this.radMenuItem10.Text = "По личн. номеру";
-            this.radMenuItem10.Click += new System.EventHandler(this.radMenuItem10_Click);
-            // 
             // radMenuItem4
             // 
             this.radMenuItem4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -373,7 +366,8 @@ namespace Одиноко_проживающие
             this.radMenuItem7,
             this.radMenuButtonItem16,
             this.radMenuButtonItem17,
-            this.radMenuButtonItem18});
+            this.radMenuButtonItem18,
+            this.radMenuItem10});
             this.radMenuItem4.Name = "radMenuItem4";
             this.radMenuItem4.Text = "Справочник";
             this.radMenuItem4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -513,7 +507,8 @@ namespace Одиноко_проживающие
             this.radMenuItem6.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuButtonItem7,
             this.radMenuButtonItem8,
-            this.radMenuItem8});
+            this.radMenuItem8,
+            this.radMenuButtonItem20});
             this.radMenuItem6.Name = "radMenuItem6";
             this.radMenuItem6.Text = "Сервис";
             this.radMenuItem6.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,7 +517,7 @@ namespace Одиноко_проживающие
             // 
             this.radMenuButtonItem7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radMenuButtonItem7.Name = "radMenuButtonItem7";
-            this.radMenuButtonItem7.Text = "Дубликаты";
+            this.radMenuButtonItem7.Text = "Ошибки";
             this.radMenuButtonItem7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radMenuButtonItem7.Click += new System.EventHandler(this.Dublicate);
             // 
@@ -536,10 +531,31 @@ namespace Одиноко_проживающие
             // 
             // radMenuItem8
             // 
+            this.radMenuItem8.Enabled = false;
             this.radMenuItem8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radMenuItem8.Name = "radMenuItem8";
             this.radMenuItem8.Text = "Сверка умерших";
             this.radMenuItem8.Click += new System.EventHandler(this.radMenuItem8_Click);
+            // 
+            // radMenuButtonItem20
+            // 
+            this.radMenuButtonItem20.Name = "radMenuButtonItem20";
+            this.radMenuButtonItem20.Text = "Изменение";
+            this.radMenuButtonItem20.Click += new System.EventHandler(this.radMenuButtonItem20_Click);
+            // 
+            // radMenuItem10
+            // 
+            this.radMenuItem10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radMenuItem10.Name = "radMenuItem10";
+            this.radMenuItem10.Text = "Диагноз инвалидности";
+            this.radMenuItem10.Click += new System.EventHandler(this.radMenuItem10_Click_1);
+            // 
+            // Home
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(710, 54);
             // 
             // radMenu1
             // 
@@ -557,13 +573,6 @@ namespace Одиноко_проживающие
             this.radMenu1.TabIndex = 2;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "TelerikMetro";
-            // 
-            // Home
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(710, 54);
             this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.radStatusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -633,7 +642,6 @@ namespace Одиноко_проживающие
         private RadMenuItem radMenuItem4;
         private RadMenuItem radMenuItem5;
         private RadMenuItem radMenuItem6;
-        private RadMenu radMenu1;
         private RadMenuItem radMenuButtonItem5;
         private RadMenuItem radMenuButtonItem6;
         private RadMenuItem radMenuButtonItem7;
@@ -651,8 +659,10 @@ namespace Одиноко_проживающие
         private RadMenuItem radMenuButtonItem17;
         private RadMenuItem radMenuButtonItem18;
         private RadMenuItem radMenuButtonItem19;
-        private RadMenuItem radMenuItem10;
         private RadMenuItem radMenuItem8;
         private RadMenuItem radMenuItem9;
+        private RadMenuButtonItem radMenuButtonItem20;
+        private RadMenuItem radMenuItem10;
+        private RadMenu radMenu1;
     }
 }
