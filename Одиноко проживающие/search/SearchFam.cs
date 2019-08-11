@@ -43,7 +43,7 @@ namespace Одиноко_проживающие.search
             }
             else
             {
-                new Alone(false, Convert.ToInt32(textBox4.Text)).ShowDialog();
+                new Alone(false, Convert.ToInt32(textBox4.Text), null, null).ShowDialog();
             }
             Show();
             textBox1.Focus();

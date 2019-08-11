@@ -58,6 +58,14 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button2_4 = new System.Windows.Forms.Button();
             this.radMaskedEditBox1 = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radRadioButton3 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -67,6 +75,12 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -393,12 +407,105 @@
             this.radMaskedEditBox1.Text = "__.__.____";
             this.radMaskedEditBox1.Initialized += new System.EventHandler(this.radMaskedEditBox1_Initialized);
             // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.radRadioButton3);
+            this.radGroupBox1.Controls.Add(this.radRadioButton2);
+            this.radGroupBox1.Controls.Add(this.radRadioButton1);
+            this.radGroupBox1.HeaderText = "radGroupBox1";
+            this.radGroupBox1.Location = new System.Drawing.Point(594, 371);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(271, 116);
+            this.radGroupBox1.TabIndex = 7;
+            this.radGroupBox1.Text = "radGroupBox1";
+            // 
+            // radRadioButton3
+            // 
+            this.radRadioButton3.Location = new System.Drawing.Point(21, 70);
+            this.radRadioButton3.Name = "radRadioButton3";
+            this.radRadioButton3.Size = new System.Drawing.Size(105, 18);
+            this.radRadioButton3.TabIndex = 2;
+            this.radRadioButton3.Text = "radRadioButton3";
+            this.radRadioButton3.CheckStateChanged += new System.EventHandler(this.radRadioButton3_CheckStateChanging);
+            this.radRadioButton3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radRadioButton3_MouseClick);
+            // 
+            // radRadioButton2
+            // 
+            this.radRadioButton2.Location = new System.Drawing.Point(21, 46);
+            this.radRadioButton2.Name = "radRadioButton2";
+            this.radRadioButton2.Size = new System.Drawing.Size(105, 18);
+            this.radRadioButton2.TabIndex = 1;
+            this.radRadioButton2.Text = "radRadioButton2";
+            this.radRadioButton2.CheckStateChanged += new System.EventHandler(this.radRadioButton3_CheckStateChanging);
+            this.radRadioButton2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radRadioButton3_MouseClick);
+            // 
+            // radRadioButton1
+            // 
+            this.radRadioButton1.Location = new System.Drawing.Point(21, 22);
+            this.radRadioButton1.Name = "radRadioButton1";
+            this.radRadioButton1.Size = new System.Drawing.Size(105, 18);
+            this.radRadioButton1.TabIndex = 0;
+            this.radRadioButton1.Text = "radRadioButton1";
+            this.radRadioButton1.CheckStateChanged += new System.EventHandler(this.radRadioButton3_CheckStateChanging);
+            this.radRadioButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radRadioButton3_MouseClick);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButton3);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Location = new System.Drawing.Point(18, 359);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(219, 128);
+            this.groupBox5.TabIndex = 8;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(7, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(85, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 43);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(85, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(6, 66);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(85, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
             // JilUsl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(878, 403);
+            this.ClientSize = new System.Drawing.Size(903, 499);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.radGroupBox1);
             this.Controls.Add(this.radMaskedEditBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -422,6 +529,14 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +573,13 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button2_4;
         private Telerik.WinControls.UI.RadMaskedEditBox radMaskedEditBox1;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadRadioButton radRadioButton3;
+        private Telerik.WinControls.UI.RadRadioButton radRadioButton2;
+        private Telerik.WinControls.UI.RadRadioButton radRadioButton1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

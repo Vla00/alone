@@ -65,6 +65,10 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -204,12 +208,6 @@
       <DependentUpon>JilUsl.cs</DependentUpon>
     </Compile>
     <Compile Include="Localization.cs" />
-    <Compile Include="menu\SocRabotnik.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menu\SocRabotnik.Designer.cs">
-      <DependentUpon>SocRabotnik.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -305,12 +303,6 @@
       <DependentUpon>TypeHelp.cs</DependentUpon>
     </Compile>
     <Compile Include="Update.cs" />
-    <Compile Include="Service\Version.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Service\Version.Designer.cs">
-      <DependentUpon>Version.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="all\OneDate.resx">
       <DependentUpon>OneDate.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,9 +311,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="all\Date.resx">
       <DependentUpon>Date.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="all\Number.resx">
       <DependentUpon>Number.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Alones\Alone_history.resx">
       <DependentUpon>Alone_history.cs</DependentUpon>
@@ -359,9 +353,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="handbook\JilUsl.resx">
       <DependentUpon>JilUsl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menu\SocRabotnik.resx">
-      <DependentUpon>SocRabotnik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -415,9 +406,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="handbook\TypeHelp.resx">
       <DependentUpon>TypeHelp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Service\Version.resx">
-      <DependentUpon>Version.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />

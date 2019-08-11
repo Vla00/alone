@@ -18,14 +18,20 @@ namespace Одиноко_проживающие
     {
         #region Переменные
         private bool _status;
+        private bool _statusDouble;
         private bool _statusExit;
-        private bool _statusEdit;
         private bool _load;
         private bool _loadGrid;
         private bool? _dublicate;
         private readonly SqlConnection _connection = LoadProgram.Connect;
         private int _keyAlone;
-        private string _endOperationSoc;
+        private double _dateR;
+        private double _dateRTr;
+        private string _date_sm;
+        private string _item;
+        private string _category_history;
+        private bool _loadAlone;
+        private bool? _blocked;
         
         private StructuresAlone _alone;
         private StructuresSojitel _sojitel;
@@ -39,19 +45,16 @@ namespace Одиноко_проживающие
         private BindingSource _bindingSourceHelp;
         private BindingSource _bindingRelative;
         private BindingList<string> _bindingRelativeComboBox;
-        private BindingList<string> _bindingSocOperation;
-        private BindingSource _bindingSocOperationGrid;
         private RadListView _radSpeziolist = new RadListView();
-        private BindingList<string> _bindingSocRabotnik;
         private BindingList<string> _bindingHelp;
         private StructStartParameters StructStartParameter;
         Alone_history history;
 
         TelerikMetroTheme theme = new TelerikMetroTheme();
         #endregion
-
+        
         #region Конструкторы
-        public Alone(bool status, int keyAlone)
+        public Alone(bool status, int keyAlone, string item, bool? blocked)
         {
             InitializeComponent();
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
@@ -68,15 +71,12 @@ namespace Одиноко_проживающие
             radPageView2.Pages[2].Item.DrawBorder = true;
             radPageView2.Pages[3].Item.DrawBorder = true;
 
-            radPageView3.Pages[0].Item.DrawBorder = true;
-            radPageView3.Pages[1].Item.DrawBorder = true;
-            radPageView3.Pages[2].Item.DrawBorder = true;
-            radPageView3.Pages[3].Item.DrawBorder = true;
-
             StructStartParameter = new StructStartParameters
             {
                 KeyAlone = keyAlone,
-                Status = status
+                Status = status,
+                Item = item, 
+                Blocked = blocked
             };
         }
 
@@ -86,7 +86,6 @@ namespace Одиноко_проживающие
             Thread _thread = new Thread(new ParameterizedThreadStart(Start));
             _thread.IsBackground = true;
             Text = @"Загрузка данных...";
-            _statusEdit = true;
             _thread.Start(StructStartParameter);
         }
 
@@ -94,22 +93,36 @@ namespace Одиноко_проживающие
         {
             try
             {
+                BlockedPage(false);
                 StructStartParameters structStartParameters = (StructStartParameters)obj;
 
                 _status = structStartParameters.Status;
                 _statusExit = structStartParameters.Status;
+                _blocked = structStartParameters.Blocked;
+
+
+                if (!string.IsNullOrEmpty(structStartParameters.Item))
+                {
+                    switch (structStartParameters.Item.Split(' ')[0])
+                    {
+                        case "sm":
+                            _date_sm = structStartParameters.Item.Split(' ')[1];
+                            break;
+                        default:
+                            _item = structStartParameters.Item.Split(' ')[1];
+                            break;
+                    }
+                }
+
                 _load = true;
 
                 RelativesComboBox();
                 UpdateComboBoxSelsovet();
-                UpdateComboBoxSemPol();
                 UpdateComboBoxWoter();
                 UpdateComboBoxPlita();
                 UpdateComboBoxKanal();
                 UpdateComboBoxOtopl();
-                UpdateComboBoxSpeziolist();
-                UpdateComboBoxSocRabotnik();
-                UpdateComboBoxSocOperation();                
+                UpdateComboBoxSpeziolist();             
                 UpdateComboBoxHelp();
                 numericUpDown2.Value = DateTime.Now.Year;
                 numericUpDown3.Value = DateTime.Now.Year;
@@ -120,9 +133,13 @@ namespace Одиноко_проживающие
                 if (!structStartParameters.Status)
                 {
                     _keyAlone = structStartParameters.KeyAlone;
+                    _loadAlone = true;
 
                     AloneLoad();
                     DisabilityLoad();
+
+                    BlockedPage(true);
+
                     SojitelLoad();
                     KinderLoad();
                     UpdateRelative();
@@ -132,26 +149,45 @@ namespace Одиноко_проживающие
                     ZemelnLoad();
 
                     CategoryLoad();
-                                      
+
                     SurveyLoad();
                     HelpLoad();
-                    SocOperationLoad();
-                    if (!_statusEdit)
+                    _loadAlone = false;
+                    if (_blocked == true)
                     {
                         Blocked(true);
+                    }else
+                    {
+                        /// TODO доделать
+                        if (!string.IsNullOrEmpty(_date_sm))
+                        {
+                            if (MessageBox.Show("Хотите установить дату смерти: " + _date_sm, "Уточнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                            {
+                                sm_check.Checked = true;
+                                date_sm_date.Value = Convert.ToDateTime(_date_sm);
+                                date_sm_date.Text = _date_sm;
+                            }else
+                            {
+                                _date_sm = null;
+                            }
+                        }
                     }
                 }
                 else
                 {
+                    BlockedPage(true);
                     Text = @"Добавление новой записи (режим создания)";
                     radPageViewPage2.Enabled = false;
                     radPageViewPage3.Enabled = false;
                     radPageViewPage5.Enabled = false;
                     radPageViewPage6.Enabled = false;
-                    radPageViewPage13.Enabled = false;
                 }
                 _load = false;
-            }catch(Exception ex)
+
+                
+
+            }
+            catch(Exception ex)
             {
                 var commandClient = new CommandClient();
                 commandClient.WriteFileError(ex, null);
@@ -173,18 +209,34 @@ namespace Одиноко_проживающие
             {
                 if (!string.IsNullOrEmpty(family_text.Text))
                 {
-                    if (CategoryLoadCount() <= 0)
+                    CategoryHistory();
+                    if (_category_history == "0")
                     {
-                        if (RadMessageBox.Show("Вы не выбрали категорию. При закрытии данные не сохраняться. Выйти без сохранения?", "Ошибка", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
+                        if(RadMessageBox.Show("Вы убрали все категории. Закрыть окно? (Данные сохранятся без категории)", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Question) == DialogResult.OK)
                         {
-                            CommandServer commandServer = new CommandServer();
-                            commandServer.ExecNoReturnServer("AloneDelete", _keyAlone.ToString());
                             e.Cancel = false;
                         }
                         else
                         {
                             radPageView1.SelectedPage = radPageViewPage4;
                             e.Cancel = true;
+                        }                        
+                    }
+                    else
+                    {
+                        if (CategoryLoadCount() <= 0)
+                        {
+                            if (RadMessageBox.Show("Вы не выбрали категорию. При закрытии данные не сохраняться. Выйти без сохранения?", "Ошибка", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
+                            {
+                                CommandServer commandServer = new CommandServer();
+                                commandServer.ExecNoReturnServer("AloneDelete", _keyAlone.ToString());
+                                e.Cancel = false;
+                            }
+                            else
+                            {
+                                radPageView1.SelectedPage = radPageViewPage4;
+                                e.Cancel = true;
+                            }
                         }
                     }
                 }
@@ -308,10 +360,10 @@ namespace Одиноко_проживающие
                         {
                             if (radPageView1.SelectedPage == radPageViewPage4)
                             {
-                                if (_status)
-                                {
-                                    CheackDateCategory();
-                                }
+                                //if (_status)
+                                //{
+                                //    CheackDateCategory();
+                                //}
                             }
                             /*else
                             {
@@ -374,7 +426,6 @@ namespace Одиноко_проживающие
                     DateRo = date_ro_date.Value,
                     Country = nas_punkt_combo.Text,
                     Dop = dop_text.Text,
-                    SemPol = sem_combo.Text,
                     Street = street_text.Text,
                     Phone = phone_text.Text,
                     PlaceWork = rab_text.Text
@@ -397,12 +448,25 @@ namespace Одиноко_проживающие
                     AddZemeln();
 
                     _status = false;
+                    _statusDouble = true;
 
                     KinderLoad();
                     UpdateRelative();
                     SurveyLoad();
                     HelpLoad();
-                    SocOperationLoad();
+
+                    if (pol_m_che.Checked)
+                        _dateRTr = Convert.ToDouble(new CommandServer().ComboBoxList(@"select name
+                            from every_set
+                            where tabl = 'order_m_vozr'", false)[0]);
+                    else
+                        _dateRTr = Convert.ToDouble(new CommandServer().ComboBoxList(@"select name
+                            from every_set
+                            where tabl = 'order_j_vozr'", false)[0]);
+
+                    _dateR = Convert.ToDouble(new CommandServer().ComboBoxList("select str(round(CONVERT(FLOAT, getdate() - '" + 
+                        date_ro_date.Value.ToString("dd.MM.yyyy") + "')/365.25, 1), 6, 2)", false)[0].Replace('.', ','));
+
                     return returnSqlServer;
                 }
 
@@ -444,7 +508,9 @@ namespace Одиноко_проживающие
             {
                 _alone.DateSm = Convert.ToDateTime(dt.Rows[0].ItemArray[5].ToString());
                 date_sm_date.Value = _alone.DateSm;
-                _statusEdit = false;
+
+                if(_blocked == null)
+                    _blocked = true;
                 sm_check.Checked = true;
             }
 
@@ -457,8 +523,7 @@ namespace Одиноко_проживающие
             _alone.Housing = dt.Rows[0].ItemArray[12].ToString();
             _alone.Phone = dt.Rows[0].ItemArray[13].ToString();
             _alone.PlaceWork = dt.Rows[0].ItemArray[14].ToString();
-            _alone.SemPol = dt.Rows[0].ItemArray[15].ToString();
-            _alone.Dop = dt.Rows[0].ItemArray[16].ToString();
+            _alone.Dop = dt.Rows[0].ItemArray[15].ToString();
 
             family_text.Text = _alone.Family;
             name_text.Text = _alone.Name;
@@ -472,18 +537,23 @@ namespace Одиноко_проживающие
             housing_text.Text = _alone.Housing;
             phone_text.Text = _alone.Phone;
             rab_text.Text = _alone.PlaceWork;
-            sem_combo.SelectedIndex = sem_combo.FindStringExact(_alone.SemPol);
             dop_text.Text =_alone.Dop;
             
-            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[17].ToString()))
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[16].ToString()))
             {
-                _alone.DateExit = Convert.ToDateTime(dt.Rows[0].ItemArray[17].ToString());
+                _alone.DateExit = Convert.ToDateTime(dt.Rows[0].ItemArray[16].ToString());
                 date_exit_date.Value = _alone.DateExit;
-                _statusEdit = false;
+                if (_blocked == null)
+                    _blocked = true;
                 exit_check.Checked = true;
             }
 
-            if (!_statusEdit)
+            if(!string.IsNullOrEmpty(dt.Rows[0].ItemArray[17].ToString()))
+            {
+                label8.Text = "Дата добавления: " + dt.Rows[0].ItemArray[17].ToString();
+            }
+
+            if (_blocked == true)
             {
                 Text = @"Дело №" + _keyAlone + " (режим просмотра)";
             }
@@ -501,7 +571,7 @@ namespace Одиноко_проживающие
             var returnSqlServer = commandServer.ExecReturnServer("Alone_edit", parameters);
 
 
-            if (returnSqlServer[1] != "Успешно") return returnSqlServer;
+            if (returnSqlServer[1] != "1") return returnSqlServer;
             try
             {
                 _alone = new StructuresAlone();
@@ -522,7 +592,6 @@ namespace Одиноко_проживающие
                 _alone.DateRo = date_ro_date.Value;
                 _alone.Street = street_text.Text;
                 _alone.Phone = phone_text.Text;
-                _alone.SemPol = sem_combo.Text;
                 _alone.Dop = dop_text.Text;
 
                 _alone.TypeUl = type_street_combo.Text;
@@ -530,6 +599,7 @@ namespace Одиноко_проживающие
                 _alone.House = house_text.Text;
                 _alone.Apartament = apartament_text.Text;
                 _alone.Housing = housing_text.Text;
+                _alone.PlaceWork = rab_text.Text;
 
                 if (returnSqlServer[0] == "Запись успешно изменена.")
                     return returnSqlServer;
@@ -555,7 +625,12 @@ namespace Одиноко_проживающие
             parameters += ",'" + date_ro_date.Text + "',";
 
             if (sm_check.Checked)
-                parameters += "'" + date_sm_date.Text + "'";
+            {
+                if(string.IsNullOrEmpty(_date_sm))
+                    parameters += "'" + date_sm_date.Text + "'";
+                else
+                    parameters += "'" + _date_sm + "'";
+            }
             else
                 parameters += "null";
 
@@ -589,7 +664,7 @@ namespace Одиноко_проживающие
                 parameters += "'" + apartament_text.Text + "'";
             }
 
-            parameters += ",'" + type_street_combo.Text + "','" + phone_text.Text + "','" + rab_text.Text + "','" + sem_combo.Text + "',";
+            parameters += ",'" + type_street_combo.Text + "','" + phone_text.Text + "','" + rab_text.Text + "',";
 
             if (string.IsNullOrEmpty(dop_text.Text))
                 parameters += "null,";
@@ -627,12 +702,6 @@ namespace Одиноко_проживающие
 					where selsovet.selsovet = " + "'" + selsovet_combo.Text + "'", true);
         }
 
-        private void UpdateComboBoxSemPol()
-        {
-            var commandServer = new CommandServer();
-            sem_combo.DataSource = commandServer.ComboBoxList(@"select sem_pol from sem_pol order by sem_pol", true);
-        }
-
         private bool CheackCopyAlone()
         {
             var command = @"select * from AloneCopy('" + family_text.Text + "','" + name_text.Text + "','" + surname_text.Text + "','" 
@@ -659,24 +728,20 @@ namespace Одиноко_проживающие
 
         private void checkBox26_CheckStateChanging(object sender, CheckStateChangingEventArgs args)
         {
-            if(!string.IsNullOrEmpty(_endOperationSoc))
-            {
-                if (_endOperationSoc != "снят")
-                {
-                    RadMessageBox.Show("Надомное осблуживание не приостановленно. Операция не может быть выполнена.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    args.Cancel = true;
-                    return;
-                }
-            }
-
             RadCheckBox cheack = sender as RadCheckBox;
 
-            if (_statusEdit)
+            if (_blocked == null)
             {
                 if (cheack != null)
                 {
                     if (cheack.Text == "Дата смерти")
                     {
+                        if(!string.IsNullOrEmpty(_date_sm))
+                        {
+                            date_sm_date.Value = Convert.ToDateTime(_date_sm);
+                            date_sm_date.Text = _date_sm;
+                        }
+                            
                         new search.Result(family_text.Text, name_sojitel_text.Text, surname_sojitel_text.Text, 0, "ListSojitel", false, nas_punkt_combo.Text).ShowDialog();
                     }
                 }
@@ -1347,10 +1412,18 @@ namespace Одиноко_проживающие
             var dt = commandServer.DataGridSet(@"select * from GetListCategory(" + _keyAlone + ")").Tables[0];
             if (dt.Rows.Count <= 0) return;
 
-            foreach (Control control in radPageView3.Controls)
+            foreach (Control control in radPageViewPage4.Controls)
             {
                 CategoryChecked(dt, control);
             }
+        }
+
+        private void CategoryHistory()
+        {
+            var commandServer = new CommandServer();
+            _category_history = commandServer.DataGridSet(@"select count(*)
+                from category_time
+                where fk_alone = " + _keyAlone).Tables[0].Rows[0].ItemArray[0].ToString();
         }
 
         private static void CategoryChecked(DataTable table, Control control)
@@ -1362,13 +1435,102 @@ namespace Одиноко_проживающие
 
             var cb = control as RadCheckBox;
 
-            if (cb == null) return;
+            if (cb == null)
+            {
+                var cb2 = control as RadRadioButton;
+                if (cb2 == null) return;
 
-            var controlText = cb.Text;
+                var controlText = cb2.Text;
 
-            var findRows = table.Select("category = '" + controlText + "'");
-            if (findRows.Length > 0)
-                cb.Checked = true;
+                var findRows = table.Select("category = '" + controlText + "'");
+                if (findRows.Length > 0)
+                    cb2.IsChecked = true;
+            }
+            else
+            {
+                var controlText = cb.Text;
+
+                var findRows = table.Select("category = '" + controlText + "'");
+                if (findRows.Length > 0)
+                    cb.Checked = true;
+            }
+        }
+
+        private void radCheckBox35_Click(object sender, EventArgs e)
+        {
+            if (_loadAlone)
+            {
+                var radioButton = sender as RadRadioButton;
+
+                if (radioButton == null)
+                    return;
+
+                if(radioButton.Text == "Пенсионер")
+                {
+                    radGroupBox3.Enabled = true;
+                    return;
+                }else
+                {
+                    if(radioButton.Text == "Не пенсионер")
+                    {
+                        radGroupBox3.Enabled = false;
+                        return;
+                    }
+                }
+            }else
+            {
+                var checkBox = sender as RadCheckBox;
+                var radioButton = sender as RadRadioButton;
+                string text;
+
+                if (checkBox == null)
+                {
+                    if (radioButton == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        text = radioButton.Text;
+                    }
+                }
+                else
+                {
+                    text = checkBox.Text;
+                }
+
+                var commandServer = new CommandServer();
+                string[] result;
+
+                if ((checkBox != null && checkBox.Checked) || (radioButton != null && radioButton.IsChecked))
+                {
+                    result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "'");
+                }
+                else
+                {
+                    result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + text + "'");
+                }
+
+                AlertGridOperation(sender, null, null, "category", result);
+                radPageViewPage2.Enabled = true;
+                radPageViewPage3.Enabled = true;
+                radPageViewPage5.Enabled = true;
+                radPageViewPage6.Enabled = true;
+            }
+        }
+
+        private void radCheckBox28_MouseClick_1(object sender, MouseEventArgs e)
+        {
+            var radioButton = sender as RadRadioButton;
+            if (e.Button == MouseButtons.Right)
+            {
+                radioButton.IsChecked = false;
+
+                //var commandServer = new CommandServer();
+                //string[] result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + radioButton.Text + "'");
+                //AlertGridOperation(sender, null, null, "category", result);
+
+            }
         }
 
         public int CategoryLoadCount()
@@ -1376,73 +1538,6 @@ namespace Одиноко_проживающие
             var commandServer = new CommandServer();
             var dt = commandServer.DataGridSet(@"select * from GetListCategory(" + _keyAlone + ")").Tables[0];
             return dt.Rows.Count;
-        }
-
-        private void checkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!_load)
-            {
-                var checkBox = (RadCheckBox)sender;
-                var text = checkBox.Text;
-                var commandServer = new CommandServer();
-                string[] result;
-                if (radPageView3.SelectedPage == radPageViewPage10)
-                {
-                    if (checkBox.Checked)
-                    {
-                        result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "','пенсионер'");
-                    }
-                    else
-                    {
-                        result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + text + "'");
-                    }
-                }
-                else
-                {
-                    if (radPageView3.SelectedPage == radPageViewPage14)
-                    {
-                        if (checkBox.Checked)
-                        {
-                            result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "','соц'");
-                        }
-                        else
-                        {
-                            result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + text + "'");
-                        }
-                    }
-                    else
-                    {
-                        if (radPageView3.SelectedPage == radPageViewPage15)
-                        {
-                            if (checkBox.Checked)
-                            {
-                                result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "','колясочник'");
-                            }
-                            else
-                            {
-                                result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + text + "'");
-                            }
-                        }
-                        else
-                        {
-                            if (checkBox.Checked)
-                            {
-                                result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "','не пенсионер'");
-                            }
-                            else
-                            {
-                                result = commandServer.ExecReturnServer("Category_delete", _keyAlone + ",'" + text + "'");
-                            }
-                        }
-                    }
-                }
-                AlertGridOperation(sender, null, null, "category", result);
-                radPageViewPage2.Enabled = true;
-                radPageViewPage3.Enabled = true;
-                radPageViewPage5.Enabled = true;
-                radPageViewPage6.Enabled = true;
-                radPageViewPage13.Enabled = true;
-            }
         }
         #endregion
 
@@ -1841,6 +1936,16 @@ namespace Одиноко_проживающие
             }            
         }
 
+        private void BlockedPage(bool flag)
+        {
+            radPageViewPage1.Enabled = flag;
+            radPageViewPage2.Enabled = flag;
+            radPageViewPage3.Enabled = flag;
+            radPageViewPage4.Enabled = flag;
+            radPageViewPage5.Enabled = flag;
+            radPageViewPage6.Enabled = flag;
+        }
+
         private void BlockedControl(Control control, bool flag)
         {
             foreach (Control c in control.Controls)
@@ -1852,6 +1957,8 @@ namespace Одиноко_проживающие
             if (cb != null) return;
             var sc = control as RadScrollablePanel;
             if (sc != null) return;
+            var scr = control as RadScrollablePanelContainer;
+            if (scr != null) return;
             var cd = control as RadPageView;
             if (cd != null) return;
             var cbut = control as RadButton;
@@ -1866,7 +1973,6 @@ namespace Одиноко_проживающие
                     if (cbut.Text == "история")
                         return;
                 }
-                
             }
 
             if(flag)
@@ -1889,23 +1995,46 @@ namespace Одиноко_проживающие
 
         private void CheackDateCategory()
         {
-            DateTime dateTime = new DateTime((DateTime.Now - date_ro_date.Value).Ticks);
-            int dat = dateTime.Year - 1;
-            if (80 <= dat && dat < 90)
+            if(_dateR >= _dateRTr)
             {
-                checkBox22.Checked = true;
-            }
+                radCheckBox44.IsChecked = true;
+                radGroupBox3.Enabled = true;
+                if (_dateR < 70)
+                {
+                    radCheckBox36.IsChecked = true;
+                    return;
+                }
 
-            if (90 <= dat && dat < 100)
-            {
-                checkBox22.Checked = false;
-                checkBox23.Checked = true;
-            }
+                //70-79
+                if (70 <= _dateR && _dateR < 80)
+                {
+                    radCheckBox41.IsChecked = true;
+                    return;
+                }
+                //80-89
+                if (80 <= _dateR && _dateR < 90)
+                {
+                    radCheckBox51.IsChecked = true;
+                    return;
+                }
+                //90-99
+                if (90 <= _dateR && _dateR < 100)
+                {
+                    radCheckBox50.IsChecked = true;
+                    return;
+                }
 
-            if (100 <= dat && dat <= 110)
+                //100-...
+                if (100 <= _dateR)
+                {
+                    radCheckBox49.IsChecked = true;
+                    return;
+                }
+            }
+            else
             {
-                checkBox24.Checked = true;
-                checkBox23.Checked = false;
+                radCheckBox39.IsChecked = true;
+                radGroupBox3.Enabled = false;
             }
         }
 
@@ -1927,6 +2056,12 @@ namespace Одиноко_проживающие
                         if (date_ro_date.Value.Year == DateTime.Now.Year)
                         {
                             error += "Год рождения не должен совпадать с текущим годом." + Environment.NewLine;
+                        }else
+                        {
+                            if(date_ro_date.Value >= DateTime.Now)
+                            {
+                                error += "Дата рождения не должна превышать текущую дату." + Environment.NewLine;
+                            }
                         }
 
                         if (string.IsNullOrEmpty(selsovet_combo.Text))
@@ -1936,12 +2071,7 @@ namespace Одиноко_проживающие
 
                         if (string.IsNullOrEmpty(nas_punkt_combo.Text))
                         {
-                            error += "Не выбран населнный пункт." + Environment.NewLine;
-                        }
-
-                        if (string.IsNullOrEmpty(sem_combo.Text))
-                        {
-                            error += "Не выбрано семейное положение." + Environment.NewLine;
+                            error += "Не выбран населенный пункт." + Environment.NewLine;
                         }
 
                         if(string.IsNullOrEmpty(type_street_combo.Text))
@@ -1951,29 +2081,7 @@ namespace Одиноко_проживающие
 
                         if (string.IsNullOrEmpty(error))
                         {
-                            //if (_dublicate == true)
-                            //{
-                            //    Close();
-                            //    e.Cancel = true;
-                            //    return;
-                            //}
-                                
-                            //if (CheackCopyAlone())
-                            //{
-                            //    //if (MessageBox.Show(@"Данные ФИО уже добавлены по этому адресу.",
-                            //    //    @"Ошибка при добавлении", MessageBoxButtons.OK, MessageBoxIcon.Information) !=
-                            //    //    DialogResult.OK)
-                            //    //e.Cancel = true;
-                            //    new search.Result(_bindingSource).ShowDialog();
-                            //    _dublicate = true;
-                            //    Close();
-                            //    e.Cancel = true;
-                            //}
-                            //else
-                            //{
-                            //    _dublicate = false;
-                                AddAloneSql();
-                            //}
+                            AddAloneSql();
                         }
                         else
                         {
@@ -2067,53 +2175,7 @@ namespace Одиноко_проживающие
                     {
                         if (radPageView1.SelectedPage == radPageViewPage3)
                         {
-                            //////////////////////////
-                            if (_status)
-                            {
-                                //string error = null;
-                                //if (string.IsNullOrEmpty(textBox1.Text))
-                                //{
-                                //    error = "Не заполнено ФИО." + Environment.NewLine;
-                                //}
-                                //if (dateTimePicker1.Value.Year == DateTime.Now.Year)
-                                //{
-                                //    error += "Год рождения не должен совпадать с текущим годом." + Environment.NewLine;
-                                //}
-
-                                //if (string.IsNullOrEmpty(comboBox1.Text))
-                                //{
-                                //    error += "Не выбран сельский совет." + Environment.NewLine;
-                                //}
-
-                                //if (string.IsNullOrEmpty(comboBox2.Text))
-                                //{
-                                //    error += "Не выбран населнный пункт." + Environment.NewLine;
-                                //}
-
-                                //if (string.IsNullOrEmpty(comboBox3.Text))
-                                //{
-                                //    error += "Не выбрано семейное положение." + Environment.NewLine;
-                                //}
-
-                                //if (string.IsNullOrEmpty(error))
-                                //{
-                                //    AddressTranslation();
-                                //    if (CheackCopyAlone())
-                                //    {
-                                //        if (MessageBox.Show(@"Данные ФИО уже добавлены по этому адресу.",
-                                //            @"Ошибка при добавлении", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) !=
-                                //            DialogResult.OK) e.Cancel = true;
-                                //        Close();
-                                //        e.Cancel = true;
-                                //    }
-                                //    AddAloneSql();
-                                //}
-                                //else
-                                //{
-                                //    RadMessageBox.Show("Заполните обязательные поля.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error, error);
-                                //    e.Cancel = true;
-                                //}
-                            }
+                            if (_status){ }
                             else
                             {
                                 if (!CompareJilUsl())
@@ -2132,37 +2194,12 @@ namespace Одиноко_проживающие
                                         e.Cancel = true;
                                 }
                             }
-                            //UpdateComboBoxWoter();
-                            //UpdateComboBoxPlita();
-                            //UpdateComboBoxKanal();
-                            //UpdateComboBoxOtopl();
-                            //JilUslLoad();
-                            //ZemelnLoad();
                         }
                         else
                         {
                             if (radPageView1.SelectedPage == radPageViewPage4)
                             {
-                                if (this._status)
-                                {
-                                    CheackDateCategory();
-                                }
-
                                 history.Close();
-                            }
-                            else
-                            {
-                                if (radPageView1.SelectedPage == radPageViewPage5)
-                                {
-                                    //SurveyLoad();
-                                    //UpdateComboBoxSpeziolist();
-                                }
-                                else
-                                {
-                                    //HelpLoad();
-                                    //UpdateComboBoxHelp();
-                                    //UpdateComboBoxSocRabotnik();
-                                }
                             }
                         }
                     }
@@ -2173,11 +2210,7 @@ namespace Одиноко_проживающие
         //на которую нажали
         private void radPageView1_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (radPageView1.SelectedPage == radPageViewPage1)
-            {
-                //AloneLoad();
-                //CategoryLoad();
-            }
+            if (radPageView1.SelectedPage == radPageViewPage1){ }
             else
             {
                 if (radPageView1.SelectedPage == radPageViewPage2)
@@ -2191,50 +2224,23 @@ namespace Одиноко_проживающие
                             radioButton4.Checked = true;
                         }
                     }
-                    else
-                    {
-                        //KinderLoad();
-                        //SojitelLoad();
-                        //KinderOther();
-                        //UpdateRelative();
-                    }
                 }
                 else
                 {
                     if (radPageView1.SelectedPage == radPageViewPage3)
                     {
-                        //UpdateComboBoxWoter();
-                        //UpdateComboBoxPlita();
-                        //UpdateComboBoxKanal();
-                        //UpdateComboBoxOtopl();
-                        //JilUslLoad();
-                        //ZemelnLoad();
                     }
                     else
                     {
                         if (radPageView1.SelectedPage == radPageViewPage4)
                         {
-                            if (!this._status)
+                            if (this._statusDouble)
                             {
                                 CheackDateCategory();
                             }
                             history = new Alone_history(_keyAlone);
                             history.Show();
 
-                        }
-                        else
-                        {
-                            if (radPageView1.SelectedPage == radPageViewPage5)
-                            {
-                                //SurveyLoad();
-                                //UpdateComboBoxSpeziolist();
-                            }
-                            else
-                            {
-                                //HelpLoad();
-                                //UpdateComboBoxHelp();
-                                //UpdateComboBoxSocRabotnik();
-                            }
                         }
                     }
                 }
@@ -2259,239 +2265,6 @@ namespace Одиноко_проживающие
                 e.Handled = true;
         }
 
-        #endregion
-
-        #region Над. обслуживание
-        public void SocOperationLoad()
-        {
-            _loadGrid = true;
-            var commandServer = new CommandServer();
-            _bindingSocOperationGrid = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from SocOperationGrid(" + _keyAlone + ") order by [Дата]").Tables[0] };
-
-
-            radGridView5.Invoke(new MethodInvoker(delegate ()
-            {
-                radGridView5.AutoSizeRows = true;
-                radGridView5.DataSource = _bindingSocOperationGrid;
-                radGridView5.Columns[0].IsVisible = false;
-
-                GridViewComboBoxColumn comboColumn_soc_rab = new GridViewComboBoxColumn("соц. работник");
-
-                comboColumn_soc_rab.DataSource = _bindingSocRabotnik;
-                radGridView5.Columns[1] = comboColumn_soc_rab;
-                comboColumn_soc_rab.FieldName = "fio";
-
-
-                GridViewComboBoxColumn comboColumn_operation = new GridViewComboBoxColumn("операция");
-                comboColumn_operation.DataSource = _bindingSocOperation;
-                comboColumn_operation.Name = "operati";
-                radGridView5.Columns[3] = comboColumn_operation;
-                comboColumn_operation.FieldName = "operation";
-
-                GridViewDateTimeColumn dat = new GridViewDateTimeColumn("Дата");
-                dat.Name = "date5";
-                dat.FormatString = "{0:dd/MM/yyyy}";
-                dat.Format = DateTimePickerFormat.Custom;
-                radGridView5.Columns[2] = dat;
-                dat.CustomFormat = "dd.MM.yyyy";
-
-                radGridView5.Columns[2].FormatString = "{0:dd/MM/yyyy}";
-                radGridView5.Columns[1].WrapText = true;
-                radGridView5.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-
-                if(radGridView5.RowCount != 0)
-                    _endOperationSoc = radGridView5.Rows[radGridView5.RowCount - 1].Cells[3].Value.ToString();
-
-                radGridView5.CellEditorInitialized += new GridViewCellEventHandler(radGridView5_CellEditorInitialized);
-            }));
-            _loadGrid = false;
-        }
-        private void UpdateComboBoxSocOperation()
-        {
-            var commandServer = new CommandServer();
-            _bindingSocOperation = new BindingList<string>(commandServer.ComboBoxList(@"select operation.operation from operation", false));
-        }
-
-        private void UpdateComboBoxSocRabotnik()
-        {
-            _bindingSocRabotnik = new BindingList<string>(new CommandServer().ComboBoxList(@"select sp.ФИО as [ФИО]
-	            from spec_soc s inner join spezialistView(2,0) sp on s.fk_socRabotnik = sp.key_speziolist
-	            order by sp.ФИО", true));
-        }
-
-        private void radGridView5_CellEditorInitialized(object sender, GridViewCellEventArgs e)
-        {
-            if (e.Column.Name == "operati")
-            {
-                RadDropDownListEditor editors = (RadDropDownListEditor)e.ActiveEditor;
-                RadDropDownListEditorElement elements = (RadDropDownListEditorElement)editors.EditorElement;
-
-                switch (_endOperationSoc)
-                {
-                    case "принят":
-                        elements.Items[0].Height = 0;
-                        elements.Items[1].Height = -1;
-                        elements.Items[2].Height = -1;
-                        elements.Items[3].Height = 0;
-                        break;
-                    case "приостановлен":
-                        elements.Items[0].Height = 0;
-                        elements.Items[1].Height = -1;
-                        elements.Items[2].Height = 0;
-                        elements.Items[3].Height = -1;
-                        break;
-                    case "снят":
-                        elements.Items[0].Height = -1;
-                        elements.Items[1].Height = 0;
-                        elements.Items[2].Height = 0;
-                        elements.Items[3].Height = 0;
-                        break;
-                    case "возобновлен":
-                        elements.Items[0].Height = 0;
-                        elements.Items[1].Height = -1;
-                        elements.Items[2].Height = -1;
-                        elements.Items[3].Height = 0;
-                        break;
-                }
-            }
-
-            if (e.Column.HeaderText == "соц. работник")
-            {
-                RadDropDownListEditor editors = (RadDropDownListEditor)e.ActiveEditor;
-                RadDropDownListEditorElement elements = (RadDropDownListEditorElement)editors.EditorElement;
-                if (radGridView5.RowCount != 0)
-                    elements.SelectedIndex = elements.FindString(radGridView5.Rows[radGridView5.RowCount - 1].Cells[1].Value.ToString());
-
-
-            }
-
-            RadDropDownListEditor editor = e.ActiveEditor as RadDropDownListEditor;
-
-            if (editor == null)
-            {
-                return;
-            }
-
-            RadDropDownListElement element = editor.EditorElement as RadDropDownListEditorElement;
-
-            int scrolBarWidth = 0;
-
-            if (element.DefaultItemsCountInDropDown < element.Items.Count)
-            {
-                scrolBarWidth = 35;
-            }
-
-            foreach (RadListDataItem item in element.Items)
-            {
-                string text = item.Text;
-                Size size = TextRenderer.MeasureText(text, element.Font);
-
-                if (element.DropDownWidth < size.Width)
-                {
-                    element.DropDownWidth = size.Width + scrolBarWidth;
-                }
-            }
-        }
-
-        private void radGridView5_CellEditorInitialized_1(object sender, GridViewCellEventArgs e)
-        {
-            RadDateTimeEditor dateTimeEditor = e.ActiveEditor as RadDateTimeEditor;
-            if (dateTimeEditor != null)
-            {
-                dateTimeEditor.MaxValue = DateTime.Now;
-                radGridView5.CellEditorInitialized -= radGridView5_CellEditorInitialized_1;
-                RadDateTimeEditorElement editroElement = (RadDateTimeEditorElement)dateTimeEditor.EditorElement;
-                MaskDateTimeProvider provider = editroElement.TextBoxElement.Provider as MaskDateTimeProvider;
-                if (provider != null)
-                    provider.AutoSelectNextPart = true;
-            }
-        }
-
-        private void radGridView5_UserAddedRow(object sender, GridViewRowEventArgs e)
-        {
-            _bindingSocOperationGrid = new BindingSource { DataSource = new CommandServer().DataGridSet(@"select * from SocOperationGrid(" + _keyAlone + ") order by [Дата]").Tables[0] };
-            radGridView5.Invoke(new MethodInvoker(delegate ()
-            {
-                radGridView5.DataSource = _bindingSocOperationGrid;
-            }));
-        }
-
-        private void radGridView5_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
-        {
-            var commandServer = new CommandServer();
-
-            if (e.Rows[0].Cells[1].Value != null && e.Rows[0].Cells[2].Value != null && e.Rows[0].Cells[3].Value != null)
-            {
-                var parameters = _keyAlone + ",'" + e.Rows[0].Cells[1].Value.ToString() + "','" + e.Rows[0].Cells[2].Value.ToString() + "','" + e.Rows[0].Cells[3].Value.ToString() + "'";
-                var returnSqlServer = commandServer.ExecReturnServer("Nad_add", parameters);
-                AlertGridOperation(sender, null, e, "Nad_add " + parameters, returnSqlServer);
-                if(returnSqlServer[1] == "1")
-                {
-                    _endOperationSoc = e.Rows[0].Cells[3].Value.ToString();
-                }
-            }
-            else
-            {
-                RadMessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
-            }
-        }
-
-        private void radGridView5_RowsChanged(object sender, GridViewCollectionChangedEventArgs e)
-        {
-            //if(e.Action == NotifyCollectionChangedAction.ItemChanging)
-            //    radGridView5.Columns[3].ReadOnly = false;
-        }
-        private void radGridView5_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
-        {
-            var commandServer = new CommandServer();
-            var commandClient = new CommandClient();
-
-            if (e.Action == NotifyCollectionChangedAction.ItemChanging)
-            {
-                //radGridView5.Columns[3].ReadOnly = true;
-                bool flag = false;
-                var line = (GridViewRowInfo)e.NewItems[0];
-
-                if (line.Cells[0].Value != null)
-                {
-                    var parameters = line.Cells[0].Value.ToString() + ",'";
-                    if (e.PropertyName == "fio")
-                    {
-                        flag = true;
-                        parameters += e.NewValue.ToString() + "','";
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(line.Cells[1].Value.ToString()))
-                            parameters += "null,'";
-                        else
-                            parameters += line.Cells[1].Value.ToString() + "','";
-                    }
-
-                    if (e.PropertyName == "Дата")
-                    {
-                        flag = true;
-                        parameters += e.NewValue.ToString() + "'";
-                    }
-                    else
-                    {
-                        parameters += line.Cells[2].Value.ToString() + "'";
-                    }
-
-                    if (flag)
-                    {
-                        var returnSqlServer = commandServer.ExecReturnServer("Nad_edit", parameters);
-                        AlertGridOperation(sender, e, null, "Nad_edit" + line.Cells[1].Value, returnSqlServer);
-                    }
-
-                    if(e.PropertyName == "operation")
-                    {
-                        AlertGridOperation(sender, e, null, "Nad_edit" + line.Cells[1].Value, new string[] { "Операцию нельзя редактировать.", "0"});
-                    }
-                }
-            }
-            
-        }
         #endregion
 
         #region UpdateComboBox
@@ -2574,8 +2347,7 @@ namespace Одиноко_проживающие
                 parameters += ",null";
 
             var returnSqlServer = commandServer.ExecReturnServer("addJilUsl", parameters);
-
-            //if (returnSqlServer[1] != "Успешно") return returnSqlServer;
+            
             try
             {
                 _jilUsl = structure;
@@ -2774,11 +2546,6 @@ namespace Одиноко_проживающие
             checkBox6.Checked = true;
             _zemeln.Szu = (int)numericUpDown3.Value;
         }
-        
-
-        
-
-        
 
         #endregion
         #region Edit
@@ -2953,30 +2720,6 @@ namespace Одиноко_проживающие
         private void checkBox27_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker3.Enabled = checkBox27.Checked;
-
-            //string[] s = textBox1.Text.Split(' ');
-            //textBox1.Text = "";
-
-            //for (int i = 0; i < s.Count(); i++)
-            //{
-            //    if (!string.IsNullOrEmpty(s[i]))
-            //    {
-            //        textBox1.Text += s[i].Substring(0, 1).ToUpper() + s[i].Substring(1, s[i].Length - 1).ToLower();
-            //        if (i != s.Count() - 1)
-            //        {
-            //            if (!string.IsNullOrEmpty(s[i + 1]))
-            //                textBox1.Text += " ";
-            //        }
-            //    }
-            //}
-
-            //if (_status)
-            //{
-            //    if (string.IsNullOrEmpty(family_text.Text) || string.IsNullOrEmpty(name_text.Text) || string.IsNullOrEmpty(surname_text.Text))
-            //        return;
-
-            //    new search.Family(family_text.Text, name_text.Text, surname_text.Text, 0, "SearchFamily", true, null).ShowDialog();
-            //}
         }
 
         private void checkBox28_CheckedChanged(object sender, EventArgs e)
@@ -3046,7 +2789,6 @@ namespace Одиноко_проживающие
                 Surname = surname_text.Text,
                 Phone = phone_text.Text,
                 Street = street_text.Text,
-                SemPol = sem_combo.Text,
                 PlaceWork = rab_text.Text,
                 Dop = dop_text.Text,
                 Apartament = apartament_text.Text,
@@ -3148,20 +2890,78 @@ namespace Одиноко_проживающие
                 return;
             if (CheackCopyAlone())
             {
-                //if (MessageBox.Show(@"Данные ФИО уже добавлены по этому адресу.",
-                //    @"Ошибка при добавлении", MessageBoxButtons.OK, MessageBoxIcon.Information) !=
-                //    DialogResult.OK)
-                //e.Cancel = true;
                 new search.Result(_bindingSource).ShowDialog();
-                //_dublicate = true;
-                //Close();
-                //e.Cancel = true;
-            }
-            else
-            {
-               // _dublicate = false;
-                //AddAloneSql();
             }
         }
+
+        #region Печать
+        private void radMenuItem2_Click(object sender, EventArgs e)
+        {
+            StructuresAlones alones = new StructuresAlones();
+            alones.alone = _alone;
+            alones.invalidnost = Inval();
+            alones.family = Family();
+            Print print = new Print();
+            print.Inv(alones);
+        }
+
+        private StructuresInvalidnost Inval()
+        {
+            StructuresInvalidnost inval = new StructuresInvalidnost();
+            if (label28.Text.Split(':')[1] != " ")
+                inval.date_start = label28.Text.Split(':')[1];
+            else
+                inval.date_start = "___________________________________";
+
+            if (label26.Text.Split(':')[1] != " ")
+                inval.stepen = label26.Text.Split(':')[1];
+            else
+                inval.stepen = "___________________________________";
+
+            if (label29.Text.Split(':')[1] != " ")
+                inval.date_pere = label29.Text.Split(':')[1];
+            else
+                inval.date_pere = "___________________________________";
+
+            if (label27.Text.Split(':')[1] != " ")
+                inval.diagnoz = label27.Text.Split(':')[1];
+            else
+                inval.diagnoz = "___________________________________";
+
+            return inval;
+        }
+
+        private StructuresFamily Family()
+        {
+            var structuresFamily = new StructuresFamily();
+            string value;
+
+            foreach(GridViewRowInfo relativ in radGridView4.Rows)
+            {
+                value = relativ.Cells[3].Value.ToString();
+                if(!string.IsNullOrEmpty(value))
+                {
+                    if(value == "Мать")
+                    {
+                        structuresFamily.fioMather = relativ.Cells[1].Value.ToString();
+                    }else
+                    {
+                        if(value == "Отец")
+                        {
+                            structuresFamily.fioFather = relativ.Cells[1].Value.ToString();
+                        }
+                    }
+                    value = null;
+                }
+            }
+
+            if(string.IsNullOrEmpty(structuresFamily.fioFather))
+                structuresFamily.fioFather = "___________________________________";
+            if(string.IsNullOrEmpty(structuresFamily.fioMather))
+                structuresFamily.fioMather = "___________________________________";
+
+            return structuresFamily;
+        }
+        #endregion
     }
 }

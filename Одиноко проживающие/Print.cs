@@ -1,6 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Одиноко_проживающие
 {
@@ -185,6 +189,81 @@ namespace Одиноко_проживающие
             excelApp.Visible = true;
             excelApp.UserControl = true;
             //excelApp.Quit();
+        }
+
+        Word._Application application;
+        Word._Document document;
+        object _missingObj = System.Reflection.Missing.Value;
+        object trueObj = true;
+        object falseObj = false;
+
+        public void Inv(StructuresAlones alones)
+        {
+            #region открываем шаблон
+            application = new Word.Application();
+            object templatePathObj = Path.Combine(Application.StartupPath, @"карта обследования ребенка-инвалида.dotx");
+
+            try
+            {
+                document = application.Documents.Add(ref templatePathObj, ref _missingObj, ref _missingObj, ref _missingObj);
+            }catch(Exception ex)
+            {
+                document.Close(ref falseObj, ref _missingObj, ref _missingObj);
+                application.Quit(ref _missingObj, ref _missingObj, ref _missingObj);
+                document = null;
+                application = null;
+                throw ex;
+            }
+            application.Visible = true;
+            #endregion
+            #region Замена
+            Word.Range wordRange;
+            object replaceTypeObj = Word.WdReplace.wdReplaceAll;
+
+            for(int i = 1; i <= document.Sections.Count; i++)
+            {
+                wordRange = document.Sections[i].Range;
+
+                Word.Find wordFindObj = wordRange.Find;
+
+                //основное
+                object[] wordFindParameters = new object[15] { (object)"@@Adres", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.alone.Country + " " + alones.alone.TypeUl + alones.alone.Street + " д." + alones.alone.House + " корп." + alones.alone.Apartament + " кв." + alones.alone.Housing, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@Telephon", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.alone.Phone, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@FIO", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.alone.Family + " " + alones.alone.Name + " " + alones.alone.Surname, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@DateRo", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.alone.DateRo, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                //инвалидность
+                wordFindParameters = new object[15] { (object)"@@Stepen", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.invalidnost.stepen, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@Diagnoz", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.invalidnost.diagnoz, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@DateInv", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.invalidnost.date_start, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@DatePereos", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.invalidnost.date_pere, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                //родители
+                wordFindParameters = new object[15] { (object)"@@Mather", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.family.fioMather, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+
+                wordFindParameters = new object[15] { (object)"@@Father", _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, (object)alones.family.fioFather, replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj };
+                wordFindObj.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, wordFindObj, wordFindParameters);
+            }
+
+            #endregion
+            #region сохранение
+
+            #endregion
         }
     }
 }

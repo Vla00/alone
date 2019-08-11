@@ -20,7 +20,7 @@ namespace Одиноко_проживающие.all
             Hide();
             try
             {
-                new Alone(false, Convert.ToInt32(textBox1.Text)).ShowDialog();
+                new Alone(false, Convert.ToInt32(textBox1.Text), null, null).ShowDialog();
             }
             catch (Exception ex)
             {

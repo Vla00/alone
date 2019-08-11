@@ -12,12 +12,14 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using Одиноко_проживающие;
 
 namespace FTPClient
 {	
 	public class FTP_Client
 	{
-		//поле для хранения имени фтп-сервера
+        LoadProgram _load;
+        //поле для хранения имени фтп-сервера
         private string _Host;
  
         //поле для хранения логина
@@ -114,13 +116,25 @@ namespace FTPClient
         }
  
         //метод протокола FTP RETR для загрузки файла с FTP-сервера
-        public void DownloadFile(string path, string fileName, string output)
+        public void DownloadFile(string path, string fileName, string output, LoadProgram load)
         {
- 
+
             ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://"  + _Host + path + "/"  + fileName);
  
             ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
             //команда фтп RETR
+            ftpRequest.Method = WebRequestMethods.Ftp.GetFileSize;
+            FtpWebResponse respSize = (FtpWebResponse)ftpRequest.GetResponse();
+            long sizeSrc = respSize.ContentLength;
+            ftpResponse.Close();
+            _load = load;
+            double proc = sizeSrc / 1024.0000;
+            double one_proc = 100.0000 / proc;
+            double summ = 0.00000;
+
+            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + _Host + path + "/" + fileName);
+
+            ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
             ftpRequest.Method = WebRequestMethods.Ftp.DownloadFile;
  
             ftpRequest.EnableSsl = _UseSSL;
@@ -137,12 +151,21 @@ namespace FTPClient
  
             while ((size=responseStream.Read(buffer, 0, 1024))>0)
             {
+                summ += one_proc;
                 downloadedFile.Write(buffer, 0, size);
-                 
+                _load.SetProgressValue((int)summ);
             }
             ftpResponse.Close();
             downloadedFile.Close();
             responseStream.Close();
+
+            FileInfo file = new FileInfo(output + "/" + path + "/" + fileName);
+            long sizeDesc = file.Length;
+
+            if(sizeDesc != sizeSrc)
+            {
+
+            }
         }
 	}
 	
@@ -153,6 +176,7 @@ namespace FTPClient
         public bool IsDirectory;
         public DateTime CreateTime;
         public string Name;
+        public long Size;
     }
  
     public enum FileListStyle
@@ -265,7 +289,8 @@ namespace FTPClient
                 f.IsDirectory = false;
             }
             //Остальное содержмое строки представляет имя каталога/файла
-            f.Name = processstr;   
+            f.Name = processstr;
+            f.Size = processstr.Length;
             return f;
         }
         //Получаем на какой ОС работает фтп-сервер - от этого будет зависеть дальнейший парсинг

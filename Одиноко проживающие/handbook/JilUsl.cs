@@ -15,6 +15,8 @@ namespace Одиноко_проживающие
         {
             InitializeComponent();
 
+            ///radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+
             button3.Visible = false;
             button4.Visible = false;
             button3_2.Visible = false;
@@ -536,6 +538,70 @@ namespace Одиноко_проживающие
             //radMaskedEditBox1.MaskType = MaskType.DateTime;
             //MaskDateTimeProvider provider = radMaskedEditBox1.MaskedEditBoxElement.Provider as MaskDateTimeProvider;
             //provider.AutoSelectNextPart = true;
+        }
+
+        private void radRadioButton3_MouseClick(object sender, MouseEventArgs e)
+        {
+            var radioButton = sender as RadRadioButton;
+
+
+            if(e.Button == MouseButtons.Right)
+            {
+                radioButton.IsChecked = false;
+            }
+
+            //if (check)
+            //{
+            //    radioButton.IsChecked = false;
+            //    check = false;
+            //    return;
+            //}
+            //else
+            //{
+            //    radioButton.IsChecked = true;
+            //    check = true;
+            //    return;
+            //}
+        }
+
+        private void radRadioButton3_CheckStateChanging(object sender, CheckStateChangingEventArgs args)
+        {
+            //radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.Off;
+        }
+
+        private void radRadioButton3_CheckStateChanging(object sender, EventArgs e)
+        {
+            //var radioButton = sender as RadRadioButton;
+            
+            //if (radioButton.IsChecked)
+            //{
+            //    radioButton.IsChecked = false;
+            //    //return;
+            //}
+            //else
+            //{
+            //    radioButton.IsChecked = true;
+            //    //radioButton.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            //    //return;
+            //}
+        }
+        private bool check = false;
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+            var radioButton = sender as RadioButton;
+
+            if (check)
+            {
+                radioButton.Checked = false;
+                check = false;
+                return;
+            }
+            else
+            {
+                radioButton.Checked = true;
+                check = true;
+                return;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Одиноко_проживающие.search
         private readonly List<string> _country;
         private readonly List<string> _category;
         private readonly List<string> _help;
+        //private readonly List<string> _inv;
         private bool _statusWhere;
         private readonly TelerikMetroTheme _theme = new TelerikMetroTheme();
         readonly BackgroundWorker _helpBackgroundWorker;
@@ -34,10 +35,6 @@ namespace Одиноко_проживающие.search
                 WorkerReportsProgress = true, WorkerSupportsCancellation = true
             };
             _helpBackgroundWorker.DoWork += LoadHelp;
-
-            radPageView5.Pages[0].Item.DrawBorder = true;
-            radPageView5.Pages[1].Item.DrawBorder = true;
-            radPageView5.Pages[2].Item.DrawBorder = true;
         }
 
         public void LoadCountry()
@@ -63,6 +60,24 @@ namespace Одиноко_проживающие.search
             }
         }
 
+        private void LoadInv()
+        {
+            var inv = new CommandServer().ComboBoxList(@"select name
+                from every_set
+                where tabl = 'disability'
+                order by name", true);
+            foreach(var i in inv)
+            {
+                if(!string.IsNullOrEmpty(i))
+                {
+                    radTreeView3.Invoke(new MethodInvoker(delegate
+                    {
+                        radTreeView3.Nodes.Add(i);
+                    }));
+                }
+            }
+        }
+
         private void LoadHelp(object sender, DoWorkEventArgs e)
         {
             var help = new CommandServer().ComboBoxList(@"select typeHelp
@@ -81,40 +96,11 @@ namespace Одиноко_проживающие.search
                     }));
                 }
             }
+            //LoadInv();
         }
 
         private void сформироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string nad = null;
-            if(radRadioButton8.IsChecked)
-            {
-                nad = " ([Над. обсл.] ='принят' or [Над. обсл.] ='приостановлен' or [Над. обсл.] ='возобновлен')";
-            }
-            else
-            {
-                if(radRadioButton4.IsChecked)
-                {
-                    nad = " ([Над. обсл.] ='принят')";
-                }else
-                {
-                    if(radRadioButton5.IsChecked)
-                    {
-                        nad = " ([Над. обсл.] ='снят')";
-                    }else
-                    {
-                        if(radRadioButton7.IsChecked)
-                        {
-                            nad = " ([Над. обсл.] ='возобновлен')";
-                        }else
-                        {
-                            if(radRadioButton6.IsChecked)
-                            {
-                                nad = " ([Над. обсл.] ='приостановлен')";
-                            }
-                        }
-                    }
-                }
-            }
 
             #region
             var c = radTreeView1.Nodes.Count;
@@ -263,11 +249,11 @@ namespace Одиноко_проживающие.search
                 {
                     where += " (";
                 }
-                where += "dateHelp >= '" + dateTimePicker3.Value.ToString() + "'";
+                where += "dateHelp >= '" + dateTimePicker3.Value.ToString("dd.MM.yyyy") + "'";
 
                 if(dateTimePicker4.Value.Date != DateTime.Now.Date)
                 {
-                    where += " and dateHelp <= '" + dateTimePicker4.Value.ToString() + "'";
+                    where += " and dateHelp <= '" + dateTimePicker4.Value.ToString("dd.MM.yyyy") + "'";
                 }
                 where += ")";
                 _statusWhere = true;
@@ -283,11 +269,11 @@ namespace Одиноко_проживающие.search
                 {
                     where += " (";
                 }
-                where += "date_ro >= '" + dateTimePicker1.Value.ToString() + "'";
+                where += "date_ro >= '" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "'";
 
                 if (dateTimePicker2.Value.Date != DateTime.Now.Date)
                 {
-                    where += " and date_ro <= '" + dateTimePicker2.Value.ToString() + "'";
+                    where += " and date_ro <= '" + dateTimePicker2.Value.ToString("dd.MM.yyyy") + "'";
                 }
                 where += ")";
                 _statusWhere = true;
@@ -303,7 +289,7 @@ namespace Одиноко_проживающие.search
                 {
                     where += " (";
                 }
-                where += "ApiDate = " + numericUpDown2.Value + ")";
+                where += "ApiDate = " + numericUpDown2.Value.ToString() + ")";
                 _statusWhere = true;
             }
 
@@ -317,29 +303,46 @@ namespace Одиноко_проживающие.search
                 {
                     where += " (";
                 }
-                where += "SzuDate = " + numericUpDown3.Value + ")";
+                where += "SzuDate = " + numericUpDown3.Value.ToString() + ")";
                 _statusWhere = true;
             }
-
-            
-            if(!string.IsNullOrEmpty(nad))
-            {
-                head += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
-                headDead += ", l.operation as [Над. обсл.], l.date_operation as [Дата над. обсл.]";
-                group += ", l.date_operation, l.operation";
-                groupDead += ", l.date_operation, l.operation";
-                from += @"cross apply (select * from dbo.ExtendedSearh_nad_obl() t3 where alone.key_alone = t3.key_alone) l";
-            }            
             #endregion
 
-            if(radCheckBox40.Checked)
+            string pol;
+            if (radRadioButton2.IsChecked)
+            {
+                pol = "alone.pol = 1";
+            }else
+            {
+                if (radRadioButton3.IsChecked)
+                    pol = "alone.pol = 0";
+                else
+                    pol = null;
+            }
+            /// TODO да
+            if (!radRadioButton4.IsChecked)
             {
                 if(_statusWhere)
                 {
-                    where += " and (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                    if(radRadioButton5.IsChecked)
+                    {
+                        where += " and (survey.date_obsl >= '" + radDateTimePicker1.Value.ToString("dd.MM.yyyy") + "' and survey.date_obsl <='" + radDateTimePicker2.Value.ToString("dd.MM.yyyy") + "')";
+                    }else
+                    {
+                        where += @" and not exists(select * from survey
+                    where survey.date_obsl >= '" + radDateTimePicker1.Value.ToString("dd.MM.yyyy") + "' and survey.date_obsl <= '" + radDateTimePicker2.Value.ToString("dd.MM.yyyy") + "' and survey.fk_alone = alone.key_alone)";
+                    }
+                    
                 }else
                 {
-                    where += " (survey.date_obsl >= '" + radDateTimePicker1.Value + "' and survey.date_obsl <='" + radDateTimePicker2.Value + "')";
+                    if(radRadioButton5.IsChecked)
+                    {
+                        where += " (survey.date_obsl >= '" + radDateTimePicker1.Value.ToString("dd.MM.yyyy") + "' and survey.date_obsl <='" + radDateTimePicker2.Value.ToString("dd.MM.yyyy") + "')";
+                    }else
+                    {
+                        where += @" not exists(select * from survey
+                    where survey.date_obsl >= '" + radDateTimePicker1.Value.ToString("dd.MM.yyyy") + "' and survey.date_obsl <= '" + radDateTimePicker2.Value.ToString("dd.MM.yyyy") + "' and survey.fk_alone = alone.key_alone)";
+                    }                    
                 }
                 from += " left join survey on survey.fk_alone = alone.key_alone";
                 _statusWhere = true;
@@ -357,19 +360,18 @@ namespace Одиноко_проживающие.search
                 }
                 where += "date_sm is null and date_exit is null)";
 
+                if(!string.IsNullOrEmpty(pol))
+                {
+                    where += " and (" + pol + ")";
+                }
+
                 if (where.Length < 10)
                 {
-                    if(string.IsNullOrEmpty(nad))
-                        new Result(headOne + head + from + group + ") as t2 order by [ФИО]", 0).ShowDialog();
-                    else
-                        new Result(headOne + head + from + group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                    new Result(headOne + head + from + group + ") as t2 order by [ФИО]", 0).ShowDialog();
                 }                    
                 else
                 {
-                    if(string.IsNullOrEmpty(nad))
-                        new Result(headOne + head + from + where + group + ") as t2 order by [ФИО]", 0).ShowDialog();
-                    else
-                        new Result(headOne + head + from + where + group + ") as t2 where " + nad + " order by [ФИО]", 0).ShowDialog();
+                    new Result(headOne + head + from + where + group + ") as t2 order by [ФИО]", 0).ShowDialog();
                 }
                     
             }
@@ -401,10 +403,15 @@ namespace Одиноко_проживающие.search
                     where += "date_sm is not null)";
                 }
 
-                if(string.IsNullOrEmpty(nad))
-                    new Result(headOne + headDead + from + where + groupDead + ") as t2 order by [ФИО]", 1).ShowDialog();
-                else
-                    new Result(headOne + headDead + from + where + groupDead + ") as t2 where " + nad + " order by [ФИО]", 1).ShowDialog();
+                if (!string.IsNullOrEmpty(pol))
+                {
+                    if (_statusWhere)
+                        where += " and (" + pol + ")";
+                    else
+                        where += " (" + pol + ")";
+                }
+
+                new Result(headOne + headDead + from + where + groupDead + ") as t2 order by [ФИО]", 1).ShowDialog();
             }
             Show();
         }
@@ -484,16 +491,19 @@ namespace Одиноко_проживающие.search
             {
                 dateTimePicker3.Enabled = false;
                 dateTimePicker4.Enabled = false;
+                radTreeView2.Enabled = false;
             }else
             {
                 dateTimePicker3.Enabled = true;
                 dateTimePicker4.Enabled = true;
+                radTreeView2.Enabled = true;
             }
         }
 
         private void radCheckBox40_Click(object sender, EventArgs e)
         {
-            if(radCheckBox40.Checked)
+            RadRadioButton check = (RadRadioButton)sender;
+            if(check.Text == "Все")
             {
                 radDateTimePicker1.Enabled = false;
                 radDateTimePicker2.Enabled = false;

@@ -34,6 +34,10 @@ namespace Одиноко_проживающие.search
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExendedSearch));
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radGroupBox10 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radRadioButton3 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
             this.radGroupBox9 = new Telerik.WinControls.UI.RadGroupBox();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -46,36 +50,25 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageView5 = new Telerik.WinControls.UI.RadPageView();
-            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radCheckBox37 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox38 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox4 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox3 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox5 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox1 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox42 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox6 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox2 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox7 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radPageViewPage17 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox5 = new Telerik.WinControls.UI.RadGroupBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.radCheckBox8 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox9 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox10 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox11 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox12 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox13 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radPageViewPage18 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox6 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radCheckBox14 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox15 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox16 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox17 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox18 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radPageViewPage19 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radScrollablePanel2 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.radCheckBox37 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox5 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox38 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox3 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox25 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox29 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox27 = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox7 = new Telerik.WinControls.UI.RadGroupBox();
             this.radCheckBox19 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox20 = new Telerik.WinControls.UI.RadCheckBox();
@@ -83,37 +76,35 @@ namespace Одиноко_проживающие.search
             this.radCheckBox22 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox23 = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox8 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radCheckBox7 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox4 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox2 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox17 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox41 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox1 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox24 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox25 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox18 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox26 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox27 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox28 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox29 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox30 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox31 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox32 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox33 = new Telerik.WinControls.UI.RadCheckBox();
             this.radCheckBox34 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox35 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radCheckBox36 = new Telerik.WinControls.UI.RadCheckBox();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radGroupBox12 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radTreeView3 = new Telerik.WinControls.UI.RadTreeView();
             this.radGroupBox11 = new Telerik.WinControls.UI.RadGroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radRadioButton6 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton5 = new Telerik.WinControls.UI.RadRadioButton();
+            this.radRadioButton4 = new Telerik.WinControls.UI.RadRadioButton();
             this.radDateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.radDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.radCheckBox40 = new Telerik.WinControls.UI.RadCheckBox();
             this.groupBox9 = new Telerik.WinControls.UI.RadGroupBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.checkBox6 = new Telerik.WinControls.UI.RadCheckBox();
             this.checkBox7 = new Telerik.WinControls.UI.RadCheckBox();
-            this.radGroupBox10 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radRadioButton9 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton8 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton7 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton6 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton5 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton4 = new Telerik.WinControls.UI.RadRadioButton();
             this.сформироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radioButton2 = new Telerik.WinControls.UI.RadRadioButton();
             this.radioButton1 = new Telerik.WinControls.UI.RadRadioButton();
@@ -127,6 +118,11 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).BeginInit();
+            this.radGroupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).BeginInit();
             this.radGroupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox39)).BeginInit();
@@ -137,21 +133,13 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             this.radPageViewPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView5)).BeginInit();
-            this.radPageView5.SuspendLayout();
-            this.radPageViewPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
+            this.radScrollablePanel1.PanelContainer.SuspendLayout();
+            this.radScrollablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox37)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox42)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox7)).BeginInit();
-            this.radPageViewPage17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).BeginInit();
             this.radGroupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox8)).BeginInit();
@@ -160,18 +148,15 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox13)).BeginInit();
-            this.radPageViewPage18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox6)).BeginInit();
             this.radGroupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox18)).BeginInit();
-            this.radPageViewPage19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).BeginInit();
-            this.radScrollablePanel2.PanelContainer.SuspendLayout();
-            this.radScrollablePanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).BeginInit();
             this.radGroupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox19)).BeginInit();
@@ -181,37 +166,34 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).BeginInit();
             this.radGroupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox41)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox36)).BeginInit();
             this.radPageViewPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox12)).BeginInit();
+            this.radGroupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox11)).BeginInit();
             this.radGroupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox9)).BeginInit();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).BeginInit();
-            this.radGroupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -230,10 +212,10 @@ namespace Одиноко_проживающие.search
             this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Controls.Add(this.radPageViewPage4);
-            this.radPageView1.Location = new System.Drawing.Point(13, 27);
+            this.radPageView1.Location = new System.Drawing.Point(0, 27);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(460, 503);
+            this.radPageView1.Size = new System.Drawing.Size(487, 503);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.Text = "radPageView1";
             this.radPageView1.ThemeName = "TelerikMetro";
@@ -241,14 +223,60 @@ namespace Одиноко_проживающие.search
             // 
             // radPageViewPage1
             // 
+            this.radPageViewPage1.Controls.Add(this.radGroupBox10);
             this.radPageViewPage1.Controls.Add(this.radGroupBox9);
             this.radPageViewPage1.Controls.Add(this.radGroupBox1);
             this.radPageViewPage1.Controls.Add(this.radTreeView1);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(52F, 28F);
             this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(439, 455);
+            this.radPageViewPage1.Size = new System.Drawing.Size(466, 455);
             this.radPageViewPage1.Text = "Общее";
+            // 
+            // radGroupBox10
+            // 
+            this.radGroupBox10.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox10.Controls.Add(this.radRadioButton3);
+            this.radGroupBox10.Controls.Add(this.radRadioButton2);
+            this.radGroupBox10.Controls.Add(this.radRadioButton1);
+            this.radGroupBox10.HeaderText = "Пол";
+            this.radGroupBox10.Location = new System.Drawing.Point(203, 83);
+            this.radGroupBox10.Name = "radGroupBox10";
+            this.radGroupBox10.Size = new System.Drawing.Size(260, 49);
+            this.radGroupBox10.TabIndex = 21;
+            this.radGroupBox10.Text = "Пол";
+            this.radGroupBox10.ThemeName = "TelerikMetro";
+            // 
+            // radRadioButton3
+            // 
+            this.radRadioButton3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radRadioButton3.Location = new System.Drawing.Point(193, 21);
+            this.radRadioButton3.Name = "radRadioButton3";
+            this.radRadioButton3.Size = new System.Drawing.Size(46, 21);
+            this.radRadioButton3.TabIndex = 2;
+            this.radRadioButton3.TabStop = false;
+            this.radRadioButton3.Text = "жен";
+            // 
+            // radRadioButton2
+            // 
+            this.radRadioButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radRadioButton2.Location = new System.Drawing.Point(113, 21);
+            this.radRadioButton2.Name = "radRadioButton2";
+            this.radRadioButton2.Size = new System.Drawing.Size(47, 21);
+            this.radRadioButton2.TabIndex = 1;
+            this.radRadioButton2.TabStop = false;
+            this.radRadioButton2.Text = "муж";
+            // 
+            // radRadioButton1
+            // 
+            this.radRadioButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.radRadioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radRadioButton1.Location = new System.Drawing.Point(11, 21);
+            this.radRadioButton1.Name = "radRadioButton1";
+            this.radRadioButton1.Size = new System.Drawing.Size(77, 21);
+            this.radRadioButton1.TabIndex = 0;
+            this.radRadioButton1.Text = "муж/жен";
+            this.radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
             // 
             // radGroupBox9
             // 
@@ -258,9 +286,9 @@ namespace Одиноко_проживающие.search
             this.radGroupBox9.Controls.Add(this.radCheckBox39);
             this.radGroupBox9.Controls.Add(this.radTreeView2);
             this.radGroupBox9.HeaderText = "Тип помощи";
-            this.radGroupBox9.Location = new System.Drawing.Point(231, 88);
+            this.radGroupBox9.Location = new System.Drawing.Point(203, 138);
             this.radGroupBox9.Name = "radGroupBox9";
-            this.radGroupBox9.Size = new System.Drawing.Size(219, 364);
+            this.radGroupBox9.Size = new System.Drawing.Size(260, 329);
             this.radGroupBox9.TabIndex = 20;
             this.radGroupBox9.Text = "Тип помощи";
             this.radGroupBox9.ThemeName = "TelerikMetro";
@@ -270,9 +298,9 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker4.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker4.Enabled = false;
             this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(123, 19);
+            this.dateTimePicker4.Location = new System.Drawing.Point(146, 19);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(82, 20);
+            this.dateTimePicker4.Size = new System.Drawing.Size(107, 20);
             this.dateTimePicker4.TabIndex = 3;
             this.dateTimePicker4.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
@@ -281,9 +309,9 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker3.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker3.Enabled = false;
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(28, 19);
+            this.dateTimePicker3.Location = new System.Drawing.Point(26, 19);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(82, 20);
+            this.dateTimePicker3.Size = new System.Drawing.Size(107, 20);
             this.dateTimePicker3.TabIndex = 2;
             this.dateTimePicker3.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
@@ -298,9 +326,10 @@ namespace Одиноко_проживающие.search
             // radTreeView2
             // 
             this.radTreeView2.CheckBoxes = true;
+            this.radTreeView2.Enabled = false;
             this.radTreeView2.Location = new System.Drawing.Point(6, 45);
             this.radTreeView2.Name = "radTreeView2";
-            this.radTreeView2.Size = new System.Drawing.Size(206, 314);
+            this.radTreeView2.Size = new System.Drawing.Size(247, 281);
             this.radTreeView2.SpacingBetweenNodes = -1;
             this.radTreeView2.TabIndex = 0;
             this.radTreeView2.Text = "radTreeView2";
@@ -315,9 +344,9 @@ namespace Одиноко_проживающие.search
             this.radGroupBox1.Controls.Add(this.dateTimePicker1);
             this.radGroupBox1.Controls.Add(this.dateTimePicker2);
             this.radGroupBox1.HeaderText = "Дата рождения";
-            this.radGroupBox1.Location = new System.Drawing.Point(231, 4);
+            this.radGroupBox1.Location = new System.Drawing.Point(203, 4);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(219, 78);
+            this.radGroupBox1.Size = new System.Drawing.Size(260, 73);
             this.radGroupBox1.TabIndex = 6;
             this.radGroupBox1.Text = "Дата рождения";
             this.radGroupBox1.ThemeName = "TelerikMetro";
@@ -348,7 +377,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(38, 21);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(174, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(215, 20);
             this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
@@ -358,7 +387,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(38, 47);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(174, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(215, 20);
             this.dateTimePicker2.TabIndex = 2;
             this.dateTimePicker2.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
@@ -367,7 +396,7 @@ namespace Одиноко_проживающие.search
             this.radTreeView1.CheckBoxes = true;
             this.radTreeView1.Location = new System.Drawing.Point(4, 4);
             this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(221, 448);
+            this.radTreeView1.Size = new System.Drawing.Size(193, 460);
             this.radTreeView1.SpacingBetweenNodes = -1;
             this.radTreeView1.TabIndex = 0;
             this.radTreeView1.Text = "radTreeView1";
@@ -376,222 +405,93 @@ namespace Одиноко_проживающие.search
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.Controls.Add(this.radPageView5);
+            this.radPageViewPage2.Controls.Add(this.radScrollablePanel1);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(70F, 28F);
             this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(439, 455);
+            this.radPageViewPage2.Size = new System.Drawing.Size(466, 455);
             this.radPageViewPage2.Text = "Категории";
             // 
-            // radPageView5
+            // radScrollablePanel1
             // 
-            this.radPageView5.Controls.Add(this.radPageViewPage3);
-            this.radPageView5.Controls.Add(this.radPageViewPage17);
-            this.radPageView5.Controls.Add(this.radPageViewPage18);
-            this.radPageView5.Controls.Add(this.radPageViewPage19);
-            this.radPageView5.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
-            this.radPageView5.Location = new System.Drawing.Point(3, 3);
-            this.radPageView5.Name = "radPageView5";
-            this.radPageView5.SelectedPage = this.radPageViewPage19;
-            this.radPageView5.Size = new System.Drawing.Size(437, 451);
-            this.radPageView5.TabIndex = 16;
-            this.radPageView5.Text = "radPageView5";
-            this.radPageView5.ThemeName = "TelerikMetro";
-            this.radPageView5.ViewMode = Telerik.WinControls.UI.PageViewMode.Stack;
-            ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView5.GetChildAt(0))).StackPosition = Telerik.WinControls.UI.StackViewPosition.Top;
-            ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView5.GetChildAt(0))).ItemSelectionMode = Telerik.WinControls.UI.StackViewItemSelectionMode.Standard;
-            ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView5.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
-            ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.radPageView5.GetChildAt(0).GetChildAt(1))).Text = "Пенсионеры";
-            ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.radPageView5.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.radScrollablePanel1.Location = new System.Drawing.Point(0, 0);
+            this.radScrollablePanel1.Name = "radScrollablePanel1";
             // 
-            // radPageViewPage3
+            // radScrollablePanel1.PanelContainer
             // 
-            this.radPageViewPage3.Controls.Add(this.radGroupBox4);
-            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(437F, 32F);
-            this.radPageViewPage3.Location = new System.Drawing.Point(5, 129);
-            this.radPageViewPage3.Name = "radPageViewPage3";
-            this.radPageViewPage3.Size = new System.Drawing.Size(427, 317);
-            this.radPageViewPage3.Text = "Колясочники, инвалиды";
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox4);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox5);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox6);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox7);
+            this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox8);
+            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(444, 465);
+            this.radScrollablePanel1.Size = new System.Drawing.Size(463, 467);
+            this.radScrollablePanel1.TabIndex = 17;
+            this.radScrollablePanel1.Text = "radScrollablePanel1";
             // 
             // radGroupBox4
             // 
             this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox4.Controls.Add(this.radCheckBox37);
-            this.radGroupBox4.Controls.Add(this.radCheckBox38);
-            this.radGroupBox4.Controls.Add(this.radCheckBox4);
-            this.radGroupBox4.Controls.Add(this.radCheckBox3);
-            this.radGroupBox4.Controls.Add(this.radCheckBox5);
-            this.radGroupBox4.Controls.Add(this.radCheckBox1);
+            this.radGroupBox4.Controls.Add(this.radCheckBox42);
             this.radGroupBox4.Controls.Add(this.radCheckBox6);
-            this.radGroupBox4.Controls.Add(this.radCheckBox2);
-            this.radGroupBox4.Controls.Add(this.radCheckBox7);
-            this.radGroupBox4.HeaderText = "Граждане не пенс. возр.";
-            this.radGroupBox4.Location = new System.Drawing.Point(0, 3);
+            this.radGroupBox4.HeaderText = "Прочее";
+            this.radGroupBox4.Location = new System.Drawing.Point(3, 626);
             this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(419, 244);
+            this.radGroupBox4.Size = new System.Drawing.Size(438, 68);
             this.radGroupBox4.TabIndex = 16;
-            this.radGroupBox4.Text = "Граждане не пенс. возр.";
+            this.radGroupBox4.Text = "Прочее";
             this.radGroupBox4.ThemeName = "TelerikMetro";
             // 
-            // radCheckBox37
+            // radCheckBox42
             // 
-            this.radCheckBox37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox37.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox37.Location = new System.Drawing.Point(5, 214);
-            this.radCheckBox37.Name = "radCheckBox37";
-            this.radCheckBox37.Size = new System.Drawing.Size(124, 16);
-            this.radCheckBox37.TabIndex = 22;
-            this.radCheckBox37.Text = "Инвалид по зрению";
-            this.radCheckBox37.ThemeName = "TelerikMetro";
-            this.radCheckBox37.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox38
-            // 
-            this.radCheckBox38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox38.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox38.Location = new System.Drawing.Point(5, 142);
-            this.radCheckBox38.Name = "radCheckBox38";
-            this.radCheckBox38.Size = new System.Drawing.Size(114, 16);
-            this.radCheckBox38.TabIndex = 21;
-            this.radCheckBox38.Text = "Инвалид по слуху";
-            this.radCheckBox38.ThemeName = "TelerikMetro";
-            this.radCheckBox38.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox4
-            // 
-            this.radCheckBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox4.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox4.Location = new System.Drawing.Point(5, 190);
-            this.radCheckBox4.Name = "radCheckBox4";
-            this.radCheckBox4.Size = new System.Drawing.Size(248, 16);
-            this.radCheckBox4.TabIndex = 20;
-            this.radCheckBox4.Text = "Одинокопроживающий инвалид по зрению";
-            this.radCheckBox4.ThemeName = "TelerikMetro";
-            this.radCheckBox4.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox3
-            // 
-            this.radCheckBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox3.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox3.Location = new System.Drawing.Point(5, 70);
-            this.radCheckBox3.Name = "radCheckBox3";
-            this.radCheckBox3.Size = new System.Drawing.Size(83, 16);
-            this.radCheckBox3.TabIndex = 5;
-            this.radCheckBox3.Text = "Колясочник";
-            this.radCheckBox3.ThemeName = "TelerikMetro";
-            this.radCheckBox3.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox5
-            // 
-            this.radCheckBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox5.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox5.Location = new System.Drawing.Point(5, 166);
-            this.radCheckBox5.Name = "radCheckBox5";
-            this.radCheckBox5.Size = new System.Drawing.Size(178, 16);
-            this.radCheckBox5.TabIndex = 19;
-            this.radCheckBox5.Text = "Одинокий инвалид по зрению";
-            this.radCheckBox5.ThemeName = "TelerikMetro";
-            this.radCheckBox5.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox1
-            // 
-            this.radCheckBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox1.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox1.Location = new System.Drawing.Point(5, 46);
-            this.radCheckBox1.Name = "radCheckBox1";
-            this.radCheckBox1.Size = new System.Drawing.Size(206, 16);
-            this.radCheckBox1.TabIndex = 4;
-            this.radCheckBox1.Text = "Одинокопроживающий колясочник";
-            this.radCheckBox1.ThemeName = "TelerikMetro";
-            this.radCheckBox1.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox42.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox42.Location = new System.Drawing.Point(11, 45);
+            this.radCheckBox42.Name = "radCheckBox42";
+            this.radCheckBox42.Size = new System.Drawing.Size(267, 18);
+            this.radCheckBox42.TabIndex = 2;
+            this.radCheckBox42.Text = "Находится на надомном обслуживании";
+            this.radCheckBox42.ThemeName = "TelerikMetro";
+            this.radCheckBox42.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox6
             // 
-            this.radCheckBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radCheckBox6.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox6.Location = new System.Drawing.Point(5, 118);
+            this.radCheckBox6.Location = new System.Drawing.Point(11, 21);
             this.radCheckBox6.Name = "radCheckBox6";
-            this.radCheckBox6.Size = new System.Drawing.Size(238, 16);
+            this.radCheckBox6.Size = new System.Drawing.Size(188, 18);
             this.radCheckBox6.TabIndex = 18;
-            this.radCheckBox6.Text = "Одинокопроживающий инвалид по слуху";
+            this.radCheckBox6.Text = "Уход по линии управления";
             this.radCheckBox6.ThemeName = "TelerikMetro";
             this.radCheckBox6.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox2
-            // 
-            this.radCheckBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox2.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox2.Location = new System.Drawing.Point(5, 22);
-            this.radCheckBox2.Name = "radCheckBox2";
-            this.radCheckBox2.Size = new System.Drawing.Size(137, 16);
-            this.radCheckBox2.TabIndex = 2;
-            this.radCheckBox2.Text = "Одинокий колясочник";
-            this.radCheckBox2.ThemeName = "TelerikMetro";
-            this.radCheckBox2.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox7
-            // 
-            this.radCheckBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox7.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox7.Location = new System.Drawing.Point(5, 94);
-            this.radCheckBox7.Name = "radCheckBox7";
-            this.radCheckBox7.Size = new System.Drawing.Size(168, 16);
-            this.radCheckBox7.TabIndex = 17;
-            this.radCheckBox7.Text = "Одинокий инвалид по слуху";
-            this.radCheckBox7.ThemeName = "TelerikMetro";
-            this.radCheckBox7.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radPageViewPage17
-            // 
-            this.radPageViewPage17.Controls.Add(this.radGroupBox5);
-            this.radPageViewPage17.ItemSize = new System.Drawing.SizeF(437F, 32F);
-            this.radPageViewPage17.Location = new System.Drawing.Point(5, 129);
-            this.radPageViewPage17.Name = "radPageViewPage17";
-            this.radPageViewPage17.Size = new System.Drawing.Size(427, 317);
-            this.radPageViewPage17.Text = "Соц. адаптация и реабилизация";
             // 
             // radGroupBox5
             // 
             this.radGroupBox5.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox5.Controls.Add(this.label11);
             this.radGroupBox5.Controls.Add(this.radCheckBox8);
             this.radGroupBox5.Controls.Add(this.radCheckBox9);
             this.radGroupBox5.Controls.Add(this.radCheckBox10);
             this.radGroupBox5.Controls.Add(this.radCheckBox11);
             this.radGroupBox5.Controls.Add(this.radCheckBox12);
             this.radGroupBox5.Controls.Add(this.radCheckBox13);
-            this.radGroupBox5.HeaderText = "Граждане не пенс. возр.";
-            this.radGroupBox5.Location = new System.Drawing.Point(0, 3);
+            this.radGroupBox5.HeaderText = "СОП";
+            this.radGroupBox5.Location = new System.Drawing.Point(4, 438);
             this.radGroupBox5.Name = "radGroupBox5";
-            this.radGroupBox5.Size = new System.Drawing.Size(419, 199);
+            this.radGroupBox5.Size = new System.Drawing.Size(438, 181);
             this.radGroupBox5.TabIndex = 14;
-            this.radGroupBox5.Text = "Граждане не пенс. возр.";
+            this.radGroupBox5.Text = "СОП";
             this.radGroupBox5.ThemeName = "TelerikMetro";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(23, 153);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(386, 39);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "Граждане пожилого возраста, с которыми совместно либо на территории\nодного населе" +
-    "нного пункта проживают трудоспособные члены семьи,\nзлоупотребляющие спиртными на" +
-    "питками";
             // 
             // radCheckBox8
             // 
             this.radCheckBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox8.ForeColor = System.Drawing.Color.White;
+            this.radCheckBox8.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox8.Location = new System.Drawing.Point(5, 153);
             this.radCheckBox8.Name = "radCheckBox8";
-            this.radCheckBox8.Size = new System.Drawing.Size(1017, 18);
+            this.radCheckBox8.Size = new System.Drawing.Size(443, 16);
             this.radCheckBox8.TabIndex = 2;
-            this.radCheckBox8.Text = "Граждане пожилого возраста, с которыми совместно либо на территории одного населе" +
-    "нного пункта проживают трудоспособные члены семьи, злоупотребляющие спиртными на" +
-    "питками";
+            this.radCheckBox8.Text = "Граждане пожилого возраста проживающие с лицами асоциального поведения";
             this.radCheckBox8.TextWrap = true;
             this.radCheckBox8.ThemeName = "TelerikMetro";
             this.radCheckBox8.Click += new System.EventHandler(this.radCheckBox_Click);
@@ -602,7 +502,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox9.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox9.Location = new System.Drawing.Point(5, 47);
             this.radCheckBox9.Name = "radCheckBox9";
-            this.radCheckBox9.Size = new System.Drawing.Size(292, 18);
+            this.radCheckBox9.Size = new System.Drawing.Size(289, 16);
             this.radCheckBox9.TabIndex = 4;
             this.radCheckBox9.Text = "Лица из числа детей-сирот и детей от 18 до 23 лет";
             this.radCheckBox9.ThemeName = "TelerikMetro";
@@ -614,7 +514,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox10.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox10.Location = new System.Drawing.Point(5, 22);
             this.radCheckBox10.Name = "radCheckBox10";
-            this.radCheckBox10.Size = new System.Drawing.Size(48, 18);
+            this.radCheckBox10.Size = new System.Drawing.Size(45, 16);
             this.radCheckBox10.TabIndex = 2;
             this.radCheckBox10.Text = "СОП";
             this.radCheckBox10.ThemeName = "TelerikMetro";
@@ -626,7 +526,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox11.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox11.Location = new System.Drawing.Point(5, 73);
             this.radCheckBox11.Name = "radCheckBox11";
-            this.radCheckBox11.Size = new System.Drawing.Size(288, 18);
+            this.radCheckBox11.Size = new System.Drawing.Size(285, 16);
             this.radCheckBox11.TabIndex = 3;
             this.radCheckBox11.Text = "Лица, освободившиеся из мест лишения свободы";
             this.radCheckBox11.ThemeName = "TelerikMetro";
@@ -638,7 +538,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox12.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox12.Location = new System.Drawing.Point(5, 125);
             this.radCheckBox12.Name = "radCheckBox12";
-            this.radCheckBox12.Size = new System.Drawing.Size(411, 18);
+            this.radCheckBox12.Size = new System.Drawing.Size(408, 16);
             this.radCheckBox12.TabIndex = 1;
             this.radCheckBox12.Text = "Граждане пожилого возраста, злоупотребляющие спиртными напитками";
             this.radCheckBox12.ThemeName = "TelerikMetro";
@@ -650,119 +550,113 @@ namespace Одиноко_проживающие.search
             this.radCheckBox13.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox13.Location = new System.Drawing.Point(5, 99);
             this.radCheckBox13.Name = "radCheckBox13";
-            this.radCheckBox13.Size = new System.Drawing.Size(357, 18);
+            this.radCheckBox13.Size = new System.Drawing.Size(354, 16);
             this.radCheckBox13.TabIndex = 0;
             this.radCheckBox13.Text = "Семьи, воспитывающие детей-инвалидов в возрасте до 18 лет";
             this.radCheckBox13.ThemeName = "TelerikMetro";
             this.radCheckBox13.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radPageViewPage18
-            // 
-            this.radPageViewPage18.Controls.Add(this.radGroupBox6);
-            this.radPageViewPage18.ItemSize = new System.Drawing.SizeF(437F, 32F);
-            this.radPageViewPage18.Location = new System.Drawing.Point(5, 129);
-            this.radPageViewPage18.Name = "radPageViewPage18";
-            this.radPageViewPage18.Size = new System.Drawing.Size(427, 317);
-            this.radPageViewPage18.Text = "Не пенсионного возраста";
-            // 
             // radGroupBox6
             // 
             this.radGroupBox6.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox6.Controls.Add(this.radCheckBox14);
-            this.radGroupBox6.Controls.Add(this.radCheckBox15);
-            this.radGroupBox6.Controls.Add(this.radCheckBox16);
-            this.radGroupBox6.Controls.Add(this.radCheckBox17);
-            this.radGroupBox6.Controls.Add(this.radCheckBox18);
-            this.radGroupBox6.HeaderText = "Граждане не пенс. возр.";
-            this.radGroupBox6.Location = new System.Drawing.Point(0, 3);
+            this.radGroupBox6.Controls.Add(this.radCheckBox37);
+            this.radGroupBox6.Controls.Add(this.radCheckBox5);
+            this.radGroupBox6.Controls.Add(this.radCheckBox38);
+            this.radGroupBox6.Controls.Add(this.radCheckBox3);
+            this.radGroupBox6.Controls.Add(this.radCheckBox25);
+            this.radGroupBox6.Controls.Add(this.radCheckBox29);
+            this.radGroupBox6.Controls.Add(this.radCheckBox27);
+            this.radGroupBox6.HeaderText = "Инвалидность";
+            this.radGroupBox6.Location = new System.Drawing.Point(4, 320);
             this.radGroupBox6.Name = "radGroupBox6";
-            this.radGroupBox6.Size = new System.Drawing.Size(419, 145);
+            this.radGroupBox6.Size = new System.Drawing.Size(438, 113);
             this.radGroupBox6.TabIndex = 13;
-            this.radGroupBox6.Text = "Граждане не пенс. возр.";
+            this.radGroupBox6.Text = "Инвалидность";
             this.radGroupBox6.ThemeName = "TelerikMetro";
             // 
-            // radCheckBox14
+            // radCheckBox37
             // 
-            this.radCheckBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox14.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox14.Location = new System.Drawing.Point(5, 47);
-            this.radCheckBox14.Name = "radCheckBox14";
-            this.radCheckBox14.Size = new System.Drawing.Size(204, 18);
-            this.radCheckBox14.TabIndex = 4;
-            this.radCheckBox14.Text = "Инвалиды II группы не пенс. возр.";
-            this.radCheckBox14.ThemeName = "TelerikMetro";
-            this.radCheckBox14.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox37.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox37.Location = new System.Drawing.Point(243, 65);
+            this.radCheckBox37.Name = "radCheckBox37";
+            this.radCheckBox37.Size = new System.Drawing.Size(144, 18);
+            this.radCheckBox37.TabIndex = 22;
+            this.radCheckBox37.Text = "Инвалид по зрению";
+            this.radCheckBox37.ThemeName = "TelerikMetro";
+            this.radCheckBox37.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox15
+            // radCheckBox5
             // 
-            this.radCheckBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox15.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox15.Location = new System.Drawing.Point(5, 22);
-            this.radCheckBox15.Name = "radCheckBox15";
-            this.radCheckBox15.Size = new System.Drawing.Size(200, 18);
-            this.radCheckBox15.TabIndex = 2;
-            this.radCheckBox15.Text = "Инвалиды I группы не пенс. возр.";
-            this.radCheckBox15.ThemeName = "TelerikMetro";
-            this.radCheckBox15.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox5.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox5.Location = new System.Drawing.Point(5, 87);
+            this.radCheckBox5.Name = "radCheckBox5";
+            this.radCheckBox5.Size = new System.Drawing.Size(138, 18);
+            this.radCheckBox5.TabIndex = 3;
+            this.radCheckBox5.Text = "Инвалид с детства";
+            this.radCheckBox5.ThemeName = "TelerikMetro";
+            this.radCheckBox5.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox16
+            // radCheckBox38
             // 
-            this.radCheckBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox16.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox16.Location = new System.Drawing.Point(5, 73);
-            this.radCheckBox16.Name = "radCheckBox16";
-            this.radCheckBox16.Size = new System.Drawing.Size(207, 18);
-            this.radCheckBox16.TabIndex = 3;
-            this.radCheckBox16.Text = "Инвалиды III группы не пенс. возр.";
-            this.radCheckBox16.ThemeName = "TelerikMetro";
-            this.radCheckBox16.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox38.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox38.Location = new System.Drawing.Point(243, 43);
+            this.radCheckBox38.Name = "radCheckBox38";
+            this.radCheckBox38.Size = new System.Drawing.Size(132, 18);
+            this.radCheckBox38.TabIndex = 21;
+            this.radCheckBox38.Text = "Инвалид по слуху";
+            this.radCheckBox38.ThemeName = "TelerikMetro";
+            this.radCheckBox38.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox17
+            // radCheckBox3
             // 
-            this.radCheckBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox17.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox17.Location = new System.Drawing.Point(5, 125);
-            this.radCheckBox17.Name = "radCheckBox17";
-            this.radCheckBox17.Size = new System.Drawing.Size(145, 18);
-            this.radCheckBox17.TabIndex = 1;
-            this.radCheckBox17.Text = "Одинокопроживающие";
-            this.radCheckBox17.ThemeName = "TelerikMetro";
-            this.radCheckBox17.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox3.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox3.Location = new System.Drawing.Point(243, 21);
+            this.radCheckBox3.Name = "radCheckBox3";
+            this.radCheckBox3.Size = new System.Drawing.Size(95, 18);
+            this.radCheckBox3.TabIndex = 5;
+            this.radCheckBox3.Text = "Колясочник";
+            this.radCheckBox3.ThemeName = "TelerikMetro";
+            this.radCheckBox3.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox18
+            // radCheckBox25
             // 
-            this.radCheckBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox18.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox18.Location = new System.Drawing.Point(5, 99);
-            this.radCheckBox18.Name = "radCheckBox18";
-            this.radCheckBox18.Size = new System.Drawing.Size(76, 18);
-            this.radCheckBox18.TabIndex = 0;
-            this.radCheckBox18.Text = "Одинокие";
-            this.radCheckBox18.ThemeName = "TelerikMetro";
-            this.radCheckBox18.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox25.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox25.Location = new System.Drawing.Point(5, 21);
+            this.radCheckBox25.Name = "radCheckBox25";
+            this.radCheckBox25.Size = new System.Drawing.Size(130, 18);
+            this.radCheckBox25.TabIndex = 0;
+            this.radCheckBox25.Text = "Инвалид I группы";
+            this.radCheckBox25.ThemeName = "TelerikMetro";
+            this.radCheckBox25.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radPageViewPage19
+            // radCheckBox29
             // 
-            this.radPageViewPage19.Controls.Add(this.radScrollablePanel2);
-            this.radPageViewPage19.ItemSize = new System.Drawing.SizeF(437F, 32F);
-            this.radPageViewPage19.Location = new System.Drawing.Point(5, 128);
-            this.radPageViewPage19.Name = "radPageViewPage19";
-            this.radPageViewPage19.Size = new System.Drawing.Size(427, 318);
-            this.radPageViewPage19.Text = "Пенсионеры";
+            this.radCheckBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox29.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox29.Location = new System.Drawing.Point(5, 65);
+            this.radCheckBox29.Name = "radCheckBox29";
+            this.radCheckBox29.Size = new System.Drawing.Size(137, 18);
+            this.radCheckBox29.TabIndex = 2;
+            this.radCheckBox29.Text = "Инвалид III группы";
+            this.radCheckBox29.ThemeName = "TelerikMetro";
+            this.radCheckBox29.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radScrollablePanel2
+            // radCheckBox27
             // 
-            this.radScrollablePanel2.Location = new System.Drawing.Point(0, -1);
-            this.radScrollablePanel2.Name = "radScrollablePanel2";
-            // 
-            // radScrollablePanel2.PanelContainer
-            // 
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.radGroupBox7);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.radGroupBox8);
-            this.radScrollablePanel2.PanelContainer.Size = new System.Drawing.Size(397, 336);
-            this.radScrollablePanel2.Size = new System.Drawing.Size(416, 338);
-            this.radScrollablePanel2.TabIndex = 0;
-            this.radScrollablePanel2.Text = "radScrollablePanel2";
+            this.radCheckBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox27.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox27.Location = new System.Drawing.Point(5, 43);
+            this.radCheckBox27.Name = "radCheckBox27";
+            this.radCheckBox27.Size = new System.Drawing.Size(134, 18);
+            this.radCheckBox27.TabIndex = 1;
+            this.radCheckBox27.Text = "Инвалид II группы";
+            this.radCheckBox27.ThemeName = "TelerikMetro";
+            this.radCheckBox27.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radGroupBox7
             // 
@@ -773,291 +667,366 @@ namespace Одиноко_проживающие.search
             this.radGroupBox7.Controls.Add(this.radCheckBox22);
             this.radGroupBox7.Controls.Add(this.radCheckBox23);
             this.radGroupBox7.HeaderText = "Ветераны";
-            this.radGroupBox7.Location = new System.Drawing.Point(2, 301);
+            this.radGroupBox7.Location = new System.Drawing.Point(4, 222);
             this.radGroupBox7.Name = "radGroupBox7";
-            this.radGroupBox7.Size = new System.Drawing.Size(395, 165);
+            this.radGroupBox7.Size = new System.Drawing.Size(438, 92);
             this.radGroupBox7.TabIndex = 12;
             this.radGroupBox7.Text = "Ветераны";
             this.radGroupBox7.ThemeName = "TelerikMetro";
             // 
             // radCheckBox19
             // 
-            this.radCheckBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox19.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox19.Location = new System.Drawing.Point(5, 118);
+            this.radCheckBox19.Location = new System.Drawing.Point(243, 44);
             this.radCheckBox19.Name = "radCheckBox19";
-            this.radCheckBox19.Size = new System.Drawing.Size(72, 16);
+            this.radCheckBox19.Size = new System.Drawing.Size(75, 18);
             this.radCheckBox19.TabIndex = 4;
-            this.radCheckBox19.Text = "Тыловики";
+            this.radCheckBox19.Text = "Тыловик";
             this.radCheckBox19.ThemeName = "TelerikMetro";
             this.radCheckBox19.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox20
             // 
-            this.radCheckBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox20.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox20.Location = new System.Drawing.Point(5, 21);
             this.radCheckBox20.Name = "radCheckBox20";
-            this.radCheckBox20.Size = new System.Drawing.Size(243, 16);
+            this.radCheckBox20.Size = new System.Drawing.Size(107, 18);
             this.radCheckBox20.TabIndex = 0;
-            this.radCheckBox20.Text = "Инвалиды Великой Отечественной войны";
+            this.radCheckBox20.Text = "Инвалид ВОВ";
             this.radCheckBox20.ThemeName = "TelerikMetro";
             this.radCheckBox20.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox21
             // 
-            this.radCheckBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox21.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox21.Location = new System.Drawing.Point(5, 44);
             this.radCheckBox21.Name = "radCheckBox21";
-            this.radCheckBox21.Size = new System.Drawing.Size(243, 16);
+            this.radCheckBox21.Size = new System.Drawing.Size(110, 18);
             this.radCheckBox21.TabIndex = 1;
-            this.radCheckBox21.Text = "Участники Великой Отечественной войны";
+            this.radCheckBox21.Text = "Участник ВОВ";
             this.radCheckBox21.ThemeName = "TelerikMetro";
             this.radCheckBox21.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox22
             // 
-            this.radCheckBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox22.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox22.Location = new System.Drawing.Point(5, 90);
+            this.radCheckBox22.Location = new System.Drawing.Point(243, 21);
             this.radCheckBox22.Name = "radCheckBox22";
-            this.radCheckBox22.Size = new System.Drawing.Size(355, 28);
+            this.radCheckBox22.Size = new System.Drawing.Size(49, 18);
             this.radCheckBox22.TabIndex = 3;
-            this.radCheckBox22.Text = "Члены семей военносл. партизан и подпольщиков, погибших \r\n в годы ВОВ";
+            this.radCheckBox22.Text = "СПВ";
             this.radCheckBox22.ThemeName = "TelerikMetro";
             this.radCheckBox22.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox23
             // 
-            this.radCheckBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox23.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox23.Location = new System.Drawing.Point(5, 67);
             this.radCheckBox23.Name = "radCheckBox23";
-            this.radCheckBox23.Size = new System.Drawing.Size(307, 16);
+            this.radCheckBox23.Size = new System.Drawing.Size(58, 18);
             this.radCheckBox23.TabIndex = 2;
-            this.radCheckBox23.Text = "Бившие узники фашистких концлагерей, тюрем, гетто";
+            this.radCheckBox23.Text = "Узник";
             this.radCheckBox23.ThemeName = "TelerikMetro";
             this.radCheckBox23.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radGroupBox8
             // 
             this.radGroupBox8.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox8.Controls.Add(this.radCheckBox7);
+            this.radGroupBox8.Controls.Add(this.radCheckBox4);
+            this.radGroupBox8.Controls.Add(this.radCheckBox2);
+            this.radGroupBox8.Controls.Add(this.radCheckBox17);
+            this.radGroupBox8.Controls.Add(this.radCheckBox41);
+            this.radGroupBox8.Controls.Add(this.radCheckBox1);
             this.radGroupBox8.Controls.Add(this.radCheckBox24);
-            this.radGroupBox8.Controls.Add(this.radCheckBox25);
+            this.radGroupBox8.Controls.Add(this.radCheckBox18);
             this.radGroupBox8.Controls.Add(this.radCheckBox26);
-            this.radGroupBox8.Controls.Add(this.radCheckBox27);
             this.radGroupBox8.Controls.Add(this.radCheckBox28);
-            this.radGroupBox8.Controls.Add(this.radCheckBox29);
             this.radGroupBox8.Controls.Add(this.radCheckBox30);
-            this.radGroupBox8.Controls.Add(this.radCheckBox31);
             this.radGroupBox8.Controls.Add(this.radCheckBox32);
-            this.radGroupBox8.Controls.Add(this.radCheckBox33);
             this.radGroupBox8.Controls.Add(this.radCheckBox34);
-            this.radGroupBox8.Controls.Add(this.radCheckBox35);
-            this.radGroupBox8.Controls.Add(this.radCheckBox36);
-            this.radGroupBox8.HeaderText = "Пенсионеры";
-            this.radGroupBox8.Location = new System.Drawing.Point(4, 4);
+            this.radGroupBox8.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radGroupBox8.ForeColor = System.Drawing.Color.Black;
+            this.radGroupBox8.HeaderText = "Основное";
+            this.radGroupBox8.Location = new System.Drawing.Point(4, 10);
             this.radGroupBox8.Name = "radGroupBox8";
-            this.radGroupBox8.Size = new System.Drawing.Size(393, 294);
+            this.radGroupBox8.Size = new System.Drawing.Size(438, 206);
             this.radGroupBox8.TabIndex = 11;
-            this.radGroupBox8.Text = "Пенсионеры";
+            this.radGroupBox8.Text = "Основное";
             this.radGroupBox8.ThemeName = "TelerikMetro";
+            // 
+            // radCheckBox7
+            // 
+            this.radCheckBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox7.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox7.Location = new System.Drawing.Point(243, 64);
+            this.radCheckBox7.Name = "radCheckBox7";
+            this.radCheckBox7.Size = new System.Drawing.Size(106, 18);
+            this.radCheckBox7.TabIndex = 21;
+            this.radCheckBox7.Text = "Не учитывать";
+            this.radCheckBox7.ThemeName = "TelerikMetro";
+            this.radCheckBox7.Click += new System.EventHandler(this.radCheckBox_Click);
+            // 
+            // radCheckBox4
+            // 
+            this.radCheckBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox4.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox4.Location = new System.Drawing.Point(243, 92);
+            this.radCheckBox4.Name = "radCheckBox4";
+            this.radCheckBox4.Size = new System.Drawing.Size(148, 18);
+            this.radCheckBox4.TabIndex = 20;
+            this.radCheckBox4.Text = "Пенсионер ...-69 лет";
+            this.radCheckBox4.ThemeName = "TelerikMetro";
+            this.radCheckBox4.Click += new System.EventHandler(this.radCheckBox_Click);
+            // 
+            // radCheckBox2
+            // 
+            this.radCheckBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox2.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox2.Location = new System.Drawing.Point(5, 43);
+            this.radCheckBox2.Name = "radCheckBox2";
+            this.radCheckBox2.Size = new System.Drawing.Size(108, 18);
+            this.radCheckBox2.TabIndex = 19;
+            this.radCheckBox2.Text = "Не пенсионер";
+            this.radCheckBox2.ThemeName = "TelerikMetro";
+            this.radCheckBox2.Click += new System.EventHandler(this.radCheckBox_Click);
+            // 
+            // radCheckBox17
+            // 
+            this.radCheckBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox17.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox17.Location = new System.Drawing.Point(243, 43);
+            this.radCheckBox17.Name = "radCheckBox17";
+            this.radCheckBox17.Size = new System.Drawing.Size(169, 18);
+            this.radCheckBox17.TabIndex = 1;
+            this.radCheckBox17.Text = "Одиноко проживающий";
+            this.radCheckBox17.ThemeName = "TelerikMetro";
+            this.radCheckBox17.Click += new System.EventHandler(this.radCheckBox_Click);
+            // 
+            // radCheckBox41
+            // 
+            this.radCheckBox41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox41.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox41.Location = new System.Drawing.Point(243, 114);
+            this.radCheckBox41.Name = "radCheckBox41";
+            this.radCheckBox41.Size = new System.Drawing.Size(152, 18);
+            this.radCheckBox41.TabIndex = 17;
+            this.radCheckBox41.Text = "Пенсионер 70-79 лет";
+            this.radCheckBox41.ThemeName = "TelerikMetro";
+            this.radCheckBox41.Click += new System.EventHandler(this.radCheckBox_Click);
+            // 
+            // radCheckBox1
+            // 
+            this.radCheckBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox1.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox1.Location = new System.Drawing.Point(5, 22);
+            this.radCheckBox1.Name = "radCheckBox1";
+            this.radCheckBox1.Size = new System.Drawing.Size(89, 18);
+            this.radCheckBox1.TabIndex = 18;
+            this.radCheckBox1.Text = "Пенсионер";
+            this.radCheckBox1.ThemeName = "TelerikMetro";
+            this.radCheckBox1.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox24
             // 
-            this.radCheckBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox24.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox24.Location = new System.Drawing.Point(5, 273);
+            this.radCheckBox24.Location = new System.Drawing.Point(5, 137);
             this.radCheckBox24.Name = "radCheckBox24";
-            this.radCheckBox24.Size = new System.Drawing.Size(187, 16);
+            this.radCheckBox24.Size = new System.Drawing.Size(218, 18);
             this.radCheckBox24.TabIndex = 16;
             this.radCheckBox24.Text = "Дети за пределами нас. пункта";
             this.radCheckBox24.ThemeName = "TelerikMetro";
             this.radCheckBox24.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox25
+            // radCheckBox18
             // 
-            this.radCheckBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox25.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox25.Location = new System.Drawing.Point(5, 21);
-            this.radCheckBox25.Name = "radCheckBox25";
-            this.radCheckBox25.Size = new System.Drawing.Size(121, 16);
-            this.radCheckBox25.TabIndex = 0;
-            this.radCheckBox25.Text = "Инвалиды I группы";
-            this.radCheckBox25.ThemeName = "TelerikMetro";
-            this.radCheckBox25.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.radCheckBox18.ForeColor = System.Drawing.Color.Black;
+            this.radCheckBox18.Location = new System.Drawing.Point(243, 22);
+            this.radCheckBox18.Name = "radCheckBox18";
+            this.radCheckBox18.Size = new System.Drawing.Size(83, 18);
+            this.radCheckBox18.TabIndex = 0;
+            this.radCheckBox18.Text = "Одинокий";
+            this.radCheckBox18.ThemeName = "TelerikMetro";
+            this.radCheckBox18.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
             // radCheckBox26
             // 
-            this.radCheckBox26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox26.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox26.Location = new System.Drawing.Point(5, 252);
+            this.radCheckBox26.Location = new System.Drawing.Point(5, 114);
             this.radCheckBox26.Name = "radCheckBox26";
-            this.radCheckBox26.Size = new System.Drawing.Size(209, 16);
+            this.radCheckBox26.Size = new System.Drawing.Size(243, 18);
             this.radCheckBox26.TabIndex = 15;
             this.radCheckBox26.Text = "Дети за пределами сельисполкома";
             this.radCheckBox26.ThemeName = "TelerikMetro";
             this.radCheckBox26.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox27
-            // 
-            this.radCheckBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox27.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox27.Location = new System.Drawing.Point(5, 42);
-            this.radCheckBox27.Name = "radCheckBox27";
-            this.radCheckBox27.Size = new System.Drawing.Size(124, 16);
-            this.radCheckBox27.TabIndex = 1;
-            this.radCheckBox27.Text = "Инвалиды II группы";
-            this.radCheckBox27.ThemeName = "TelerikMetro";
-            this.radCheckBox27.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
             // radCheckBox28
             // 
-            this.radCheckBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox28.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox28.Location = new System.Drawing.Point(5, 231);
+            this.radCheckBox28.Location = new System.Drawing.Point(5, 92);
             this.radCheckBox28.Name = "radCheckBox28";
-            this.radCheckBox28.Size = new System.Drawing.Size(142, 16);
+            this.radCheckBox28.Size = new System.Drawing.Size(164, 18);
             this.radCheckBox28.TabIndex = 14;
             this.radCheckBox28.Text = "Дети за пределами РБ";
             this.radCheckBox28.ThemeName = "TelerikMetro";
             this.radCheckBox28.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox29
-            // 
-            this.radCheckBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox29.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox29.Location = new System.Drawing.Point(5, 63);
-            this.radCheckBox29.Name = "radCheckBox29";
-            this.radCheckBox29.Size = new System.Drawing.Size(127, 16);
-            this.radCheckBox29.TabIndex = 2;
-            this.radCheckBox29.Text = "Инвалиды III группы";
-            this.radCheckBox29.ThemeName = "TelerikMetro";
-            this.radCheckBox29.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
             // radCheckBox30
             // 
-            this.radCheckBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox30.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox30.Location = new System.Drawing.Point(5, 210);
+            this.radCheckBox30.Location = new System.Drawing.Point(243, 180);
             this.radCheckBox30.Name = "radCheckBox30";
-            this.radCheckBox30.Size = new System.Drawing.Size(152, 16);
+            this.radCheckBox30.Size = new System.Drawing.Size(156, 18);
             this.radCheckBox30.TabIndex = 11;
-            this.radCheckBox30.Text = "Пенсионеры 100-110 лет";
+            this.radCheckBox30.Text = "Пенсионер 100-... лет";
             this.radCheckBox30.ThemeName = "TelerikMetro";
             this.radCheckBox30.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox31
-            // 
-            this.radCheckBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox31.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox31.Location = new System.Drawing.Point(5, 84);
-            this.radCheckBox31.Name = "radCheckBox31";
-            this.radCheckBox31.Size = new System.Drawing.Size(298, 16);
-            this.radCheckBox31.TabIndex = 3;
-            this.radCheckBox31.Text = "Одинокие пожилые граждане пенсионного возраста";
-            this.radCheckBox31.ThemeName = "TelerikMetro";
-            this.radCheckBox31.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
             // radCheckBox32
             // 
-            this.radCheckBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox32.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox32.Location = new System.Drawing.Point(5, 189);
+            this.radCheckBox32.Location = new System.Drawing.Point(243, 159);
             this.radCheckBox32.Name = "radCheckBox32";
-            this.radCheckBox32.Size = new System.Drawing.Size(139, 16);
+            this.radCheckBox32.Size = new System.Drawing.Size(152, 18);
             this.radCheckBox32.TabIndex = 10;
-            this.radCheckBox32.Text = "Пенсионеры 90-99 лет";
+            this.radCheckBox32.Text = "Пенсионер 90-99 лет";
             this.radCheckBox32.ThemeName = "TelerikMetro";
             this.radCheckBox32.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox33
-            // 
-            this.radCheckBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox33.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox33.Location = new System.Drawing.Point(5, 105);
-            this.radCheckBox33.Name = "radCheckBox33";
-            this.radCheckBox33.Size = new System.Drawing.Size(193, 16);
-            this.radCheckBox33.TabIndex = 5;
-            this.radCheckBox33.Text = "Малообеспеченные пенсионеры";
-            this.radCheckBox33.ThemeName = "TelerikMetro";
-            this.radCheckBox33.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
             // radCheckBox34
             // 
-            this.radCheckBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radCheckBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox34.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox34.Location = new System.Drawing.Point(5, 168);
+            this.radCheckBox34.Location = new System.Drawing.Point(243, 137);
             this.radCheckBox34.Name = "radCheckBox34";
-            this.radCheckBox34.Size = new System.Drawing.Size(139, 16);
+            this.radCheckBox34.Size = new System.Drawing.Size(152, 18);
             this.radCheckBox34.TabIndex = 9;
-            this.radCheckBox34.Text = "Пенсионеры 80-89 лет";
+            this.radCheckBox34.Text = "Пенсионер 80-89 лет";
             this.radCheckBox34.ThemeName = "TelerikMetro";
             this.radCheckBox34.Click += new System.EventHandler(this.radCheckBox_Click);
             // 
-            // radCheckBox35
-            // 
-            this.radCheckBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox35.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox35.Location = new System.Drawing.Point(5, 126);
-            this.radCheckBox35.Name = "radCheckBox35";
-            this.radCheckBox35.Size = new System.Drawing.Size(346, 16);
-            this.radCheckBox35.TabIndex = 6;
-            this.radCheckBox35.Text = "Инвалиды с детства старше 18 лет, получающие соц. пенсию";
-            this.radCheckBox35.ThemeName = "TelerikMetro";
-            this.radCheckBox35.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
-            // radCheckBox36
-            // 
-            this.radCheckBox36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radCheckBox36.ForeColor = System.Drawing.Color.Black;
-            this.radCheckBox36.Location = new System.Drawing.Point(5, 147);
-            this.radCheckBox36.Name = "radCheckBox36";
-            this.radCheckBox36.Size = new System.Drawing.Size(250, 16);
-            this.radCheckBox36.TabIndex = 7;
-            this.radCheckBox36.Text = "Одиноко проживающие пожилые граждане";
-            this.radCheckBox36.ThemeName = "TelerikMetro";
-            this.radCheckBox36.Click += new System.EventHandler(this.radCheckBox_Click);
-            // 
             // radPageViewPage4
             // 
+            this.radPageViewPage4.Controls.Add(this.radGroupBox12);
             this.radPageViewPage4.Controls.Add(this.radGroupBox11);
             this.radPageViewPage4.Controls.Add(this.groupBox9);
-            this.radPageViewPage4.Controls.Add(this.radGroupBox10);
             this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(98F, 28F);
             this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage4.Name = "radPageViewPage4";
-            this.radPageViewPage4.Size = new System.Drawing.Size(450, 467);
+            this.radPageViewPage4.Size = new System.Drawing.Size(463, 467);
             this.radPageViewPage4.Text = "Дополнительно";
+            // 
+            // radGroupBox12
+            // 
+            this.radGroupBox12.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox12.Controls.Add(this.radTreeView3);
+            this.radGroupBox12.Enabled = false;
+            this.radGroupBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.radGroupBox12.HeaderText = "Диагноз инвалидности";
+            this.radGroupBox12.Location = new System.Drawing.Point(4, 205);
+            this.radGroupBox12.Name = "radGroupBox12";
+            this.radGroupBox12.Size = new System.Drawing.Size(448, 250);
+            this.radGroupBox12.TabIndex = 22;
+            this.radGroupBox12.Text = "Диагноз инвалидности";
+            this.radGroupBox12.ThemeName = "TelerikMetro";
+            // 
+            // radTreeView3
+            // 
+            this.radTreeView3.CheckBoxes = true;
+            this.radTreeView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radTreeView3.Location = new System.Drawing.Point(2, 18);
+            this.radTreeView3.Name = "radTreeView3";
+            this.radTreeView3.Size = new System.Drawing.Size(444, 230);
+            this.radTreeView3.SpacingBetweenNodes = -1;
+            this.radTreeView3.TabIndex = 1;
+            this.radTreeView3.Text = "radTreeView3";
+            this.radTreeView3.ThemeName = "TelerikMetro";
             // 
             // radGroupBox11
             // 
             this.radGroupBox11.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox11.Controls.Add(this.label2);
+            this.radGroupBox11.Controls.Add(this.radRadioButton6);
+            this.radGroupBox11.Controls.Add(this.radRadioButton5);
+            this.radGroupBox11.Controls.Add(this.radRadioButton4);
             this.radGroupBox11.Controls.Add(this.radDateTimePicker2);
             this.radGroupBox11.Controls.Add(this.radDateTimePicker1);
             this.radGroupBox11.Controls.Add(this.label1);
-            this.radGroupBox11.Controls.Add(this.radCheckBox40);
             this.radGroupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.radGroupBox11.HeaderText = "Обследование";
-            this.radGroupBox11.Location = new System.Drawing.Point(3, 120);
+            this.radGroupBox11.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox11.Name = "radGroupBox11";
-            this.radGroupBox11.Size = new System.Drawing.Size(216, 79);
+            this.radGroupBox11.Size = new System.Drawing.Size(208, 123);
             this.radGroupBox11.TabIndex = 21;
             this.radGroupBox11.Text = "Обследование";
             this.radGroupBox11.ThemeName = "TelerikMetro";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(11, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 15);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "с";
+            // 
+            // radRadioButton6
+            // 
+            this.radRadioButton6.Location = new System.Drawing.Point(3, 23);
+            this.radRadioButton6.Name = "radRadioButton6";
+            this.radRadioButton6.Size = new System.Drawing.Size(131, 19);
+            this.radRadioButton6.TabIndex = 23;
+            this.radRadioButton6.TabStop = false;
+            this.radRadioButton6.Text = "Не обследованные";
+            this.radRadioButton6.ThemeName = "TelerikMetro";
+            this.radRadioButton6.Click += new System.EventHandler(this.radCheckBox40_Click);
+            // 
+            // radRadioButton5
+            // 
+            this.radRadioButton5.Location = new System.Drawing.Point(4, 44);
+            this.radRadioButton5.Name = "radRadioButton5";
+            this.radRadioButton5.Size = new System.Drawing.Size(114, 19);
+            this.radRadioButton5.TabIndex = 22;
+            this.radRadioButton5.TabStop = false;
+            this.radRadioButton5.Text = "Обследованные";
+            this.radRadioButton5.ThemeName = "TelerikMetro";
+            this.radRadioButton5.Click += new System.EventHandler(this.radCheckBox40_Click);
+            // 
+            // radRadioButton4
+            // 
+            this.radRadioButton4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.radRadioButton4.Location = new System.Drawing.Point(140, 23);
+            this.radRadioButton4.Name = "radRadioButton4";
+            this.radRadioButton4.Size = new System.Drawing.Size(42, 19);
+            this.radRadioButton4.TabIndex = 21;
+            this.radRadioButton4.TabStop = false;
+            this.radRadioButton4.Text = "Все";
+            this.radRadioButton4.ThemeName = "TelerikMetro";
+            this.radRadioButton4.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            this.radRadioButton4.Click += new System.EventHandler(this.radCheckBox40_Click);
             // 
             // radDateTimePicker2
             // 
             this.radDateTimePicker2.CustomFormat = "dd.MM.yyyy";
             this.radDateTimePicker2.Enabled = false;
             this.radDateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker2.Location = new System.Drawing.Point(38, 47);
+            this.radDateTimePicker2.Location = new System.Drawing.Point(38, 94);
             this.radDateTimePicker2.Name = "radDateTimePicker2";
             this.radDateTimePicker2.Size = new System.Drawing.Size(162, 20);
             this.radDateTimePicker2.TabIndex = 3;
             this.radDateTimePicker2.TabStop = false;
-            this.radDateTimePicker2.Value = new System.DateTime(2018, 9, 19, 20, 45, 46, 482);
             this.radDateTimePicker2.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
             // radDateTimePicker1
@@ -1065,32 +1034,22 @@ namespace Одиноко_проживающие.search
             this.radDateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.radDateTimePicker1.Enabled = false;
             this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker1.Location = new System.Drawing.Point(38, 21);
+            this.radDateTimePicker1.Location = new System.Drawing.Point(38, 68);
             this.radDateTimePicker1.Name = "radDateTimePicker1";
             this.radDateTimePicker1.Size = new System.Drawing.Size(162, 20);
             this.radDateTimePicker1.TabIndex = 2;
             this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Value = new System.DateTime(2018, 9, 19, 20, 45, 46, 482);
             this.radDateTimePicker1.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(11, 49);
+            this.label1.Location = new System.Drawing.Point(11, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "по";
-            // 
-            // radCheckBox40
-            // 
-            this.radCheckBox40.Location = new System.Drawing.Point(7, 21);
-            this.radCheckBox40.Name = "radCheckBox40";
-            this.radCheckBox40.Size = new System.Drawing.Size(25, 18);
-            this.radCheckBox40.TabIndex = 0;
-            this.radCheckBox40.Text = "c";
-            this.radCheckBox40.Click += new System.EventHandler(this.radCheckBox40_Click);
             // 
             // groupBox9
             // 
@@ -1101,9 +1060,9 @@ namespace Одиноко_проживающие.search
             this.groupBox9.Controls.Add(this.checkBox7);
             this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox9.HeaderText = "Противопожарные условия";
-            this.groupBox9.Location = new System.Drawing.Point(225, 3);
+            this.groupBox9.Location = new System.Drawing.Point(217, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(218, 111);
+            this.groupBox9.Size = new System.Drawing.Size(235, 79);
             this.groupBox9.TabIndex = 20;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Противопожарные условия";
@@ -1113,7 +1072,7 @@ namespace Одиноко_проживающие.search
             // 
             this.numericUpDown3.Enabled = false;
             this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown3.Location = new System.Drawing.Point(77, 70);
+            this.numericUpDown3.Location = new System.Drawing.Point(71, 44);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             2100,
             0,
@@ -1126,7 +1085,7 @@ namespace Одиноко_проживающие.search
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.ReadOnly = true;
-            this.numericUpDown3.Size = new System.Drawing.Size(136, 20);
+            this.numericUpDown3.Size = new System.Drawing.Size(146, 20);
             this.numericUpDown3.TabIndex = 22;
             this.numericUpDown3.Value = new decimal(new int[] {
             2000,
@@ -1138,7 +1097,7 @@ namespace Одиноко_проживающие.search
             // 
             this.numericUpDown2.Enabled = false;
             this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown2.Location = new System.Drawing.Point(77, 31);
+            this.numericUpDown2.Location = new System.Drawing.Point(71, 19);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             2100,
             0,
@@ -1151,7 +1110,7 @@ namespace Одиноко_проживающие.search
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.ReadOnly = true;
-            this.numericUpDown2.Size = new System.Drawing.Size(136, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(146, 20);
             this.numericUpDown2.TabIndex = 21;
             this.numericUpDown2.Value = new decimal(new int[] {
             2000,
@@ -1163,7 +1122,7 @@ namespace Одиноко_проживающие.search
             // 
             this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox6.ForeColor = System.Drawing.Color.Black;
-            this.checkBox6.Location = new System.Drawing.Point(6, 72);
+            this.checkBox6.Location = new System.Drawing.Point(12, 46);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(51, 18);
             this.checkBox6.TabIndex = 8;
@@ -1175,86 +1134,13 @@ namespace Одиноко_проживающие.search
             // 
             this.checkBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox7.ForeColor = System.Drawing.Color.Black;
-            this.checkBox7.Location = new System.Drawing.Point(6, 33);
+            this.checkBox7.Location = new System.Drawing.Point(12, 21);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(52, 18);
             this.checkBox7.TabIndex = 7;
             this.checkBox7.Text = "АПИ";
             this.checkBox7.ThemeName = "TelerikMetro";
             this.checkBox7.Click += new System.EventHandler(this.checkBox7_Click);
-            // 
-            // radGroupBox10
-            // 
-            this.radGroupBox10.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox10.Controls.Add(this.radRadioButton9);
-            this.radGroupBox10.Controls.Add(this.radRadioButton8);
-            this.radGroupBox10.Controls.Add(this.radRadioButton7);
-            this.radGroupBox10.Controls.Add(this.radRadioButton6);
-            this.radGroupBox10.Controls.Add(this.radRadioButton5);
-            this.radGroupBox10.Controls.Add(this.radRadioButton4);
-            this.radGroupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.radGroupBox10.HeaderText = "Надомное обслуживание";
-            this.radGroupBox10.Location = new System.Drawing.Point(3, 3);
-            this.radGroupBox10.Name = "radGroupBox10";
-            this.radGroupBox10.Size = new System.Drawing.Size(216, 111);
-            this.radGroupBox10.TabIndex = 7;
-            this.radGroupBox10.Text = "Надомное обслуживание";
-            this.radGroupBox10.ThemeName = "TelerikMetro";
-            // 
-            // radRadioButton9
-            // 
-            this.radRadioButton9.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.radRadioButton9.Location = new System.Drawing.Point(111, 21);
-            this.radRadioButton9.Name = "radRadioButton9";
-            this.radRadioButton9.Size = new System.Drawing.Size(89, 18);
-            this.radRadioButton9.TabIndex = 5;
-            this.radRadioButton9.Text = "не учитывать";
-            this.radRadioButton9.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
-            // 
-            // radRadioButton8
-            // 
-            this.radRadioButton8.Location = new System.Drawing.Point(5, 21);
-            this.radRadioButton8.Name = "radRadioButton8";
-            this.radRadioButton8.Size = new System.Drawing.Size(165, 18);
-            this.radRadioButton8.TabIndex = 4;
-            this.radRadioButton8.TabStop = false;
-            this.radRadioButton8.Text = "показать всех действующих";
-            // 
-            // radRadioButton7
-            // 
-            this.radRadioButton7.Location = new System.Drawing.Point(111, 55);
-            this.radRadioButton7.Name = "radRadioButton7";
-            this.radRadioButton7.Size = new System.Drawing.Size(89, 18);
-            this.radRadioButton7.TabIndex = 3;
-            this.radRadioButton7.TabStop = false;
-            this.radRadioButton7.Text = "возобновлен";
-            // 
-            // radRadioButton6
-            // 
-            this.radRadioButton6.Location = new System.Drawing.Point(111, 79);
-            this.radRadioButton6.Name = "radRadioButton6";
-            this.radRadioButton6.Size = new System.Drawing.Size(100, 18);
-            this.radRadioButton6.TabIndex = 2;
-            this.radRadioButton6.TabStop = false;
-            this.radRadioButton6.Text = "приостановлен";
-            // 
-            // radRadioButton5
-            // 
-            this.radRadioButton5.Location = new System.Drawing.Point(5, 79);
-            this.radRadioButton5.Name = "radRadioButton5";
-            this.radRadioButton5.Size = new System.Drawing.Size(42, 18);
-            this.radRadioButton5.TabIndex = 1;
-            this.radRadioButton5.TabStop = false;
-            this.radRadioButton5.Text = "снят";
-            // 
-            // radRadioButton4
-            // 
-            this.radRadioButton4.Location = new System.Drawing.Point(5, 55);
-            this.radRadioButton4.Name = "radRadioButton4";
-            this.radRadioButton4.Size = new System.Drawing.Size(57, 18);
-            this.radRadioButton4.TabIndex = 0;
-            this.radRadioButton4.TabStop = false;
-            this.radRadioButton4.Text = "принят";
             // 
             // сформироватьToolStripMenuItem
             // 
@@ -1266,7 +1152,7 @@ namespace Одиноко_проживающие.search
             // radioButton2
             // 
             this.radioButton2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.radioButton2.Location = new System.Drawing.Point(56, 22);
+            this.radioButton2.Location = new System.Drawing.Point(76, 21);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(45, 18);
             this.radioButton2.TabIndex = 1;
@@ -1276,7 +1162,7 @@ namespace Одиноко_проживающие.search
             // 
             // radioButton1
             // 
-            this.radioButton1.Location = new System.Drawing.Point(10, 22);
+            this.radioButton1.Location = new System.Drawing.Point(9, 21);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(29, 18);
             this.radioButton1.TabIndex = 0;
@@ -1290,9 +1176,9 @@ namespace Одиноко_проживающие.search
             this.radGroupBox2.Controls.Add(this.radioButton2);
             this.radGroupBox2.Controls.Add(this.radioButton1);
             this.radGroupBox2.HeaderText = "Условие";
-            this.radGroupBox2.Location = new System.Drawing.Point(12, 536);
+            this.radGroupBox2.Location = new System.Drawing.Point(0, 536);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(118, 48);
+            this.radGroupBox2.Size = new System.Drawing.Size(130, 48);
             this.radGroupBox2.TabIndex = 5;
             this.radGroupBox2.Text = "Условие";
             this.radGroupBox2.ThemeName = "TelerikMetro";
@@ -1307,14 +1193,14 @@ namespace Одиноко_проживающие.search
             this.radGroupBox3.HeaderText = "Отображение";
             this.radGroupBox3.Location = new System.Drawing.Point(136, 536);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(259, 48);
+            this.radGroupBox3.Size = new System.Drawing.Size(337, 48);
             this.radGroupBox3.TabIndex = 6;
             this.radGroupBox3.Text = "Отображение";
             this.radGroupBox3.ThemeName = "TelerikMetro";
             // 
             // dead_radio
             // 
-            this.dead_radio.Location = new System.Drawing.Point(179, 21);
+            this.dead_radio.Location = new System.Drawing.Point(243, 21);
             this.dead_radio.Name = "dead_radio";
             this.dead_radio.Size = new System.Drawing.Size(69, 18);
             this.dead_radio.TabIndex = 1;
@@ -1335,7 +1221,7 @@ namespace Одиноко_проживающие.search
             // 
             // exit_radio
             // 
-            this.exit_radio.Location = new System.Drawing.Point(107, 21);
+            this.exit_radio.Location = new System.Drawing.Point(141, 21);
             this.exit_radio.Name = "exit_radio";
             this.exit_radio.Size = new System.Drawing.Size(64, 18);
             this.exit_radio.TabIndex = 0;
@@ -1350,7 +1236,7 @@ namespace Одиноко_проживающие.search
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu1.Size = new System.Drawing.Size(473, 30);
+            this.radMenu1.Size = new System.Drawing.Size(490, 30);
             this.radMenu1.TabIndex = 8;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "TelerikMetro";
@@ -1365,7 +1251,7 @@ namespace Одиноко_проживающие.search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 587);
+            this.ClientSize = new System.Drawing.Size(490, 587);
             this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.radGroupBox3);
             this.Controls.Add(this.radGroupBox2);
@@ -1383,6 +1269,12 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).EndInit();
+            this.radGroupBox10.ResumeLayout(false);
+            this.radGroupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).EndInit();
             this.radGroupBox9.ResumeLayout(false);
             this.radGroupBox9.PerformLayout();
@@ -1395,22 +1287,14 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             this.radPageViewPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView5)).EndInit();
-            this.radPageView5.ResumeLayout(false);
-            this.radPageViewPage3.ResumeLayout(false);
+            this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
+            this.radScrollablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             this.radGroupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox37)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox42)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox7)).EndInit();
-            this.radPageViewPage17.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).EndInit();
             this.radGroupBox5.ResumeLayout(false);
             this.radGroupBox5.PerformLayout();
@@ -1420,19 +1304,16 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox13)).EndInit();
-            this.radPageViewPage18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox6)).EndInit();
             this.radGroupBox6.ResumeLayout(false);
             this.radGroupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox18)).EndInit();
-            this.radPageViewPage19.ResumeLayout(false);
-            this.radScrollablePanel2.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).EndInit();
-            this.radScrollablePanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).EndInit();
             this.radGroupBox7.ResumeLayout(false);
             this.radGroupBox7.PerformLayout();
@@ -1444,24 +1325,29 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).EndInit();
             this.radGroupBox8.ResumeLayout(false);
             this.radGroupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox41)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox36)).EndInit();
             this.radPageViewPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox12)).EndInit();
+            this.radGroupBox12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox11)).EndInit();
             this.radGroupBox11.ResumeLayout(false);
             this.radGroupBox11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox9)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
@@ -1469,15 +1355,6 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).EndInit();
-            this.radGroupBox10.ResumeLayout(false);
-            this.radGroupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
@@ -1501,48 +1378,8 @@ namespace Одиноко_проживающие.search
         private RadPageView radPageView1;
         private RadPageViewPage radPageViewPage1;
         private RadTreeView radTreeView1;
-        private RadPageViewPage radPageViewPage2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private RadPageView radPageView5;
-        private RadPageViewPage radPageViewPage17;
-        private RadGroupBox radGroupBox5;
-        private System.Windows.Forms.Label label11;
-        private RadCheckBox radCheckBox8;
-        private RadCheckBox radCheckBox9;
-        private RadCheckBox radCheckBox10;
-        private RadCheckBox radCheckBox11;
-        private RadCheckBox radCheckBox12;
-        private RadCheckBox radCheckBox13;
-        private RadPageViewPage radPageViewPage18;
-        private RadGroupBox radGroupBox6;
-        private RadCheckBox radCheckBox14;
-        private RadCheckBox radCheckBox15;
-        private RadCheckBox radCheckBox16;
-        private RadCheckBox radCheckBox17;
-        private RadCheckBox radCheckBox18;
-        private RadPageViewPage radPageViewPage19;
-        private RadScrollablePanel radScrollablePanel2;
-        private RadGroupBox radGroupBox7;
-        private RadCheckBox radCheckBox19;
-        private RadCheckBox radCheckBox20;
-        private RadCheckBox radCheckBox21;
-        private RadCheckBox radCheckBox22;
-        private RadCheckBox radCheckBox23;
-        private RadGroupBox radGroupBox8;
-        private RadCheckBox radCheckBox24;
-        private RadCheckBox radCheckBox25;
-        private RadCheckBox radCheckBox26;
-        private RadCheckBox radCheckBox27;
-        private RadCheckBox radCheckBox28;
-        private RadCheckBox radCheckBox29;
-        private RadCheckBox radCheckBox30;
-        private RadCheckBox radCheckBox31;
-        private RadCheckBox radCheckBox32;
-        private RadCheckBox radCheckBox33;
-        private RadCheckBox radCheckBox34;
-        private RadCheckBox radCheckBox35;
-        private RadCheckBox radCheckBox36;
         private System.Windows.Forms.ToolStripMenuItem сформироватьToolStripMenuItem;
         private RadGroupBox radGroupBox1;
         private RadRadioButton radioButton2;
@@ -1552,43 +1389,74 @@ namespace Одиноко_проживающие.search
         private RadRadioButton exit_radio;
         private RadGroupBox radGroupBox2;
         private RadRadioButton view_radio;
-        private RadPageViewPage radPageViewPage3;
-        private RadGroupBox radGroupBox4;
-        private RadCheckBox radCheckBox1;
-        private RadCheckBox radCheckBox2;
-        private RadCheckBox radCheckBox3;
         private RadLabel radLabel2;
         private RadLabel radLabel1;
         private RadMenu radMenu1;
         private RadMenuButtonItem radMenuButtonItem1;
-        private RadCheckBox radCheckBox4;
-        private RadCheckBox radCheckBox5;
-        private RadCheckBox radCheckBox6;
-        private RadCheckBox radCheckBox7;
-        private RadCheckBox radCheckBox37;
-        private RadCheckBox radCheckBox38;
         private RadGroupBox radGroupBox9;
         private RadTreeView radTreeView2;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private RadCheckBox radCheckBox39;
         private RadPageViewPage radPageViewPage4;
-        private RadGroupBox radGroupBox10;
-        private RadRadioButton radRadioButton4;
         private RadGroupBox groupBox9;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private RadCheckBox checkBox6;
         private RadCheckBox checkBox7;
-        private RadRadioButton radRadioButton7;
-        private RadRadioButton radRadioButton6;
-        private RadRadioButton radRadioButton5;
-        private RadRadioButton radRadioButton9;
-        private RadRadioButton radRadioButton8;
         private RadGroupBox radGroupBox11;
         private DateTimePicker radDateTimePicker1;
         private System.Windows.Forms.Label label1;
-        private RadCheckBox radCheckBox40;
         private DateTimePicker radDateTimePicker2;
+        private RadGroupBox radGroupBox12;
+        private RadTreeView radTreeView3;
+        private RadGroupBox radGroupBox10;
+        private RadRadioButton radRadioButton3;
+        private RadRadioButton radRadioButton2;
+        private RadRadioButton radRadioButton1;
+        private RadPageViewPage radPageViewPage2;
+        private RadScrollablePanel radScrollablePanel1;
+        private RadCheckBox radCheckBox42;
+        private RadGroupBox radGroupBox4;
+        private RadCheckBox radCheckBox37;
+        private RadCheckBox radCheckBox38;
+        private RadCheckBox radCheckBox3;
+        private RadGroupBox radGroupBox5;
+        private RadCheckBox radCheckBox8;
+        private RadCheckBox radCheckBox9;
+        private RadCheckBox radCheckBox10;
+        private RadCheckBox radCheckBox11;
+        private RadCheckBox radCheckBox12;
+        private RadCheckBox radCheckBox13;
+        private RadGroupBox radGroupBox6;
+        private RadCheckBox radCheckBox17;
+        private RadCheckBox radCheckBox18;
+        private RadGroupBox radGroupBox7;
+        private RadCheckBox radCheckBox20;
+        private RadCheckBox radCheckBox21;
+        private RadCheckBox radCheckBox22;
+        private RadCheckBox radCheckBox23;
+        private RadGroupBox radGroupBox8;
+        private RadCheckBox radCheckBox41;
+        private RadCheckBox radCheckBox24;
+        private RadCheckBox radCheckBox25;
+        private RadCheckBox radCheckBox26;
+        private RadCheckBox radCheckBox27;
+        private RadCheckBox radCheckBox28;
+        private RadCheckBox radCheckBox29;
+        private RadCheckBox radCheckBox30;
+        private RadCheckBox radCheckBox32;
+        private RadCheckBox radCheckBox34;
+        private RadRadioButton radRadioButton6;
+        private RadRadioButton radRadioButton5;
+        private RadRadioButton radRadioButton4;
+        private Label label2;
+        private RadCheckBox radCheckBox19;
+        private RadCheckBox radCheckBox2;
+        private RadCheckBox radCheckBox1;
+        private RadCheckBox radCheckBox6;
+        private RadCheckBox radCheckBox5;
+        private RadCheckBox radCheckBox4;
+        private RadCheckBox radCheckBox7;
     }
 }

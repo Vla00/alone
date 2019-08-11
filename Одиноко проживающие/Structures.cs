@@ -21,13 +21,15 @@ namespace Одиноко_проживающие
     {
         public bool Status { set; get; }
         public int KeyAlone { set; get; }
+        public string Item { set; get; }
+        public bool? Blocked { set; get; }
     }
 
     internal class StructuresAlone : IDisposable
     {
         protected bool Equals(StructuresAlone other)
         {
-            return string.Equals(Family, other.Family) && string.Equals(Name, other.Name) && string.Equals(Surname, other.Surname) && Pol == other.Pol && DateRo.Equals(other.DateRo) && DateSm.Equals(other.DateSm) && string.Equals(Country, other.Country) && string.Equals(TypeUl, other.TypeUl) && string.Equals(Street, other.Street) && string.Equals(House, other.House) && string.Equals(Apartament, other.Apartament) && string.Equals(Housing, other.Housing) && string.Equals(Phone, other.Phone) && string.Equals(PlaceWork, other.PlaceWork) && string.Equals(SemPol, other.SemPol) && string.Equals(Dop, other.Dop) && DateExit.Equals(other.DateExit);
+            return string.Equals(Family, other.Family) && string.Equals(Name, other.Name) && string.Equals(Surname, other.Surname) && Pol == other.Pol && DateRo.Equals(other.DateRo) && DateSm.Equals(other.DateSm) && string.Equals(Country, other.Country) && string.Equals(TypeUl, other.TypeUl) && string.Equals(Street, other.Street) && string.Equals(House, other.House) && string.Equals(Apartament, other.Apartament) && string.Equals(Housing, other.Housing) && string.Equals(Phone, other.Phone) && string.Equals(PlaceWork, other.PlaceWork) && string.Equals(Dop, other.Dop) && DateExit.Equals(other.DateExit);
         }
 
         public override bool Equals(object obj)
@@ -55,7 +57,6 @@ namespace Одиноко_проживающие
                 hashCode = (hashCode * 397) ^ (Housing != null ? Housing.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Phone != null ? Phone.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (PlaceWork != null ? PlaceWork.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (SemPol != null ? SemPol.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Dop != null ? Dop.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ DateExit.GetHashCode();
                 return hashCode;
@@ -80,7 +81,6 @@ namespace Одиноко_проживающие
 
         public string Phone { set; get; }
         public string PlaceWork { set; get; }
-        public string SemPol { set; get; }
         public string Dop { set; get; }
         public DateTime DateExit { set; get; }
 
@@ -129,31 +129,6 @@ namespace Одиноко_проживающие
         public DateTime DateRo { get; set; }
         public DateTime DateSm { get; set; }
         public string Dop { get; set; }
-
-        //public override bool Equals(object obj)
-        //{
-        //    StructuresSojitel sojitel = obj as StructuresSojitel;
-        //    return sojitel != null && sojitel.DateRo == DateRo && sojitel.DateSm == DateSm && sojitel.Dop == Dop &&
-        //           sojitel.Fio == Fio && sojitel.Pol == Pol;
-        //}
-
-        //protected bool Equals(StructuresSojitel other)
-        //{
-        //    return string.Equals(Fio, other.Fio) && Pol == other.Pol && DateRo.Equals(other.DateRo) && DateSm.Equals(other.DateSm) && string.Equals(Dop, other.Dop);
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    unchecked
-        //    {
-        //        var hashCode = (Fio != null ? Fio.GetHashCode() : 0);
-        //        hashCode = (hashCode*397) ^ Pol;
-        //        hashCode = (hashCode*397) ^ DateRo.GetHashCode();
-        //        hashCode = (hashCode*397) ^ DateSm.GetHashCode();
-        //        hashCode = (hashCode*397) ^ (Dop != null ? Dop.GetHashCode() : 0);
-        //        return hashCode;
-        //    }
-        //}
 
         public void Dispose()
         {
@@ -243,6 +218,47 @@ namespace Одиноко_проживающие
                 return hashCode;
             }
         }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+    }
+
+    internal class StructuresAlones : IDisposable
+    {
+        public StructuresAlone alone { set; get; }
+        public StructuresSojitel sojitel { set; get; }
+        public StructuresInvalidnost invalidnost { set; get; }
+        public StructuresFamily family { set; get; }
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+    }
+
+    internal class StructuresInvalidnost : IDisposable
+    {
+        public string stepen { get; set; }
+        public string date_start { set; get; }
+        public string date_pere { set; get; }
+        public string diagnoz { set; get; }
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+    }
+
+    internal class StructuresFamily : IDisposable
+    {
+        public string fioMather { set; get; }
+        public string fioFather { set; get; }
 
         public void Dispose()
         {

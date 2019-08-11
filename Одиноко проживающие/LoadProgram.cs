@@ -8,7 +8,7 @@ namespace Одиноко_проживающие
 {
     public partial class LoadProgram : Form
     {
-        public string version = "1.3";
+        public string version = "1.5.8.2";
         public string newVersion;
         private static readonly string StrConnect = null;
         public static SqlConnection Connect = new SqlConnection(StrConnect);
@@ -66,29 +66,17 @@ namespace Одиноко_проживающие
 
         private void FormOpen(object sender, DoWorkEventArgs e)
         {
-            label1.Invoke(new Action(() =>
-            {
-                label1.Text = @"Проверка конф. файла";
-            }));
+            SetLabel("Проверка конф. файла");
             if (InizializeConnectString())
             {
-                label1.Invoke(new Action(() =>
-                {
-                    label1.Text = @"Проверка подключения";
-                }));
+                SetLabel("Проверка подключения");
                 if (new CommandServer().ConnectDb())
                 {
-                    label1.Invoke(new Action(() =>
+                    SetLabel("Проверка версии");
+                    if (CheackVersion())
                     {
-                        label1.Text = @"Проверка версии";
-                    }));
-                    if(CheackVersion())
-                    {
-                        label1.Invoke(new Action(() =>
-                        {
-                            label1.Text = @"Скачивание новых файлов";
-                        }));
-                        new Update(version, newVersion, _confConnection.Source);
+                        SetLabel("Скачивание новых файлов");
+                        new Update(version, newVersion, _confConnection.Source, this);
                         return;
                     }else
                     {
@@ -119,6 +107,33 @@ namespace Одиноко_проживающие
             {
                 Application.Exit();
             }
+        }
+
+        public void SetLabel(string text)
+        {
+            textBox1.Invoke(new Action(() =>
+            {
+                textBox1.Text = text;
+            }));
+        }
+
+        public void SetProgressValue(int val)
+        {
+            radProgressBar1.Invoke(new Action(() =>
+            {
+                if (val <= 100)
+                    radProgressBar1.Value1 = val;
+                else
+                    radProgressBar1.Value1 = 100;
+            }));
+        }
+
+        public void SetProgressVisible(bool Visible)
+        {
+            radProgressBar1.Invoke(new Action(() =>
+            {
+                radProgressBar1.Visible = Visible;
+            }));
         }
 
         private bool CheackVersion()

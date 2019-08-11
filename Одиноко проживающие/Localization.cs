@@ -165,7 +165,7 @@ namespace Одиноко_проживающие
                 case RadGridStringId.GroupingPanelHeader: return "Группировка:";
                 case RadGridStringId.PagingPanelPagesLabel: return "Страница";
                 case RadGridStringId.PagingPanelOfPagesLabel: return "of";
-                case RadGridStringId.NoDataText: return "Нет данных для отображения";
+                case RadGridStringId.NoDataText: return "Нет данных для отображения. Возможно производится поиск";
                 case RadGridStringId.CompositeFilterFormErrorCaption: return "Filter Error";
                 case RadGridStringId.CompositeFilterFormInvalidFilter: return "The composite filter descriptor is not valid.";
                 case RadGridStringId.ExpressionMenuItem: return "Expression";

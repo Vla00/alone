@@ -10,19 +10,21 @@ namespace Одиноко_проживающие
 {
     internal class Update
     {
+        LoadProgram _load;
         private string _programName = "Одиноко_проживающие_update.exe";
         private readonly string _oldVersion;
         private readonly string _newVersion;
         private string _server;
         public FTP_Client ftp = new FTP_Client();
 
-        public Update(string oldVersion, string newVersion, string server)
+        public Update(string oldVersion, string newVersion, string server, LoadProgram load)
         {
             try
             {
                 _oldVersion = oldVersion;
                 _newVersion = newVersion;
                 _server = server;
+                _load = load;
                 ScanFile();
             }
             catch (Exception ex)
@@ -36,8 +38,17 @@ namespace Одиноко_проживающие
         {
             if (!Directory.Exists("Temp"))
                 Directory.CreateDirectory("Temp");
+            else
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo("Temp");
+                foreach(FileInfo file in dirInfo.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
 
             var network = new NetworkShareAccesser();
+            _load.SetLabel("Проверка доступности локального сервера");
             network.SaveACopy(@"\\S1\Alldoc\Install\Программы\Обновления\Одиноко проживающие\", Path.Combine(Application.StartupPath, "Temp"), 1500);
             Thread.Sleep(2500);
 
@@ -58,6 +69,7 @@ namespace Одиноко_проживающие
                     MessageBox.Show(
                     @"Произошла ошибка при обновлении. Обратитесь к разработчику.",
                     @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Configuration(true).ShowDialog();
                     var commandClient = new CommandClient();
                     commandClient.WriteFileError(ex, "Обновление");
                 }
@@ -69,10 +81,12 @@ namespace Одиноко_проживающие
             ftp.Host = _server;
 
             FileStruct[] _fileL = ftp.ListDirectory(null);
-
+            _load.SetProgressVisible(true);
             foreach(FileStruct s in _fileL)
             {
-                ftp.DownloadFile(null, s.Name, Path.Combine(Application.StartupPath, "Temp"));
+                _load.SetLabel("Скачивание: " + s.Name);
+                _load.SetProgressValue(0);
+                ftp.DownloadFile(null, s.Name, Path.Combine(Application.StartupPath, "Temp"), _load);
             }
         }
 

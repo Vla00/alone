@@ -278,7 +278,7 @@ namespace Одиноко_проживающие.search
                 Hide();
                 try
                 {
-                    new Alone(false, Convert.ToInt32(radGridView1.CurrentRow.Cells[0].Value)).ShowDialog();
+                    new Alone(false, Convert.ToInt32(radGridView1.CurrentRow.Cells[0].Value), null, null).ShowDialog();
                 }
                 catch (Exception ex)
                 {

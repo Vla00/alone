@@ -108,21 +108,41 @@ namespace Одиноко_проживающие.Alones
                     if (e.PropertyName == "Дата инв.")
                     {
                         flag = true;
-                        parameters += e.NewValue.ToString() + "','";
+                        if(e.NewValue != null)
+                            parameters += e.NewValue.ToString() + "',";
+                        else
+                        {
+                            AlertOperation(new string[] { "Не указана дата инвалидности", "0" });
+                            e.Cancel = true;
+                        }
                     }
                     else
                     {
-                        parameters += line.Cells[2].Value.ToString() + "','";
+                        parameters += line.Cells[2].Value.ToString() + "',";
                     }
 
                     if (e.PropertyName == "Дата переосв.")
                     {
-                        flag = true;
-                        parameters += e.NewValue.ToString() + "','";
+                        if(e.NewValue != null)
+                        {
+                            parameters += "'" + e.NewValue.ToString() + "','";
+                            flag = true;
+                        }
+                        else
+                        {
+                            if(e.OldValue.ToString() != "")
+                            {
+                                flag = true;
+                                parameters += "null,'";
+                            }
+                        }
                     }
                     else
                     {
-                        parameters += line.Cells[3].Value.ToString() + "','";
+                        if (!string.IsNullOrEmpty(line.Cells[3].Value.ToString()))
+                            parameters += "'" + line.Cells[3].Value.ToString() + "','";
+                        else
+                            parameters += "null,'";
                     }
 
                     if (e.PropertyName == "name")
@@ -139,7 +159,6 @@ namespace Одиноко_проживающие.Alones
                     {
                         var resultOperation = commandServer.ExecReturnServer("Disability_edit", parameters);
                         AlertOperation(resultOperation);
-                        //Status = true;
                     }
                 }
             }
@@ -158,24 +177,69 @@ namespace Одиноко_проживающие.Alones
 
         private void radGridView1_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
-            for(int i = 1; i < e.Rows[0].Cells.Count; i++)
-            {
-                if(e.Rows[0].Cells[i] == null || e.Rows[0].Cells[i].Value.ToString() == "")
-                {
-                    e.Cancel = true;
-                    return;
-                }
-            }
-            
-            var commandServer = new CommandServer();
+            bool error = false;
+            var parameters = _key;
 
-            var parameters = _key + "," + e.Rows[0].Cells[1].Value.ToString() + ",'" +
-                e.Rows[0].Cells[2].Value.ToString() + "','" + e.Rows[0].Cells[3].Value.ToString() +
-                "','" + e.Rows[0].Cells[4].Value.ToString() + "'";
+            if (e.Rows[0].Cells["_powered"].Value == null)
+            {
+                AlertOperation(new string[] { "Не указана степень", "0"});
+                e.Cancel = true;
+                var cell = radGridView1.MasterView.TableAddNewRow.Cells["_powered"];
+                cell.Style.BackColor = System.Drawing.Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
+            }else
+            {
+                radGridView1.MasterView.TableAddNewRow.Cells["_powered"].Style.CustomizeFill = false;
+                parameters += "," + e.Rows[0].Cells["_powered"].Value.ToString();
+            }
+
+            if(e.Rows[0].Cells["date1"].Value == null)
+            {
+                AlertOperation(new string[] { "Не указана дата инвалидности", "0" });
+                e.Cancel = true;
+                var cell = radGridView1.MasterView.TableAddNewRow.Cells["date1"];
+                cell.Style.BackColor = System.Drawing.Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
+            }
+            else
+            {
+                radGridView1.MasterView.TableAddNewRow.Cells["date1"].Style.CustomizeFill = false;
+                parameters += ",'" + e.Rows[0].Cells["date1"].Value.ToString() + "'";
+            }
+
+            if (e.Rows[0].Cells["date2"].Value != null)
+            {
+                parameters += ",'" + e.Rows[0].Cells["date2"].Value.ToString() + "'";
+            }
+            else
+            {
+                parameters += ",null";
+            }
+
+            if (e.Rows[0].Cells["_every"].Value == null)
+            {
+                AlertOperation(new string[] { "Не указан диагноз", "0" });
+                e.Cancel = true;
+                var cell = radGridView1.MasterView.TableAddNewRow.Cells["_every"];
+                cell.Style.BackColor = System.Drawing.Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
+            }
+            else
+            {
+                radGridView1.MasterView.TableAddNewRow.Cells["_every"].Style.CustomizeFill = false;
+                parameters += ",'" + e.Rows[0].Cells["_every"].Value.ToString() + "'";
+            }
+
+            if (error)
+                return;
+
+            var commandServer = new CommandServer();
 
             var returnSqlServer = commandServer.ExecReturnServer("Disability_add", parameters);
             AlertOperation(returnSqlServer);
-            //Status = true;
         }
 
         private void radGridView1_CellEditorInitialized(object sender, GridViewCellEventArgs e)

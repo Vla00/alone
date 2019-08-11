@@ -36,8 +36,7 @@ namespace Update
                         if (file.Name != "Одиноко_проживающие_update.exe")
                             File.Copy(file.FullName, file.Name, true);
                     }
-                    catch (Exception) { }
-                    
+                    catch (Exception) { }                    
                 } 
             }
             catch (Exception exception)

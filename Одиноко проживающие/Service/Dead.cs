@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -15,11 +15,11 @@ namespace Одиноко_проживающие.Service
         TelerikMetroTheme theme = new TelerikMetroTheme();
         BackgroundWorker helpBackgroundWorker;
         private BindingSource _bindingSource;
-        private string file;
 
         private int date_sm = 0;
         private int add = 0;
         private int doubl = 0;
+        private int not = 0;
 
         public Dead()
         {
@@ -30,36 +30,59 @@ namespace Одиноко_проживающие.Service
             helpBackgroundWorker.WorkerReportsProgress = true;
             helpBackgroundWorker.WorkerSupportsCancellation = true;
             helpBackgroundWorker.DoWork += new DoWorkEventHandler(DeadLoad);
-            radGridView3.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
         }
 
+        #region Загрузка файла
         private void radButton2_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            file = openFileDialog1.FileName;
+            string[] lines = System.IO.File.ReadAllLines(openFileDialog1.FileName, System.Text.Encoding.Default);
+            DataTable dt = new DataTable();
 
-            //ExcelFile ef = ExcelFile.Load(openFileDialog1.FileName);
-            //DataGridViewConverter
+            if (lines.Length > 0)
+            {
+                
+                string firstLines = lines[0];
 
-            Excel_load();
-        }
+                string[] header = firstLines.Split(';');
 
-        private void Excel_load()
-        {
-            string str = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-                file + ";Extended Properties='Excel 8.0;HDR=YES;';";
-            OleDbConnection connection = new OleDbConnection(str);
-            OleDbCommand command = new OleDbCommand("select * from [Лист1$]", connection);
-            connection.Open();
-            OleDbDataAdapter data_adapter = new OleDbDataAdapter(command);
-            DataTable data = new DataTable();
-            data_adapter.Fill(data);
-            radGridView1.DataSource = data;
+                foreach(string head in header)
+                {
+                    if(!string.IsNullOrEmpty(head))
+                        dt.Columns.Add(new DataColumn(head.Substring(1, head.Length - 2)));
+                }
+
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    string[] words = lines[i].Split(';');
+                    DataRow rd = dt.NewRow();
+                    int colIndex = 0;
+                    foreach (string headW in header)
+                    {
+                        
+                        if (!string.IsNullOrEmpty(headW))
+                        {
+                            if(!string.IsNullOrEmpty(words[colIndex]))
+                                rd[headW.Substring(1, headW.Length - 2)] = words[colIndex].Substring(1, words[colIndex].Length - 2);
+                            else
+                                rd[headW.Substring(1, headW.Length - 2)] = words[colIndex];
+                        }
+                        colIndex++;
+                    }
+
+                    dt.Rows.Add(rd);
+                }
+            }
+
+            if(dt.Rows.Count > 0)
+            {
+                radGridView1.DataSource = dt;
+            }
 
             radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            //_bindingSourceLoad
         }
 
         private void radButton1_Click(object sender, EventArgs e)
@@ -81,134 +104,153 @@ namespace Одиноко_проживающие.Service
                 value_progress += step;
                 row.IsSelected = true;
 
-                string parameters = "'" + row.Cells[0].Value.ToString().Trim() + "', '" + row.Cells[1].Value.ToString().Trim() + "', '" +
-                    row.Cells[2].Value.ToString().Trim() + "'";
-
-                if (!string.IsNullOrEmpty(row.Cells[3].Value.ToString()))
-                {
-                    parameters += ",'" + row.Cells[3].Value.ToString().Trim() + "'";
-                }
-                else
-                    parameters += ",null";
-
-                if(!string.IsNullOrEmpty(row.Cells[4].Value.ToString()))
-                {
-                    parameters += ",'" + row.Cells[4].Value.ToString().Trim() + "'";
-                }
-                else
-                    parameters += ",null";
+                string parameters = "'" + row.Cells["Фамилия Имя Отчество"].Value.ToString().Trim() + "', '" + row.Cells["Дата рождения"].Value.ToString().Trim() + "', '" +
+                    row.Cells["Дата смерти"].Value.ToString().Trim() + "','" + row.Cells["Адрес"].Value.ToString().Trim() + "'";              
+                
                 radProgressBar1.Value1 = (int)value_progress;
                 radProgressBar1.Text = radProgressBar1.Value1 + "%";
 
                 var returnSqlServer = commandServer.ExecReturnServer("dead_add", parameters);
                 if (returnSqlServer[0] == "1")
                 {
-                    row.Cells["Результат"].Value = "Дата смерти уже установлена";
-                    date_sm++;
+                    row.Cells[row.Cells.Count - 1].Value = "Нет такого человека";
+                    not++;
                 }
                 else
                 {
                     if(returnSqlServer[0] == "2")
                     {
-                        row.Cells["Результат"].Value = "Данные выли занесены ранее";
-                        doubl++;
-                    }else
+                        row.Cells[row.Cells.Count - 1].Value = "Данный человека уже помечен как умерший";
+                        date_sm++;
+                    }
+                    else
                     {
-                        row.Cells["Результат"].Value = returnSqlServer[0];
-                        add++;
+                        if(returnSqlServer[0] == "3")
+                        {
+                            row.Cells[row.Cells.Count - 1].Value = "Данный человека уже занесен ранее";
+                            doubl++;
+                        }
+                        else
+                        {
+                            row.Cells[row.Cells.Count - 1].Value = returnSqlServer[0];
+                            add++;
+                        }
+                        
                     }
                 }
-                //
-                //ФИО, Дата рождения, сельсовет, улица, дата смерти
             }
             radProgressBar1.Value1 = 100;
             radProgressBar1.Text = "100%";
-            MessageBox.Show("Установлена дата смерти: " + date_sm + "\nДанные выли занесены ранее: " + doubl + "\nУспешно: " + add, "Отчет", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            MessageBox.Show("Установлена дата смерти: " + date_sm + "\nДанные выли занесены ранее: " + doubl + "\nНет такого:" + not + "\nУспешно: " + add, "Отчет", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UpdateGrid();
         }
-
+        #endregion
+        #region Подбор
         private void DeadLoad(object sender, DoWorkEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select fio as [ФИО], date_ro, selsovet as [С\С], date_sm
-                from dead order by [ФИО]").Tables[0] };
-
-            radGridView3.Invoke(new MethodInvoker(delegate ()
-            {
-                radGridView3.DataSource = _bindingSource;
-
-                GridViewDateTimeColumn dateR = new GridViewDateTimeColumn("Дата рождения");
-                radGridView3.Columns[1] = dateR;
-                dateR.Name = "date_ro";
-                dateR.FieldName = "date_ro";
-                dateR.FormatString = "{0:dd/MM/yyyy}";
-                dateR.Format = DateTimePickerFormat.Custom;
-                dateR.CustomFormat = "dd.MM.yyyy";
-
-                GridViewDateTimeColumn dateS = new GridViewDateTimeColumn("Дата смерти");
-                radGridView3.Columns[3] = dateS;
-                dateS.Name = "date_sm";
-                dateS.FieldName = "date_sm";
-                dateS.FormatString = "{0:dd/MM/yyyy}";
-                dateS.Format = DateTimePickerFormat.Custom;
-                dateS.CustomFormat = "dd.MM.yyyy";
-
-                radGridView3.Columns[0].BestFit();
-                radGridView3.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-
-            }));
-
-            DeadAutoLoad();
-        }
-
-        private void DeadAutoLoad()
-        {
-            var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_alone [№], alone.fio as [ФИО], alone.date_ro, dead.date_sm, selsovet.selsovet as [Сельсовет]
-                from alone inner join dead on alone.fio = dead.fio
-	                inner join country on fk_country = key_country
-	                inner join selsovet on key_selsovet = country.fk_selsovet
-                where alone.date_ro = dead.date_ro order by alone.fio").Tables[0] };
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО ГИССЗ]").Tables[0] };
 
             radGridView2.Invoke(new MethodInvoker(delegate ()
             {
                 radGridView2.DataSource = _bindingSource;
 
-                GridViewDateTimeColumn dateRo = new GridViewDateTimeColumn("Дата рождения");
-                radGridView2.Columns[2] = dateRo;
-                dateRo.Name = "date_ro";
-                dateRo.FieldName = "date_ro";
-                dateRo.FormatString = "{0:dd/MM/yyyy}";
-                dateRo.Format = DateTimePickerFormat.Custom;
-                dateRo.CustomFormat = "dd.MM.yyyy";
+                if (radGridView2.Columns["Дата р."] != null)
+                    radGridView2.Columns["Дата р."].FormatString = "{0:dd/MM/yyyy}";
 
-                GridViewDateTimeColumn dateSm = new GridViewDateTimeColumn("Дата смерти");
-                radGridView2.Columns[3] = dateSm;
-                dateSm.Name = "date_sm";
-                dateSm.FieldName = "date_sm";
-                dateSm.FormatString = "{0:dd/MM/yyyy}";
-                dateSm.Format = DateTimePickerFormat.Custom;
-                dateSm.CustomFormat = "dd.MM.yyyy";
+                if (radGridView2.Columns["Дата смерти"] != null)
+                    radGridView2.Columns["Дата смерти"].FormatString = "{0:dd/MM/yyyy}";
+
+
+                radGridView2.Columns[0].IsVisible = false;
+                radGridView2.Columns["key_dead"].IsVisible = false;
+                radGridView2.Columns["cou"].IsVisible = false;
 
                 GridViewCommandColumn command = new GridViewCommandColumn();
-                command.Name = "command";
+                command.Name = "commandDelYes";
                 command.UseDefaultText = true;
-                command.DefaultText = "применить";
+                command.DefaultText = "Удалить";
                 command.FieldName = "delete";
                 command.HeaderText = "Операция";
                 radGridView2.MasterTemplate.Columns.Add(command);
+                radGridView2.CommandCellClick += new CommandCellClickEventHandler(radGridViewButton_Click);
 
-                radGridView2.Columns[1].BestFit();
-                radGridView2.Columns[2].BestFit();
-                radGridView2.Columns[3].BestFit();
+                radGridView2.Columns["ФИО ГИССЗ"].BestFit();
+                radGridView2.Columns["Дата р."].BestFit();
+                radGridView2.Columns["Адрес ГИССЗ"].BestFit();
+                radGridView2.Columns["ФИО из базы"].BestFit();
+                radGridView2.Columns["Адрес из базы"].BestFit();
+                radGridView2.Columns["Дата смерти"].BestFit();
                 radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
             }));
         }
+
+        private void UpdateGrid()
+        {
+            var commandServer = new CommandServer();
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО ГИССЗ]").Tables[0] };
+            radGridView2.DataSource = _bindingSource;
+        }
+
+        private void radGridView3_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            if (!e.RowElement.RowInfo.Cells["Адрес ГИССЗ"].Value.ToString().Contains(e.RowElement.RowInfo.Cells["cou"].Value.ToString()))
+            {
+                e.RowElement.DrawFill = true;
+                e.RowElement.GradientStyle = GradientStyles.Solid;
+                e.RowElement.BackColor = Color.Red;
+            }
+            else
+            {
+                e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+            }
+        }
+
+        private void radGridViewButton_Click(object sender, EventArgs e)
+        {
+            if (((GridCommandCellElement)sender).Data.FieldName == "delete")
+                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+            else
+                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+            UpdateGrid();
+        }
+
+        #endregion
 
         private void Dead_Load(object sender, EventArgs e)
         {
             if (!helpBackgroundWorker.IsBusy)
                 helpBackgroundWorker.RunWorkerAsync();
         }
+
+        private void radGridView3_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                Hide();
+                try
+                {
+                    new Alone(false, Convert.ToInt32(radGridView2.CurrentRow.Cells[0].Value), "sm " + radGridView2.CurrentRow.Cells["Дата смерти"].Value, null ).ShowDialog();
+                    UpdateGrid();
+                }
+                catch (Exception ex)
+                {
+                    var commandClient = new CommandClient();
+                    commandClient.WriteFileError(ex, null);
+                }
+                Show();
+            }
+        }
+
+        private void Dead_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+
+        
     }
 }

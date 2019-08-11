@@ -49,47 +49,47 @@ namespace Одиноко_проживающие
 
         private void Soc()
         {
-            BindingSource _bindingSourceStart = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
-            (
-             SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
-                ORDER BY nad_obsl.date_operation DESC)
-             FROM alone
-             JOIN nad_obsl ON alone.key_alone = nad_obsl.fk_alone
-             JOIN country ON alone.fk_country = country.key_country
-            )
-            SELECT spez.fio, soc.fio, CTE.fio, CTE.date_ro, CTE.country, CTE.street, 
-            operation.operation , CTE.date_operation
-            FROM CTE
-            JOIN selsovet ON selsovet.key_selsovet = CTE.fk_selsovet
-            JOIN speziolist soc ON soc.key_speziolist = CTE.fk_soc_rab
-            JOIN operation ON operation.key_operation = CTE.fk_operation
-            join spec_soc on spec_soc.fk_socRabotnik = soc.key_speziolist
-            join speziolist spez on spez.key_speziolist = spec_soc.fk_speciolist
-            WHERE CTE.N=1 and (operation.operation = 'принят' or operation.operation = 'возобновлен')
-            order by soc.fio").Tables[0] };
+            //BindingSource _bindingSourceStart = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
+            //(
+            // SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
+            //    ORDER BY nad_obsl.date_operation DESC)
+            // FROM alone
+            // JOIN nad_obsl ON alone.key_alone = nad_obsl.fk_alone
+            // JOIN country ON alone.fk_country = country.key_country
+            //)
+            //SELECT spez.fio, soc.fio, CTE.fio, CTE.date_ro, CTE.country, CTE.street, 
+            //operation.operation , CTE.date_operation
+            //FROM CTE
+            //JOIN selsovet ON selsovet.key_selsovet = CTE.fk_selsovet
+            //JOIN speziolist soc ON soc.key_speziolist = CTE.fk_soc_rab
+            //JOIN operation ON operation.key_operation = CTE.fk_operation
+            //join spec_soc on spec_soc.fk_socRabotnik = soc.key_speziolist
+            //join speziolist spez on spez.key_speziolist = spec_soc.fk_speciolist
+            //WHERE CTE.N=1 and (operation.operation = 'принят' or operation.operation = 'возобновлен')
+            //order by soc.fio").Tables[0] };
 
-            label3.Text = _bindingSourceStart.Count.ToString();
+            //label3.Text = _bindingSourceStart.Count.ToString();
 
-            BindingSource _bindingSourceStop = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
-            (
-             SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
-                ORDER BY nad_obsl.date_operation DESC)
-             FROM alone
-             JOIN nad_obsl ON alone.key_alone = nad_obsl.fk_alone
-             JOIN country ON alone.fk_country = country.key_country
-            )
-            SELECT spez.fio, soc.fio, CTE.fio, CTE.date_ro, CTE.country, CTE.street, 
-            operation.operation , CTE.date_operation
-            FROM CTE
-            JOIN selsovet ON selsovet.key_selsovet = CTE.fk_selsovet
-            JOIN speziolist soc ON soc.key_speziolist = CTE.fk_soc_rab
-            JOIN operation ON operation.key_operation = CTE.fk_operation
-            join spec_soc on spec_soc.fk_socRabotnik = soc.key_speziolist
-            join speziolist spez on spez.key_speziolist = spec_soc.fk_speciolist
-            WHERE CTE.N=1 and (operation.operation = 'приостановлен')
-            order by soc.fio").Tables[0] };
+            //BindingSource _bindingSourceStop = new BindingSource { DataSource = new CommandServer().DataGridSet(@"WITH CTE AS
+            //(
+            // SELECT *, N=ROW_NUMBER()OVER(PARTITION BY alone.fio, alone.date_ro, country.country, alone.street 
+            //    ORDER BY nad_obsl.date_operation DESC)
+            // FROM alone
+            // JOIN nad_obsl ON alone.key_alone = nad_obsl.fk_alone
+            // JOIN country ON alone.fk_country = country.key_country
+            //)
+            //SELECT spez.fio, soc.fio, CTE.fio, CTE.date_ro, CTE.country, CTE.street, 
+            //operation.operation , CTE.date_operation
+            //FROM CTE
+            //JOIN selsovet ON selsovet.key_selsovet = CTE.fk_selsovet
+            //JOIN speziolist soc ON soc.key_speziolist = CTE.fk_soc_rab
+            //JOIN operation ON operation.key_operation = CTE.fk_operation
+            //join spec_soc on spec_soc.fk_socRabotnik = soc.key_speziolist
+            //join speziolist spez on spez.key_speziolist = spec_soc.fk_speciolist
+            //WHERE CTE.N=1 and (operation.operation = 'приостановлен')
+            //order by soc.fio").Tables[0] };
 
-            label4.Text = _bindingSourceStop.Count.ToString();
+            //label4.Text = _bindingSourceStop.Count.ToString();
         }
 
         private void Obsch()

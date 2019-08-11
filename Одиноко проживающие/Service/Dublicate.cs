@@ -11,6 +11,7 @@ namespace Одиноко_проживающие.service
     {
         private BindingSource _bindingSource;
         private BindingSource _bindingSourceDublicate;
+        private BindingSource _bindingSourcePol;
         TelerikMetroTheme theme = new TelerikMetroTheme();
 
         public Dublicate()
@@ -44,7 +45,20 @@ namespace Одиноко_проживающие.service
 	                        inner join family on family.fk_alone = alone.key_alone
                         group by family.family, family.name, family.surname").Tables[0] };
 
+                    _bindingSourcePol = new BindingSource { DataSource = commandServer.DataGridSet(@"--вычисление женщин
+                        select alone.key_alone, family + ' ' + name + ' ' + surname as [ФИО], 
+	                        case pol when 1 then 'муж' when 0 then 'жен' end as [пол]
+                        from alone inner join family on alone.key_alone = family.fk_alone
+                        where alone.pol = 0 and (family.surname not like '%на' and family.surname not like '%зы' and family.surname not like '%ва')
+                        union all
+                        select alone.key_alone, family + ' ' + name + ' ' + surname as [ФИО],
+	                        case pol when 1 then 'муж' when 0 then 'жен' end as [пол]
+                        from alone inner join family on alone.key_alone = family.fk_alone
+                        where alone.pol = 1 and (family.surname not like '%ич' and family.surname not like '%лы')").Tables[0] };
+
+
                     radGridView1.DataSource = _bindingSource;
+                    radGridView4.DataSource = _bindingSourcePol;
 
                     if (radGridView1.Columns.Count > 0)
                     {
@@ -52,20 +66,11 @@ namespace Одиноко_проживающие.service
                         radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                     }
 
-                    radGridView6.EnablePaging = true;
-                    _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select sojitel.fk_alone, sojitel.fio as [старое], sojitel.family as [нов. фам.], sojitel.name as [нов. имя], sojitel.surname as [новое отч.]
-	                    from sojitel
-	                    where sojitel.fio != (sojitel.family + ' ' + sojitel.name + ' ' + sojitel.surname)").Tables[0] };
-
-                    radGridView6.DataSource = _bindingSource;
-
-                    if (radGridView6.Columns.Count > 0)
+                    if (radGridView4.Columns.Count > 0)
                     {
-                        radGridView6.Columns[0].IsVisible = false;
-                        radGridView6.Columns[0].BestFit();
-                        radGridView6.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                        radGridView4.Columns[0].IsVisible = false;
+                        radGridView4.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                     }
-
                 }));
             }
             catch (Exception ex)
@@ -85,11 +90,10 @@ namespace Одиноко_проживающие.service
                 radLabel6.Text = "Ж";
             else
                 radLabel6.Text = "M";
-            radLabel8.Text = dt.Rows[0].ItemArray[3].ToString();
-            radLabel10.Text = dt.Rows[0].ItemArray[4].ToString();
-            radLabel16.Text = dt.Rows[0].ItemArray[5].ToString();
-            radLabel15.Text = dt.Rows[0].ItemArray[6].ToString();
-            radLabel14.Text = dt.Rows[0].ItemArray[7].ToString();
+            radLabel10.Text = dt.Rows[0].ItemArray[3].ToString();
+            radLabel16.Text = dt.Rows[0].ItemArray[4].ToString();
+            radLabel15.Text = dt.Rows[0].ItemArray[5].ToString();
+            radLabel14.Text = dt.Rows[0].ItemArray[6].ToString();
 
             BindingSource _bs = new BindingSource { DataSource = commandServer.DataGridSet(@"select category.category as [категории]
                 from category
@@ -108,41 +112,7 @@ namespace Одиноко_проживающие.service
             DublicateDelo();
         }        
 
-        private void radGridView5_CellDoubleClick(object sender, GridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                Hide();
-                try
-                {
-                    new Alone(false, Convert.ToInt32(adres_radGridView.CurrentRow.Cells[0].Value)).ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    var commandClient = new CommandClient();
-                    commandClient.WriteFileError(ex, null);
-                }
-                Show();
-            }
-        }
-
-        private void radGridView6_CellDoubleClick(object sender, GridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                Hide();
-                try
-                {
-                    new Alone(false, Convert.ToInt32(radGridView6.CurrentRow.Cells[0].Value)).ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    var commandClient = new CommandClient();
-                    commandClient.WriteFileError(ex, null);
-                }
-                Show();
-            }
-        }
+       
 
         #region Дубликат
         private void radButton2_Click(object sender, EventArgs e)
@@ -235,7 +205,8 @@ namespace Одиноко_проживающие.service
             Hide();
             try
             {
-                new Alone(false, Convert.ToInt32(radGridView2.CurrentRow.Cells[0].Value)).ShowDialog();
+                RadGridView grid = (RadGridView)sender;
+                new Alone(false, Convert.ToInt32(grid.CurrentRow.Cells[0].Value), null, false).ShowDialog();
             }
             catch (Exception ex)
             {
@@ -244,5 +215,12 @@ namespace Одиноко_проживающие.service
             }
             Show();
             }
+
+        private void Dublicate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
     }
 }

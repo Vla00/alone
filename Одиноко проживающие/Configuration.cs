@@ -155,7 +155,7 @@ namespace Одиноко_проживающие
         private void radButton5_Click(object sender, EventArgs e)
         {
             textBox_base.Text = "alone";
-            textBox_server.Text = @"S1\TCSON";
+            textBox_server.Text = @"10.76.92.220\TCSON";
             textBox_port.Text = "";
             textBox_login.Text = "soc";
             textBox_password.Text = "karpos?827A";

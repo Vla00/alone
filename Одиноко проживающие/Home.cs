@@ -4,7 +4,6 @@ using Telerik.WinControls;
 using Telerik.WinControls.Themes;
 using Одиноко_проживающие.all;
 using Одиноко_проживающие.handbook;
-using Одиноко_проживающие.menu;
 using Одиноко_проживающие.search;
 using Одиноко_проживающие.service;
 using Одиноко_проживающие.Service;
@@ -20,8 +19,8 @@ namespace Одиноко_проживающие
         public Home(string version)
         {
             InitializeComponent();
-            Text = Text + ". Версия программы " + version;
-            // ListAloneHome();
+            Text = Text + ". Версия программы " + version;            
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -29,9 +28,14 @@ namespace Одиноко_проживающие
         public Home(string[] args, string version)
         {
             InitializeComponent();
-            //ListAloneHome();
             Text = Text + ". Версия программы " + version;
-            new Version().ShowDialog();
+
+            try
+            {
+                System.Diagnostics.Process.Start(Application.StartupPath + "\\Update.docx");
+            }
+            catch { }
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -41,17 +45,12 @@ namespace Одиноко_проживающие
             Application.Exit();
         }
 
-        //private void ListAloneHome()
-        //{
-        //    RadMessageBox.SetThemeName(theme.ThemeName);
-        //    radLabelElement1.Text = @"Всего записей: " + new CommandServer().GetDataGridSet(@"select count(*) from alone where date_sm is null and date_exit is null").Tables[0].Rows[0].ItemArray[0].ToString();
-        //}
-
         private void Home_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2 && !e.Control) radMenuButtonItem5.PerformClick();
             if (e.KeyCode == Keys.F3) radMenuButtonItem1.PerformClick();
             if (e.Control && e.KeyCode == Keys.F2) radMenuButtonItem6.PerformClick();
+            if (e.Control && e.KeyCode == Keys.M) radMenuButtonItem20_Click();
         }
         #endregion
 
@@ -62,10 +61,7 @@ namespace Одиноко_проживающие
             try
             {
                 Hide();
-                new Alone(true, 0).ShowDialog();
-                //Dispose();
-                //ListAloneHome();
-
+                new Alone(true, 0, null, null).ShowDialog();
             }
             catch (Exception ex)
             {
@@ -83,7 +79,6 @@ namespace Одиноко_проживающие
         {
             Hide();
             new Date("ListSurvey").ShowDialog();
-            //new search.ListSurvey().ShowDialog();
             Show();
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -92,15 +87,6 @@ namespace Одиноко_проживающие
         private void ListHelp(object sender, EventArgs e)
         {
             new Date("ListHelp").ShowDialog();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
-        private void JoinSoc(object sender, EventArgs e)
-        {
-            Hide();
-            new SocRabotnik().ShowDialog();
-            Show();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -135,17 +121,6 @@ namespace Одиноко_проживающие
         #endregion
 
         #region Справка
-        private void Version(object sender, EventArgs e)
-        {
-            new Version().ShowDialog();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
-        private void radMenuItem9_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("Краткое руководство.docx");
-        }
 
         private void Programmer(object sender, EventArgs e)
         {
@@ -174,20 +149,6 @@ namespace Одиноко_проживающие
             Show();
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            /*string text = RadInputBox.Show("Введите пароль для доступа", "Ввод пароля");
-            if (text == "123321")
-            {
-                Hide();
-                new SocPersonal().ShowDialog();
-                Show();
-            }
-            else
-            {
-                if(text != "null")
-                {
-                    RadMessageBox.Show("Неверный пароль.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
-                }
-            }*/
         }
 
         private void Inspector(object sender, EventArgs e)
@@ -197,20 +158,6 @@ namespace Одиноко_проживающие
             Show();
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            /*string text = RadInputBox.Show("Введите пароль для доступа", "Ввод пароля");
-            if (text == "123321")
-            {
-                Hide();
-                new Inspector().ShowDialog();
-                Show();
-            }
-            else
-            {
-                if (text != "null")
-                {
-                    RadMessageBox.Show("Неверный пароль.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
-                }
-            }*/
         }
 
         private void Selsovet(object sender, EventArgs e)
@@ -283,12 +230,12 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void radMenuButtonItem20_Click(object sender, EventArgs e)
+        private void radMenuButtonItem20_Click()
         {
            string text = RadInputBox.Show("Введите пароль для доступа", "Ввод пароля");
            if (text == "qwertyqwe")
            {
-               Hide();
+                Hide();
                 new rename().ShowDialog();
                 Show();
            }
@@ -299,27 +246,9 @@ namespace Одиноко_проживающие
                    RadMessageBox.Show("Неверный пароль.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
                }
            }
-
-            
         }
 
         
         #endregion
-
-        /*private void поОбследованиямИПомощиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Hide();
-            new HelpAndObsl().ShowDialog();
-            Show();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
-        private void вывестиДолгоНеОбследованныхToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Hide();
-            //new ListSurvey().ShowDialog();
-            Show();
-        }*/
     }
 }
