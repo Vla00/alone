@@ -158,7 +158,6 @@ namespace Одиноко_проживающие
                         Blocked(true);
                     }else
                     {
-                        /// TODO доделать
                         if (!string.IsNullOrEmpty(_date_sm))
                         {
                             if (MessageBox.Show("Хотите установить дату смерти: " + _date_sm, "Уточнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -183,9 +182,6 @@ namespace Одиноко_проживающие
                     radPageViewPage6.Enabled = false;
                 }
                 _load = false;
-
-                
-
             }
             catch(Exception ex)
             {
@@ -226,16 +222,19 @@ namespace Одиноко_проживающие
                     {
                         if (CategoryLoadCount() <= 0)
                         {
-                            if (RadMessageBox.Show("Вы не выбрали категорию. При закрытии данные не сохраняться. Выйти без сохранения?", "Ошибка", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
+                            if(_alone.DateSm == null)
                             {
-                                CommandServer commandServer = new CommandServer();
-                                commandServer.ExecNoReturnServer("AloneDelete", _keyAlone.ToString());
-                                e.Cancel = false;
-                            }
-                            else
-                            {
-                                radPageView1.SelectedPage = radPageViewPage4;
-                                e.Cancel = true;
+                                if (RadMessageBox.Show("Вы не выбрали категорию. При закрытии данные не сохраняться. Выйти без сохранения?", "Ошибка", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
+                                {
+                                    CommandServer commandServer = new CommandServer();
+                                    commandServer.ExecNoReturnServer("AloneDelete", _keyAlone.ToString());
+                                    e.Cancel = false;
+                                }
+                                else
+                                {
+                                    radPageView1.SelectedPage = radPageViewPage4;
+                                    e.Cancel = true;
+                                }
                             }
                         }
                     }
@@ -261,7 +260,7 @@ namespace Одиноко_проживающие
                                 if (string.IsNullOrEmpty(error))
                                 {
                                     string[] operation = AloneEdit();
-                                    AlertOperation("aloneEdit", operation);
+                                    AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
                                     e.Cancel = false;
@@ -299,7 +298,7 @@ namespace Одиноко_проживающие
                                         if (RadMessageBox.Show("Сохранить измененные данные?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
                                         {
                                             string[] operation = SojitelEdit();
-                                            AlertOperation("editSojitel", operation);
+                                            AlertOperation(operation);
                                             if (operation[1] != "1")
                                                 e.Cancel = true;
                                             e.Cancel = false;
@@ -333,7 +332,7 @@ namespace Одиноко_проживающие
                                             if (!CompareJilUsl())
                                             {
                                                 string[] operation = JilUslEdit();
-                                                AlertOperation("JilUslEdit", operation);
+                                                AlertOperation(operation);
                                                 if (operation[1] != "1")
                                                     e.Cancel = true;
                                                 e.Cancel = false;
@@ -342,7 +341,7 @@ namespace Одиноко_проживающие
                                             if (!CompareZemeln())
                                             {
                                                 string[] operation = ZemelnEdit();
-                                                AlertOperation("ZemelnEdit", operation);
+                                                AlertOperation(operation);
                                                 if (operation[1] != "1")
                                                     e.Cancel = true;
                                                 e.Cancel = false;
@@ -355,31 +354,6 @@ namespace Одиноко_проживающие
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            if (radPageView1.SelectedPage == radPageViewPage4)
-                            {
-                                //if (_status)
-                                //{
-                                //    CheackDateCategory();
-                                //}
-                            }
-                            /*else
-                            {
-                                if (radPageView1.SelectedPage == radPageViewPage5)
-                                {
-                                    //SurveyLoad();
-                                    //UpdateComboBoxSpeziolist();
-                                }
-                                else
-                                {
-
-                                    //HelpLoad();
-                                    //UpdateComboBoxHelp();
-                                    //UpdateComboBoxSocRabotnik();
-                                }
-                            }*/
                         }
                     }
                 }
@@ -394,7 +368,6 @@ namespace Одиноко_проживающие
                 Dispose();
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-
             }
         }
         #endregion
@@ -406,7 +379,6 @@ namespace Одиноко_проживающие
             var commandClient = new CommandClient();
 
             var parameters = ParameterAlone();
-
             var returnSqlServer = commandServer.ExecReturnServer("Alone_add", parameters);
 
             try
@@ -567,10 +539,8 @@ namespace Одиноко_проживающие
             var commandClient = new CommandClient();
 
             var parameters = _keyAlone + "," + ParameterAlone();
-
             var returnSqlServer = commandServer.ExecReturnServer("Alone_edit", parameters);
-
-
+            
             if (returnSqlServer[1] != "1") return returnSqlServer;
             try
             {
@@ -768,7 +738,8 @@ namespace Одиноко_проживающие
                     Blocked(false);
                     exit_check.Checked = false;
                     date_sm_date.Enabled = false;
-                    AlertOperation("Alone_exit_update", new string[] { "Запись успешно изменена", "1" });
+                    AlertOperation(new string[] { "Запись успешно изменена", "1" });
+                    RadMessageBox.Show("Установите категории.", "Внимание", MessageBoxButtons.OK, RadMessageIcon.Info);
                 }
                 else
                 {
@@ -984,7 +955,7 @@ namespace Одиноко_проживающие
 
             serverCommand.ExecNoReturnServer("Sojitel_delete", _keyAlone.ToString());
 
-            AlertOperation("Sojitel_delete", new string[] { "Запись успешно удалена", "1" });
+            AlertOperation(new string[] { "Запись успешно удалена", "1" });
 
             family_sojitel_text.Text = "";
             radioButton3.Checked = false;
@@ -1209,7 +1180,7 @@ namespace Одиноко_проживающие
         {
             if (e.Rows[0].Cells[1].Value == null || e.Rows[0].Cells[1].Value.ToString() == "")
             {
-                AlertOperation("addKinder", new string[] { "Не указано ФИО.", "1" });
+                AlertOperation(new string[] { "Не указано ФИО.", "1" });
                 e.Cancel = true;
                 return;
             }
@@ -1578,18 +1549,56 @@ namespace Одиноко_проживающие
         }
         private void radGridView2_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
-            var commandServer = new CommandServer();
+            bool error = false;
 
-            if (e.Rows[0].Cells[1].Value != null && e.Rows[0].Cells[2].Value != null && e.Rows[0].Cells[3].Value != null)
+            if(e.Rows[0].Cells[1].Value == null)
             {
-                var parameters = _keyAlone + ",'" + e.Rows[0].Cells[1].Value.ToString() + "','" + e.Rows[0].Cells[2].Value.ToString() + "','" + e.Rows[0].Cells[3].Value.ToString() + "'";
-                var returnSqlServer = commandServer.ExecReturnServer("addSurvey", parameters);
-                AlertGridOperation(sender, null, e, "addSurvey " + parameters, returnSqlServer);
+                AlertOperation(new string[] { "Не указан специалист", "0" });
+                e.Cancel = true;
+                var cell = radGridViewSurvey.MasterView.TableAddNewRow.Cells[1];
+                cell.Style.BackColor = Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
+            }else
+            {
+                radGridViewSurvey.MasterView.TableAddNewRow.Cells[1].Style.CustomizeFill = false;
+            }
+
+            if (e.Rows[0].Cells[2].Value == null)
+            {
+                AlertOperation(new string[] { "Не указана дата обследования", "0" });
+                e.Cancel = true;
+                var cell = radGridViewSurvey.MasterView.TableAddNewRow.Cells[2];
+                cell.Style.BackColor = Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
             }
             else
             {
-                RadMessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButtons.OK, RadMessageIcon.Error);
+                radGridViewSurvey.MasterView.TableAddNewRow.Cells[2].Style.CustomizeFill = false;
             }
+
+            if (e.Rows[0].Cells[3].Value == null)
+            {
+                AlertOperation(new string[] { "Не указан результат обследования", "0" });
+                e.Cancel = true;
+                var cell = radGridViewSurvey.MasterView.TableAddNewRow.Cells[3];
+                cell.Style.BackColor = Color.Tomato;
+                cell.Style.CustomizeFill = true;
+                error = true;
+            }
+            else
+            {
+                radGridViewSurvey.MasterView.TableAddNewRow.Cells[3].Style.CustomizeFill = false;
+            }
+
+            if (error)
+                return;
+
+            var commandServer = new CommandServer();
+            var parameters = _keyAlone + ",'" + e.Rows[0].Cells[1].Value.ToString() + "','" + e.Rows[0].Cells[2].Value.ToString() + "','" + e.Rows[0].Cells[3].Value.ToString() + "'";
+            var returnSqlServer = commandServer.ExecReturnServer("addSurvey", parameters);
+            AlertGridOperation(sender, null, e, "addSurvey " + parameters, returnSqlServer);
         }
         private void radGridView2_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
@@ -2102,7 +2111,7 @@ namespace Одиноко_проживающие
                             if (!CompareAlone())
                             {
                                 string[] operation = AloneEdit();
-                                AlertOperation("aloneEdit", operation);
+                                AlertOperation(operation);
                                 if (operation[1] != "1")
                                     e.Cancel = true;
                             }
@@ -2123,7 +2132,7 @@ namespace Одиноко_проживающие
                             if (_status)
                             {
                                 string[] operation = AddSojitel();
-                                AlertOperation("AddSojitel", operation);
+                                AlertOperation(operation);
                                 if (operation[1] != "1")
                                     e.Cancel = true;
                                 else
@@ -2136,7 +2145,7 @@ namespace Одиноко_проживающие
                                     if (!CompareSojitel())
                                     {
                                         string[] operation = SojitelEdit();
-                                        AlertOperation("editSojitel", operation);
+                                        AlertOperation(operation);
                                         if (operation[1] != "1")
                                             e.Cancel = true;
                                         else
@@ -2146,7 +2155,7 @@ namespace Одиноко_проживающие
                                 else
                                 {
                                     string[] operation = AddSojitel();
-                                    AlertOperation("AddSojitel", operation);
+                                    AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
                                     else
@@ -2164,7 +2173,7 @@ namespace Одиноко_проживающие
                                 if (_bindingDopKinder != textBox11.Text)
                                 {
                                     string[] operation = AddDopKinder();
-                                    AlertOperation("EditDopKinder", operation);
+                                    AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
                                 }
@@ -2181,7 +2190,7 @@ namespace Одиноко_проживающие
                                 if (!CompareJilUsl())
                                 {
                                     string[] operation = JilUslEdit();
-                                    AlertOperation("JilUslEdit", operation);
+                                    AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
                                 }
@@ -2189,7 +2198,7 @@ namespace Одиноко_проживающие
                                 if (!CompareZemeln())
                                 {
                                     string[] operation = ZemelnEdit();
-                                    AlertOperation("ZemelnEdit", operation);
+                                    AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
                                 }
@@ -2298,7 +2307,6 @@ namespace Одиноко_проживающие
             var commandServer = new CommandServer();
             comboBox9.DataSource = commandServer.ComboBoxList(@"select statusOtopl from statusOtopl", true);
         }
-
         
         #endregion
 
@@ -2762,7 +2770,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void AlertOperation(string operation, string[] resultOperation)
+        private void AlertOperation(string[] resultOperation)
         {
             if (resultOperation[1] == "1")
             {

@@ -27,6 +27,37 @@ namespace Одиноко_проживающие
             return strFile;
         }
 
+        public void ReadFileError()
+        {
+            try
+            {
+                string textAll = null;
+                using (StreamReader sr = new StreamReader("messageError.txt", Encoding.Default))
+                {
+                    textAll = sr.ReadToEnd();
+                }
+
+                if (string.IsNullOrEmpty(textAll))
+                    return;
+
+                string[] textSplit = textAll.Split(new[] { "================================" }, StringSplitOptions.None);
+
+                var command = new CommandServer();
+
+                for (int i = 0; i < textSplit.Length - 1; i++)
+                {
+                    if(!string.IsNullOrEmpty(textSplit[i]))
+                        command.ExecNoReturnServer("ErrorsAdd", "'" + textSplit[i].Replace("'", @"-") + "','user'");
+                }
+
+                File.Create("messageError.txt").Close();
+            }
+            catch(Exception ex)
+            {
+                WriteFileError(ex, "ReadFileError");
+            }
+        }
+
         public void WriteFileError(Exception message, string parametr)
         {
             using (var sw = new StreamWriter("messageError.txt", true, Encoding.Default))

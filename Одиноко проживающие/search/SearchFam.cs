@@ -23,6 +23,7 @@ namespace Одиноко_проживающие.search
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
+            textBox4.Text = "";
         }
 
         private void button1_Click(object sender, System.EventArgs e)

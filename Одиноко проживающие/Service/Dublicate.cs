@@ -97,7 +97,7 @@ namespace Одиноко_проживающие.service
 
             BindingSource _bs = new BindingSource { DataSource = commandServer.DataGridSet(@"select category.category as [категории]
                 from category
-                where category.fk_alone = " + radGridView2.CurrentRow.Cells[0].Value.ToString()).Tables[0] };
+                where category.fk_alone = " + radGridView2.CurrentRow.Cells[0].Value.ToString() + " order by category.category").Tables[0] };
             radGridView3.DataSource = _bs;
             radGridView3.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
         }
@@ -121,8 +121,7 @@ namespace Одиноко_проживающие.service
             {
                 var commandServer = new CommandServer();
                 var returnSqlServer = commandServer.ExecNoReturnServer("DublicateDelete", radGridView2.Rows[0].Cells[0].Value.ToString() + "," + radGridView2.Rows[1].Cells[0].Value.ToString() + "," + radGridView2.RowCount);
-                //if (returnSqlServer[1] != "Успешно")
-               // {
+
                     if (radGridView2.RowCount == 2)
                     {
                         StartDataGrid();
@@ -132,11 +131,6 @@ namespace Одиноко_проживающие.service
                     {
                         DublicateDelo();
                     }
-                //}else
-                //{
-                //    radDesktopAlert1.ContentText = returnSqlServer[0];
-                //    radDesktopAlert1.Show();
-                //}
             }
             else
             {

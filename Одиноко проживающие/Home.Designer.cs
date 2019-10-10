@@ -465,7 +465,6 @@ namespace Одиноко_проживающие
             // 
             // radMenuButtonItem8
             // 
-            this.radMenuButtonItem8.Enabled = false;
             this.radMenuButtonItem8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radMenuButtonItem8.Name = "radMenuButtonItem8";
             this.radMenuButtonItem8.Text = "Статистика";

@@ -19,7 +19,7 @@ namespace Одиноко_проживающие
         public Home(string version)
         {
             InitializeComponent();
-            Text = Text + ". Версия программы " + version;            
+            Text = Text + ". Версия программы " + version;
 
             GC.Collect();
             GC.WaitForPendingFinalizers();

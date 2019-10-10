@@ -185,6 +185,15 @@ namespace Одиноко_проживающие.Service
             }));
         }
 
+        private void radGridViewButton_Click(object sender, EventArgs e)
+        {
+            if (((GridCommandCellElement)sender).Data.FieldName == "delete")
+                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+            else
+                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
+            UpdateGrid();
+        }
+
         private void UpdateGrid()
         {
             var commandServer = new CommandServer();
@@ -202,20 +211,13 @@ namespace Одиноко_проживающие.Service
             }
             else
             {
-                e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                e.RowElement.ResetValue(VisualElement.BackColorProperty, ValueResetFlags.Local);
                 e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
                 e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
             }
         }
 
-        private void radGridViewButton_Click(object sender, EventArgs e)
-        {
-            if (((GridCommandCellElement)sender).Data.FieldName == "delete")
-                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
-            else
-                new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
-            UpdateGrid();
-        }
+        
 
         #endregion
 
@@ -251,6 +253,20 @@ namespace Одиноко_проживающие.Service
             GC.WaitForPendingFinalizers();
         }
 
-        
+        private void radGridView2_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if(e.CellElement.ColumnInfo is GridViewCommandColumn)
+            {
+                RadButtonElement button = (RadButtonElement)e.CellElement.Children[0];
+                if (e.CellElement.BackColor == Color.Red)
+                {
+                    button.Enabled = true;
+                }
+                else
+                {
+                    button.Enabled = false;
+                }
+            }
+        }
     }
 }

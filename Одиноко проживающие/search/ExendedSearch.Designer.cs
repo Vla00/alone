@@ -922,9 +922,9 @@ namespace Одиноко_проживающие.search
             this.radPageViewPage4.Controls.Add(this.radGroupBox11);
             this.radPageViewPage4.Controls.Add(this.groupBox9);
             this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(98F, 28F);
-            this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage4.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage4.Name = "radPageViewPage4";
-            this.radPageViewPage4.Size = new System.Drawing.Size(463, 467);
+            this.radPageViewPage4.Size = new System.Drawing.Size(466, 455);
             this.radPageViewPage4.Text = "Дополнительно";
             // 
             // radGroupBox12
@@ -940,6 +940,7 @@ namespace Одиноко_проживающие.search
             this.radGroupBox12.TabIndex = 22;
             this.radGroupBox12.Text = "Диагноз инвалидности";
             this.radGroupBox12.ThemeName = "TelerikMetro";
+            this.radGroupBox12.Visible = false;
             // 
             // radTreeView3
             // 
@@ -986,7 +987,7 @@ namespace Одиноко_проживающие.search
             // 
             this.radRadioButton6.Location = new System.Drawing.Point(3, 23);
             this.radRadioButton6.Name = "radRadioButton6";
-            this.radRadioButton6.Size = new System.Drawing.Size(131, 19);
+            this.radRadioButton6.Size = new System.Drawing.Size(119, 18);
             this.radRadioButton6.TabIndex = 23;
             this.radRadioButton6.TabStop = false;
             this.radRadioButton6.Text = "Не обследованные";
@@ -997,7 +998,7 @@ namespace Одиноко_проживающие.search
             // 
             this.radRadioButton5.Location = new System.Drawing.Point(4, 44);
             this.radRadioButton5.Name = "radRadioButton5";
-            this.radRadioButton5.Size = new System.Drawing.Size(114, 19);
+            this.radRadioButton5.Size = new System.Drawing.Size(104, 18);
             this.radRadioButton5.TabIndex = 22;
             this.radRadioButton5.TabStop = false;
             this.radRadioButton5.Text = "Обследованные";
@@ -1009,7 +1010,7 @@ namespace Одиноко_проживающие.search
             this.radRadioButton4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.radRadioButton4.Location = new System.Drawing.Point(140, 23);
             this.radRadioButton4.Name = "radRadioButton4";
-            this.radRadioButton4.Size = new System.Drawing.Size(42, 19);
+            this.radRadioButton4.Size = new System.Drawing.Size(38, 18);
             this.radRadioButton4.TabIndex = 21;
             this.radRadioButton4.TabStop = false;
             this.radRadioButton4.Text = "Все";
@@ -1124,7 +1125,7 @@ namespace Одиноко_проживающие.search
             this.checkBox6.ForeColor = System.Drawing.Color.Black;
             this.checkBox6.Location = new System.Drawing.Point(12, 46);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(51, 18);
+            this.checkBox6.Size = new System.Drawing.Size(48, 18);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "СЗУ";
             this.checkBox6.ThemeName = "TelerikMetro";
@@ -1136,7 +1137,7 @@ namespace Одиноко_проживающие.search
             this.checkBox7.ForeColor = System.Drawing.Color.Black;
             this.checkBox7.Location = new System.Drawing.Point(12, 21);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(52, 18);
+            this.checkBox7.Size = new System.Drawing.Size(49, 18);
             this.checkBox7.TabIndex = 7;
             this.checkBox7.Text = "АПИ";
             this.checkBox7.ThemeName = "TelerikMetro";
@@ -1207,6 +1208,7 @@ namespace Одиноко_проживающие.search
             this.dead_radio.TabStop = false;
             this.dead_radio.Text = "Умершие";
             this.dead_radio.ThemeName = "TelerikMetro";
+            this.dead_radio.Visible = false;
             // 
             // view_radio
             // 
@@ -1228,6 +1230,7 @@ namespace Одиноко_проживающие.search
             this.exit_radio.TabStop = false;
             this.exit_radio.Text = "Выехали";
             this.exit_radio.ThemeName = "TelerikMetro";
+            this.exit_radio.Visible = false;
             // 
             // radMenu1
             // 

@@ -80,6 +80,8 @@ namespace Одиноко_проживающие
                         return;
                     }else
                     {
+                        SetLabel("Отправка ошибок на сервер");
+                        new CommandClient().ReadFileError();
                         Invoke(new Action(() => { Hide(); }));
 
                         if (args == null)

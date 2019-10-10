@@ -319,7 +319,7 @@ namespace Одиноко_проживающие.search
                 else
                     pol = null;
             }
-            /// TODO да
+
             if (!radRadioButton4.IsChecked)
             {
                 if(_statusWhere)

@@ -294,7 +294,6 @@
     <Compile Include="Service\Statistic.Designer.cs">
       <DependentUpon>Statistic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Service\StructFile.cs" />
     <Compile Include="Structures.cs" />
     <Compile Include="handbook\TypeHelp.cs">
       <SubType>Form</SubType>

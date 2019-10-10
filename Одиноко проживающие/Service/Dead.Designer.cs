@@ -98,6 +98,8 @@
             this.radGridView2.Text = "radGridView2";
             this.radGridView2.ThemeName = "TelerikMetro";
             this.radGridView2.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.radGridView3_RowFormatting);
+            this.radGridView2.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridView2_CellFormatting);
+            this.radGridView2.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView3_CellDoubleClick);
             // 
             // radPageViewPage2
             // 
