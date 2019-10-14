@@ -11,17 +11,12 @@ namespace Одиноко_проживающие
         private BindingSource _bindingSource_personel;
         private BindingSource _bindingSource_personel_time;
         private BindingSource _bindingSource_off;
-        //private BindingSource _bindingSource_off_time;
         private bool _status = false;
-        //BackgroundWorker myBackgroundWorker;
-
-        //private bool _status = false;
-
+        
         public SpeziolistDelete()
         {
             InitializeComponent();
             MyRussionRadGridLocalizationProvider.CurrentProvider = new MyRussionRadGridLocalizationProvider();
-            //radGridView1.TableElement.Text = MyRussionRadGridLocalizationProvider.TableElementText;
             CheckForIllegalCrossThreadCalls = false;
             HandleCreated += Form_HandleCreated;
             
@@ -32,12 +27,6 @@ namespace Одиноко_проживающие
             LoadGridFio();
             LoadGridFioOff();
         }
-        
-        /// <summary>
-        /// НОВОЕ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
         #region Load
         public void LoadGridFio()
@@ -101,88 +90,7 @@ namespace Одиноко_проживающие
         }
         #endregion
         
-        /*private void Load_Personel(object status)
-        {
-            var commandServer = new CommandServer();
-            try
-            {
-                radGridView1.Invoke(new MethodInvoker(delegate ()
-                {
-                    radGridView1.EnablePaging = true;
-                    _bindingSource_personel = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_speziolist, fio as [ФИО]
-                        from speziolist
-                        where statusDelete = 0
-                        order by fio").Tables[0] };
-                    radGridView1.DataSource = _bindingSource_personel;
-
-                    if (radGridView1.Columns.Count > 0)
-                    {
-                        radGridView1.Columns[0].IsVisible = false;
-                        radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-                    }
-
-                    if((bool)status)
-                    {
-                        GridViewCommandColumn commandColumn = new GridViewCommandColumn();
-                        commandColumn.Name = "операция";
-                        commandColumn.UseDefaultText = true;
-                        commandColumn.DefaultText = "удалить";
-                        commandColumn.FieldName = "key_speziolist";
-                        commandColumn.HeaderText = "команда";
-                        radGridView1.MasterTemplate.Columns.Add(commandColumn);
-                        radGridView1.CommandCellClick += new CommandCellClickEventHandler(radGridView1_CommandCellClick);
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                CommandClient commandClient = new CommandClient();
-                commandClient.WriteFileError(ex, null);
-            }
-        }
-
-        private void Load_Personel_Off(object status)
-        {
-            var commandServer = new CommandServer();
-            try
-            {
-                radGridView2.Invoke(new MethodInvoker(delegate ()
-                {
-                    radGridView2.EnablePaging = true;
-                    _bindingSource_off = new BindingSource { DataSource = commandServer.GetDataGridSet(@"select key_speziolist, fio as [ФИО]
-                        from speziolist
-                        where 
-                        ete = 1
-                        order by fio").Tables[0] };
-                    radGridView2.DataSource = _bindingSource_off;
-
-                    if (radGridView2.Columns.Count > 0)
-                    {
-                        radGridView2.Columns[0].IsVisible = false;
-                        radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-                    }
-
-                    if ((bool)status)
-                    {
-                        GridViewCommandColumn commandColumn = new GridViewCommandColumn();
-                        commandColumn.Name = "операция";
-                        commandColumn.UseDefaultText = true;
-                        commandColumn.DefaultText = "восстановить";
-                        commandColumn.FieldName = "key_speziolist";
-                        commandColumn.HeaderText = "команда";
-                        radGridView2.MasterTemplate.Columns.Add(commandColumn);
-                        radGridView2.CommandCellClick += new CommandCellClickEventHandler(radGridView2_CommandCellClick);
-                        radGridView2.Columns[2].BestFit();
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                CommandClient commandClient = new CommandClient();
-                commandClient.WriteFileError(ex, null);
-            }
-        }*/
-
+       
         private void radGridView5_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             if(_status)
@@ -218,7 +126,6 @@ namespace Одиноко_проживающие
 
             AlertOperation("socRabotnik_add " + parameters, returnSqlServer);
             radGridView5.DataSource = _bindingSource_personel;
-            //Load_Personel(false);
         }
 
         private void radGridView5_UserAddedRow(object sender, GridViewRowEventArgs e)
@@ -273,8 +180,6 @@ namespace Одиноко_проживающие
 
                         AlertOperation("speziolist_edit " + line.Cells[1].Value, returnSqlServer);
                     }
-                    //var returnSqlServer = commandServer.GetServerCommandExecNoReturnServer("speziolist_edit", parameters);
-                    //Load_Personel(false);
                 }
             }
         }
@@ -418,13 +323,11 @@ namespace Одиноко_проживающие
                     }
 
                     var returnSqlServer = commandServer.ExecReturnServer("job_spezialist_edit", parameters);
-                    //UpdateLoadJobTime();
                     AlertOperation("job_spezialist_edit " + line.Cells[1].Value, returnSqlServer);
                     if(update)
                     {
                         LoadGridFio();
                         LoadGridFioOff();
-                        //UpdateLoadJobTime();
                     }else
                     {
                         UpdateLoadJobTime();

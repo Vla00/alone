@@ -110,7 +110,6 @@ namespace Одиноко_проживающие
 
             AlertOperation("socRabotnik_add " + parameters, returnSqlServer);
             radGridView5.DataSource = _bindingSource_personel;
-            //Load_Personel(false);
         }
 
         private void radGridView5_UserAddedRow(object sender, GridViewRowEventArgs e)

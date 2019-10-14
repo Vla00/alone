@@ -8,7 +8,7 @@ namespace Одиноко_проживающие
 {
     public partial class LoadProgram : Form
     {
-        public string version = "1.5.8.2";
+        public string version = "1.5.9";
         public string newVersion;
         private static readonly string StrConnect = null;
         public static SqlConnection Connect = new SqlConnection(StrConnect);
