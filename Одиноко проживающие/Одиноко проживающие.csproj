@@ -147,7 +147,9 @@
       <DependentUpon>Alone_history.cs</DependentUpon>
     </Compile>
     <Compile Include="commandClient.cs" />
-    <Compile Include="CommandServer.cs" />
+    <Compile Include="CommandServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Configuration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +192,13 @@
     <Compile Include="handbook\Powered.Designer.cs">
       <DependentUpon>Powered.cs</DependentUpon>
     </Compile>
+    <Compile Include="Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Load.Designer.cs">
+      <DependentUpon>Load.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadFun.cs" />
     <Compile Include="LoadProgram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +353,9 @@
     <EmbeddedResource Include="handbook\Powered.resx">
       <DependentUpon>Powered.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Load.resx">
+      <DependentUpon>Load.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadProgram.resx">
       <DependentUpon>LoadProgram.cs</DependentUpon>
     </EmbeddedResource>
@@ -428,6 +440,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="desktop.ico" />
+    <Content Include="Resources\Image1.gif" />
+    <None Include="Resources\slack1.gif" />
     <None Include="Resources\Add.png" />
     <None Include="Resources\ssis-export-excel-file-task.png" />
     <None Include="replace.gif" />

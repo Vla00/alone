@@ -103,6 +103,16 @@ namespace Одиноко_проживающие.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap slack1 {
+            get {
+                object obj = ResourceManager.GetObject("slack1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ssis_export_excel_file_task {
             get {
                 object obj = ResourceManager.GetObject("ssis-export-excel-file-task", resourceCulture);

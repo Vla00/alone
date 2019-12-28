@@ -130,7 +130,7 @@ namespace Одиноко_проживающие
 
         private void Setting(object sender, EventArgs e)
         {
-            new Configuration(false).ShowDialog();
+            new Configuration().ShowDialog();
         }
         #endregion
 

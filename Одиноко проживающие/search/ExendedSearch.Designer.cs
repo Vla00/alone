@@ -110,9 +110,12 @@ namespace Одиноко_проживающие.search
             this.radioButton1 = new Telerik.WinControls.UI.RadRadioButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.dead_radio = new Telerik.WinControls.UI.RadRadioButton();
+            this.radCheckBox15 = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox14 = new Telerik.WinControls.UI.RadCheckBox();
+            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
             this.view_radio = new Telerik.WinControls.UI.RadRadioButton();
-            this.exit_radio = new Telerik.WinControls.UI.RadRadioButton();
+            this.arch_radio = new Telerik.WinControls.UI.RadRadioButton();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuButtonItem1 = new Telerik.WinControls.UI.RadMenuButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
@@ -200,9 +203,10 @@ namespace Одиноко_проживающие.search
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dead_radio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.view_radio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exit_radio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arch_radio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -227,10 +231,10 @@ namespace Одиноко_проживающие.search
             this.radPageViewPage1.Controls.Add(this.radGroupBox9);
             this.radPageViewPage1.Controls.Add(this.radGroupBox1);
             this.radPageViewPage1.Controls.Add(this.radTreeView1);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(52F, 28F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(52F, 25F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(466, 455);
+            this.radPageViewPage1.Size = new System.Drawing.Size(477, 467);
             this.radPageViewPage1.Text = "Общее";
             // 
             // radGroupBox10
@@ -406,7 +410,7 @@ namespace Одиноко_проживающие.search
             // radPageViewPage2
             // 
             this.radPageViewPage2.Controls.Add(this.radScrollablePanel1);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(70F, 28F);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(71F, 25F);
             this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(466, 455);
@@ -921,7 +925,7 @@ namespace Одиноко_проживающие.search
             this.radPageViewPage4.Controls.Add(this.radGroupBox12);
             this.radPageViewPage4.Controls.Add(this.radGroupBox11);
             this.radPageViewPage4.Controls.Add(this.groupBox9);
-            this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(98F, 28F);
+            this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(102F, 25F);
             this.radPageViewPage4.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage4.Name = "radPageViewPage4";
             this.radPageViewPage4.Size = new System.Drawing.Size(466, 455);
@@ -1155,7 +1159,7 @@ namespace Одиноко_проживающие.search
             this.radioButton2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.radioButton2.Location = new System.Drawing.Point(76, 21);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(45, 18);
+            this.radioButton2.Size = new System.Drawing.Size(49, 19);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.Text = "ИЛИ";
             this.radioButton2.ThemeName = "TelerikMetro";
@@ -1165,7 +1169,7 @@ namespace Одиноко_проживающие.search
             // 
             this.radioButton1.Location = new System.Drawing.Point(9, 21);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(29, 18);
+            this.radioButton1.Size = new System.Drawing.Size(32, 19);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = false;
             this.radioButton1.Text = "И";
@@ -1187,9 +1191,12 @@ namespace Одиноко_проживающие.search
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.Controls.Add(this.dead_radio);
+            this.radGroupBox3.Controls.Add(this.radCheckBox15);
+            this.radGroupBox3.Controls.Add(this.radCheckBox14);
+            this.radGroupBox3.Controls.Add(this.dateTimePicker6);
+            this.radGroupBox3.Controls.Add(this.dateTimePicker5);
             this.radGroupBox3.Controls.Add(this.view_radio);
-            this.radGroupBox3.Controls.Add(this.exit_radio);
+            this.radGroupBox3.Controls.Add(this.arch_radio);
             this.radGroupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radGroupBox3.HeaderText = "Отображение";
             this.radGroupBox3.Location = new System.Drawing.Point(136, 536);
@@ -1199,38 +1206,69 @@ namespace Одиноко_проживающие.search
             this.radGroupBox3.Text = "Отображение";
             this.radGroupBox3.ThemeName = "TelerikMetro";
             // 
-            // dead_radio
+            // radCheckBox15
             // 
-            this.dead_radio.Location = new System.Drawing.Point(243, 21);
-            this.dead_radio.Name = "dead_radio";
-            this.dead_radio.Size = new System.Drawing.Size(69, 18);
-            this.dead_radio.TabIndex = 1;
-            this.dead_radio.TabStop = false;
-            this.dead_radio.Text = "Умершие";
-            this.dead_radio.ThemeName = "TelerikMetro";
-            this.dead_radio.Visible = false;
+            this.radCheckBox15.Enabled = false;
+            this.radCheckBox15.Location = new System.Drawing.Point(197, 28);
+            this.radCheckBox15.Name = "radCheckBox15";
+            this.radCheckBox15.Size = new System.Drawing.Size(33, 18);
+            this.radCheckBox15.TabIndex = 26;
+            this.radCheckBox15.Text = "по";
+            this.radCheckBox15.CheckStateChanged += new System.EventHandler(this.radCheckBox15_CheckStateChanged);
+            // 
+            // radCheckBox14
+            // 
+            this.radCheckBox14.Enabled = false;
+            this.radCheckBox14.Location = new System.Drawing.Point(197, 5);
+            this.radCheckBox14.Name = "radCheckBox14";
+            this.radCheckBox14.Size = new System.Drawing.Size(25, 18);
+            this.radCheckBox14.TabIndex = 25;
+            this.radCheckBox14.Text = "с";
+            this.radCheckBox14.CheckStateChanged += new System.EventHandler(this.radCheckBox14_CheckStateChanged);
+            // 
+            // dateTimePicker6
+            // 
+            this.dateTimePicker6.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePicker6.Enabled = false;
+            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker6.Location = new System.Drawing.Point(233, 26);
+            this.dateTimePicker6.Name = "dateTimePicker6";
+            this.dateTimePicker6.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePicker6.TabIndex = 22;
+            this.dateTimePicker6.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            // 
+            // dateTimePicker5
+            // 
+            this.dateTimePicker5.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePicker5.Enabled = false;
+            this.dateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker5.Location = new System.Drawing.Point(233, 2);
+            this.dateTimePicker5.Name = "dateTimePicker5";
+            this.dateTimePicker5.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePicker5.TabIndex = 21;
+            this.dateTimePicker5.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
             // view_radio
             // 
             this.view_radio.CheckState = System.Windows.Forms.CheckState.Checked;
             this.view_radio.Location = new System.Drawing.Point(5, 21);
             this.view_radio.Name = "view_radio";
-            this.view_radio.Size = new System.Drawing.Size(93, 18);
+            this.view_radio.Size = new System.Drawing.Size(102, 19);
             this.view_radio.TabIndex = 20;
             this.view_radio.Text = "Действующие";
             this.view_radio.ThemeName = "TelerikMetro";
             this.view_radio.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
             // 
-            // exit_radio
+            // arch_radio
             // 
-            this.exit_radio.Location = new System.Drawing.Point(141, 21);
-            this.exit_radio.Name = "exit_radio";
-            this.exit_radio.Size = new System.Drawing.Size(64, 18);
-            this.exit_radio.TabIndex = 0;
-            this.exit_radio.TabStop = false;
-            this.exit_radio.Text = "Выехали";
-            this.exit_radio.ThemeName = "TelerikMetro";
-            this.exit_radio.Visible = false;
+            this.arch_radio.Location = new System.Drawing.Point(111, 21);
+            this.arch_radio.Name = "arch_radio";
+            this.arch_radio.Size = new System.Drawing.Size(80, 19);
+            this.arch_radio.TabIndex = 0;
+            this.arch_radio.TabStop = false;
+            this.arch_radio.Text = "Архивные";
+            this.arch_radio.ThemeName = "TelerikMetro";
+            this.arch_radio.CheckStateChanged += new System.EventHandler(this.arch_radio_CheckStateChanged);
             // 
             // radMenu1
             // 
@@ -1239,7 +1277,7 @@ namespace Одиноко_проживающие.search
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu1.Size = new System.Drawing.Size(490, 30);
+            this.radMenu1.Size = new System.Drawing.Size(490, 29);
             this.radMenu1.TabIndex = 8;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "TelerikMetro";
@@ -1366,9 +1404,10 @@ namespace Одиноко_проживающие.search
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.radGroupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dead_radio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.view_radio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exit_radio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arch_radio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -1388,8 +1427,7 @@ namespace Одиноко_проживающие.search
         private RadRadioButton radioButton2;
         private RadRadioButton radioButton1;
         private RadGroupBox radGroupBox3;
-        private RadRadioButton dead_radio;
-        private RadRadioButton exit_radio;
+        private RadRadioButton arch_radio;
         private RadGroupBox radGroupBox2;
         private RadRadioButton view_radio;
         private RadLabel radLabel2;
@@ -1461,5 +1499,9 @@ namespace Одиноко_проживающие.search
         private RadCheckBox radCheckBox5;
         private RadCheckBox radCheckBox4;
         private RadCheckBox radCheckBox7;
+        private RadCheckBox radCheckBox15;
+        private RadCheckBox radCheckBox14;
+        private DateTimePicker dateTimePicker6;
+        private DateTimePicker dateTimePicker5;
     }
 }

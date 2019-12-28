@@ -17,17 +17,13 @@ namespace Одиноко_проживающие
     {
         LoadProgram _load;
         private string _programName = "Одиноко_проживающие_update.exe";
-        private readonly string _oldVersion;
-        private readonly string _newVersion;
         private string _server;
         public FTP_Client ftp = new FTP_Client();
 
-        public Update(string oldVersion, string newVersion, string server, LoadProgram load)
+        public Update(string server, LoadProgram load)
         {
             try
             {
-                _oldVersion = oldVersion;
-                _newVersion = newVersion;
                 _server = server;
                 _load = load;
                 ScanFile();
@@ -74,7 +70,7 @@ namespace Одиноко_проживающие
                     MessageBox.Show(
                     @"Произошла ошибка при обновлении. Обратитесь к разработчику.",
                     @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    new Configuration(true).ShowDialog();
+                    new Configuration().ShowDialog();
                     var commandClient = new CommandClient();
                     commandClient.WriteFileError(ex, "Обновление");
                 }

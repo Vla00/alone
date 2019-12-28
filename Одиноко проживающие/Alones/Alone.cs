@@ -87,12 +87,15 @@ namespace Одиноко_проживающие
             _thread.IsBackground = true;
             Text = @"Загрузка данных...";
             _thread.Start(StructStartParameter);
+            
         }
 
         private void Start(object obj)
         {
             try
             {
+                dead_button.Visible = false;
+                exit_button.Visible = false;
                 BlockedPage(false);
                 StructStartParameters structStartParameters = (StructStartParameters)obj;
 
@@ -176,6 +179,7 @@ namespace Одиноко_проживающие
                 {
                     BlockedPage(true);
                     Text = @"Добавление новой записи (режим создания)";
+                    //dead_button.Visible = false;
                     radPageViewPage2.Enabled = false;
                     radPageViewPage3.Enabled = false;
                     radPageViewPage5.Enabled = false;
@@ -259,7 +263,7 @@ namespace Одиноко_проживающие
 
                                 if (string.IsNullOrEmpty(error))
                                 {
-                                    string[] operation = AloneEdit();
+                                    string[] operation = AloneEdit(false);
                                     AlertOperation(operation);
                                     if (operation[1] != "1")
                                         e.Cancel = true;
@@ -378,7 +382,7 @@ namespace Одиноко_проживающие
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
 
-            var parameters = ParameterAlone();
+            var parameters = ParameterAlone(true);
             var returnSqlServer = commandServer.ExecReturnServer("Alone_add", parameters);
 
             try
@@ -480,6 +484,7 @@ namespace Одиноко_проживающие
             {
                 _alone.DateSm = Convert.ToDateTime(dt.Rows[0].ItemArray[5].ToString());
                 date_sm_date.Value = _alone.DateSm;
+                dead_button.Visible = true;
 
                 if(_blocked == null)
                     _blocked = true;
@@ -515,6 +520,7 @@ namespace Одиноко_проживающие
             {
                 _alone.DateExit = Convert.ToDateTime(dt.Rows[0].ItemArray[16].ToString());
                 date_exit_date.Value = _alone.DateExit;
+                exit_button.Visible = true;
                 if (_blocked == null)
                     _blocked = true;
                 exit_check.Checked = true;
@@ -522,7 +528,7 @@ namespace Одиноко_проживающие
 
             if(!string.IsNullOrEmpty(dt.Rows[0].ItemArray[17].ToString()))
             {
-                label8.Text = "Дата добавления: " + dt.Rows[0].ItemArray[17].ToString();
+                label8.Text = "Дата добавления: " + dt.Rows[0].ItemArray[17].ToString().Split(' ')[0] + ". Пользователь: " + dt.Rows[0].ItemArray[18].ToString();
             }
 
             if (_blocked == true)
@@ -533,12 +539,17 @@ namespace Одиноко_проживающие
             _dublicate = null;
         }
 
-        private string[] AloneEdit()
+        private string[] AloneEdit(bool revival)
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
 
-            var parameters = _keyAlone + "," + ParameterAlone();
+            var parameters = _keyAlone + "," + ParameterAlone(false);
+            if (!revival)
+                parameters += ",0";
+            else
+                parameters += ",1";
+
             var returnSqlServer = commandServer.ExecReturnServer("Alone_edit", parameters);
             
             if (returnSqlServer[1] != "1") return returnSqlServer;
@@ -554,6 +565,9 @@ namespace Одиноко_проживающие
 
                 if (exit_check.Checked)
                     _alone.DateExit = date_exit_date.Value;
+
+                if (revival)
+                    _alone.DateSm = new DateTime();
 
                 _alone.Family = family_text.Text;
                 _alone.Name = name_text.Text;
@@ -583,7 +597,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private string ParameterAlone()
+        private string ParameterAlone(bool operation)
         {
             var parameters = "'" + family_text.Text + "','" + name_text.Text + "','" + surname_text.Text + "',";
 
@@ -645,6 +659,9 @@ namespace Одиноко_проживающие
                 parameters += "'" + date_exit_date.Text + "'";
             else
                 parameters += "null";
+
+            if (operation)
+                parameters += ",'" + LoadProgram.User + "'";
 
             return parameters;
         }
@@ -1942,7 +1959,7 @@ namespace Одиноко_проживающие
             foreach (Control control in radPageView1.Controls)
             {
                 BlockedControl(control, flag);
-            }            
+            }
         }
 
         private void BlockedPage(bool flag)
@@ -1979,7 +1996,7 @@ namespace Одиноко_проживающие
                         return;
                 }else
                 {
-                    if (cbut.Text == "история")
+                    if (cbut.Text == "история" || cbut.Text == "возобновить ")
                         return;
                 }
             }
@@ -2110,7 +2127,7 @@ namespace Одиноко_проживающие
                         {
                             if (!CompareAlone())
                             {
-                                string[] operation = AloneEdit();
+                                string[] operation = AloneEdit(false);
                                 AlertOperation(operation);
                                 if (operation[1] != "1")
                                     e.Cancel = true;
@@ -2971,5 +2988,21 @@ namespace Одиноко_проживающие
             return structuresFamily;
         }
         #endregion
+
+        private void dead_button_Click(object sender, EventArgs e)
+        {
+            if (RadMessageBox.Show("Вы подтверждаете возобновление умершего?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
+            {
+                string[] operation = AloneEdit(true);
+                if (operation[0] == "Запись успешно изменена.")
+                {
+                    Blocked(false);
+                    sm_check.Checked = false;
+                    date_exit_date.Enabled = false;
+                }
+            }
+
+            
+        }
     }
 }

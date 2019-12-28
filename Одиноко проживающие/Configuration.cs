@@ -13,14 +13,12 @@ namespace Одиноко_проживающие
 {
     public partial class Configuration : RadForm
     {
-        private SqlConnection _connect;
         TelerikMetroTheme _theme = new TelerikMetroTheme();
         private bool _close;
 
-        public Configuration(bool close)
+        public Configuration()
         {
             InitializeComponent();
-            _close = close;
             ThemeResolutionService.ApplyThemeToControlTree(this, _theme.ThemeName);
             Load_File_Configuration();
         }
@@ -55,6 +53,12 @@ namespace Одиноко_проживающие
                             case "Password":
                                 textBox_password.Text = nod.InnerText;
                                 break;
+                            case "Users":
+                                user_text.Text = nod.InnerText;
+                                break;
+                            case "AutoSearch":
+                                radCheckBox1.Checked = Convert.ToBoolean(nod.InnerText);
+                                break;
                         }
                     }
                 }
@@ -62,7 +66,7 @@ namespace Одиноко_проживающие
             catch (Exception) { }
         }
 
-        private void radButton3_Click(object sender, System.EventArgs e)
+        private void Save()
         {
             XDocument xdoc = XDocument.Load("config.xml");
             XElement rootConnection = xdoc.Element("mconfig");
@@ -76,14 +80,6 @@ namespace Одиноко_проживающие
                 xe.Element("Password").Value = textBox_password.Text;
             }
             xdoc.Save("config.xml");
-        }
-
-        private void radButton4_Click(object sender, System.EventArgs e)
-        {
-            if(_close)
-                Process.GetCurrentProcess().Kill();
-            else
-                this.Close();
         }
 
         private void radButton2_Click(object sender, EventArgs e)
@@ -101,47 +97,27 @@ namespace Одиноко_проживающие
             connectBuilder.Password = textBox_password.Text;
             connectBuilder.ConnectTimeout = 5;
 
-            _connect = new SqlConnection();
-            _connect.ConnectionString = connectBuilder.ConnectionString;
-
-            try
+            if(new CommandServer().isServerConnected(connectBuilder.ConnectionString))
             {
-                _connect.Open();
                 MessageBox.Show(@"База данных успешно подключена.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                if(MessageBox.Show(@"Вы хотите сохранить данные найстроки. И перезапустить приложение (требуется для применения новых данных).", @"Ошибка", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                Save();
+                LoadProgram.Connect.ConnectionString = connectBuilder.ConnectionString;
+                if (!LoadProgram.CheackVersion())
+                    Close();
+                else
                 {
-                    radButton3.PerformClick();
+                    MessageBox.Show(@"Версия прогаммы не совпадает. Приложение перезапустится", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Restart();
-                }
+                }  
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show(@"Нет подключения к серверу.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                _connect.Close();
+                MessageBox.Show(@"Указанный сервер не доступен.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _close = true;
             }
         }
 
         #endregion
-
-        private void radDropDownList1_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            switch(e.Position)
-            {
-                case 0:
-                    //аква
-                    break;
-                case 1:
-                    //бриз
-                    break;
-                case 2:
-                    //десерт
-                    break;
-            }
-        }
 
         private void radButton1_Click(object sender, EventArgs e)
         {
@@ -159,6 +135,127 @@ namespace Одиноко_проживающие
             textBox_port.Text = "";
             textBox_login.Text = "soc";
             textBox_password.Text = "karpos?827A";
+        }
+
+        private void radButton6_Click(object sender, EventArgs e)
+        {
+            if(!CheackUser())
+            {
+                CreateUser();
+            }else
+            {
+                SaveUser();
+            }
+            LoadProgram.User = user_text.Text;
+            MessageBox.Show(@"Данные сохранены.", @"Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        private void SaveUser()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            foreach (XElement xe in rootConnection.Elements("user").ToList())
+            {
+                xe.Element("Users").Value = user_text.Text;
+            }
+            xdoc.Save("config.xml");
+        }
+
+        private void CreateUser()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+
+            XElement root = new XElement("user");
+            root.Add(new XElement("Users", user_text.Text));
+            xdoc.Element("mconfig").Add(root);
+            xdoc.Save("config.xml");
+        }
+
+        private bool CheackUser()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "Users":
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+            return false;
+        }
+
+
+        public bool CheackeAutoSearch()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "AutoSearch":
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+
+            CreateAutoSearch();
+            return false;
+        }
+
+        private void CreateAutoSearch()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            XElement root = new XElement("AutoSearch", "true");
+            foreach (XElement xe in rootConnection.Elements("user").ToList())
+            {
+                xe.Add(new XElement("AutoSearch", "true"));
+            }
+            xdoc.Save("config.xml");
+        }
+
+        private void radCheckBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            foreach (XElement xe in rootConnection.Elements("user").ToList())
+            {
+                xe.Element("AutoSearch").Value = Convert.ToString(radCheckBox1.Checked);
+                LoadProgram._confConnection.AutoSearch = Convert.ToString(radCheckBox1.Checked);
+            }
+            xdoc.Save("config.xml");
+        }
+
+        private void Configuration_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_close)
+                Process.GetCurrentProcess().Kill();
+            Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

@@ -14,8 +14,10 @@ namespace Одиноко_проживающие.search
         private readonly List<string> _country;
         private readonly List<string> _category;
         private readonly List<string> _help;
-        //private readonly List<string> _inv;
         private bool _statusWhere;
+        private bool _statusArh;
+        private bool _statusS;
+        private bool _statusPo;
         private readonly TelerikMetroTheme _theme = new TelerikMetroTheme();
         readonly BackgroundWorker _helpBackgroundWorker;
         private Thread _countryThread;        
@@ -96,7 +98,6 @@ namespace Одиноко_проживающие.search
                     }));
                 }
             }
-            //LoadInv();
         }
 
         private void сформироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -176,10 +177,20 @@ namespace Одиноко_проживающие.search
             {
                 if (radioButton1.IsChecked)
                 {
-                    for (var i = 0; i < _category.Count; i++)
+                    if(!_statusArh)
                     {
-                        from += " join category category" + i + " on alone.key_alone = category" + i + ".fk_alone and category" + i + ".category = '" + _category[i] + "' ";
+                        for (var i = 0; i < _category.Count; i++)
+                        {
+                            from += " join category category" + i + " on alone.key_alone = category" + i + ".fk_alone and category" + i + ".category = '" + _category[i] + "' ";
+                        }
+                    }else
+                    {
+                        for (var i = 0; i < _category.Count; i++)
+                        {
+                            from += " join category_time category" + i + " on alone.key_alone = category" + i + ".fk_alone and category" + i + ".category = '" + _category[i] + "' ";
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -377,20 +388,7 @@ namespace Одиноко_проживающие.search
             }
             else
             {
-                if(exit_radio.IsChecked)
-                {
-                    if(_statusWhere)
-                    {
-                        where += " and (";
-                    }else
-                    {
-                        where += " (";
-                    }
-                    where += "date_exit is not null)";
-                    _statusWhere = true;
-                }
-
-                if(dead_radio.IsChecked)
+                if (arch_radio.IsChecked)
                 {
                     if (_statusWhere)
                     {
@@ -400,7 +398,17 @@ namespace Одиноко_проживающие.search
                     {
                         where += " (";
                     }
-                    where += "date_sm is not null)";
+
+                    if(!_statusS && !_statusPo)
+                    {
+                        where += "date_exit is not null or date_sm is not null)";
+                    }else
+                    {
+                        where += "(date_exit >= '" + dateTimePicker5.Value.ToString("dd.MM.yyyy") + "' and date_exit <= '" + dateTimePicker6.Value.ToString("dd.MM.yyyy") +
+                            "') or (date_sm >= '" + dateTimePicker5.Value.ToString("dd.MM.yyyy") + "' and date_sm <= '" + dateTimePicker6.Value.ToString("dd.MM.yyyy") + "'))";
+                    }
+                    
+                    _statusWhere = true;
                 }
 
                 if (!string.IsNullOrEmpty(pol))
@@ -517,6 +525,32 @@ namespace Одиноко_проживающие.search
         private void radDateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             SendKeys.Send(".");
+        }
+
+        private void arch_radio_CheckStateChanged(object sender, EventArgs e)
+        {
+            radCheckBox14.Enabled = arch_radio.IsChecked;
+            radCheckBox15.Enabled = arch_radio.IsChecked;
+
+            if(radCheckBox14.Checked)
+            {
+                radCheckBox14.Checked = arch_radio.IsChecked;
+                radCheckBox15.Checked = arch_radio.IsChecked;
+            }
+
+            _statusArh = arch_radio.IsChecked;
+        }
+
+        private void radCheckBox14_CheckStateChanged(object sender, EventArgs e)
+        {
+            dateTimePicker5.Enabled = radCheckBox14.Checked;
+            _statusS = radCheckBox14.Checked;
+        }
+
+        private void radCheckBox15_CheckStateChanged(object sender, EventArgs e)
+        {
+            dateTimePicker6.Enabled = radCheckBox15.Checked;
+            _statusPo = radCheckBox15.Checked;
         }
     }
 }

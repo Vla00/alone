@@ -8,7 +8,7 @@ namespace Одиноко_проживающие
 {
     public partial class Statistic : RadForm
     {
-        //private BindingSource _bindingSource;
+        private BindingSource _bindingSource;
         TelerikMetroTheme theme = new TelerikMetroTheme();
 
         public Statistic()
@@ -16,6 +16,7 @@ namespace Одиноко_проживающие
             InitializeComponent();
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
             radButton2.Text += DateTime.Now;
+            LoadDrop();
         }
 
 
@@ -29,8 +30,32 @@ namespace Одиноко_проживающие
         public void LoadDrop()
         {
             var commandServer = new CommandServer();
-            radDropDownList1.DataSource = commandServer.ComboBoxList(@"select ФИО
-                        from spezialistView(2,0)  order by [ФИО]", true);
+            radDropDownList1.DataSource = commandServer.ComboBoxList(@"select convert(nvarchar, dat, 20) 
+                from One_soc order by dat desc", false);
+        }
+
+        private void radButton2_Click(object sender, EventArgs e)
+        {
+            var commandServer = new CommandServer();
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from One_soc_visible()").Tables[0] };
+            Print print = new Print();
+            print.ExcelOneSoc(_bindingSource);
+        }
+
+        private void radDropDownList1_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(radDropDownList1.Text))
+                radButton3.Enabled = false;
+            else
+                radButton3.Enabled = true;
+        }
+
+        private void radButton3_Click(object sender, EventArgs e)
+        {
+            var commandServer = new CommandServer();
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from One_soc_visible_table('" + radDropDownList1.Text + "')").Tables[0] };
+            Print print = new Print();
+            print.ExcelOneSoc(_bindingSource);
         }
     }
 }

@@ -16,6 +16,11 @@ namespace Одиноко_проживающие
             InitializeComponent();
 
             ///radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            ///
+            maskedTextBox1.Focus();
+            maskedTextBox1.Select(0, 5);
+
+
 
             button3.Visible = false;
             button4.Visible = false;
@@ -602,6 +607,28 @@ namespace Одиноко_проживающие
                 check = true;
                 return;
             }
+        }
+
+        private void radMaskedEditBox1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //DateTime rs;
+
+            //CultureInfo ci = new CultureInfo("en-IE");
+
+            //if (!DateTime.TryParseExact(this.maskedTextBox1.Text, "dd/MM/yyyy", ci, DateTimeStyles.None, out rs))
+
+            //{
+
+            //    e.Cancel = true;
+
+            //}
+        }
+
+        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int pos = maskedTextBox1.SelectionStart;
+            maskedTextBox1.SelectionLength = 1;
+            maskedTextBox1.Focus();
         }
     }
 }

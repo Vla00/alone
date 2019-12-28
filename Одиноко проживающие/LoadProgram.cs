@@ -8,14 +8,13 @@ namespace Одиноко_проживающие
 {
     public partial class LoadProgram : Form
     {
-        public string version = "1.5.9";
-        public string newVersion;
-        private static readonly string StrConnect = null;
-        public static SqlConnection Connect = new SqlConnection(StrConnect);
+        public static string _version = "1.7.1";
+        public static string User = null;
+        public static SqlConnection Connect;
         public static SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
         private BackgroundWorker helpBackgroundWorker;
         private string[] args;
-        private static ConfigurationProgram _confConnection;
+        public static ConfigurationProgram _confConnection;
 
         public LoadProgram()
         {
@@ -43,7 +42,16 @@ namespace Одиноко_проживающие
                 ConnectBuilder.UserID = _confConnection.Login;
                 ConnectBuilder.Password = _confConnection.Password;
                 ConnectBuilder.ConnectTimeout = 15;
+                Connect = new SqlConnection();
                 Connect.ConnectionString = ConnectBuilder.ConnectionString;
+
+                if(string.IsNullOrEmpty(_confConnection.User))
+                    MessageBox.Show(@"Укажите ваше имя: Справка->Настройки->Личные данные.", @"Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (string.IsNullOrEmpty(_confConnection.AutoSearch))
+                    new Configuration().CheackeAutoSearch();
+
+                User = _confConnection.User;
                 return true;
             }
             catch (Exception ex)
@@ -70,13 +78,13 @@ namespace Одиноко_проживающие
             if (InizializeConnectString())
             {
                 SetLabel("Проверка подключения");
-                if (new CommandServer().ConnectDb())
+                if (new CommandServer().isServerConnected(Connect.ConnectionString))
                 {
                     SetLabel("Проверка версии");
                     if (CheackVersion())
                     {
                         SetLabel("Скачивание новых файлов");
-                        new Update(version, newVersion, _confConnection.Source, this);
+                        new Update(_confConnection.Source, this);
                         return;
                     }else
                     {
@@ -88,22 +96,51 @@ namespace Одиноко_проживающие
                         {
                             Invoke(new Action(() =>
                             {
-                                new Home(version).ShowDialog();
+                                new Home(_version).ShowDialog();
                             }));
                         }
                         else
                         {
                             Invoke(new Action(() =>
                             {
-                                new Home(args, version).ShowDialog();
+                                new Home(args, _version).ShowDialog();
                             }));
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show(@"Нет подключения к серверу.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    new Configuration(true).ShowDialog();
+                   // Invoke(new Action(() => { Hide(); }));
+                    if (Convert.ToBoolean(_confConnection.AutoSearch))
+                    {
+                        
+                        if (new CommandServer().SearchServer())
+                            MessageBox.Show(@"Не удалось найти сервер.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Invoke(new Action(() => { Show(); }));
+
+                        SetLabel("Отправка ошибок на сервер");
+                        new CommandClient().ReadFileError();
+                        Invoke(new Action(() => { Hide(); }));
+
+                        if (args == null)
+                        {
+                            Invoke(new Action(() =>
+                            {
+                                new Home(_version).ShowDialog();
+                            }));
+                        }
+                        else
+                        {
+                            Invoke(new Action(() =>
+                            {
+                                new Home(args, _version).ShowDialog();
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        new Configuration().ShowDialog();
+                    }                    
                 }
             }else
             {
@@ -138,15 +175,14 @@ namespace Одиноко_проживающие
             }));
         }
 
-        private bool CheackVersion()
+        public static bool CheackVersion()
         {
             try
             {
                 string version = new CommandServer().ComboBoxList("select val from config where name='version_db'", false)[0];
 
-                if (version != this.version)
+                if (version != _version)
                 {
-                    newVersion = version;
                     return true;
                 }
                     
@@ -187,6 +223,12 @@ namespace Одиноко_проживающие
                                 break;
                             case "Password":
                                 _confConnection.Password = nod.InnerText;
+                                break;
+                            case "Users":
+                                _confConnection.User = nod.InnerText;
+                                break;
+                            case "AutoSearch":
+                                _confConnection.AutoSearch = nod.InnerText;
                                 break;
                         }
                     }

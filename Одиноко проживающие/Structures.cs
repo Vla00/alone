@@ -12,6 +12,8 @@ namespace Одиноко_проживающие
         public string Password { set; get; }
 
         //конфигурация программы
+        public string User { set; get; }
+        public string AutoSearch { set; get; }
         public bool Page { set; get; }
         public int PageSize { set; get; }
         public string Theme { set; get; }
@@ -83,6 +85,8 @@ namespace Одиноко_проживающие
         public string PlaceWork { set; get; }
         public string Dop { set; get; }
         public DateTime DateExit { set; get; }
+
+        public string Users { set; get; }
 
         public void Dispose()
         {

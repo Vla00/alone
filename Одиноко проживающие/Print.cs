@@ -265,5 +265,71 @@ namespace Одиноко_проживающие
 
             #endregion
         }
+
+
+
+        private Excel.Application _application = null;
+        private Excel.Workbook _workBook = null;
+        private Excel.Worksheet _workSheet = null;
+
+        public void ExcelOneSoc(BindingSource _bindingSource)
+        {
+            _application = new Excel.Application();
+            _workBook = _application.Workbooks.Add(_missingObj);
+            _workSheet = (Excel.Worksheet)_workBook.Worksheets.get_Item(1);
+            ExcelDocument(_bindingSource);
+        }
+
+        protected void ExcelDocument(BindingSource _bindingSource)
+        {
+            object pathToTemplateObj = Path.Combine(Application.StartupPath, @"1 СОЦ.xltx");
+
+            _application = new Excel.Application();
+            _workBook = _application.Workbooks.Add(pathToTemplateObj);
+            _workSheet = (Excel.Worksheet)_workBook.Worksheets.get_Item(1);
+            DataTable dt = (DataTable)_bindingSource.DataSource;
+            
+            try
+            {
+                int row = 0;
+                foreach(var cell in dt.Rows[0].ItemArray)
+                {
+                    _workSheet.Cells[row + 4, 4] = cell;
+                    row++;
+                }
+            }catch(Exception)
+            {
+                Close();
+            }
+            Visible = true;
+        }
+
+        protected bool Visible
+        {
+            get
+            {
+                return _application.Visible;
+            }
+            set
+            {
+                _application.Visible = value;
+            }
+        }
+
+        protected void Close()
+        {
+            _workBook.Close(false, _missingObj, _missingObj);
+
+            _application.Quit();
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(_application);
+
+            _application = null;
+            _workBook = null;
+            _workSheet = null;
+
+            System.GC.Collect();
+        }
+
     }
 }
