@@ -56,10 +56,10 @@
             this.radGridView1.TabIndex = 36;
             this.radGridView1.Text = "radGridView1";
             this.radGridView1.ThemeName = "TelerikMetro";
-            this.radGridView1.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView1_CellEditorInitialized);
-            this.radGridView1.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView1_UserAddingRow);
-            this.radGridView1.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView1_UserAddedRow);
-            this.radGridView1.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView1_RowsChanging);
+            this.radGridView1.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.RadGridView1_CellEditorInitialized);
+            this.radGridView1.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.RadGridView1_UserAddingRow);
+            this.radGridView1.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.RadGridView1_UserAddedRow);
+            this.radGridView1.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.RadGridView1_RowsChanging);
             // 
             // radDesktopAlert1
             // 

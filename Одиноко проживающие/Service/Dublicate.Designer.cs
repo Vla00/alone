@@ -184,9 +184,9 @@
             this.radGridView1.TabIndex = 3;
             this.radGridView1.Text = "radGridView1";
             this.radGridView1.ThemeName = "TelerikMetro";
-            this.radGridView1.Click += new System.EventHandler(this.radGridView1_Click);
-            this.radGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.radGridView1_KeyDownUp);
-            this.radGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radGridView1_KeyDownUp);
+            this.radGridView1.Click += new System.EventHandler(this.RadGridView1_Click);
+            this.radGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadGridView1_KeyDownUp);
+            this.radGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RadGridView1_KeyDownUp);
             // 
             // radGridView2
             // 
@@ -201,14 +201,14 @@
             this.radGridView2.MasterTemplate.AllowRowResize = false;
             this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView2.Name = "radGridView2";
-            this.radGridView2.Size = new System.Drawing.Size(313, 255);
+            this.radGridView2.Size = new System.Drawing.Size(313, 171);
             this.radGridView2.TabIndex = 4;
             this.radGridView2.Text = "radGridView2";
             this.radGridView2.ThemeName = "TelerikMetro";
-            this.radGridView2.Click += new System.EventHandler(this.radGridView2_Click);
-            this.radGridView2.DoubleClick += new System.EventHandler(this.radGridView2_DoubleClick);
-            this.radGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.radGridView2_KeyDownUp);
-            this.radGridView2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radGridView2_KeyDownUp);
+            this.radGridView2.Click += new System.EventHandler(this.RadGridView2_Click);
+            this.radGridView2.DoubleClick += new System.EventHandler(this.RadGridView2_DoubleClick);
+            this.radGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadGridView2_KeyDownUp);
+            this.radGridView2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RadGridView2_KeyDownUp);
             // 
             // radLabel1
             // 
@@ -319,25 +319,25 @@
             // 
             this.union_Button.Location = new System.Drawing.Point(271, 3);
             this.union_Button.Name = "union_Button";
-            this.union_Button.Size = new System.Drawing.Size(291, 24);
+            this.union_Button.Size = new System.Drawing.Size(313, 24);
             this.union_Button.TabIndex = 24;
             this.union_Button.Text = "Объединить";
             this.union_Button.ThemeName = "TelerikMetro";
-            this.union_Button.Click += new System.EventHandler(this.radButton1_Click);
+            this.union_Button.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // razn_Button
             // 
-            this.razn_Button.Location = new System.Drawing.Point(568, 3);
+            this.razn_Button.Location = new System.Drawing.Point(590, 3);
             this.razn_Button.Name = "razn_Button";
-            this.razn_Button.Size = new System.Drawing.Size(293, 24);
+            this.razn_Button.Size = new System.Drawing.Size(271, 24);
             this.razn_Button.TabIndex = 25;
             this.razn_Button.Text = "Разные лица";
             this.razn_Button.ThemeName = "TelerikMetro";
-            this.razn_Button.Click += new System.EventHandler(this.radButton2_Click);
+            this.razn_Button.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // radGridView3
             // 
-            this.radGridView3.Location = new System.Drawing.Point(271, 294);
+            this.radGridView3.Location = new System.Drawing.Point(271, 210);
             // 
             // 
             // 
@@ -348,7 +348,7 @@
             this.radGridView3.MasterTemplate.AllowEditRow = false;
             this.radGridView3.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridView3.Name = "radGridView3";
-            this.radGridView3.Size = new System.Drawing.Size(313, 144);
+            this.radGridView3.Size = new System.Drawing.Size(313, 228);
             this.radGridView3.TabIndex = 27;
             this.radGridView3.Text = "radGridView3";
             this.radGridView3.ThemeName = "TelerikMetro";
@@ -378,7 +378,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.AssociatedControl = this.radGridView2;
-            this.layoutControlItem2.Bounds = new System.Drawing.Rectangle(268, 30, 319, 261);
+            this.layoutControlItem2.Bounds = new System.Drawing.Rectangle(268, 30, 319, 177);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Text = "layoutControlItem2";
             // 
@@ -502,21 +502,21 @@
             // layoutControlItem19
             // 
             this.layoutControlItem19.AssociatedControl = this.union_Button;
-            this.layoutControlItem19.Bounds = new System.Drawing.Rectangle(268, 0, 297, 30);
+            this.layoutControlItem19.Bounds = new System.Drawing.Rectangle(268, 0, 319, 30);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Text = "layoutControlItem19";
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.AssociatedControl = this.razn_Button;
-            this.layoutControlItem20.Bounds = new System.Drawing.Rectangle(565, 0, 299, 30);
+            this.layoutControlItem20.Bounds = new System.Drawing.Rectangle(587, 0, 277, 30);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Text = "layoutControlItem20";
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.AssociatedControl = this.radGridView3;
-            this.layoutControlItem21.Bounds = new System.Drawing.Rectangle(268, 291, 319, 150);
+            this.layoutControlItem21.Bounds = new System.Drawing.Rectangle(268, 207, 319, 234);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Text = "layoutControlItem21";
             // 
@@ -537,7 +537,7 @@
             // radPageViewPage1
             // 
             this.radPageViewPage1.Controls.Add(this.radLayoutControl1);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(76F, 44F);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(83F, 44F);
             this.radPageViewPage1.Location = new System.Drawing.Point(205, 4);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(864, 446);
@@ -546,7 +546,7 @@
             // radPageViewPage2
             // 
             this.radPageViewPage2.Controls.Add(this.radGridView4);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(76F, 44F);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(83F, 44F);
             this.radPageViewPage2.Location = new System.Drawing.Point(205, 4);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(864, 446);
@@ -570,7 +570,7 @@
             this.radGridView4.TabIndex = 4;
             this.radGridView4.Text = "radGridView4";
             this.radGridView4.ThemeName = "TelerikMetro";
-            this.radGridView4.DoubleClick += new System.EventHandler(this.radGridView2_DoubleClick);
+            this.radGridView4.DoubleClick += new System.EventHandler(this.RadGridView2_DoubleClick);
             // 
             // radDesktopAlert1
             // 

@@ -398,7 +398,7 @@ namespace Одиноко_проживающие
             this.apartament_text.Name = "apartament_text";
             this.apartament_text.Size = new System.Drawing.Size(82, 24);
             this.apartament_text.TabIndex = 12;
-            this.apartament_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.house_text_KeyPress);
+            this.apartament_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.House_text_KeyPress);
             // 
             // housing_text
             // 
@@ -407,7 +407,7 @@ namespace Одиноко_проживающие
             this.housing_text.Name = "housing_text";
             this.housing_text.Size = new System.Drawing.Size(50, 24);
             this.housing_text.TabIndex = 11;
-            this.housing_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.housing_text_KeyPress);
+            this.housing_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Housing_text_KeyPress);
             // 
             // house_text
             // 
@@ -416,7 +416,7 @@ namespace Одиноко_проживающие
             this.house_text.Name = "house_text";
             this.house_text.Size = new System.Drawing.Size(57, 24);
             this.house_text.TabIndex = 10;
-            this.house_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.house_text_KeyPress);
+            this.house_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.House_text_KeyPress);
             // 
             // label15
             // 
@@ -455,7 +455,7 @@ namespace Одиноко_проживающие
             this.street_text.Name = "street_text";
             this.street_text.Size = new System.Drawing.Size(179, 24);
             this.street_text.TabIndex = 8;
-            this.street_text.Validated += new System.EventHandler(this.textBox1_Validated);
+            this.street_text.Validated += new System.EventHandler(this.TextBox1_Validated);
             // 
             // label6
             // 
@@ -510,7 +510,7 @@ namespace Одиноко_проживающие
             this.selsovet_combo.Name = "selsovet_combo";
             this.selsovet_combo.Size = new System.Drawing.Size(301, 26);
             this.selsovet_combo.TabIndex = 6;
-            this.selsovet_combo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.selsovet_combo.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // rab_text
             // 
@@ -569,8 +569,8 @@ namespace Одиноко_проживающие
             this.date_ro_date.Name = "date_ro_date";
             this.date_ro_date.Size = new System.Drawing.Size(300, 24);
             this.date_ro_date.TabIndex = 5;
-            this.date_ro_date.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
-            this.date_ro_date.Validating += new System.ComponentModel.CancelEventHandler(this.date_ro_date_Validating);
+            this.date_ro_date.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
+            this.date_ro_date.Validating += new System.ComponentModel.CancelEventHandler(this.Date_ro_date_Validating);
             // 
             // groupBox1
             // 
@@ -619,7 +619,7 @@ namespace Одиноко_проживающие
             this.family_text.Name = "family_text";
             this.family_text.Size = new System.Drawing.Size(300, 24);
             this.family_text.TabIndex = 1;
-            this.family_text.Validated += new System.EventHandler(this.textBox1_Validated);
+            this.family_text.Validated += new System.EventHandler(this.TextBox1_Validated);
             // 
             // label1
             // 
@@ -641,7 +641,7 @@ namespace Одиноко_проживающие
             this.checkBox28.TabIndex = 2;
             this.checkBox28.Text = "Дата рождения";
             this.checkBox28.ThemeName = "TelerikMetro";
-            this.checkBox28.CheckStateChanged += new System.EventHandler(this.checkBox28_CheckedChanged);
+            this.checkBox28.CheckStateChanged += new System.EventHandler(this.CheckBox28_CheckedChanged);
             // 
             // checkBox27
             // 
@@ -653,7 +653,7 @@ namespace Одиноко_проживающие
             this.checkBox27.TabIndex = 27;
             this.checkBox27.Text = "Дата смерти";
             this.checkBox27.ThemeName = "TelerikMetro";
-            this.checkBox27.CheckStateChanged += new System.EventHandler(this.checkBox27_CheckedChanged);
+            this.checkBox27.CheckStateChanged += new System.EventHandler(this.CheckBox27_CheckedChanged);
             // 
             // textBox4
             // 
@@ -680,7 +680,7 @@ namespace Одиноко_проживающие
             this.family_sojitel_text.Name = "family_sojitel_text";
             this.family_sojitel_text.Size = new System.Drawing.Size(295, 24);
             this.family_sojitel_text.TabIndex = 1;
-            this.family_sojitel_text.Validated += new System.EventHandler(this.textBox6_Validated);
+            this.family_sojitel_text.Validated += new System.EventHandler(this.TextBox6_Validated);
             // 
             // label14
             // 
@@ -743,7 +743,7 @@ namespace Одиноко_проживающие
             this.dateTimePicker4.Size = new System.Drawing.Size(280, 24);
             this.dateTimePicker4.TabIndex = 17;
             this.dateTimePicker4.Value = new System.DateTime(2018, 3, 10, 17, 21, 29, 189);
-            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // dateTimePicker3
             // 
@@ -757,7 +757,7 @@ namespace Одиноко_проживающие
             this.dateTimePicker3.Size = new System.Drawing.Size(280, 24);
             this.dateTimePicker3.TabIndex = 19;
             this.dateTimePicker3.Value = new System.DateTime(2018, 3, 10, 17, 21, 29, 191);
-            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // groupBox9
             // 
@@ -846,7 +846,7 @@ namespace Одиноко_проживающие
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "СЗУ";
             this.checkBox6.ThemeName = "TelerikMetro";
-            this.checkBox6.CheckStateChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            this.checkBox6.CheckStateChanged += new System.EventHandler(this.CheckBox6_CheckedChanged);
             // 
             // checkBox7
             // 
@@ -858,7 +858,7 @@ namespace Одиноко_проживающие
             this.checkBox7.TabIndex = 7;
             this.checkBox7.Text = "АПИ";
             this.checkBox7.ThemeName = "TelerikMetro";
-            this.checkBox7.CheckStateChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
+            this.checkBox7.CheckStateChanged += new System.EventHandler(this.CheckBox7_CheckedChanged);
             // 
             // groupBox8
             // 
@@ -944,7 +944,7 @@ namespace Одиноко_проживающие
             this.checkBox8.TabIndex = 7;
             this.checkBox8.Text = "Земельный участок";
             this.checkBox8.ThemeName = "TelerikMetro";
-            this.checkBox8.CheckStateChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
+            this.checkBox8.CheckStateChanged += new System.EventHandler(this.CheckBox8_CheckedChanged);
             // 
             // groupBox7
             // 
@@ -1050,7 +1050,7 @@ namespace Одиноко_проживающие
             this.checkBox4.TabIndex = 9;
             this.checkBox4.Text = "Отопление";
             this.checkBox4.ThemeName = "TelerikMetro";
-            this.checkBox4.CheckStateChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            this.checkBox4.CheckStateChanged += new System.EventHandler(this.CheckBox4_CheckedChanged);
             // 
             // comboBox6
             // 
@@ -1073,7 +1073,7 @@ namespace Одиноко_проживающие
             this.checkBox3.TabIndex = 8;
             this.checkBox3.Text = "Канализация";
             this.checkBox3.ThemeName = "TelerikMetro";
-            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.checkBox3.CheckStateChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -1085,7 +1085,7 @@ namespace Одиноко_проживающие
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Плита";
             this.checkBox1.ThemeName = "TelerikMetro";
-            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -1097,7 +1097,7 @@ namespace Одиноко_проживающие
             this.checkBox2.TabIndex = 7;
             this.checkBox2.Text = "Водоснабжение";
             this.checkBox2.ThemeName = "TelerikMetro";
-            this.checkBox2.CheckStateChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.checkBox2.CheckStateChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // menuStrip1
             // 
@@ -1145,8 +1145,8 @@ namespace Одиноко_проживающие
             this.radPageView1.Text = "radPageView1";
             this.radPageView1.ThemeName = "TelerikMetro";
             this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
-            this.radPageView1.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.radPageView1_SelectedPageChanging);
-            this.radPageView1.SelectedPageChanged += new System.EventHandler(this.radPageView1_SelectedPageChanged);
+            this.radPageView1.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.RadPageView1_SelectedPageChanging);
+            this.radPageView1.SelectedPageChanged += new System.EventHandler(this.RadPageView1_SelectedPageChanged);
             // 
             // radPageViewPage1
             // 
@@ -1221,7 +1221,7 @@ namespace Одиноко_проживающие
             this.disability_button.TabIndex = 19;
             this.disability_button.Text = "подробнее";
             this.disability_button.ThemeName = "TelerikMetro";
-            this.disability_button.Click += new System.EventHandler(this.disability_Click);
+            this.disability_button.Click += new System.EventHandler(this.Disability_Click);
             // 
             // label29
             // 
@@ -1297,7 +1297,7 @@ namespace Одиноко_проживающие
             this.dead_button.TabIndex = 31;
             this.dead_button.Text = "возобновить ";
             this.dead_button.ThemeName = "TelerikMetro";
-            this.dead_button.Click += new System.EventHandler(this.dead_button_Click);
+            this.dead_button.Click += new System.EventHandler(this.Dead_button_Click);
             // 
             // sm_check
             // 
@@ -1310,8 +1310,8 @@ namespace Одиноко_проживающие
             this.sm_check.TabIndex = 26;
             this.sm_check.Text = "Дата смерти";
             this.sm_check.ThemeName = "TelerikMetro";
-            this.sm_check.CheckStateChanging += new Telerik.WinControls.UI.CheckStateChangingEventHandler(this.checkBox26_CheckStateChanging);
-            this.sm_check.CheckStateChanged += new System.EventHandler(this.checkBox26_CheckedChanged);
+            this.sm_check.CheckStateChanging += new Telerik.WinControls.UI.CheckStateChangingEventHandler(this.CheckBox26_CheckStateChanging);
+            this.sm_check.CheckStateChanged += new System.EventHandler(this.CheckBox26_CheckedChanged);
             // 
             // history_exit_button
             // 
@@ -1321,7 +1321,7 @@ namespace Одиноко_проживающие
             this.history_exit_button.TabIndex = 30;
             this.history_exit_button.Text = "история";
             this.history_exit_button.ThemeName = "TelerikMetro";
-            this.history_exit_button.Click += new System.EventHandler(this.history_exit_button_Click);
+            this.history_exit_button.Click += new System.EventHandler(this.History_exit_button_Click);
             // 
             // date_exit_date
             // 
@@ -1333,7 +1333,7 @@ namespace Одиноко_проживающие
             this.date_exit_date.Name = "date_exit_date";
             this.date_exit_date.Size = new System.Drawing.Size(116, 24);
             this.date_exit_date.TabIndex = 27;
-            this.date_exit_date.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            this.date_exit_date.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // date_sm_date
             // 
@@ -1345,7 +1345,7 @@ namespace Одиноко_проживающие
             this.date_sm_date.Name = "date_sm_date";
             this.date_sm_date.Size = new System.Drawing.Size(116, 24);
             this.date_sm_date.TabIndex = 25;
-            this.date_sm_date.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            this.date_sm_date.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // exit_check
             // 
@@ -1357,8 +1357,8 @@ namespace Одиноко_проживающие
             this.exit_check.TabIndex = 28;
             this.exit_check.Text = "Выбыл";
             this.exit_check.ThemeName = "TelerikMetro";
-            this.exit_check.CheckStateChanging += new Telerik.WinControls.UI.CheckStateChangingEventHandler(this.checkBox26_CheckStateChanging);
-            this.exit_check.CheckStateChanged += new System.EventHandler(this.radCheckBox1_CheckStateChanged);
+            this.exit_check.CheckStateChanging += new Telerik.WinControls.UI.CheckStateChangingEventHandler(this.CheckBox26_CheckStateChanging);
+            this.exit_check.CheckStateChanged += new System.EventHandler(this.RadCheckBox1_CheckStateChanged);
             // 
             // exit_button
             // 
@@ -1368,7 +1368,7 @@ namespace Одиноко_проживающие
             this.exit_button.TabIndex = 29;
             this.exit_button.Text = "возобновить";
             this.exit_button.ThemeName = "TelerikMetro";
-            this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
+            this.exit_button.Click += new System.EventHandler(this.Exit_button_Click);
             // 
             // label8
             // 
@@ -1386,7 +1386,7 @@ namespace Одиноко_проживающие
             this.surname_text.Name = "surname_text";
             this.surname_text.Size = new System.Drawing.Size(300, 24);
             this.surname_text.TabIndex = 3;
-            this.surname_text.Validated += new System.EventHandler(this.textBox1_Validated);
+            this.surname_text.Validated += new System.EventHandler(this.TextBox1_Validated);
             // 
             // name_text
             // 
@@ -1395,7 +1395,7 @@ namespace Одиноко_проживающие
             this.name_text.Name = "name_text";
             this.name_text.Size = new System.Drawing.Size(300, 24);
             this.name_text.TabIndex = 2;
-            this.name_text.Validated += new System.EventHandler(this.textBox1_Validated);
+            this.name_text.Validated += new System.EventHandler(this.TextBox1_Validated);
             // 
             // label18
             // 
@@ -1444,7 +1444,7 @@ namespace Одиноко_проживающие
             this.radPageView2.Text = "radPageView2";
             this.radPageView2.ThemeName = "TelerikMetro";
             this.radPageView2.ViewMode = Telerik.WinControls.UI.PageViewMode.Stack;
-            this.radPageView2.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.radPageView1_SelectedPageChanging);
+            this.radPageView2.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.RadPageView1_SelectedPageChanging);
             ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView2.GetChildAt(0))).StackPosition = Telerik.WinControls.UI.StackViewPosition.Top;
             ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView2.GetChildAt(0))).ItemSelectionMode = Telerik.WinControls.UI.StackViewItemSelectionMode.Standard;
             ((Telerik.WinControls.UI.RadPageViewStackElement)(this.radPageView2.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
@@ -1507,9 +1507,9 @@ namespace Одиноко_проживающие
             this.radGridView1.TabIndex = 35;
             this.radGridView1.Text = "radGridView1";
             this.radGridView1.ThemeName = "TelerikMetro";
-            this.radGridView1.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView1_UserAddingRow);
-            this.radGridView1.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView1_UserAddedRow);
-            this.radGridView1.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView1_RowsChanging);
+            this.radGridView1.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.RadGridView1_UserAddingRow);
+            this.radGridView1.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.RadGridView1_UserAddedRow);
+            this.radGridView1.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.RadGridView1_RowsChanging);
             // 
             // radPageViewPage9
             // 
@@ -1538,9 +1538,9 @@ namespace Одиноко_проживающие
             this.radGridView4.TabIndex = 43;
             this.radGridView4.Text = "radGridView4";
             this.radGridView4.ThemeName = "TelerikMetro";
-            this.radGridView4.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView4_UserAddingRow);
-            this.radGridView4.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView4_UserAddedRow);
-            this.radGridView4.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView4_RowsChanging);
+            this.radGridView4.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.RadGridView4_UserAddingRow);
+            this.radGridView4.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.RadGridView4_UserAddedRow);
+            this.radGridView4.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.RadGridView4_RowsChanging);
             // 
             // radPageViewPage7
             // 
@@ -1608,7 +1608,7 @@ namespace Одиноко_проживающие
             this.radButton1.TabIndex = 29;
             this.radButton1.Text = "Удалить";
             this.radButton1.ThemeName = "TelerikMetro";
-            this.radButton1.Click += new System.EventHandler(this.button5_Click);
+            this.radButton1.Click += new System.EventHandler(this.Button5_Click);
             // 
             // radPageViewPage3
             // 
@@ -1671,7 +1671,7 @@ namespace Одиноко_проживающие
             this.radCheckBox42.TabIndex = 2;
             this.radCheckBox42.Text = "Находится на надомном обслуживании";
             this.radCheckBox42.ThemeName = "TelerikMetro";
-            this.radCheckBox42.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox42.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox19
             // 
@@ -1683,7 +1683,7 @@ namespace Одиноко_проживающие
             this.radCheckBox19.TabIndex = 18;
             this.radCheckBox19.Text = "Уход по линии управления";
             this.radCheckBox19.ThemeName = "TelerikMetro";
-            this.radCheckBox19.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox19.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox8
             // 
@@ -1713,7 +1713,7 @@ namespace Одиноко_проживающие
             this.radCheckBox20.Text = "Граждане пожилого возраста проживающие с лицами асоциального поведения";
             this.radCheckBox20.TextWrap = true;
             this.radCheckBox20.ThemeName = "TelerikMetro";
-            this.radCheckBox20.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox20.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox21
             // 
@@ -1725,7 +1725,7 @@ namespace Одиноко_проживающие
             this.radCheckBox21.TabIndex = 4;
             this.radCheckBox21.Text = "Лица из числа детей-сирот и детей от 18 до 23 лет";
             this.radCheckBox21.ThemeName = "TelerikMetro";
-            this.radCheckBox21.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox21.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox22
             // 
@@ -1737,7 +1737,7 @@ namespace Одиноко_проживающие
             this.radCheckBox22.TabIndex = 2;
             this.radCheckBox22.Text = "СОП";
             this.radCheckBox22.ThemeName = "TelerikMetro";
-            this.radCheckBox22.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox22.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox23
             // 
@@ -1749,7 +1749,7 @@ namespace Одиноко_проживающие
             this.radCheckBox23.TabIndex = 3;
             this.radCheckBox23.Text = "Лица, освободившиеся из мест лишения свободы";
             this.radCheckBox23.ThemeName = "TelerikMetro";
-            this.radCheckBox23.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox23.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox24
             // 
@@ -1761,7 +1761,7 @@ namespace Одиноко_проживающие
             this.radCheckBox24.TabIndex = 1;
             this.radCheckBox24.Text = "Граждане пожилого возраста, злоупотребляющие спиртными напитками";
             this.radCheckBox24.ThemeName = "TelerikMetro";
-            this.radCheckBox24.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox24.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox25
             // 
@@ -1773,7 +1773,7 @@ namespace Одиноко_проживающие
             this.radCheckBox25.TabIndex = 0;
             this.radCheckBox25.Text = "Семьи, воспитывающие детей-инвалидов в возрасте до 18 лет";
             this.radCheckBox25.ThemeName = "TelerikMetro";
-            this.radCheckBox25.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox25.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox9
             // 
@@ -1833,8 +1833,8 @@ namespace Одиноко_проживающие
             this.radCheckBox30.TabIndex = 1;
             this.radCheckBox30.Text = "Инвалид II группы";
             this.radCheckBox30.ThemeName = "TelerikMetro";
-            this.radCheckBox30.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
-            this.radCheckBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radCheckBox28_MouseClick_1);
+            this.radCheckBox30.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
+            this.radCheckBox30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RadCheckBox28_MouseClick_1);
             // 
             // radCheckBox28
             // 
@@ -1847,8 +1847,8 @@ namespace Одиноко_проживающие
             this.radCheckBox28.TabIndex = 0;
             this.radCheckBox28.Text = "Инвалид I группы";
             this.radCheckBox28.ThemeName = "TelerikMetro";
-            this.radCheckBox28.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
-            this.radCheckBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radCheckBox28_MouseClick_1);
+            this.radCheckBox28.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
+            this.radCheckBox28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RadCheckBox28_MouseClick_1);
             // 
             // radCheckBox29
             // 
@@ -1860,8 +1860,8 @@ namespace Одиноко_проживающие
             this.radCheckBox29.TabIndex = 2;
             this.radCheckBox29.Text = "Инвалид III группы";
             this.radCheckBox29.ThemeName = "TelerikMetro";
-            this.radCheckBox29.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
-            this.radCheckBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.radCheckBox28_MouseClick_1);
+            this.radCheckBox29.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
+            this.radCheckBox29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RadCheckBox28_MouseClick_1);
             // 
             // radCheckBox37
             // 
@@ -1873,7 +1873,7 @@ namespace Одиноко_проживающие
             this.radCheckBox37.TabIndex = 22;
             this.radCheckBox37.Text = "Инвалид по зрению";
             this.radCheckBox37.ThemeName = "TelerikMetro";
-            this.radCheckBox37.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox37.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox26
             // 
@@ -1885,7 +1885,7 @@ namespace Одиноко_проживающие
             this.radCheckBox26.TabIndex = 3;
             this.radCheckBox26.Text = "Инвалид с детства";
             this.radCheckBox26.ThemeName = "TelerikMetro";
-            this.radCheckBox26.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox26.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox38
             // 
@@ -1897,7 +1897,7 @@ namespace Одиноко_проживающие
             this.radCheckBox38.TabIndex = 21;
             this.radCheckBox38.Text = "Инвалид по слуху";
             this.radCheckBox38.ThemeName = "TelerikMetro";
-            this.radCheckBox38.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox38.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox27
             // 
@@ -1909,7 +1909,7 @@ namespace Одиноко_проживающие
             this.radCheckBox27.TabIndex = 5;
             this.radCheckBox27.Text = "Колясочник";
             this.radCheckBox27.ThemeName = "TelerikMetro";
-            this.radCheckBox27.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox27.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox10
             // 
@@ -1937,7 +1937,7 @@ namespace Одиноко_проживающие
             this.radCheckBox31.TabIndex = 4;
             this.radCheckBox31.Text = "Тыловик";
             this.radCheckBox31.ThemeName = "TelerikMetro";
-            this.radCheckBox31.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox31.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox32
             // 
@@ -1949,7 +1949,7 @@ namespace Одиноко_проживающие
             this.radCheckBox32.TabIndex = 0;
             this.radCheckBox32.Text = "Инвалид ВОВ";
             this.radCheckBox32.ThemeName = "TelerikMetro";
-            this.radCheckBox32.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox32.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox33
             // 
@@ -1961,7 +1961,7 @@ namespace Одиноко_проживающие
             this.radCheckBox33.TabIndex = 1;
             this.radCheckBox33.Text = "Участник ВОВ";
             this.radCheckBox33.ThemeName = "TelerikMetro";
-            this.radCheckBox33.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox33.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox34
             // 
@@ -1973,7 +1973,7 @@ namespace Одиноко_проживающие
             this.radCheckBox34.TabIndex = 3;
             this.radCheckBox34.Text = "СПВ";
             this.radCheckBox34.ThemeName = "TelerikMetro";
-            this.radCheckBox34.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox34.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox35
             // 
@@ -1985,7 +1985,7 @@ namespace Одиноко_проживающие
             this.radCheckBox35.TabIndex = 2;
             this.radCheckBox35.Text = "Узник";
             this.radCheckBox35.ThemeName = "TelerikMetro";
-            this.radCheckBox35.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox35.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox11
             // 
@@ -2036,6 +2036,7 @@ namespace Одиноко_проживающие
             // 
             // radCheckBox36
             // 
+            this.radCheckBox36.Enabled = false;
             this.radCheckBox36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox36.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox36.Location = new System.Drawing.Point(5, 5);
@@ -2044,10 +2045,11 @@ namespace Одиноко_проживающие
             this.radCheckBox36.TabIndex = 20;
             this.radCheckBox36.Text = "Пенсионер ...-69 лет";
             this.radCheckBox36.ThemeName = "TelerikMetro";
-            this.radCheckBox36.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox36.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox50
             // 
+            this.radCheckBox50.Enabled = false;
             this.radCheckBox50.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox50.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox50.Location = new System.Drawing.Point(5, 74);
@@ -2056,10 +2058,11 @@ namespace Одиноко_проживающие
             this.radCheckBox50.TabIndex = 10;
             this.radCheckBox50.Text = "Пенсионер 90-99 лет";
             this.radCheckBox50.ThemeName = "TelerikMetro";
-            this.radCheckBox50.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox50.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox51
             // 
+            this.radCheckBox51.Enabled = false;
             this.radCheckBox51.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox51.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox51.Location = new System.Drawing.Point(5, 51);
@@ -2068,10 +2071,11 @@ namespace Одиноко_проживающие
             this.radCheckBox51.TabIndex = 9;
             this.radCheckBox51.Text = "Пенсионер 80-89 лет";
             this.radCheckBox51.ThemeName = "TelerikMetro";
-            this.radCheckBox51.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox51.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox49
             // 
+            this.radCheckBox49.Enabled = false;
             this.radCheckBox49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox49.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox49.Location = new System.Drawing.Point(5, 97);
@@ -2080,10 +2084,11 @@ namespace Одиноко_проживающие
             this.radCheckBox49.TabIndex = 11;
             this.radCheckBox49.Text = "Пенсионер 100-... лет";
             this.radCheckBox49.ThemeName = "TelerikMetro";
-            this.radCheckBox49.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox49.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox41
             // 
+            this.radCheckBox41.Enabled = false;
             this.radCheckBox41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radCheckBox41.ForeColor = System.Drawing.Color.Black;
             this.radCheckBox41.Location = new System.Drawing.Point(5, 28);
@@ -2092,7 +2097,7 @@ namespace Одиноко_проживающие
             this.radCheckBox41.TabIndex = 17;
             this.radCheckBox41.Text = "Пенсионер 70-79 лет";
             this.radCheckBox41.ThemeName = "TelerikMetro";
-            this.radCheckBox41.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox41.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox2
             // 
@@ -2142,7 +2147,7 @@ namespace Одиноко_проживающие
             this.radRadioButton1.TabIndex = 2;
             this.radRadioButton1.Text = "Не учитывать";
             this.radRadioButton1.ThemeName = "TelerikMetro";
-            this.radRadioButton1.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radRadioButton1.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox46
             // 
@@ -2154,7 +2159,7 @@ namespace Одиноко_проживающие
             this.radCheckBox46.TabIndex = 0;
             this.radCheckBox46.Text = "Одинокий";
             this.radCheckBox46.ThemeName = "TelerikMetro";
-            this.radCheckBox46.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox46.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox40
             // 
@@ -2166,7 +2171,7 @@ namespace Одиноко_проживающие
             this.radCheckBox40.TabIndex = 1;
             this.radCheckBox40.Text = "Одиноко проживающий";
             this.radCheckBox40.ThemeName = "TelerikMetro";
-            this.radCheckBox40.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox40.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radGroupBox1
             // 
@@ -2208,7 +2213,7 @@ namespace Одиноко_проживающие
             this.radCheckBox44.TabIndex = 18;
             this.radCheckBox44.Text = "Пенсионер";
             this.radCheckBox44.ThemeName = "TelerikMetro";
-            this.radCheckBox44.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox44.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox39
             // 
@@ -2220,7 +2225,7 @@ namespace Одиноко_проживающие
             this.radCheckBox39.TabIndex = 19;
             this.radCheckBox39.Text = "Не пенсионер";
             this.radCheckBox39.ThemeName = "TelerikMetro";
-            this.radCheckBox39.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox39.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox47
             // 
@@ -2232,7 +2237,7 @@ namespace Одиноко_проживающие
             this.radCheckBox47.TabIndex = 15;
             this.radCheckBox47.Text = "Дети за пределами сельисполкома";
             this.radCheckBox47.ThemeName = "TelerikMetro";
-            this.radCheckBox47.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox47.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox45
             // 
@@ -2244,7 +2249,7 @@ namespace Одиноко_проживающие
             this.radCheckBox45.TabIndex = 16;
             this.radCheckBox45.Text = "Дети за пределами нас. пункта";
             this.radCheckBox45.ThemeName = "TelerikMetro";
-            this.radCheckBox45.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox45.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radCheckBox48
             // 
@@ -2256,7 +2261,7 @@ namespace Одиноко_проживающие
             this.radCheckBox48.TabIndex = 14;
             this.radCheckBox48.Text = "Дети за пределами РБ";
             this.radCheckBox48.ThemeName = "TelerikMetro";
-            this.radCheckBox48.CheckStateChanged += new System.EventHandler(this.radCheckBox35_Click);
+            this.radCheckBox48.CheckStateChanged += new System.EventHandler(this.RadCheckBox35_Click);
             // 
             // radPageViewPage5
             // 
@@ -2285,10 +2290,10 @@ namespace Одиноко_проживающие
             this.radGridViewSurvey.TabIndex = 36;
             this.radGridViewSurvey.Text = "radGridView2";
             this.radGridViewSurvey.ThemeName = "TelerikMetro";
-            this.radGridViewSurvey.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView2_CellEditorInitialized);
-            this.radGridViewSurvey.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView2_UserAddingRow);
-            this.radGridViewSurvey.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView2_UserAddedRow);
-            this.radGridViewSurvey.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView2_RowsChanging);
+            this.radGridViewSurvey.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.RadGridView2_CellEditorInitialized);
+            this.radGridViewSurvey.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.RadGridView2_UserAddingRow);
+            this.radGridViewSurvey.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.RadGridView2_UserAddedRow);
+            this.radGridViewSurvey.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.RadGridView2_RowsChanging);
             // 
             // radPageViewPage6
             // 
@@ -2317,10 +2322,10 @@ namespace Одиноко_проживающие
             this.radGridViewHelp.TabIndex = 37;
             this.radGridViewHelp.Text = "radGridView3";
             this.radGridViewHelp.ThemeName = "TelerikMetro";
-            this.radGridViewHelp.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView3_CellEditorInitialized);
-            this.radGridViewHelp.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridView3_UserAddingRow);
-            this.radGridViewHelp.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.radGridView3_UserAddedRow);
-            this.radGridViewHelp.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.radGridView3_RowsChanging);
+            this.radGridViewHelp.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.RadGridView3_CellEditorInitialized);
+            this.radGridViewHelp.UserAddingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.RadGridView3_UserAddingRow);
+            this.radGridViewHelp.UserAddedRow += new Telerik.WinControls.UI.GridViewRowEventHandler(this.RadGridView3_UserAddedRow);
+            this.radGridViewHelp.RowsChanging += new Telerik.WinControls.UI.GridViewCollectionChangingEventHandler(this.RadGridView3_RowsChanging);
             // 
             // radDesktopAlert1
             // 
@@ -2349,7 +2354,7 @@ namespace Одиноко_проживающие
             // 
             this.radMenuItem2.Name = "radMenuItem2";
             this.radMenuItem2.Text = "Реб. инв.";
-            this.radMenuItem2.Click += new System.EventHandler(this.radMenuItem2_Click);
+            this.radMenuItem2.Click += new System.EventHandler(this.RadMenuItem2_Click);
             // 
             // Alone
             // 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -23,7 +22,6 @@ namespace Одиноко_проживающие
         private bool _load;
         private bool _loadGrid;
         private bool? _dublicate;
-        private readonly SqlConnection _connection = LoadProgram.Connect;
         private int _keyAlone;
         private double _dateR;
         private double _dateRTr;
@@ -83,8 +81,10 @@ namespace Одиноко_проживающие
         private void AddAlone_Shown(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
-            Thread _thread = new Thread(new ParameterizedThreadStart(Start));
-            _thread.IsBackground = true;
+            Thread _thread = new Thread(new ParameterizedThreadStart(Start))
+            {
+                IsBackground = true
+            };
             Text = @"Загрузка данных...";
             _thread.Start(StructStartParameter);
             
@@ -661,7 +661,7 @@ namespace Одиноко_проживающие
                 parameters += "null";
 
             if (operation)
-                parameters += ",'" + LoadProgram.User + "'";
+                parameters += ",'" + Одиноко_проживающие.Load.ProgramLoad._confConnection.User + "'";
 
             return parameters;
         }
@@ -675,7 +675,7 @@ namespace Одиноко_проживающие
             }));
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateComboBoxNasPunct();
         }
@@ -701,7 +701,7 @@ namespace Одиноко_проживающие
             return _bindingSource.Count > 0;
         }
 
-        private void textBox1_Validated(object sender, EventArgs e)
+        private void TextBox1_Validated(object sender, EventArgs e)
         {
             TextBox text = (TextBox)sender;
             
@@ -713,7 +713,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void checkBox26_CheckStateChanging(object sender, CheckStateChangingEventArgs args)
+        private void CheckBox26_CheckStateChanging(object sender, CheckStateChangingEventArgs args)
         {
             RadCheckBox cheack = sender as RadCheckBox;
 
@@ -735,7 +735,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void history_exit_button_Click(object sender, EventArgs e)
+        private void History_exit_button_Click(object sender, EventArgs e)
         {
             Alone_history history = new Alone_history(_keyAlone);
             history.ShowDialog();
@@ -743,7 +743,7 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void exit_button_Click(object sender, EventArgs e)
+        private void Exit_button_Click(object sender, EventArgs e)
         {
             if (RadMessageBox.Show("Вы подтверждаете возврат?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
             {
@@ -766,7 +766,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void disability_Click(object sender, EventArgs e)
+        private void Disability_Click(object sender, EventArgs e)
         {
             Disability dis = new Disability(_keyAlone.ToString());
             dis.ShowDialog();
@@ -797,11 +797,12 @@ namespace Одиноко_проживающие
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
-            var structure = new StructuresSojitel();
-
-            structure.Family = family_sojitel_text.Text;
-            structure.Name = name_sojitel_text.Text;
-            structure.Surname = surname_sojitel_text.Text;
+            var structure = new StructuresSojitel
+            {
+                Family = family_sojitel_text.Text,
+                Name = name_sojitel_text.Text,
+                Surname = surname_sojitel_text.Text
+            };
 
             var parameters = _keyAlone + ",'" + family_sojitel_text.Text + "','" + name_sojitel_text.Text + "','" + surname_sojitel_text.Text + "',";
 
@@ -963,7 +964,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             var serverCommand = new CommandServer();
 
@@ -983,7 +984,7 @@ namespace Одиноко_проживающие
             radButton1.Enabled = false;
         }
 
-        private void textBox6_Validated(object sender, EventArgs e)
+        private void TextBox6_Validated(object sender, EventArgs e)
         {
             string[] s = family_sojitel_text.Text.Split(' ');
             family_sojitel_text.Text = "";
@@ -1022,10 +1023,12 @@ namespace Одиноко_проживающие
                 radGridView4.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                 radGridView4.Columns[1].Width = 100;
                 radGridView4.Columns[3].Width = 30;
-                
-                GridViewComboBoxColumn comboColumn_operation = new GridViewComboBoxColumn("родствен. отн.");
-                comboColumn_operation.DataSource = _bindingRelativeComboBox;
-                comboColumn_operation.Name = "relatives_eve";
+
+                GridViewComboBoxColumn comboColumn_operation = new GridViewComboBoxColumn("родствен. отн.")
+                {
+                    DataSource = _bindingRelativeComboBox,
+                    Name = "relatives_eve"
+                };
                 radGridView4.Columns[3] = comboColumn_operation;
                 comboColumn_operation.FieldName = "relatives_ever";
             }));
@@ -1038,7 +1041,7 @@ namespace Одиноко_проживающие
             _bindingRelativeComboBox = new BindingList<string>(commandServer.ComboBoxList(@"select * from Relatives_relationships()", true));
         }
 
-        private void radGridView4_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
+        private void RadGridView4_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             var commandServer = new CommandServer();
             var line = e.Rows[0].Cells[1].Value.ToString();
@@ -1064,7 +1067,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radGridView4_UserAddedRow(object sender, GridViewRowEventArgs e)
+        private void RadGridView4_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingRelative.DataSource = commandServer.DataGridSet(@"select * from ListRelative(" + _keyAlone + ")").Tables[0];
@@ -1074,7 +1077,7 @@ namespace Одиноко_проживающие
             }));
         }
 
-        private void radGridView4_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        private void RadGridView4_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
@@ -1193,7 +1196,7 @@ namespace Одиноко_проживающие
             _loadGrid = false;
         }
 
-        private void radGridView1_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
+        private void RadGridView1_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             if (e.Rows[0].Cells[1].Value == null || e.Rows[0].Cells[1].Value.ToString() == "")
             {
@@ -1234,7 +1237,7 @@ namespace Одиноко_проживающие
             AlertGridOperation(sender, null, e, "kinder_add " + parameters, returnSqlServer);
         }
 
-        private void radGridView1_UserAddedRow(object sender, GridViewRowEventArgs e)
+        private void RadGridView1_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSourceKinder = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from GetKinder(" + _keyAlone + ")").Tables[0] };
@@ -1245,7 +1248,7 @@ namespace Одиноко_проживающие
             }));
         }
 
-        private void radGridView1_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        private void RadGridView1_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
@@ -1421,12 +1424,10 @@ namespace Одиноко_проживающие
                 CategoryChecked(table, c);
             }
 
-            var cb = control as RadCheckBox;
 
-            if (cb == null)
+            if (!(control is RadCheckBox cb))
             {
-                var cb2 = control as RadRadioButton;
-                if (cb2 == null) return;
+                if (!(control is RadRadioButton cb2)) return;
 
                 var controlText = cb2.Text;
 
@@ -1444,16 +1445,15 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radCheckBox35_Click(object sender, EventArgs e)
+        private void RadCheckBox35_Click(object sender, EventArgs e)
         {
             if (_loadAlone)
             {
-                var radioButton = sender as RadRadioButton;
 
-                if (radioButton == null)
+                if (!(sender is RadRadioButton radioButton))
                     return;
 
-                if(radioButton.Text == "Пенсионер")
+                if (radioButton.Text == "Пенсионер")
                 {
                     radGroupBox3.Enabled = true;
                     return;
@@ -1492,7 +1492,7 @@ namespace Одиноко_проживающие
 
                 if ((checkBox != null && checkBox.Checked) || (radioButton != null && radioButton.IsChecked))
                 {
-                    result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "'");
+                    result = commandServer.ExecReturnServer("Category_add", _keyAlone + ",'" + text + "','user'");
                 }
                 else
                 {
@@ -1507,7 +1507,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radCheckBox28_MouseClick_1(object sender, MouseEventArgs e)
+        private void RadCheckBox28_MouseClick_1(object sender, MouseEventArgs e)
         {
             var radioButton = sender as RadRadioButton;
             if (e.Button == MouseButtons.Right)
@@ -1550,9 +1550,11 @@ namespace Одиноко_проживающие
                 dateSurvey.Format = DateTimePickerFormat.Custom;
                 dateSurvey.CustomFormat = "dd.MM.yyyy";
 
-                GridViewComboBoxColumn comboColumn = new GridViewComboBoxColumn("Специалист");
-                comboColumn.FieldName = "ФИО";
-                comboColumn.AutoCompleteMode = AutoCompleteMode.Append;
+                GridViewComboBoxColumn comboColumn = new GridViewComboBoxColumn("Специалист")
+                {
+                    FieldName = "ФИО",
+                    AutoCompleteMode = AutoCompleteMode.Append
+                };
                 radGridViewSurvey.Columns[1] = comboColumn;
 
                 radGridViewSurvey.Columns[0].IsVisible = false;
@@ -1564,7 +1566,7 @@ namespace Одиноко_проживающие
             }));
             _loadGrid = false;
         }
-        private void radGridView2_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
+        private void RadGridView2_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             bool error = false;
 
@@ -1617,7 +1619,7 @@ namespace Одиноко_проживающие
             var returnSqlServer = commandServer.ExecReturnServer("addSurvey", parameters);
             AlertGridOperation(sender, null, e, "addSurvey " + parameters, returnSqlServer);
         }
-        private void radGridView2_UserAddedRow(object sender, GridViewRowEventArgs e)
+        private void RadGridView2_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSourceSurvey = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from AloneSurvey(" + _keyAlone + ")").Tables[0] };
@@ -1627,7 +1629,7 @@ namespace Одиноко_проживающие
                 radGridViewSurvey.DataSource = _bindingSourceSurvey;
             }));
         }
-        private void radGridView2_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        private void RadGridView2_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
@@ -1710,7 +1712,7 @@ namespace Одиноко_проживающие
         {
             var commandServer = new CommandServer();
 
-            _radSpeziolist.SelectedItemChanged += new EventHandler(lv_SelectedItemChanged);
+            _radSpeziolist.SelectedItemChanged += new EventHandler(Lv_SelectedItemChanged);
             _radSpeziolist.DisplayMember = "fio";
             _radSpeziolist.ValueMember = "fio";
             _radSpeziolist.DataSource = commandServer.DataGridSet(@"select *
@@ -1724,7 +1726,7 @@ namespace Одиноко_проживающие
             _radSpeziolist.CollapseAll();            
         }
 
-        private void radGridView2_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        private void RadGridView2_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
             if(e.ActiveEditor is RadDropDownListEditor)
             {
@@ -1733,27 +1735,25 @@ namespace Одиноко_проживающие
                 element.DropDownSizingMode = SizingMode.UpDownAndRightBottom;
                 element.Popup.Controls.Add(_radSpeziolist);
                 element.DropDownMinSize = new Size(300, 300);
-                element.PopupOpening += new CancelEventHandler(element_PopupOpening);
+                element.PopupOpening += new CancelEventHandler(Element_PopupOpening);
             }
 
-            RadDateTimeEditor dateTimeEditor = e.ActiveEditor as RadDateTimeEditor;
-            if (dateTimeEditor != null)
+            if (e.ActiveEditor is RadDateTimeEditor dateTimeEditor)
             {
                 dateTimeEditor.MaxValue = DateTime.Now;
-                radGridViewSurvey.CellEditorInitialized -= radGridView2_CellEditorInitialized;
+                radGridViewSurvey.CellEditorInitialized -= RadGridView2_CellEditorInitialized;
                 RadDateTimeEditorElement editroElement = (RadDateTimeEditorElement)dateTimeEditor.EditorElement;
-                MaskDateTimeProvider provider = editroElement.TextBoxElement.Provider as MaskDateTimeProvider;
-                if (provider != null)
+                if (editroElement.TextBoxElement.Provider is MaskDateTimeProvider provider)
                     provider.AutoSelectNextPart = true;
             }
         }
-        void element_PopupOpening(object sender, CancelEventArgs e)
+        void Element_PopupOpening(object sender, CancelEventArgs e)
         {
             _radSpeziolist.Size = ((RadDropDownListEditorElement)sender).Popup.Size;
             _radSpeziolist.AutoScroll = true;
 
         }
-        private void lv_SelectedItemChanged(object sender, EventArgs e)
+        private void Lv_SelectedItemChanged(object sender, EventArgs e)
         {
             ListViewItemEventArgs args = (ListViewItemEventArgs)e;
             if (args.Item != null && radGridViewSurvey.CurrentCell != null)
@@ -1764,11 +1764,10 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radGridView_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        private void RadGridView_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
-            RadDropDownListEditor editor = e.ActiveEditor as RadDropDownListEditor;
 
-            if (editor == null)
+            if (!(e.ActiveEditor is RadDropDownListEditor editor))
             {
                 return;
             }
@@ -1815,8 +1814,10 @@ namespace Одиноко_проживающие
                 dateHelp.Format = DateTimePickerFormat.Custom;
                 dateHelp.CustomFormat = "dd.MM.yyyy";
 
-                GridViewComboBoxColumn comboColumn = new GridViewComboBoxColumn("Тип помощи");
-                comboColumn.DataSource = _bindingHelp;
+                GridViewComboBoxColumn comboColumn = new GridViewComboBoxColumn("Тип помощи")
+                {
+                    DataSource = _bindingHelp
+                };
                 radGridViewHelp.Columns[0].IsVisible = false;
                 comboColumn.FieldName = "type";
                 radGridViewHelp.Columns[1] = comboColumn;
@@ -1826,12 +1827,12 @@ namespace Одиноко_проживающие
                 radGridViewHelp.Columns[1].WrapText = true;
                 radGridViewHelp.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
-                radGridViewHelp.CellEditorInitialized += new GridViewCellEventHandler(radGridView_CellEditorInitialized);
+                radGridViewHelp.CellEditorInitialized += new GridViewCellEventHandler(RadGridView_CellEditorInitialized);
             }));
             _loadGrid = false;
         }
 
-        private void radGridView3_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
+        private void RadGridView3_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             var commandServer = new CommandServer();
 
@@ -1847,7 +1848,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radGridView3_UserAddedRow(object sender, GridViewRowEventArgs e)
+        private void RadGridView3_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSourceHelp = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from AloneHelp(" + _keyAlone + ")").Tables[0] };
@@ -1858,7 +1859,7 @@ namespace Одиноко_проживающие
             }));
         }
 
-        private void radGridView3_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        private void RadGridView3_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
         {
             var commandServer = new CommandServer();
             var commandClient = new CommandClient();
@@ -1937,16 +1938,14 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void radGridView3_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        private void RadGridView3_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
-            RadDateTimeEditor dateTimeEditor = e.ActiveEditor as RadDateTimeEditor;
-            if (dateTimeEditor != null)
+            if (e.ActiveEditor is RadDateTimeEditor dateTimeEditor)
             {
                 dateTimeEditor.MaxValue = DateTime.Now;
-                radGridViewHelp.CellEditorInitialized -= radGridView3_CellEditorInitialized;
+                radGridViewHelp.CellEditorInitialized -= RadGridView3_CellEditorInitialized;
                 RadDateTimeEditorElement editroElement = (RadDateTimeEditorElement)dateTimeEditor.EditorElement;
-                MaskDateTimeProvider provider = editroElement.TextBoxElement.Provider as MaskDateTimeProvider;
-                if (provider != null)
+                if (editroElement.TextBoxElement.Provider is MaskDateTimeProvider provider)
                     provider.AutoSelectNextPart = true;
             }
         }
@@ -1979,29 +1978,25 @@ namespace Одиноко_проживающие
                 BlockedControl(c, flag);
             }
 
-            var cb = control as RadPageViewPage;
-            if (cb != null) return;
-            var sc = control as RadScrollablePanel;
-            if (sc != null) return;
-            var scr = control as RadScrollablePanelContainer;
-            if (scr != null) return;
-            var cd = control as RadPageView;
-            if (cd != null) return;
-            var cbut = control as RadButton;
-            if(cbut != null)
+            if (control is RadPageViewPage cb) return;
+            if (control is RadScrollablePanel sc) return;
+            if (control is RadScrollablePanelContainer scr) return;
+            if (control is RadPageView cd) return;
+            if (control is RadButton cbut)
             {
                 if (!sm_check.Checked)
                 {
                     if (cbut.Text == "возобновить" || cbut.Text == "история")
                         return;
-                }else
+                }
+                else
                 {
                     if (cbut.Text == "история" || cbut.Text == "возобновить ")
                         return;
                 }
             }
 
-            if(flag)
+            if (flag)
                 control.Enabled = false;
             else
                 control.Enabled = true;
@@ -2065,7 +2060,7 @@ namespace Одиноко_проживающие
         }
 
         //узнать текущую вкладку
-        private void radPageView1_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
+        private void RadPageView1_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
         {
             if (!_loadGrid)
             {
@@ -2234,7 +2229,7 @@ namespace Одиноко_проживающие
         }
 
         //на которую нажали
-        private void radPageView1_SelectedPageChanged(object sender, EventArgs e)
+        private void RadPageView1_SelectedPageChanged(object sender, EventArgs e)
         {
             if (radPageView1.SelectedPage == radPageViewPage1){ }
             else
@@ -2273,19 +2268,19 @@ namespace Одиноко_проживающие
             }
         }
 
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (!_load)
                 SendKeys.Send(".");
         }
 
-        private void house_text_KeyPress(object sender, KeyPressEventArgs e)
+        private void House_text_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
         }
 
-        private void housing_text_KeyPress(object sender, KeyPressEventArgs e)
+        private void Housing_text_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))
                 e.Handled = true;
@@ -2711,58 +2706,58 @@ namespace Одиноко_проживающие
         #endregion
 
         #region checkBox_Checked
-        private void radCheckBox1_CheckStateChanged(object sender, EventArgs e)
+        private void RadCheckBox1_CheckStateChanged(object sender, EventArgs e)
         {
             date_exit_date.Enabled = exit_check.Checked;
         }
 
-        private void checkBox8_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox8_CheckedChanged(object sender, EventArgs e)
         {
             textBox9.Enabled = checkBox8.Checked;
             comboBox10.Enabled = checkBox8.Checked;
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             comboBox6.Enabled = checkBox2.Checked;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             comboBox7.Enabled = checkBox1.Checked;
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
         {
             comboBox8.Enabled = checkBox3.Checked;
         }
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox4_CheckedChanged(object sender, EventArgs e)
         {
             comboBox9.Enabled = checkBox4.Checked;
         }
 
-        private void checkBox27_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox27_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker3.Enabled = checkBox27.Checked;
         }
 
-        private void checkBox28_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox28_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker4.Enabled = checkBox28.Checked;
         }
 
-        private void checkBox26_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox26_CheckedChanged(object sender, EventArgs e)
         {
             date_sm_date.Enabled = sm_check.Checked;
         }
 
-        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox7_CheckedChanged(object sender, EventArgs e)
         {
             numericUpDown2.Enabled = checkBox7.Checked;
         }
 
-        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox6_CheckedChanged(object sender, EventArgs e)
         {
             numericUpDown3.Enabled = checkBox6.Checked;
         }
@@ -2909,7 +2904,7 @@ namespace Одиноко_проживающие
         }
         #endregion
 
-        private void date_ro_date_Validating(object sender, CancelEventArgs e)
+        private void Date_ro_date_Validating(object sender, CancelEventArgs e)
         {
             if (!_status)
                 return;
@@ -2920,12 +2915,14 @@ namespace Одиноко_проживающие
         }
 
         #region Печать
-        private void radMenuItem2_Click(object sender, EventArgs e)
+        private void RadMenuItem2_Click(object sender, EventArgs e)
         {
-            StructuresAlones alones = new StructuresAlones();
-            alones.alone = _alone;
-            alones.invalidnost = Inval();
-            alones.family = Family();
+            StructuresAlones alones = new StructuresAlones
+            {
+                Alone = _alone,
+                Invalidnost = Inval(),
+                Family = Family()
+            };
             Print print = new Print();
             print.Inv(alones);
         }
@@ -2934,24 +2931,24 @@ namespace Одиноко_проживающие
         {
             StructuresInvalidnost inval = new StructuresInvalidnost();
             if (label28.Text.Split(':')[1] != " ")
-                inval.date_start = label28.Text.Split(':')[1];
+                inval.Date_start = label28.Text.Split(':')[1];
             else
-                inval.date_start = "___________________________________";
+                inval.Date_start = "___________________________________";
 
             if (label26.Text.Split(':')[1] != " ")
-                inval.stepen = label26.Text.Split(':')[1];
+                inval.Stepen = label26.Text.Split(':')[1];
             else
-                inval.stepen = "___________________________________";
+                inval.Stepen = "___________________________________";
 
             if (label29.Text.Split(':')[1] != " ")
-                inval.date_pere = label29.Text.Split(':')[1];
+                inval.Date_pere = label29.Text.Split(':')[1];
             else
-                inval.date_pere = "___________________________________";
+                inval.Date_pere = "___________________________________";
 
             if (label27.Text.Split(':')[1] != " ")
-                inval.diagnoz = label27.Text.Split(':')[1];
+                inval.Diagnoz = label27.Text.Split(':')[1];
             else
-                inval.diagnoz = "___________________________________";
+                inval.Diagnoz = "___________________________________";
 
             return inval;
         }
@@ -2968,28 +2965,28 @@ namespace Одиноко_проживающие
                 {
                     if(value == "Мать")
                     {
-                        structuresFamily.fioMather = relativ.Cells[1].Value.ToString();
+                        structuresFamily.FioMather = relativ.Cells[1].Value.ToString();
                     }else
                     {
                         if(value == "Отец")
                         {
-                            structuresFamily.fioFather = relativ.Cells[1].Value.ToString();
+                            structuresFamily.FioFather = relativ.Cells[1].Value.ToString();
                         }
                     }
                     value = null;
                 }
             }
 
-            if(string.IsNullOrEmpty(structuresFamily.fioFather))
-                structuresFamily.fioFather = "___________________________________";
-            if(string.IsNullOrEmpty(structuresFamily.fioMather))
-                structuresFamily.fioMather = "___________________________________";
+            if(string.IsNullOrEmpty(structuresFamily.FioFather))
+                structuresFamily.FioFather = "___________________________________";
+            if(string.IsNullOrEmpty(structuresFamily.FioMather))
+                structuresFamily.FioMather = "___________________________________";
 
             return structuresFamily;
         }
         #endregion
 
-        private void dead_button_Click(object sender, EventArgs e)
+        private void Dead_button_Click(object sender, EventArgs e)
         {
             if (RadMessageBox.Show("Вы подтверждаете возобновление умершего?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Info) == DialogResult.OK)
             {
@@ -3000,9 +2997,7 @@ namespace Одиноко_проживающие
                     sm_check.Checked = false;
                     date_exit_date.Enabled = false;
                 }
-            }
-
-            
+            }            
         }
     }
 }

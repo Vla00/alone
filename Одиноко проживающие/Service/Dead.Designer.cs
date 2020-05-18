@@ -97,9 +97,9 @@
             this.radGridView2.TabIndex = 5;
             this.radGridView2.Text = "radGridView2";
             this.radGridView2.ThemeName = "TelerikMetro";
-            this.radGridView2.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.radGridView3_RowFormatting);
-            this.radGridView2.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridView2_CellFormatting);
-            this.radGridView2.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView3_CellDoubleClick);
+            this.radGridView2.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.RadGridView3_RowFormatting);
+            this.radGridView2.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.RadGridView2_CellFormatting);
+            this.radGridView2.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.RadGridView3_CellDoubleClick);
             // 
             // radPageViewPage2
             // 
@@ -162,7 +162,7 @@
             this.radButton2.Size = new System.Drawing.Size(110, 30);
             this.radButton2.TabIndex = 1;
             this.radButton2.Text = "Выбрать";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.radButton2.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // radButton1
             // 
@@ -172,7 +172,7 @@
             this.radButton1.Size = new System.Drawing.Size(110, 30);
             this.radButton1.TabIndex = 0;
             this.radButton1.Text = "загрузить";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.radButton1.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // openFileDialog1
             // 

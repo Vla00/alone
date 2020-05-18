@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Одиноко_проживающие
 {
-    internal class CommandServer : Form
+    internal class CommandServer
     {
+        private BackgroundWorker backgroundWorker1;
+        private Wait _Wait;
         private SqlCommand _command;
         private SqlConnection _connect;
         private SqlConnection _connectSql;
-        private string _connectString = LoadProgram.Connect.ConnectionString;
+        private readonly string _connectString = Load.ProgramLoad.Connect.ConnectionString;
+
 
         #region Подключение
-        public bool isServerConnected(string conn)
+        public bool IsServerConnected(string conn)
         {
             using (_connectSql = new SqlConnection(conn))
             {
@@ -23,7 +27,7 @@ namespace Одиноко_проживающие
                     _connectSql.Open();
                     return true;
                 }
-                catch (SqlException)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -33,48 +37,59 @@ namespace Одиноко_проживающие
         public bool SearchServer()
         {
             SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
-            ConnectBuilder = LoadProgram.ConnectBuilder;
+            ConnectBuilder = Home.programConn.connectionStringBuilder;
 
-            LoadFun _load = new LoadFun();
-            _load.Show("Поиск сервера");
+            backgroundWorker1 = new BackgroundWorker();
+            if(backgroundWorker1.IsBusy != true)
+            {
+                backgroundWorker1.ProgressChanged += BackgroundWorker1_ProgressChanged;
+                _Wait = new Wait(true);
+                _Wait.Show();
+                backgroundWorker1.RunWorkerAsync();
+            }
 
             ConnectBuilder.DataSource = @"10.76.92.220\TCSON";
-            if (isServerConnected(ConnectBuilder.ConnectionString))
+            if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                LoadProgram.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
                 _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
-                _load.Close();
+                _Wait.Close();
                 return true;
             }
 
             ConnectBuilder.DataSource = @"192.168.1.10\TCSON";
-            if (isServerConnected(ConnectBuilder.ConnectionString))
+            if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                LoadProgram.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
                 _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
-                _load.Close();
+                _Wait.Close();
                 return true;
             }
 
             ConnectBuilder.DataSource = @"86.57.207.146,1434\TCSON";
-            if (isServerConnected(ConnectBuilder.ConnectionString))
+            if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                LoadProgram.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
                 _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
-                _load.Close();
+                _Wait.Close();
                 return true;
             }
 
             MessageBox.Show("Автопоиск не смог найти сервер. Укажите данные входа вручную.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            new Configuration().ShowDialog();
-            _load.Close();
+            new Configuration("base", null, true).ShowDialog();
+            _Wait.Close();
             return false;
         }
 
-        public void LoadForm()
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            Application.Run(new Load("Поиск сервера"));
+            _Wait.Message = "Поиск сервера";
         }
+
+        //private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    _Wait.Message = "Поиск сервера";
+        //}
         #endregion
 
         #region Методы
@@ -88,12 +103,12 @@ namespace Одиноко_проживающие
                 }
                 catch (SqlException ex)
                 {
-                    if (!isServerConnected(_connectString))
+                    if (!IsServerConnected(_connectString))
                     {
-                        if(Convert.ToBoolean(LoadProgram._confConnection.AutoSearch))
+                        if(Convert.ToBoolean(Home.programConn.configurationProgram.AutoSearch))
                             SearchServer();
                         else
-                            new Configuration().ShowDialog();
+                            new Configuration("base", null, true).ShowDialog();
                         _connect.Open();
                     }                        
                     else
@@ -133,12 +148,12 @@ namespace Одиноко_проживающие
                 }
                 catch (SqlException ex)
                 {
-                    if (!isServerConnected(_connectString))
+                    if (!IsServerConnected(_connectString))
                     {
-                        if (Convert.ToBoolean(LoadProgram._confConnection.AutoSearch))
+                        if (Convert.ToBoolean(Home.programConn.configurationProgram.AutoSearch))
                             SearchServer();
                         else
-                            new Configuration().ShowDialog();
+                            new Configuration("base", null, true).ShowDialog();
                         _connect = new SqlConnection(this._connectString);
                         _connect.Open();
                     }
@@ -192,12 +207,12 @@ namespace Одиноко_проживающие
                 }
                 catch (SqlException ex)
                 {
-                    if (!isServerConnected(_connectString))
+                    if (!IsServerConnected(_connectString))
                     {
-                        if (Convert.ToBoolean(LoadProgram._confConnection.AutoSearch))
+                        if (Convert.ToBoolean(Home.programConn.configurationProgram.AutoSearch))
                             SearchServer();
                         else
-                            new Configuration().ShowDialog();
+                            new Configuration("base", null, true).ShowDialog();
                         _connect.Open();
                     }
                     else
@@ -233,12 +248,12 @@ namespace Одиноко_проживающие
                 }
                 catch (SqlException ex)
                 {
-                    if (!isServerConnected(_connectString))
+                    if (!IsServerConnected(_connectString))
                     {
-                        if (Convert.ToBoolean(LoadProgram._confConnection.AutoSearch))
+                        if (Convert.ToBoolean(Home.programConn.configurationProgram.AutoSearch))
                             SearchServer();
                         else
-                            new Configuration().ShowDialog();
+                            new Configuration("base", null, true).ShowDialog();
                         _connect.Open();
                     }
                     else
@@ -247,8 +262,10 @@ namespace Одиноко_проживающие
                         new CommandClient().WriteFileError(ex, command);
                     }
                 }
-                _command = new SqlCommand(command, _connect);
-                _command.CommandTimeout = 0;
+                _command = new SqlCommand(command, _connect)
+                {
+                    CommandTimeout = 0
+                };
                 var dataAdapter = new SqlDataAdapter(_command);
 
                 var dataSet = new DataSet();

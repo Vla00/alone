@@ -92,7 +92,7 @@
             this.radButtonElement1.Text = "     Сохранить Excel";
             this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.radButtonElement1.ToolTipText = "Экспорт данных в excel";
-            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
+            this.radButtonElement1.Click += new System.EventHandler(this.RadButtonElement1_Click);
             ((Telerik.WinControls.Primitives.ImagePrimitive)(this.radButtonElement1.GetChildAt(1).GetChildAt(0))).ImageScaling = Telerik.WinControls.Enumerations.ImageScaling.SizeToFit;
             ((Telerik.WinControls.Primitives.ImagePrimitive)(this.radButtonElement1.GetChildAt(1).GetChildAt(0))).DefaultSize = new System.Drawing.Size(50, 50);
             ((Telerik.WinControls.Primitives.ImagePrimitive)(this.radButtonElement1.GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
@@ -117,9 +117,9 @@
             this.radGridView1.TabIndex = 4;
             this.radGridView1.Text = "radGridView1";
             this.radGridView1.ThemeName = "TelerikMetro";
-            this.radGridView1.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView1_CellDoubleClick);
-            this.radGridView1.FilterChanged += new Telerik.WinControls.UI.GridViewCollectionChangedEventHandler(this.radGridView1_FilterChanged);
-            this.radGridView1.FilterPopupInitialized += new Telerik.WinControls.UI.FilterPopupInitializedEventHandler(this.radGridView1_FilterPopupInitialized);
+            this.radGridView1.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.RadGridView1_CellDoubleClick);
+            this.radGridView1.FilterChanged += new Telerik.WinControls.UI.GridViewCollectionChangedEventHandler(this.RadGridView1_FilterChanged);
+            this.radGridView1.FilterPopupInitialized += new Telerik.WinControls.UI.FilterPopupInitializedEventHandler(this.RadGridView1_FilterPopupInitialized);
             // 
             // layoutControlItem1
             // 

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Одиноко_проживающие
 {
@@ -84,6 +87,129 @@ namespace Одиноко_проживающие
             {
                 return s;
             }
-        }      
+        }
+
+        #region Конфигурация
+        public void CheackConfiguration()
+        {
+            if (!CheackUser())
+                CreateUser();
+
+            if (!CheackeAutoSearch())
+                CreateAutoSearch();
+
+            if (!CheacNameComp())
+                CreateNameComp();
+        }
+
+        private bool CheackUser()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "Users":
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+            return false;
+        }
+
+        private void CreateUser()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+
+            XElement root = new XElement("user");
+            root.Add(new XElement("Users", ""));
+            xdoc.Element("mconfig").Add(root);
+            xdoc.Save("config.xml");
+        }
+
+        public bool CheackeAutoSearch()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "AutoSearch":
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+            return false;
+        }
+
+        private void CreateAutoSearch()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            //XElement root = new XElement("AutoSearch", "true");
+            foreach (XElement xe in rootConnection.Elements("user").ToList())
+            {
+                xe.Add(new XElement("AutoSearch", "true"));
+            }
+            xdoc.Save("config.xml");
+        }
+
+        private bool CheacNameComp()
+        {
+            try
+            {
+                var document = new XmlDocument();
+                document.Load("config.xml");
+
+                XmlNode root = document.DocumentElement;
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    foreach (XmlNode nod in node.ChildNodes)
+                    {
+                        switch (nod.Name)
+                        {
+                            case "NameComputer":
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+            return false;
+        }
+
+        private void CreateNameComp()
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            foreach (XElement xe in rootConnection.Elements("user").ToList())
+            {
+                xe.Add(new XElement("NameComputer", Environment.MachineName));
+            }
+
+            xdoc.Save("config.xml");
+        }
+
+        #endregion
     }
 }

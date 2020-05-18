@@ -27,8 +27,10 @@ namespace Одиноко_проживающие.service
 
         private void Form_HandleCreated(object sender, EventArgs e)
         {
-            Thread _thread = new Thread(new ThreadStart(StartDataGrid));
-            _thread.IsBackground = true;
+            Thread _thread = new Thread(new ThreadStart(StartDataGrid))
+            {
+                IsBackground = true
+            };
             _thread.Start();
         }
 
@@ -49,12 +51,12 @@ namespace Одиноко_проживающие.service
                         select alone.key_alone, family + ' ' + name + ' ' + surname as [ФИО], 
 	                        case pol when 1 then 'муж' when 0 then 'жен' end as [пол]
                         from alone inner join family on alone.key_alone = family.fk_alone
-                        where alone.pol = 0 and (family.surname not like '%на' and family.surname not like '%зы' and family.surname not like '%ва')
+                        where alone.pol = 0 and (family.surname not like '%на' and family.surname not like '%зы' and family.surname not like '%ва') and surname != ''
                         union all
                         select alone.key_alone, family + ' ' + name + ' ' + surname as [ФИО],
 	                        case pol when 1 then 'муж' when 0 then 'жен' end as [пол]
                         from alone inner join family on alone.key_alone = family.fk_alone
-                        where alone.pol = 1 and (family.surname not like '%ич' and family.surname not like '%лы')").Tables[0] };
+                        where alone.pol = 1 and (family.surname not like '%ич' and family.surname not like '%лы') and surname != ''").Tables[0] };
 
 
                     radGridView1.DataSource = _bindingSource;
@@ -102,20 +104,18 @@ namespace Одиноко_проживающие.service
             radGridView3.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void radGridView2_KeyDownUp(object sender, KeyEventArgs e)
+        private void RadGridView2_KeyDownUp(object sender, KeyEventArgs e)
         {
             LoadGrid2();
         }
 
-        private void radGridView1_KeyDownUp(object sender, KeyEventArgs e)
+        private void RadGridView1_KeyDownUp(object sender, KeyEventArgs e)
         {
             DublicateDelo();
-        }        
-
-       
+        }
 
         #region Дубликат
-        private void radButton2_Click(object sender, EventArgs e)
+        private void RadButton2_Click(object sender, EventArgs e)
         {
             if (radGridView2.SelectedRows.Count > 0)
             {
@@ -138,7 +138,7 @@ namespace Одиноко_проживающие.service
             }
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void RadButton1_Click(object sender, EventArgs e)
         {
             if (RadMessageBox.Show(@"Вы точно хотите объединить записи БЕЗВОЗВРАТНО?", "Внимание", MessageBoxButtons.OKCancel, RadMessageIcon.Question) == DialogResult.OK)
             {
@@ -164,7 +164,7 @@ namespace Одиноко_проживающие.service
             }
         }
 
-        private void radGridView1_Click(object sender, EventArgs e)
+        private void RadGridView1_Click(object sender, EventArgs e)
         {
             DublicateDelo();
         }
@@ -175,8 +175,7 @@ namespace Одиноко_проживающие.service
             radGridView2.EnablePaging = true;
             _bindingSourceDublicate = new BindingSource
             {
-                DataSource = commandServer.DataGridSet(@"select alone.key_alone as [Дело], (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], 
-	                case when row_number() over (partition by family.family, family.name, family.surname order by alone.key_alone) = 1 then 'Эталон' else 'Дубликат' end as [Доп. поле]
+                DataSource = commandServer.DataGridSet(@"select alone.key_alone as [Дело], (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО]
                 from dublicate inner join alone on dublicate.fk_alone = alone.key_alone
 	                inner join family on family.fk_alone = alone.key_alone
                 where (family.family + ' ' + family.name + ' ' + family.surname) = '" + radGridView1.CurrentRow.Cells[0].Value.ToString() + "'")
@@ -188,13 +187,13 @@ namespace Одиноко_проживающие.service
             radGridView2.Columns[0].BestFit();
         }
 
-        private void radGridView2_Click(object sender, EventArgs e)
+        private void RadGridView2_Click(object sender, EventArgs e)
         {
             LoadGrid2();
         }
         #endregion
 
-        private void radGridView2_DoubleClick(object sender, EventArgs e)
+        private void RadGridView2_DoubleClick(object sender, EventArgs e)
         {
             Hide();
             try

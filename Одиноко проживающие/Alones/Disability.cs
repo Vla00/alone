@@ -10,7 +10,6 @@ namespace Одиноко_проживающие.Alones
 {
     public partial class Disability : RadForm
     {
-        private bool _status;
         private string _key;
         private BindingSource _bindingSource;
         private BindingList<string> _binding_every;
@@ -21,17 +20,13 @@ namespace Одиноко_проживающие.Alones
         {
             InitializeComponent();
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
-            _status = false;
+            Status = false;
             _key = key;
             ComboBox_every();
             Grid();
         }
 
-        public bool Status
-        {
-            get { return _status; }
-            set { _status = value; }
-        }
+        public bool Status { get; set; }
 
         private void Grid()
         {
@@ -43,29 +38,37 @@ namespace Одиноко_проживающие.Alones
             radGridView1.DataSource = _bindingSource;
             radGridView1.Columns[0].IsVisible = false;
 
-            GridViewComboBoxColumn comboColumn_powered = new GridViewComboBoxColumn("Степ. утр.");
-            comboColumn_powered.DataSource = new String[] { "1", "2", "3", "4"};
-            comboColumn_powered.Name = "_powered";
+            GridViewComboBoxColumn comboColumn_powered = new GridViewComboBoxColumn("Степ. утр.")
+            {
+                DataSource = new string[] { "1", "2", "3", "4" },
+                Name = "_powered"
+            };
             radGridView1.Columns[1] = comboColumn_powered;
             comboColumn_powered.FieldName = "powered";
 
-            GridViewDateTimeColumn dat = new GridViewDateTimeColumn("Дата инв.");
-            dat.Name = "date1";
-            dat.FormatString = "{0:dd/MM/yyyy}";
-            dat.Format = DateTimePickerFormat.Custom;
+            GridViewDateTimeColumn dat = new GridViewDateTimeColumn("Дата инв.")
+            {
+                Name = "date1",
+                FormatString = "{0:dd/MM/yyyy}",
+                Format = DateTimePickerFormat.Custom
+            };
             radGridView1.Columns[2] = dat;
             dat.CustomFormat = "dd.MM.yyyy";
 
-            GridViewDateTimeColumn dat1 = new GridViewDateTimeColumn("Дата переосв.");
-            dat1.Name = "date2";
-            dat1.FormatString = "{0:dd/MM/yyyy}";
-            dat1.Format = DateTimePickerFormat.Custom;
+            GridViewDateTimeColumn dat1 = new GridViewDateTimeColumn("Дата переосв.")
+            {
+                Name = "date2",
+                FormatString = "{0:dd/MM/yyyy}",
+                Format = DateTimePickerFormat.Custom
+            };
             radGridView1.Columns[3] = dat1;
             dat1.CustomFormat = "dd.MM.yyyy";
 
-            GridViewComboBoxColumn comboColumn_every = new GridViewComboBoxColumn("Диагноз");
-            comboColumn_every.DataSource = _binding_every;
-            comboColumn_every.Name = "_every";
+            GridViewComboBoxColumn comboColumn_every = new GridViewComboBoxColumn("Диагноз")
+            {
+                DataSource = _binding_every,
+                Name = "_every"
+            };
             radGridView1.Columns[4] = comboColumn_every;
             comboColumn_every.FieldName = "name";
 
@@ -81,7 +84,7 @@ namespace Одиноко_проживающие.Alones
                 order by name", false));
         }
 
-        private void radGridView1_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
+        private void RadGridView1_RowsChanging(object sender, GridViewCollectionChangingEventArgs e)
         {
             //изменение
             var commandServer = new CommandServer();
@@ -164,7 +167,7 @@ namespace Одиноко_проживающие.Alones
             }
         }
 
-        private void radGridView1_UserAddedRow(object sender, GridViewRowEventArgs e)
+        private void RadGridView1_UserAddedRow(object sender, GridViewRowEventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from Disability_get_table(" + _key + ") order by [Дата инв.]").Tables[0] };
@@ -175,7 +178,7 @@ namespace Одиноко_проживающие.Alones
             }));
         }
 
-        private void radGridView1_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
+        private void RadGridView1_UserAddingRow(object sender, GridViewRowCancelEventArgs e)
         {
             bool error = false;
             var parameters = _key;
@@ -242,15 +245,13 @@ namespace Одиноко_проживающие.Alones
             AlertOperation(returnSqlServer);
         }
 
-        private void radGridView1_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        private void RadGridView1_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
-            RadDateTimeEditor dateTimeEditor = e.ActiveEditor as RadDateTimeEditor;
-            if (dateTimeEditor != null)
+            if (e.ActiveEditor is RadDateTimeEditor dateTimeEditor)
             {
-                radGridView1.CellEditorInitialized -= radGridView1_CellEditorInitialized;
+                radGridView1.CellEditorInitialized -= RadGridView1_CellEditorInitialized;
                 RadDateTimeEditorElement editroElement = (RadDateTimeEditorElement)dateTimeEditor.EditorElement;
-                MaskDateTimeProvider provider = editroElement.TextBoxElement.Provider as MaskDateTimeProvider;
-                if (provider != null)
+                if (editroElement.TextBoxElement.Provider is MaskDateTimeProvider provider)
                     provider.AutoSelectNextPart = true;
             }
         }

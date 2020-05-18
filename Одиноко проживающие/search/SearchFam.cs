@@ -18,7 +18,7 @@ namespace Одиноко_проживающие.search
             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
+        private void Button2_Click(object sender, System.EventArgs e)
         {
             textBox1.Text = "";
             textBox2.Text = "";
@@ -26,7 +26,7 @@ namespace Одиноко_проживающие.search
             textBox4.Text = "";
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void Button1_Click(object sender, System.EventArgs e)
         {
             if (radRadioButton1.IsChecked)
                 number = 0;
@@ -65,13 +65,12 @@ namespace Одиноко_проживающие.search
 
         private void GotFocusTextBox(object sender, EventArgs e)
         {
-            TextBox text = sender as TextBox;
-            if (text != null) text.SelectAll();
+            if (sender is TextBox text) text.SelectAll();
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
         }
     }

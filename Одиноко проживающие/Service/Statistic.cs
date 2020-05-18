@@ -34,7 +34,7 @@ namespace Одиноко_проживающие
                 from One_soc order by dat desc", false);
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
+        private void RadButton2_Click(object sender, EventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from One_soc_visible()").Tables[0] };
@@ -42,7 +42,7 @@ namespace Одиноко_проживающие
             print.ExcelOneSoc(_bindingSource);
         }
 
-        private void radDropDownList1_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
+        private void RadDropDownList1_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
         {
             if (string.IsNullOrEmpty(radDropDownList1.Text))
                 radButton3.Enabled = false;
@@ -50,7 +50,7 @@ namespace Одиноко_проживающие
                 radButton3.Enabled = true;
         }
 
-        private void radButton3_Click(object sender, EventArgs e)
+        private void RadButton3_Click(object sender, EventArgs e)
         {
             var commandServer = new CommandServer();
             _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from One_soc_visible_table('" + radDropDownList1.Text + "')").Tables[0] };

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 
 namespace Одиноко_проживающие
 {
@@ -17,6 +18,8 @@ namespace Одиноко_проживающие
         public bool Page { set; get; }
         public int PageSize { set; get; }
         public string Theme { set; get; }
+
+        public string NameComp { set; get; }
     }
 
     public class StructStartParameters
@@ -25,6 +28,15 @@ namespace Одиноко_проживающие
         public int KeyAlone { set; get; }
         public string Item { set; get; }
         public bool? Blocked { set; get; }
+    }
+
+    public class ConfigurationProgramConn
+    {
+        public ConfigurationProgram configurationProgram;
+        public SqlConnection sqlConnection;
+        public SqlConnectionStringBuilder connectionStringBuilder;
+        public string message;
+        public bool connect;
     }
 
     internal class StructuresAlone : IDisposable
@@ -155,8 +167,7 @@ namespace Одиноко_проживающие
 
         public override bool Equals(object obj)
         {
-            var jilUsl = obj as StructuresJilUsl;
-            return jilUsl != null && jilUsl.CountRoom == CountRoom && jilUsl.Place == Place &&
+            return obj is StructuresJilUsl jilUsl && jilUsl.CountRoom == CountRoom && jilUsl.Place == Place &&
                    jilUsl.Woter == Woter && jilUsl.Plita == Plita && jilUsl.Kanal == Kanal && jilUsl.Otopl == Otopl;
         }
 
@@ -199,8 +210,7 @@ namespace Одиноко_проживающие
 
         public override bool Equals(object obj)
         {
-            var zemeln = obj as StructuresZemeln;
-            return zemeln != null && zemeln.Podsobn == Podsobn && zemeln.Zemeln == Zemeln &&
+            return obj is StructuresZemeln zemeln && zemeln.Podsobn == Podsobn && zemeln.Zemeln == Zemeln &&
                    zemeln.Place == Place && zemeln.Status == Status && zemeln.Api == Api && zemeln.Szu == Szu;
         }
 
@@ -233,10 +243,10 @@ namespace Одиноко_проживающие
 
     internal class StructuresAlones : IDisposable
     {
-        public StructuresAlone alone { set; get; }
-        public StructuresSojitel sojitel { set; get; }
-        public StructuresInvalidnost invalidnost { set; get; }
-        public StructuresFamily family { set; get; }
+        public StructuresAlone Alone { set; get; }
+        public StructuresSojitel Sojitel { set; get; }
+        public StructuresInvalidnost Invalidnost { set; get; }
+        public StructuresFamily Family { set; get; }
         public void Dispose()
         {
             GC.SuppressFinalize(this);
@@ -247,10 +257,10 @@ namespace Одиноко_проживающие
 
     internal class StructuresInvalidnost : IDisposable
     {
-        public string stepen { get; set; }
-        public string date_start { set; get; }
-        public string date_pere { set; get; }
-        public string diagnoz { set; get; }
+        public string Stepen { get; set; }
+        public string Date_start { set; get; }
+        public string Date_pere { set; get; }
+        public string Diagnoz { set; get; }
         public void Dispose()
         {
             GC.SuppressFinalize(this);
@@ -261,8 +271,8 @@ namespace Одиноко_проживающие
 
     internal class StructuresFamily : IDisposable
     {
-        public string fioMather { set; get; }
-        public string fioFather { set; get; }
+        public string FioMather { set; get; }
+        public string FioFather { set; get; }
 
         public void Dispose()
         {

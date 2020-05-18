@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Одиноко_проживающие
 {
-    static class Program
+    class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.
@@ -14,11 +17,16 @@ namespace Одиноко_проживающие
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
-            if(args.Length == 0)
-                Application.Run(new LoadProgram());
+                       
+            if (args.Length == 0)
+            {
+                Application.Run(new Home(null));
+            }
             else
-                Application.Run(new LoadProgram(args));
+            {
+                Application.Run(new Home(args));
+            }
         }
-        
+
     }
 }

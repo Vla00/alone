@@ -5,27 +5,26 @@ using System.Threading;
 using System.Windows.Forms;
 using IPAddress;
 using FTPClient;
-using Одиноко_проживающие;
 using System.Net;
 using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace Одиноко_проживающие
 {
     internal class Update
     {
-        LoadProgram _load;
-        private string _programName = "Одиноко_проживающие_update.exe";
-        private string _server;
+        BackgroundWorker _backgroundWorker1;
+        private readonly string _programName = "Одиноко_проживающие_update.exe";
+        private readonly string _server = "86.57.207.146";
         public FTP_Client ftp = new FTP_Client();
 
-        public Update(string server, LoadProgram load)
+        public Update(BackgroundWorker backgroundWorker1)
         {
             try
             {
-                _server = server;
-                _load = load;
+                _backgroundWorker1 = backgroundWorker1;
                 ScanFile();
             }
             catch (Exception ex)
@@ -49,13 +48,14 @@ namespace Одиноко_проживающие
             }
 
             var network = new NetworkShareAccesser();
-            _load.SetLabel("Проверка доступности локального сервера");
+            _backgroundWorker1.ReportProgress(0, "Считывание обновлений");
             network.SaveACopy(@"\\S1\Alldoc\Install\Программы\Обновления\Одиноко проживающие\", Path.Combine(Application.StartupPath, "Temp"), 1500);
             Thread.Sleep(2500);
 
             DirectoryInfo di = new DirectoryInfo(Path.Combine(Application.StartupPath, "Temp"));
             FileInfo[] files = di.GetFiles();
-            if(files.Length != 0)
+            _backgroundWorker1.ReportProgress(0, "Считывание новых файлов.");
+            if (files.Length != 0)
             {
                 UpdateProgram();
             }
@@ -70,7 +70,7 @@ namespace Одиноко_проживающие
                     MessageBox.Show(
                     @"Произошла ошибка при обновлении. Обратитесь к разработчику.",
                     @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    new Configuration().ShowDialog();
+                    new Configuration("base", null, true).ShowDialog();
                     var commandClient = new CommandClient();
                     commandClient.WriteFileError(ex, "Обновление");
                 }
@@ -82,12 +82,11 @@ namespace Одиноко_проживающие
             ftp.Host = _server;
 
             FileStruct[] _fileL = ftp.ListDirectory(null);
-            _load.SetProgressVisible(true);
             foreach(FileStruct s in _fileL)
             {
-                _load.SetLabel("Скачивание: " + s.Name);
-                _load.SetProgressValue(0);
-                ftp.DownloadFile(null, s.Name, Path.Combine(Application.StartupPath, "Temp"), _load);
+                _backgroundWorker1.ReportProgress(0, "Скачивание: " + s.Name);
+                //                _load.SetProgressValue(0);
+                ftp.DownloadFile(null, s.Name, Path.Combine(Application.StartupPath, "Temp"), _backgroundWorker1);
             }
         }
 
@@ -122,15 +121,7 @@ namespace FTPClient
 {
     public class FTP_Client
     {
-        LoadProgram _load;
-        //поле для хранения имени фтп-сервера
-        private string _Host;
-
-        //поле для хранения логина
-        private string _UserName;
-
-        //поле для хранения пароля
-        private string _Password;
+        BackgroundWorker _backgroundWorker1;
 
         //объект для запроса данных
         FtpWebRequest ftpRequest;
@@ -139,56 +130,11 @@ namespace FTPClient
         FtpWebResponse ftpResponse;
 
         //флаг использования SSL
-        private bool _UseSSL = false;
+        private readonly bool _UseSSL = false;
 
         //фтп-сервер
-        public string Host
-        {
-            get
-            {
-                return _Host;
-            }
-            set
-            {
-                _Host = value;
-            }
-        }
-        //логин
-        public string UserName
-        {
-            get
-            {
-                return _UserName;
-            }
-            set
-            {
-                _UserName = value;
-            }
-        }
-        //пароль
-        public string Password
-        {
-            get
-            {
-                return _Password;
-            }
-            set
-            {
-                _Password = value;
-            }
-        }
-        //Для установки SSL-чтобы данные нельзя было перехватить
-        public bool UseSSL
-        {
-            get
-            {
-                return _UseSSL;
-            }
-            set
-            {
-                _UseSSL = value;
-            }
-        }
+        public string Host { get; set; }
+
         //Реализеум команду LIST для получения подробного списока файлов на FTP-сервере
         public FileStruct[] ListDirectory(string path)
         {
@@ -197,9 +143,9 @@ namespace FTPClient
                 path = "/";
             }
             //Создаем объект запроса
-            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + _Host + path);
+            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + Host + path);
             //логин и пароль
-            ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+            ftpRequest.Credentials = new NetworkCredential("", "");
             //команда фтп LIST
             ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
 
@@ -220,25 +166,23 @@ namespace FTPClient
         }
 
         //метод протокола FTP RETR для загрузки файла с FTP-сервера
-        public void DownloadFile(string path, string fileName, string output, LoadProgram load)
+        public void DownloadFile(string path, string fileName, string output, BackgroundWorker backgroundWorker1)
         {
 
-            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + _Host + path + "/" + fileName);
+            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + Host + path + "/" + fileName);
 
-            ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+            ftpRequest.Credentials = new NetworkCredential("", "");
             //команда фтп RETR
             ftpRequest.Method = WebRequestMethods.Ftp.GetFileSize;
             FtpWebResponse respSize = (FtpWebResponse)ftpRequest.GetResponse();
+            //размер файла
             long sizeSrc = respSize.ContentLength;
             ftpResponse.Close();
-            _load = load;
-            double proc = sizeSrc / 1024.0000;
-            double one_proc = 100.0000 / proc;
-            double summ = 0.00000;
+            _backgroundWorker1 = backgroundWorker1;
 
-            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + _Host + path + "/" + fileName);
+            ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + Host + path + "/" + fileName);
 
-            ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+            ftpRequest.Credentials = new NetworkCredential("", "");
             ftpRequest.Method = WebRequestMethods.Ftp.DownloadFile;
 
             ftpRequest.EnableSsl = _UseSSL;
@@ -253,11 +197,13 @@ namespace FTPClient
             byte[] buffer = new byte[1024];
             int size = 0;
 
+            double check_sum = 0.00000;
             while ((size = responseStream.Read(buffer, 0, 1024)) > 0)
             {
-                summ += one_proc;
+                check_sum += size;
+                
                 downloadedFile.Write(buffer, 0, size);
-                _load.SetProgressValue((int)summ);
+                _backgroundWorker1.ReportProgress((int)(check_sum/ sizeSrc * 100), null);
             }
             ftpResponse.Close();
             downloadedFile.Close();
@@ -318,22 +264,6 @@ namespace FTPClient
             }
         }
 
-        public FileStruct[] DirectoryList
-        {
-            get
-            {
-                List<FileStruct> _dirList = new List<FileStruct>();
-                foreach (FileStruct thisstruct in _myListArray)
-                {
-                    if (thisstruct.IsDirectory)
-                    {
-                        _dirList.Add(thisstruct);
-                    }
-                }
-                return _dirList.ToArray();
-            }
-        }
-
         public DirectoryListParser(string responseString)
         {
             _myListArray = GetList(responseString);
@@ -349,8 +279,10 @@ namespace FTPClient
             {
                 if (_directoryListStyle != FileListStyle.Unknown && s != "")
                 {
-                    FileStruct f = new FileStruct();
-                    f.Name = "..";
+                    FileStruct f = new FileStruct
+                    {
+                        Name = ".."
+                    };
                     switch (_directoryListStyle)
                     {
                         case FileListStyle.WindowsStyle:
@@ -416,14 +348,6 @@ namespace FTPClient
                 }
             }
             return FileListStyle.Unknown;
-        }
-
-        private string _cutSubstringFromStringWithTrim(ref string s, char c, int startIndex)
-        {
-            int pos1 = s.IndexOf(c, startIndex);
-            string retString = s.Substring(0, pos1);
-            s = (s.Substring(pos1)).Trim();
-            return retString;
         }
     }
 }

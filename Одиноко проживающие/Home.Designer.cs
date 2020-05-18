@@ -54,7 +54,6 @@ namespace Одиноко_проживающие
             this.выбывшиеToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
             this.обследованиеToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
             this.справкаToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
-            this.разработчикToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
             this.сервисToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
             this.дубликатыToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
             this.статистикаToolStripMenuItem = new Telerik.WinControls.UI.RadMenuItem();
@@ -220,12 +219,6 @@ namespace Одиноко_проживающие
             this.справкаToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Text = "Справка";
-            // 
-            // разработчикToolStripMenuItem
-            // 
-            this.разработчикToolStripMenuItem.Name = "разработчикToolStripMenuItem";
-            this.разработчикToolStripMenuItem.Text = "Разработчик";
-            this.разработчикToolStripMenuItem.Click += new System.EventHandler(this.Programmer);
             // 
             // сервисToolStripMenuItem
             // 
@@ -424,7 +417,7 @@ namespace Одиноко_проживающие
             this.radMenuItem10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.radMenuItem10.Name = "radMenuItem10";
             this.radMenuItem10.Text = "Диагноз инвалидности";
-            this.radMenuItem10.Click += new System.EventHandler(this.radMenuItem10_Click_1);
+            this.radMenuItem10.Click += new System.EventHandler(this.RadMenuItem10_Click_1);
             // 
             // radMenuItem5
             // 
@@ -476,7 +469,7 @@ namespace Одиноко_проживающие
             this.radMenuItem8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radMenuItem8.Name = "radMenuItem8";
             this.radMenuItem8.Text = "Сверка умерших";
-            this.radMenuItem8.Click += new System.EventHandler(this.radMenuItem8_Click);
+            this.radMenuItem8.Click += new System.EventHandler(this.RadMenuItem8_Click);
             // 
             // radMenu1
             // 
@@ -515,6 +508,7 @@ namespace Одиноко_проживающие
             this.Text = "Главное окно";
             this.ThemeName = "TelerikMetro";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Home_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
@@ -530,7 +524,6 @@ namespace Одиноко_проживающие
         private RadMenuItem менюToolStripMenuItem;
         private RadMenuItem поискToolStripMenuItem;
         private RadMenuItem справкаToolStripMenuItem;
-        private RadMenuItem разработчикToolStripMenuItem;
         private RadMenuItem поФамилииToolStripMenuItem;
         private RadMenuItem выездыСпециолистовToolStripMenuItem;
         private RadMenuItem количествоToolStripMenuItem;

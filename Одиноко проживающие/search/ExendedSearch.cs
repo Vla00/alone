@@ -100,7 +100,7 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void сформироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СформироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             #region
@@ -424,7 +424,7 @@ namespace Одиноко_проживающие.search
             Show();
         }
 
-        private void radCheckBox_Click(object sender, EventArgs e)
+        private void RadCheckBox_Click(object sender, EventArgs e)
         {
             var checkBox = (RadCheckBox)sender;
             var text = checkBox.Text;
@@ -443,7 +443,7 @@ namespace Одиноко_проживающие.search
                 _help.Remove(e.Node.Text);
         }
 
-        private void checkBox7_Click(object sender, EventArgs e)
+        private void CheckBox7_Click(object sender, EventArgs e)
         {
             if (checkBox7.Checked)
                 numericUpDown2.Enabled = false;
@@ -451,7 +451,7 @@ namespace Одиноко_проживающие.search
                 numericUpDown2.Enabled = true;
         }
 
-        private void checkBox6_Click(object sender, EventArgs e)
+        private void CheckBox6_Click(object sender, EventArgs e)
         {
             if (checkBox6.Checked)
                 numericUpDown3.Enabled = false;
@@ -459,7 +459,7 @@ namespace Одиноко_проживающие.search
                 numericUpDown3.Enabled = true;
         }
 
-        private void radTreeView1_NodeCheckedChanged(object sender, TreeNodeCheckedEventArgs e)
+        private void RadTreeView1_NodeCheckedChanged(object sender, TreeNodeCheckedEventArgs e)
         {
             if (e.Node.Nodes.Count > 0)
             {
@@ -493,7 +493,7 @@ namespace Одиноко_проживающие.search
             GC.WaitForPendingFinalizers();
         }
 
-        private void radCheckBox39_Click(object sender, EventArgs e)
+        private void RadCheckBox39_Click(object sender, EventArgs e)
         {
             if(radCheckBox39.Checked)
             {
@@ -508,7 +508,7 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void radCheckBox40_Click(object sender, EventArgs e)
+        private void RadCheckBox40_Click(object sender, EventArgs e)
         {
             RadRadioButton check = (RadRadioButton)sender;
             if(check.Text == "Все")
@@ -522,12 +522,12 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void radDateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void RadDateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             SendKeys.Send(".");
         }
 
-        private void arch_radio_CheckStateChanged(object sender, EventArgs e)
+        private void Arch_radio_CheckStateChanged(object sender, EventArgs e)
         {
             radCheckBox14.Enabled = arch_radio.IsChecked;
             radCheckBox15.Enabled = arch_radio.IsChecked;
@@ -541,13 +541,13 @@ namespace Одиноко_проживающие.search
             _statusArh = arch_radio.IsChecked;
         }
 
-        private void radCheckBox14_CheckStateChanged(object sender, EventArgs e)
+        private void RadCheckBox14_CheckStateChanged(object sender, EventArgs e)
         {
             dateTimePicker5.Enabled = radCheckBox14.Checked;
             _statusS = radCheckBox14.Checked;
         }
 
-        private void radCheckBox15_CheckStateChanged(object sender, EventArgs e)
+        private void RadCheckBox15_CheckStateChanged(object sender, EventArgs e)
         {
             dateTimePicker6.Enabled = radCheckBox15.Checked;
             _statusPo = radCheckBox15.Checked;

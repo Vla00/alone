@@ -160,8 +160,10 @@ namespace Одиноко_проживающие.search
                         {
                             if (_close != 0)
                             {
-                                ConditionalFormattingObject obj2 = new ConditionalFormattingObject("DateCondition1", ConditionTypes.NotEqual, null, null, true);
-                                obj2.RowBackColor = Color.Goldenrod;
+                                ConditionalFormattingObject obj2 = new ConditionalFormattingObject("DateCondition1", ConditionTypes.NotEqual, null, null, true)
+                                {
+                                    RowBackColor = Color.Goldenrod
+                                };
                                 radGridView1.Columns["Выезд"].ConditionalFormattingObjectList.Add(obj2);
                                 radGridView1.Columns["Выезд"].FormatString = "{0:dd/MM/yyyy}";
                             }
@@ -176,8 +178,10 @@ namespace Одиноко_проживающие.search
                         {
                             if (_close != 0)
                             {
-                                ConditionalFormattingObject obj = new ConditionalFormattingObject("DateCondition", ConditionTypes.NotEqual, null, null, true);
-                                obj.RowBackColor = Color.LightCoral;
+                                ConditionalFormattingObject obj = new ConditionalFormattingObject("DateCondition", ConditionTypes.NotEqual, null, null, true)
+                                {
+                                    RowBackColor = Color.LightCoral
+                                };
                                 radGridView1.Columns["Смерть"].ConditionalFormattingObjectList.Add(obj);
                                 radGridView1.Columns["Смерть"].FormatString = "{0:dd/MM/yyyy}";
                             }
@@ -229,12 +233,12 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void radGridView1_FilterChanged(object sender, GridViewCollectionChangedEventArgs e)
+        private void RadGridView1_FilterChanged(object sender, GridViewCollectionChangedEventArgs e)
         {
             radLabelElement1.Text = @"Записей: " + radGridView1.MasterTemplate.DataView.ItemCount;
         }
 
-        private void radButtonElement1_Click(object sender, EventArgs e)
+        private void RadButtonElement1_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "*.xls|*.xls";
             saveFileDialog1.FileName = "export";
@@ -264,14 +268,16 @@ namespace Одиноко_проживающие.search
                     radGridView1.Columns["Дата над. обсл."].ExcelExportFormatString = "dd.MM.yyyy";
                 }
 
-                ExportToExcelML exporter = new ExportToExcelML(radGridView1);
-                exporter.PagingExportOption = PagingExportOption.AllPages;
+                ExportToExcelML exporter = new ExportToExcelML(radGridView1)
+                {
+                    PagingExportOption = PagingExportOption.AllPages
+                };
                 exporter.RunExport(saveFileDialog1.FileName);                
                 System.Diagnostics.Process.Start(saveFileDialog1.FileName);
             }
         }
 
-        private void radGridView1_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        private void RadGridView1_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
             if(e.RowIndex > -1)
             {
@@ -289,10 +295,9 @@ namespace Одиноко_проживающие.search
             }
         }
 
-        private void radGridView1_FilterPopupInitialized(object sender, FilterPopupInitializedEventArgs e)
+        private void RadGridView1_FilterPopupInitialized(object sender, FilterPopupInitializedEventArgs e)
         {
-            RadListFilterPopup popup = e.FilterPopup as RadListFilterPopup;
-            if(popup != null)
+            if (e.FilterPopup is RadListFilterPopup popup)
             {
                 foreach (RadItem item in popup.Items)
                 {
@@ -300,7 +305,7 @@ namespace Одиноко_проживающие.search
                     {
                         item.Visibility = ElementVisibility.Collapsed;
                     }
-                }             
+                }
             }
         }
 

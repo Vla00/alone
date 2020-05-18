@@ -45,7 +45,7 @@
             this.radButton2.Size = new System.Drawing.Size(352, 24);
             this.radButton2.TabIndex = 1;
             this.radButton2.Text = "сформировать и показать на: ";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.radButton2.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // radDropDownList1
             // 
@@ -54,7 +54,7 @@
             this.radDropDownList1.Size = new System.Drawing.Size(236, 20);
             this.radDropDownList1.TabIndex = 2;
             this.radDropDownList1.Text = "radDropDownList1";
-            this.radDropDownList1.SelectedIndexChanging += new Telerik.WinControls.UI.Data.PositionChangingEventHandler(this.radDropDownList1_SelectedIndexChanging);
+            this.radDropDownList1.SelectedIndexChanging += new Telerik.WinControls.UI.Data.PositionChangingEventHandler(this.RadDropDownList1_SelectedIndexChanging);
             // 
             // radButton3
             // 
@@ -63,7 +63,7 @@
             this.radButton3.Size = new System.Drawing.Size(110, 20);
             this.radButton3.TabIndex = 3;
             this.radButton3.Text = "показать";
-            this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
+            this.radButton3.Click += new System.EventHandler(this.RadButton3_Click);
             // 
             // Statistic
             // 

@@ -306,7 +306,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker4.Name = "dateTimePicker4";
             this.dateTimePicker4.Size = new System.Drawing.Size(107, 20);
             this.dateTimePicker4.TabIndex = 3;
-            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // dateTimePicker3
             // 
@@ -317,7 +317,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(107, 20);
             this.dateTimePicker3.TabIndex = 2;
-            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // radCheckBox39
             // 
@@ -325,7 +325,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox39.Name = "radCheckBox39";
             this.radCheckBox39.Size = new System.Drawing.Size(15, 15);
             this.radCheckBox39.TabIndex = 1;
-            this.radCheckBox39.Click += new System.EventHandler(this.radCheckBox39_Click);
+            this.radCheckBox39.Click += new System.EventHandler(this.RadCheckBox39_Click);
             // 
             // radTreeView2
             // 
@@ -383,7 +383,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(215, 20);
             this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -393,7 +393,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(215, 20);
             this.dateTimePicker2.TabIndex = 2;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // radTreeView1
             // 
@@ -405,7 +405,7 @@ namespace Одиноко_проживающие.search
             this.radTreeView1.TabIndex = 0;
             this.radTreeView1.Text = "radTreeView1";
             this.radTreeView1.ThemeName = "TelerikMetro";
-            this.radTreeView1.NodeCheckedChanged += new Telerik.WinControls.UI.TreeNodeCheckedEventHandler(this.radTreeView1_NodeCheckedChanged);
+            this.radTreeView1.NodeCheckedChanged += new Telerik.WinControls.UI.TreeNodeCheckedEventHandler(this.RadTreeView1_NodeCheckedChanged);
             // 
             // radPageViewPage2
             // 
@@ -456,7 +456,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox42.TabIndex = 2;
             this.radCheckBox42.Text = "Находится на надомном обслуживании";
             this.radCheckBox42.ThemeName = "TelerikMetro";
-            this.radCheckBox42.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox42.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox6
             // 
@@ -468,7 +468,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox6.TabIndex = 18;
             this.radCheckBox6.Text = "Уход по линии управления";
             this.radCheckBox6.ThemeName = "TelerikMetro";
-            this.radCheckBox6.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox6.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radGroupBox5
             // 
@@ -498,7 +498,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox8.Text = "Граждане пожилого возраста проживающие с лицами асоциального поведения";
             this.radCheckBox8.TextWrap = true;
             this.radCheckBox8.ThemeName = "TelerikMetro";
-            this.radCheckBox8.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox8.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox9
             // 
@@ -510,7 +510,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox9.TabIndex = 4;
             this.radCheckBox9.Text = "Лица из числа детей-сирот и детей от 18 до 23 лет";
             this.radCheckBox9.ThemeName = "TelerikMetro";
-            this.radCheckBox9.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox9.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox10
             // 
@@ -522,7 +522,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox10.TabIndex = 2;
             this.radCheckBox10.Text = "СОП";
             this.radCheckBox10.ThemeName = "TelerikMetro";
-            this.radCheckBox10.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox10.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox11
             // 
@@ -534,7 +534,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox11.TabIndex = 3;
             this.radCheckBox11.Text = "Лица, освободившиеся из мест лишения свободы";
             this.radCheckBox11.ThemeName = "TelerikMetro";
-            this.radCheckBox11.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox11.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox12
             // 
@@ -546,7 +546,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox12.TabIndex = 1;
             this.radCheckBox12.Text = "Граждане пожилого возраста, злоупотребляющие спиртными напитками";
             this.radCheckBox12.ThemeName = "TelerikMetro";
-            this.radCheckBox12.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox12.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox13
             // 
@@ -558,7 +558,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox13.TabIndex = 0;
             this.radCheckBox13.Text = "Семьи, воспитывающие детей-инвалидов в возрасте до 18 лет";
             this.radCheckBox13.ThemeName = "TelerikMetro";
-            this.radCheckBox13.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox13.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radGroupBox6
             // 
@@ -588,7 +588,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox37.TabIndex = 22;
             this.radCheckBox37.Text = "Инвалид по зрению";
             this.radCheckBox37.ThemeName = "TelerikMetro";
-            this.radCheckBox37.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox37.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox5
             // 
@@ -600,7 +600,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox5.TabIndex = 3;
             this.radCheckBox5.Text = "Инвалид с детства";
             this.radCheckBox5.ThemeName = "TelerikMetro";
-            this.radCheckBox5.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox5.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox38
             // 
@@ -612,7 +612,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox38.TabIndex = 21;
             this.radCheckBox38.Text = "Инвалид по слуху";
             this.radCheckBox38.ThemeName = "TelerikMetro";
-            this.radCheckBox38.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox38.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox3
             // 
@@ -624,7 +624,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox3.TabIndex = 5;
             this.radCheckBox3.Text = "Колясочник";
             this.radCheckBox3.ThemeName = "TelerikMetro";
-            this.radCheckBox3.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox3.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox25
             // 
@@ -636,7 +636,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox25.TabIndex = 0;
             this.radCheckBox25.Text = "Инвалид I группы";
             this.radCheckBox25.ThemeName = "TelerikMetro";
-            this.radCheckBox25.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox25.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox29
             // 
@@ -648,7 +648,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox29.TabIndex = 2;
             this.radCheckBox29.Text = "Инвалид III группы";
             this.radCheckBox29.ThemeName = "TelerikMetro";
-            this.radCheckBox29.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox29.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox27
             // 
@@ -660,7 +660,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox27.TabIndex = 1;
             this.radCheckBox27.Text = "Инвалид II группы";
             this.radCheckBox27.ThemeName = "TelerikMetro";
-            this.radCheckBox27.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox27.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radGroupBox7
             // 
@@ -688,7 +688,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox19.TabIndex = 4;
             this.radCheckBox19.Text = "Тыловик";
             this.radCheckBox19.ThemeName = "TelerikMetro";
-            this.radCheckBox19.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox19.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox20
             // 
@@ -700,7 +700,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox20.TabIndex = 0;
             this.radCheckBox20.Text = "Инвалид ВОВ";
             this.radCheckBox20.ThemeName = "TelerikMetro";
-            this.radCheckBox20.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox20.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox21
             // 
@@ -712,7 +712,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox21.TabIndex = 1;
             this.radCheckBox21.Text = "Участник ВОВ";
             this.radCheckBox21.ThemeName = "TelerikMetro";
-            this.radCheckBox21.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox21.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox22
             // 
@@ -724,7 +724,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox22.TabIndex = 3;
             this.radCheckBox22.Text = "СПВ";
             this.radCheckBox22.ThemeName = "TelerikMetro";
-            this.radCheckBox22.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox22.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox23
             // 
@@ -736,7 +736,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox23.TabIndex = 2;
             this.radCheckBox23.Text = "Узник";
             this.radCheckBox23.ThemeName = "TelerikMetro";
-            this.radCheckBox23.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox23.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radGroupBox8
             // 
@@ -774,7 +774,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox7.TabIndex = 21;
             this.radCheckBox7.Text = "Не учитывать";
             this.radCheckBox7.ThemeName = "TelerikMetro";
-            this.radCheckBox7.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox7.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox4
             // 
@@ -786,7 +786,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox4.TabIndex = 20;
             this.radCheckBox4.Text = "Пенсионер ...-69 лет";
             this.radCheckBox4.ThemeName = "TelerikMetro";
-            this.radCheckBox4.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox4.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox2
             // 
@@ -798,7 +798,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox2.TabIndex = 19;
             this.radCheckBox2.Text = "Не пенсионер";
             this.radCheckBox2.ThemeName = "TelerikMetro";
-            this.radCheckBox2.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox2.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox17
             // 
@@ -810,7 +810,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox17.TabIndex = 1;
             this.radCheckBox17.Text = "Одиноко проживающий";
             this.radCheckBox17.ThemeName = "TelerikMetro";
-            this.radCheckBox17.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox17.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox41
             // 
@@ -822,7 +822,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox41.TabIndex = 17;
             this.radCheckBox41.Text = "Пенсионер 70-79 лет";
             this.radCheckBox41.ThemeName = "TelerikMetro";
-            this.radCheckBox41.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox41.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox1
             // 
@@ -834,7 +834,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox1.TabIndex = 18;
             this.radCheckBox1.Text = "Пенсионер";
             this.radCheckBox1.ThemeName = "TelerikMetro";
-            this.radCheckBox1.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox1.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox24
             // 
@@ -846,7 +846,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox24.TabIndex = 16;
             this.radCheckBox24.Text = "Дети за пределами нас. пункта";
             this.radCheckBox24.ThemeName = "TelerikMetro";
-            this.radCheckBox24.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox24.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox18
             // 
@@ -858,7 +858,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox18.TabIndex = 0;
             this.radCheckBox18.Text = "Одинокий";
             this.radCheckBox18.ThemeName = "TelerikMetro";
-            this.radCheckBox18.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox18.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox26
             // 
@@ -870,7 +870,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox26.TabIndex = 15;
             this.radCheckBox26.Text = "Дети за пределами сельисполкома";
             this.radCheckBox26.ThemeName = "TelerikMetro";
-            this.radCheckBox26.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox26.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox28
             // 
@@ -882,7 +882,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox28.TabIndex = 14;
             this.radCheckBox28.Text = "Дети за пределами РБ";
             this.radCheckBox28.ThemeName = "TelerikMetro";
-            this.radCheckBox28.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox28.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox30
             // 
@@ -894,7 +894,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox30.TabIndex = 11;
             this.radCheckBox30.Text = "Пенсионер 100-... лет";
             this.radCheckBox30.ThemeName = "TelerikMetro";
-            this.radCheckBox30.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox30.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox32
             // 
@@ -906,7 +906,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox32.TabIndex = 10;
             this.radCheckBox32.Text = "Пенсионер 90-99 лет";
             this.radCheckBox32.ThemeName = "TelerikMetro";
-            this.radCheckBox32.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox32.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radCheckBox34
             // 
@@ -918,7 +918,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox34.TabIndex = 9;
             this.radCheckBox34.Text = "Пенсионер 80-89 лет";
             this.radCheckBox34.ThemeName = "TelerikMetro";
-            this.radCheckBox34.Click += new System.EventHandler(this.radCheckBox_Click);
+            this.radCheckBox34.Click += new System.EventHandler(this.RadCheckBox_Click);
             // 
             // radPageViewPage4
             // 
@@ -996,7 +996,7 @@ namespace Одиноко_проживающие.search
             this.radRadioButton6.TabStop = false;
             this.radRadioButton6.Text = "Не обследованные";
             this.radRadioButton6.ThemeName = "TelerikMetro";
-            this.radRadioButton6.Click += new System.EventHandler(this.radCheckBox40_Click);
+            this.radRadioButton6.Click += new System.EventHandler(this.RadCheckBox40_Click);
             // 
             // radRadioButton5
             // 
@@ -1007,7 +1007,7 @@ namespace Одиноко_проживающие.search
             this.radRadioButton5.TabStop = false;
             this.radRadioButton5.Text = "Обследованные";
             this.radRadioButton5.ThemeName = "TelerikMetro";
-            this.radRadioButton5.Click += new System.EventHandler(this.radCheckBox40_Click);
+            this.radRadioButton5.Click += new System.EventHandler(this.RadCheckBox40_Click);
             // 
             // radRadioButton4
             // 
@@ -1020,7 +1020,7 @@ namespace Одиноко_проживающие.search
             this.radRadioButton4.Text = "Все";
             this.radRadioButton4.ThemeName = "TelerikMetro";
             this.radRadioButton4.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
-            this.radRadioButton4.Click += new System.EventHandler(this.radCheckBox40_Click);
+            this.radRadioButton4.Click += new System.EventHandler(this.RadCheckBox40_Click);
             // 
             // radDateTimePicker2
             // 
@@ -1032,7 +1032,7 @@ namespace Одиноко_проживающие.search
             this.radDateTimePicker2.Size = new System.Drawing.Size(162, 20);
             this.radDateTimePicker2.TabIndex = 3;
             this.radDateTimePicker2.TabStop = false;
-            this.radDateTimePicker2.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.radDateTimePicker2.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // radDateTimePicker1
             // 
@@ -1044,7 +1044,7 @@ namespace Одиноко_проживающие.search
             this.radDateTimePicker1.Size = new System.Drawing.Size(162, 20);
             this.radDateTimePicker1.TabIndex = 2;
             this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.radDateTimePicker1.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // label1
             // 
@@ -1133,7 +1133,7 @@ namespace Одиноко_проживающие.search
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "СЗУ";
             this.checkBox6.ThemeName = "TelerikMetro";
-            this.checkBox6.Click += new System.EventHandler(this.checkBox6_Click);
+            this.checkBox6.Click += new System.EventHandler(this.CheckBox6_Click);
             // 
             // checkBox7
             // 
@@ -1145,14 +1145,14 @@ namespace Одиноко_проживающие.search
             this.checkBox7.TabIndex = 7;
             this.checkBox7.Text = "АПИ";
             this.checkBox7.ThemeName = "TelerikMetro";
-            this.checkBox7.Click += new System.EventHandler(this.checkBox7_Click);
+            this.checkBox7.Click += new System.EventHandler(this.CheckBox7_Click);
             // 
             // сформироватьToolStripMenuItem
             // 
             this.сформироватьToolStripMenuItem.Name = "сформироватьToolStripMenuItem";
             this.сформироватьToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
             this.сформироватьToolStripMenuItem.Text = "Сформировать";
-            this.сформироватьToolStripMenuItem.Click += new System.EventHandler(this.сформироватьToolStripMenuItem_Click);
+            this.сформироватьToolStripMenuItem.Click += new System.EventHandler(this.СформироватьToolStripMenuItem_Click);
             // 
             // radioButton2
             // 
@@ -1214,7 +1214,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox15.Size = new System.Drawing.Size(33, 18);
             this.radCheckBox15.TabIndex = 26;
             this.radCheckBox15.Text = "по";
-            this.radCheckBox15.CheckStateChanged += new System.EventHandler(this.radCheckBox15_CheckStateChanged);
+            this.radCheckBox15.CheckStateChanged += new System.EventHandler(this.RadCheckBox15_CheckStateChanged);
             // 
             // radCheckBox14
             // 
@@ -1224,7 +1224,7 @@ namespace Одиноко_проживающие.search
             this.radCheckBox14.Size = new System.Drawing.Size(25, 18);
             this.radCheckBox14.TabIndex = 25;
             this.radCheckBox14.Text = "с";
-            this.radCheckBox14.CheckStateChanged += new System.EventHandler(this.radCheckBox14_CheckStateChanged);
+            this.radCheckBox14.CheckStateChanged += new System.EventHandler(this.RadCheckBox14_CheckStateChanged);
             // 
             // dateTimePicker6
             // 
@@ -1235,7 +1235,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker6.Name = "dateTimePicker6";
             this.dateTimePicker6.Size = new System.Drawing.Size(99, 20);
             this.dateTimePicker6.TabIndex = 22;
-            this.dateTimePicker6.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker6.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // dateTimePicker5
             // 
@@ -1246,7 +1246,7 @@ namespace Одиноко_проживающие.search
             this.dateTimePicker5.Name = "dateTimePicker5";
             this.dateTimePicker5.Size = new System.Drawing.Size(99, 20);
             this.dateTimePicker5.TabIndex = 21;
-            this.dateTimePicker5.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dateTimePicker5.ValueChanged += new System.EventHandler(this.RadDateTimePicker1_ValueChanged);
             // 
             // view_radio
             // 
@@ -1268,7 +1268,7 @@ namespace Одиноко_проживающие.search
             this.arch_radio.TabStop = false;
             this.arch_radio.Text = "Архивные";
             this.arch_radio.ThemeName = "TelerikMetro";
-            this.arch_radio.CheckStateChanged += new System.EventHandler(this.arch_radio_CheckStateChanged);
+            this.arch_radio.CheckStateChanged += new System.EventHandler(this.Arch_radio_CheckStateChanged);
             // 
             // radMenu1
             // 
@@ -1286,7 +1286,7 @@ namespace Одиноко_проживающие.search
             // 
             this.radMenuButtonItem1.Name = "radMenuButtonItem1";
             this.radMenuButtonItem1.Text = "Сформировать";
-            this.radMenuButtonItem1.Click += new System.EventHandler(this.сформироватьToolStripMenuItem_Click);
+            this.radMenuButtonItem1.Click += new System.EventHandler(this.СформироватьToolStripMenuItem_Click);
             // 
             // ExendedSearch
             // 

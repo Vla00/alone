@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Configuration));
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radButton5 = new Telerik.WinControls.UI.RadButton();
@@ -44,8 +45,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radCheckBox1 = new Telerik.WinControls.UI.RadCheckBox();
             this.radButton6 = new Telerik.WinControls.UI.RadButton();
+            this.radCheckBox1 = new Telerik.WinControls.UI.RadCheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.user_text = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +58,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             this.radPageViewPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -90,7 +91,7 @@
             this.radPageViewPage1.Controls.Add(this.label5);
             this.radPageViewPage1.Controls.Add(this.label4);
             this.radPageViewPage1.Controls.Add(this.label3);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(131F, 25F);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(133F, 45F);
             this.radPageViewPage1.Location = new System.Drawing.Point(305, 4);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(364, 208);
@@ -104,7 +105,7 @@
             this.radButton5.Size = new System.Drawing.Size(74, 31);
             this.radButton5.TabIndex = 16;
             this.radButton5.Text = "корп.";
-            this.radButton5.Click += new System.EventHandler(this.radButton5_Click);
+            this.radButton5.Click += new System.EventHandler(this.RadButton5_Click);
             // 
             // radButton1
             // 
@@ -114,7 +115,7 @@
             this.radButton1.Size = new System.Drawing.Size(97, 31);
             this.radButton1.TabIndex = 15;
             this.radButton1.Text = "интернет";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.radButton1.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // textBox_port
             // 
@@ -141,7 +142,7 @@
             this.radButton2.Size = new System.Drawing.Size(358, 28);
             this.radButton2.TabIndex = 10;
             this.radButton2.Text = "проверить подключение";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.radButton2.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // textBox_password
             // 
@@ -217,8 +218,8 @@
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.Controls.Add(this.radCheckBox1);
             this.radPageViewPage2.Controls.Add(this.radButton6);
+            this.radPageViewPage2.Controls.Add(this.radCheckBox1);
             this.radPageViewPage2.Controls.Add(this.label8);
             this.radPageViewPage2.Controls.Add(this.user_text);
             this.radPageViewPage2.Controls.Add(this.numericUpDown1);
@@ -229,24 +230,24 @@
             this.radPageViewPage2.Size = new System.Drawing.Size(364, 208);
             this.radPageViewPage2.Text = "Личные данные";
             // 
-            // radCheckBox1
-            // 
-            this.radCheckBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.radCheckBox1.Location = new System.Drawing.Point(7, 43);
-            this.radCheckBox1.Name = "radCheckBox1";
-            this.radCheckBox1.Size = new System.Drawing.Size(168, 25);
-            this.radCheckBox1.TabIndex = 12;
-            this.radCheckBox1.Text = "Автопоиск сервера";
-            this.radCheckBox1.CheckStateChanged += new System.EventHandler(this.radCheckBox1_CheckStateChanged);
-            // 
             // radButton6
             // 
-            this.radButton6.Location = new System.Drawing.Point(7, 74);
+            this.radButton6.Location = new System.Drawing.Point(7, 62);
             this.radButton6.Name = "radButton6";
             this.radButton6.Size = new System.Drawing.Size(354, 26);
             this.radButton6.TabIndex = 11;
             this.radButton6.Text = "сохранить";
-            this.radButton6.Click += new System.EventHandler(this.radButton6_Click);
+            this.radButton6.Click += new System.EventHandler(this.SaveUserButton);
+            // 
+            // radCheckBox1
+            // 
+            this.radCheckBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.radCheckBox1.Location = new System.Drawing.Point(7, 31);
+            this.radCheckBox1.Name = "radCheckBox1";
+            this.radCheckBox1.Size = new System.Drawing.Size(168, 25);
+            this.radCheckBox1.TabIndex = 12;
+            this.radCheckBox1.Text = "Автопоиск сервера";
+            this.radCheckBox1.CheckStateChanged += new System.EventHandler(this.RadCheckBox1_CheckStateChanged);
             // 
             // label8
             // 
@@ -291,14 +292,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 240);
+            this.ClientSize = new System.Drawing.Size(692, 240);
             this.Controls.Add(this.radPageView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Configuration";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Настройка программы";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Configuration_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
@@ -309,8 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             this.radPageViewPage2.ResumeLayout(false);
             this.radPageViewPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

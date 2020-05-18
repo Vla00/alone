@@ -4,6 +4,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.Themes;
 using Одиноко_проживающие.all;
 using Одиноко_проживающие.handbook;
+using Одиноко_проживающие.Load;
 using Одиноко_проживающие.search;
 using Одиноко_проживающие.service;
 using Одиноко_проживающие.Service;
@@ -12,33 +13,41 @@ namespace Одиноко_проживающие
 {
     public partial class Home : Telerik.WinControls.UI.RadForm
     {
+        public ProgramLoad _load;
         
         TelerikMetroTheme theme = new TelerikMetroTheme();
 
+        public static ConfigurationProgramConn programConn;
+
         #region Конструктор
-        public Home(string version)
-        {
-            InitializeComponent();
-            Text = Text + ". Версия программы " + version;
 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+        private void Home_Load(object sender, EventArgs e)
+        {
+            ///TODO отклюючить видимость формы
+            Hide();
+            _load = new ProgramLoad();
+           // programConn = _load.ConfigurationProgramReturn();
+            Show();
+            Text = Text + ". Версия программы " + _load._version;
         }
 
-        public Home(string[] args, string version)
+        public Home(string[] args)
         {
             InitializeComponent();
-            Text = Text + ". Версия программы " + version;
-
-            try
+            
+            if(args != null)
             {
-                System.Diagnostics.Process.Start(Application.StartupPath + "\\Update.docx");
+                try
+                {
+                    System.Diagnostics.Process.Start(Application.StartupPath + "\\Update.docx");
+                }
+                catch { }
             }
-            catch { }
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
+
 
         private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -50,7 +59,7 @@ namespace Одиноко_проживающие
             if (e.KeyCode == Keys.F2 && !e.Control) radMenuButtonItem5.PerformClick();
             if (e.KeyCode == Keys.F3) radMenuButtonItem1.PerformClick();
             if (e.Control && e.KeyCode == Keys.F2) radMenuButtonItem6.PerformClick();
-            if (e.Control && e.KeyCode == Keys.M) radMenuButtonItem20_Click();
+            if (e.Control && e.KeyCode == Keys.M) RadMenuButtonItem20_Click();
         }
         #endregion
 
@@ -103,7 +112,7 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void radMenuItem10_Click(object sender, EventArgs e)
+        private void RadMenuItem10_Click(object sender, EventArgs e)
         {
             Hide();
             new Number().ShowDialog();
@@ -130,7 +139,7 @@ namespace Одиноко_проживающие
 
         private void Setting(object sender, EventArgs e)
         {
-            new Configuration().ShowDialog();
+            new Configuration("base", null, false).ShowDialog();
         }
         #endregion
 
@@ -195,7 +204,7 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void radMenuItem10_Click_1(object sender, EventArgs e)
+        private void RadMenuItem10_Click_1(object sender, EventArgs e)
         {
             new Powered().ShowDialog();
             GC.Collect();
@@ -221,7 +230,7 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void radMenuItem8_Click(object sender, EventArgs e)
+        private void RadMenuItem8_Click(object sender, EventArgs e)
         {
             Hide();
             new Dead().ShowDialog();
@@ -230,7 +239,7 @@ namespace Одиноко_проживающие
             GC.WaitForPendingFinalizers();
         }
 
-        private void radMenuButtonItem20_Click()
+        private void RadMenuButtonItem20_Click()
         {
            string text = RadInputBox.Show("Введите пароль для доступа", "Ввод пароля");
            if (text == "qwertyqwe")
@@ -248,7 +257,7 @@ namespace Одиноко_проживающие
            }
         }
 
-        
-        #endregion
+
+        #endregion        
     }
 }

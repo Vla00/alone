@@ -26,15 +26,17 @@ namespace Одиноко_проживающие.Service
             InitializeComponent();
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
 
-            helpBackgroundWorker = new BackgroundWorker();
-            helpBackgroundWorker.WorkerReportsProgress = true;
-            helpBackgroundWorker.WorkerSupportsCancellation = true;
+            helpBackgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
             helpBackgroundWorker.DoWork += new DoWorkEventHandler(DeadLoad);
             radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
         }
 
         #region Загрузка файла
-        private void radButton2_Click(object sender, EventArgs e)
+        private void RadButton2_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -85,7 +87,7 @@ namespace Одиноко_проживающие.Service
             radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void RadButton1_Click(object sender, EventArgs e)
         {
             Thread thread = new Thread(SqlAdd);
             thread.Start();
@@ -141,7 +143,7 @@ namespace Одиноко_проживающие.Service
             }
             radProgressBar1.Value1 = 100;
             radProgressBar1.Text = "100%";
-            MessageBox.Show("Установлена дата смерти: " + date_sm + "\nДанные выли занесены ранее: " + doubl + "\nНет такого:" + not + "\nУспешно: " + add, "Отчет", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Уже установлена дата: " + date_sm + "\nУже занесен в таблицу: " + doubl + "\nНет такого:" + not + "\nУспешно: " + add, "Отчет", MessageBoxButtons.OK, MessageBoxIcon.Information);
             UpdateGrid();
         }
         #endregion
@@ -149,7 +151,7 @@ namespace Одиноко_проживающие.Service
         private void DeadLoad(object sender, DoWorkEventArgs e)
         {
             var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО ГИССЗ]").Tables[0] };
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО из базы]").Tables[0] };
 
             radGridView2.Invoke(new MethodInvoker(delegate ()
             {
@@ -166,16 +168,17 @@ namespace Одиноко_проживающие.Service
                 radGridView2.Columns["key_dead"].IsVisible = false;
                 radGridView2.Columns["cou"].IsVisible = false;
 
-                GridViewCommandColumn command = new GridViewCommandColumn();
-                command.Name = "commandDelYes";
-                command.UseDefaultText = true;
-                command.DefaultText = "Удалить";
-                command.FieldName = "delete";
-                command.HeaderText = "Операция";
+                GridViewCommandColumn command = new GridViewCommandColumn
+                {
+                    Name = "commandDelYes",
+                    UseDefaultText = true,
+                    DefaultText = "Удалить",
+                    FieldName = "delete",
+                    HeaderText = "Операция"
+                };
                 radGridView2.MasterTemplate.Columns.Add(command);
-                radGridView2.CommandCellClick += new CommandCellClickEventHandler(radGridViewButton_Click);
-
-                radGridView2.Columns["ФИО ГИССЗ"].BestFit();
+                radGridView2.CommandCellClick += new CommandCellClickEventHandler(RadGridViewButton_Click);
+                
                 radGridView2.Columns["Дата р."].BestFit();
                 radGridView2.Columns["Адрес ГИССЗ"].BestFit();
                 radGridView2.Columns["ФИО из базы"].BestFit();
@@ -185,7 +188,7 @@ namespace Одиноко_проживающие.Service
             }));
         }
 
-        private void radGridViewButton_Click(object sender, EventArgs e)
+        private void RadGridViewButton_Click(object sender, EventArgs e)
         {
             if (((GridCommandCellElement)sender).Data.FieldName == "delete")
                 new CommandServer().ExecNoReturnServer("Dead_delete", radGridView2.CurrentRow.Cells[0].Value.ToString());
@@ -197,11 +200,11 @@ namespace Одиноко_проживающие.Service
         private void UpdateGrid()
         {
             var commandServer = new CommandServer();
-            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО ГИССЗ]").Tables[0] };
+            _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО из базы]").Tables[0] };
             radGridView2.DataSource = _bindingSource;
         }
 
-        private void radGridView3_RowFormatting(object sender, RowFormattingEventArgs e)
+        private void RadGridView3_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             if (!e.RowElement.RowInfo.Cells["Адрес ГИССЗ"].Value.ToString().Contains(e.RowElement.RowInfo.Cells["cou"].Value.ToString()))
             {
@@ -227,7 +230,7 @@ namespace Одиноко_проживающие.Service
                 helpBackgroundWorker.RunWorkerAsync();
         }
 
-        private void radGridView3_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        private void RadGridView3_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
@@ -253,7 +256,7 @@ namespace Одиноко_проживающие.Service
             GC.WaitForPendingFinalizers();
         }
 
-        private void radGridView2_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void RadGridView2_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             if(e.CellElement.ColumnInfo is GridViewCommandColumn)
             {

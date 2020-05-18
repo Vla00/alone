@@ -147,9 +147,7 @@
       <DependentUpon>Alone_history.cs</DependentUpon>
     </Compile>
     <Compile Include="commandClient.cs" />
-    <Compile Include="CommandServer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="CommandServer.cs" />
     <Compile Include="Configuration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,18 +190,11 @@
     <Compile Include="handbook\Powered.Designer.cs">
       <DependentUpon>Powered.cs</DependentUpon>
     </Compile>
-    <Compile Include="Load.cs">
+    <Compile Include="Load\Wait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Load.Designer.cs">
-      <DependentUpon>Load.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoadFun.cs" />
-    <Compile Include="LoadProgram.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoadProgram.Designer.cs">
-      <DependentUpon>LoadProgram.cs</DependentUpon>
+    <Compile Include="Load\Wait.Designer.cs">
+      <DependentUpon>Wait.cs</DependentUpon>
     </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
@@ -217,6 +208,7 @@
     <Compile Include="handbook\JilUsl.Designer.cs">
       <DependentUpon>JilUsl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Load\ProgramLoad.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MyDataGridView.cs">
       <SubType>Component</SubType>
@@ -353,11 +345,8 @@
     <EmbeddedResource Include="handbook\Powered.resx">
       <DependentUpon>Powered.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Load.resx">
-      <DependentUpon>Load.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoadProgram.resx">
-      <DependentUpon>LoadProgram.cs</DependentUpon>
+    <EmbeddedResource Include="Load\Wait.resx">
+      <DependentUpon>Wait.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

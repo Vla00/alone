@@ -16,14 +16,45 @@ namespace Одиноко_проживающие
         TelerikMetroTheme _theme = new TelerikMetroTheme();
         private bool _close;
 
-        public Configuration()
+        private string _user;
+        private string _name;
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="name">Имя вкладки</param>
+        /// <param name="highlighting">Выделение поля красным</param>
+        /// <param name="close">Закрытие программы при закрытии формы</param>
+        public Configuration(string name, string highlighting, bool close)
         {
             InitializeComponent();
+            
             ThemeResolutionService.ApplyThemeToControlTree(this, _theme.ThemeName);
             Load_File_Configuration();
+            
+            _name = name;
+            _close = close;
+
+            switch(name)
+            {
+                case "base":
+                    radPageView1.SelectedPage = radPageViewPage1;
+                    break;
+                case "user":
+                    radPageView1.SelectedPage = radPageViewPage2;
+                    if(!string.IsNullOrEmpty(highlighting))
+                    {
+                        switch(highlighting)
+                        {
+                            case "name":
+                                user_text.BackColor = System.Drawing.Color.Pink;
+                                break;
+                        }
+                    }
+                    break;
+            }
         }
 
-        #region Подключение
         public void Load_File_Configuration()
         {
             try
@@ -36,7 +67,7 @@ namespace Одиноко_проживающие
                 {
                     foreach (XmlNode nod in node.ChildNodes)
                     {
-                        switch(nod.Name)
+                        switch (nod.Name)
                         {
                             case "DataBase":
                                 textBox_base.Text = nod.InnerText;
@@ -55,6 +86,7 @@ namespace Одиноко_проживающие
                                 break;
                             case "Users":
                                 user_text.Text = nod.InnerText;
+                                _user = user_text.Text;
                                 break;
                             case "AutoSearch":
                                 radCheckBox1.Checked = Convert.ToBoolean(nod.InnerText);
@@ -65,6 +97,8 @@ namespace Одиноко_проживающие
             }
             catch (Exception) { }
         }
+
+        #region Подключение
 
         private void Save()
         {
@@ -82,33 +116,38 @@ namespace Одиноко_проживающие
             xdoc.Save("config.xml");
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
+        private void RadButton2_Click(object sender, EventArgs e)
         {
-            SqlConnectionStringBuilder connectBuilder = new SqlConnectionStringBuilder();
-            connectBuilder.InitialCatalog = textBox_base.Text;
-            connectBuilder.DataSource = textBox_server.Text;
+            SqlConnectionStringBuilder connectBuilder = new SqlConnectionStringBuilder
+            {
+                InitialCatalog = textBox_base.Text,
+                DataSource = textBox_server.Text,
+                IntegratedSecurity = false,
+                UserID = textBox_login.Text,
+                Password = textBox_password.Text,
+                ConnectTimeout = 5
+            };
 
-            if(!string.IsNullOrEmpty(textBox_port.Text))
+            if (!string.IsNullOrEmpty(textBox_port.Text))
             {
                 connectBuilder.DataSource += "," + textBox_port.Text;
             }
-            connectBuilder.IntegratedSecurity = false;
-            connectBuilder.UserID = textBox_login.Text;
-            connectBuilder.Password = textBox_password.Text;
-            connectBuilder.ConnectTimeout = 5;
 
-            if(new CommandServer().isServerConnected(connectBuilder.ConnectionString))
+            if(new CommandServer().IsServerConnected(connectBuilder.ConnectionString))
             {
                 MessageBox.Show(@"База данных успешно подключена.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Save();
-                LoadProgram.Connect.ConnectionString = connectBuilder.ConnectionString;
-                if (!LoadProgram.CheackVersion())
-                    Close();
-                else
-                {
-                    MessageBox.Show(@"Версия прогаммы не совпадает. Приложение перезапустится", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Restart();
-                }  
+
+                Application.Restart();
+                ///TODO Доделать открытие
+                //Home.programConn.configurationProgram.Connect.ConnectionString = connectBuilder.ConnectionString;
+                //if (!LoadProgram.CheackVersion())
+                //    Close();
+                //else
+                //{
+                //    MessageBox.Show(@"Версия прогаммы не совпадает. Приложение перезапустится", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    Application.Restart();
+                //}  
             }
             else
             {
@@ -117,9 +156,7 @@ namespace Одиноко_проживающие
             }
         }
 
-        #endregion
-
-        private void radButton1_Click(object sender, EventArgs e)
+        private void RadButton1_Click(object sender, EventArgs e)
         {
             textBox_base.Text = "alone";
             textBox_server.Text = "86.57.207.146";
@@ -128,7 +165,7 @@ namespace Одиноко_проживающие
             textBox_password.Text = "karpos?827A";
         }
 
-        private void radButton5_Click(object sender, EventArgs e)
+        private void RadButton5_Click(object sender, EventArgs e)
         {
             textBox_base.Text = "alone";
             textBox_server.Text = @"10.76.92.220\TCSON";
@@ -136,21 +173,13 @@ namespace Одиноко_проживающие
             textBox_login.Text = "soc";
             textBox_password.Text = "karpos?827A";
         }
-
-        private void radButton6_Click(object sender, EventArgs e)
-        {
-            if(!CheackUser())
-            {
-                CreateUser();
-            }else
-            {
-                SaveUser();
-            }
-            LoadProgram.User = user_text.Text;
-            MessageBox.Show(@"Данные сохранены.", @"Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        #endregion
         
-        private void SaveUser()
+        public string ReturnName() { return user_text.Text.Trim(); }
+        
+        #region Пользователь
+
+        private void SaveUserProc()
         {
             XDocument xdoc = XDocument.Load("config.xml");
             XElement rootConnection = xdoc.Element("mconfig");
@@ -158,85 +187,21 @@ namespace Одиноко_проживающие
             foreach (XElement xe in rootConnection.Elements("user").ToList())
             {
                 xe.Element("Users").Value = user_text.Text;
-            }
-            xdoc.Save("config.xml");
-        }
 
-        private void CreateUser()
-        {
-            XDocument xdoc = XDocument.Load("config.xml");
-
-            XElement root = new XElement("user");
-            root.Add(new XElement("Users", user_text.Text));
-            xdoc.Element("mconfig").Add(root);
-            xdoc.Save("config.xml");
-        }
-
-        private bool CheackUser()
-        {
-            try
-            {
-                var document = new XmlDocument();
-                document.Load("config.xml");
-
-                XmlNode root = document.DocumentElement;
-                foreach (XmlNode node in root.ChildNodes)
+                if(_user != user_text.Text)
                 {
-                    foreach (XmlNode nod in node.ChildNodes)
-                    {
-                        switch (nod.Name)
-                        {
-                            case "Users":
-                                return true;
-                        }
-                    }
+                    xe.Element("NameComputer").Value = Environment.MachineName;
                 }
             }
-            catch (Exception) { }
-            return false;
-        }
-
-
-        public bool CheackeAutoSearch()
-        {
-            try
-            {
-                var document = new XmlDocument();
-                document.Load("config.xml");
-
-                XmlNode root = document.DocumentElement;
-                foreach (XmlNode node in root.ChildNodes)
-                {
-                    foreach (XmlNode nod in node.ChildNodes)
-                    {
-                        switch (nod.Name)
-                        {
-                            case "AutoSearch":
-                                return true;
-                        }
-                    }
-                }
-            }
-            catch (Exception) { }
-
-            CreateAutoSearch();
-            return false;
-        }
-
-        private void CreateAutoSearch()
-        {
-            XDocument xdoc = XDocument.Load("config.xml");
-            XElement rootConnection = xdoc.Element("mconfig");
-
-            XElement root = new XElement("AutoSearch", "true");
-            foreach (XElement xe in rootConnection.Elements("user").ToList())
-            {
-                xe.Add(new XElement("AutoSearch", "true"));
-            }
             xdoc.Save("config.xml");
+            _close = false;
+            Close();
         }
+        #endregion
 
-        private void radCheckBox1_CheckStateChanged(object sender, EventArgs e)
+        #region Автопоиск
+        
+        private void RadCheckBox1_CheckStateChanged(object sender, EventArgs e)
         {
             XDocument xdoc = XDocument.Load("config.xml");
             XElement rootConnection = xdoc.Element("mconfig");
@@ -244,18 +209,31 @@ namespace Одиноко_проживающие
             foreach (XElement xe in rootConnection.Elements("user").ToList())
             {
                 xe.Element("AutoSearch").Value = Convert.ToString(radCheckBox1.Checked);
-                LoadProgram._confConnection.AutoSearch = Convert.ToString(radCheckBox1.Checked);
+                Home.programConn.configurationProgram.AutoSearch = Convert.ToString(radCheckBox1.Checked);
             }
             xdoc.Save("config.xml");
         }
 
+        #endregion
+
         private void Configuration_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_close)
+            if (_close)
                 Process.GetCurrentProcess().Kill();
             Dispose();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
+
+        private void SaveUserButton(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(user_text.Text))
+            {
+                SaveUserProc();
+            }else
+            {
+                RadMessageBox.Show("Не указано имя пользователя.", "Внимание", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+        }        
     }
 }
