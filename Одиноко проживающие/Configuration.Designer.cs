@@ -105,6 +105,7 @@
             this.radButton5.Size = new System.Drawing.Size(74, 31);
             this.radButton5.TabIndex = 16;
             this.radButton5.Text = "корп.";
+            this.radButton5.Visible = false;
             this.radButton5.Click += new System.EventHandler(this.RadButton5_Click);
             // 
             // radButton1
@@ -115,6 +116,7 @@
             this.radButton1.Size = new System.Drawing.Size(97, 31);
             this.radButton1.TabIndex = 15;
             this.radButton1.Text = "интернет";
+            this.radButton1.Visible = false;
             this.radButton1.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // textBox_port

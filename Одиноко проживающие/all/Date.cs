@@ -13,7 +13,7 @@ namespace Одиноко_проживающие.all
             _method = method;
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void RadButton1_Click(object sender, EventArgs e)
         {
             switch (_method)
             {
@@ -30,7 +30,7 @@ namespace Одиноко_проживающие.all
             }
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
+        private void RadButton2_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -42,7 +42,7 @@ namespace Одиноко_проживающие.all
             GC.WaitForPendingFinalizers();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             SendKeys.Send(".");
         }

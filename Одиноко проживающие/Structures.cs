@@ -39,7 +39,7 @@ namespace Одиноко_проживающие
         public bool connect;
     }
 
-    internal class StructuresAlone : IDisposable
+    public class StructuresAlone : IDisposable
     {
         protected bool Equals(StructuresAlone other)
         {
@@ -82,7 +82,7 @@ namespace Одиноко_проживающие
         public string Surname { set; get; }
         //public string Fio { set; get; }
         public int Pol { set; get; }
-        public DateTime DateRo { set; get; }
+        public DateTime ?DateRo { set; get; }
         public DateTime DateSm { set; get; }
         public string Country { set; get; }
 

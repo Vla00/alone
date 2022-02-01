@@ -30,14 +30,14 @@ namespace Одиноко_проживающие
         private string _category_history;
         private bool _loadAlone;
         private bool? _blocked;
-        
+
         private StructuresAlone _alone;
         private StructuresSojitel _sojitel;
         private StructuresJilUsl _jilUsl;
         private StructuresZemeln _zemeln;
         private BindingSource _bindingSource;
         private string _bindingDopKinder;
-
+        
         private BindingSource _bindingSourceKinder;
         private BindingSource _bindingSourceSurvey;
         private BindingSource _bindingSourceHelp;
@@ -52,7 +52,7 @@ namespace Одиноко_проживающие
         #endregion
         
         #region Конструкторы
-        public Alone(bool status, int keyAlone, string item, bool? blocked)
+        public Alone(bool status, int keyAlone, string item, bool? blocked, StructuresAlone aloneSearch)
         {
             InitializeComponent();
             ThemeResolutionService.ApplyThemeToControlTree(this, theme.ThemeName);
@@ -76,6 +76,19 @@ namespace Одиноко_проживающие
                 Item = item, 
                 Blocked = blocked
             };
+
+            if(aloneSearch != null)
+            {
+                if (!string.IsNullOrEmpty(aloneSearch.Family))
+                    family_text.Text = aloneSearch.Family;
+
+                if (!string.IsNullOrEmpty(aloneSearch.Name))
+                    name_text.Text = aloneSearch.Name;
+
+                if (!string.IsNullOrEmpty(aloneSearch.Surname))
+                    surname_text.Text = aloneSearch.Surname;
+                date_ro_date.Value = aloneSearch.DateRo ?? DateTime.Now;
+            }
         }
 
         private void AddAlone_Shown(object sender, EventArgs e)
@@ -505,7 +518,7 @@ namespace Одиноко_проживающие
             family_text.Text = _alone.Family;
             name_text.Text = _alone.Name;
             surname_text.Text = _alone.Surname;
-            date_ro_date.Value = _alone.DateRo;            
+            date_ro_date.Value = _alone.DateRo ?? DateTime.Now;            
             nas_punkt_combo.SelectedIndex = nas_punkt_combo.FindStringExact(_alone.Country);
             type_street_combo.SelectedIndex = type_street_combo.FindStringExact(_alone.TypeUl);
             street_text.Text = _alone.Street;
@@ -729,7 +742,7 @@ namespace Одиноко_проживающие
                             date_sm_date.Text = _date_sm;
                         }
                             
-                        new search.Result(family_text.Text, name_sojitel_text.Text, surname_sojitel_text.Text, 0, "ListSojitel", false, nas_punkt_combo.Text).ShowDialog();
+                        new search.Result(family_text.Text, name_sojitel_text.Text, surname_sojitel_text.Text, null, "ListSojitel", false, nas_punkt_combo.Text).ShowDialog();
                     }
                 }
             }
@@ -1656,7 +1669,7 @@ namespace Одиноко_проживающие
                             parameters += "'" + line.Cells[1].Value.ToString() + "',";
                     }
 
-                    if (e.PropertyName == "Дата")
+                    if (e.PropertyName == "Дата" || e.PropertyName == "date_obsl")
                     {
                         flag = true;
                         parameters += "'" + e.NewValue.ToString() + "',";

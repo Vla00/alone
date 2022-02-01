@@ -52,7 +52,7 @@
             this.radButton1.Size = new System.Drawing.Size(93, 24);
             this.radButton1.TabIndex = 1;
             this.radButton1.Text = "Подтвердить";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.radButton1.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // radButton2
             // 
@@ -61,7 +61,7 @@
             this.radButton2.Size = new System.Drawing.Size(80, 24);
             this.radButton2.TabIndex = 2;
             this.radButton2.Text = "Отмена";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.radButton2.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // label1
             // 

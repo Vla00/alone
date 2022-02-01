@@ -46,7 +46,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -56,7 +56,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 1;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // radButton1
             // 
@@ -66,7 +66,7 @@
             this.radButton1.TabIndex = 2;
             this.radButton1.Text = "Показать";
             this.radButton1.ThemeName = "TelerikMetro";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.radButton1.Click += new System.EventHandler(this.RadButton1_Click);
             // 
             // radButton2
             // 
@@ -76,7 +76,7 @@
             this.radButton2.TabIndex = 3;
             this.radButton2.Text = "Отмена";
             this.radButton2.ThemeName = "TelerikMetro";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.radButton2.Click += new System.EventHandler(this.RadButton2_Click);
             // 
             // Date
             // 

@@ -107,7 +107,7 @@ namespace Одиноко_проживающие.Service
                 row.IsSelected = true;
 
                 string parameters = "'" + row.Cells["Фамилия Имя Отчество"].Value.ToString().Trim() + "', '" + row.Cells["Дата рождения"].Value.ToString().Trim() + "', '" +
-                    row.Cells["Дата смерти"].Value.ToString().Trim() + "','" + row.Cells["Адрес"].Value.ToString().Trim() + "'";              
+                    row.Cells["Дата смерти"].Value.ToString().Trim() + "','" + row.Cells[@"Адрес регистрации\пребывания"].Value.ToString().Trim() + "'";              
                 
                 radProgressBar1.Value1 = (int)value_progress;
                 radProgressBar1.Text = radProgressBar1.Value1 + "%";
@@ -185,6 +185,8 @@ namespace Одиноко_проживающие.Service
                 radGridView2.Columns["Адрес из базы"].BestFit();
                 radGridView2.Columns["Дата смерти"].BestFit();
                 radGridView2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+
+                radPageView1.Pages[0].Text = "Подбор (" + radGridView2.Rows.Count + ")";
             }));
         }
 
@@ -202,6 +204,8 @@ namespace Одиноко_проживающие.Service
             var commandServer = new CommandServer();
             _bindingSource = new BindingSource { DataSource = commandServer.DataGridSet(@"select * from DeadSelect() order by [ФИО из базы]").Tables[0] };
             radGridView2.DataSource = _bindingSource;
+
+            radPageView1.Pages[0].Text = "Подбор (" + radGridView2.Rows.Count + ")";
         }
 
         private void RadGridView3_RowFormatting(object sender, RowFormattingEventArgs e)
@@ -237,7 +241,7 @@ namespace Одиноко_проживающие.Service
                 Hide();
                 try
                 {
-                    new Alone(false, Convert.ToInt32(radGridView2.CurrentRow.Cells[0].Value), "sm " + radGridView2.CurrentRow.Cells["Дата смерти"].Value, null ).ShowDialog();
+                    new Alone(false, Convert.ToInt32(radGridView2.CurrentRow.Cells[0].Value), "sm " + radGridView2.CurrentRow.Cells["Дата смерти"].Value, null, null).ShowDialog();
                     UpdateGrid();
                 }
                 catch (Exception ex)

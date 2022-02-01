@@ -9,7 +9,7 @@ namespace Одиноко_проживающие.Load
 {
     public partial class ProgramLoad
     {
-        public string _version = "1.8.1";
+        public string _version = "1.9";
         public static string User = null;
         public static SqlConnection Connect;
         public static SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
@@ -242,7 +242,7 @@ namespace Одиноко_проживающие.Load
                     if (Convert.ToBoolean(_confConnection.AutoSearch))
                     {
 
-                        if (new CommandServer().SearchServer())
+                        if (!new CommandServer().SearchServer())
                             MessageBox.Show(@"Не удалось найти сервер.", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         _backgroundWorker1.ReportProgress(0, "Отправка ошибок на сервер");

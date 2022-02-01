@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using Одиноко_проживающие.Load;
 
 namespace Одиноко_проживающие
 {
@@ -37,7 +40,8 @@ namespace Одиноко_проживающие
         public bool SearchServer()
         {
             SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
-            ConnectBuilder = Home.programConn.connectionStringBuilder;
+            ConnectBuilder = ProgramLoad.ConnectBuilder;
+            //ConnectBuilder = Home.programConn.connectionStringBuilder;
 
             backgroundWorker1 = new BackgroundWorker();
             if(backgroundWorker1.IsBusy != true)
@@ -51,27 +55,30 @@ namespace Одиноко_проживающие
             ConnectBuilder.DataSource = @"10.76.92.220\TCSON";
             if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
-                _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
+                ProgramLoad.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                // _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
                 _Wait.Close();
+                Save_file_connect("10.76.92.220", null);
                 return true;
             }
 
             ConnectBuilder.DataSource = @"192.168.1.10\TCSON";
             if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
-                _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
+                ProgramLoad.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                // _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
                 _Wait.Close();
+                Save_file_connect("192.168.1.10", null);
                 return true;
             }
 
             ConnectBuilder.DataSource = @"86.57.207.146,1434\TCSON";
             if (IsServerConnected(ConnectBuilder.ConnectionString))
             {
-                Home.programConn.sqlConnection.ConnectionString = ConnectBuilder.ConnectionString;
-                _connectSql.ConnectionString = ConnectBuilder.ConnectionString;
+                ProgramLoad.Connect.ConnectionString = ConnectBuilder.ConnectionString;
+                //_connectSql.ConnectionString = ConnectBuilder.ConnectionString;
                 _Wait.Close();
+                Save_file_connect("86.57.207.146", @"1434\TCSON");
                 return true;
             }
 
@@ -79,6 +86,21 @@ namespace Одиноко_проживающие
             new Configuration("base", null, true).ShowDialog();
             _Wait.Close();
             return false;
+        }
+
+        private void Save_file_connect(string datasource, string port)
+        {
+            XDocument xdoc = XDocument.Load("config.xml");
+            XElement rootConnection = xdoc.Element("mconfig");
+
+            foreach (XElement xe in rootConnection.Elements("connection").ToList())
+            {
+                xe.Element("DataSource").Value = datasource;
+                if(!String.IsNullOrEmpty(port))
+                    xe.Element("Port").Value = port;
+            }
+            xdoc.Save("config.xml");
+
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)

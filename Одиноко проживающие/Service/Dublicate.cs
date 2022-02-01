@@ -12,6 +12,7 @@ namespace Одиноко_проживающие.service
         private BindingSource _bindingSource;
         private BindingSource _bindingSourceDublicate;
         private BindingSource _bindingSourcePol;
+        private BindingSource _bindingSourceDate;
         TelerikMetroTheme theme = new TelerikMetroTheme();
 
         public Dublicate()
@@ -58,9 +59,16 @@ namespace Одиноко_проживающие.service
                         from alone inner join family on alone.key_alone = family.fk_alone
                         where alone.pol = 1 and (family.surname not like '%ич' and family.surname not like '%лы') and surname != ''").Tables[0] };
 
+                    _bindingSourceDate = new BindingSource { DataSource = commandServer.DataGridSet(@"select key_alone, (family.family + ' ' + family.name + ' ' + family.surname) as [ФИО], date_obsl as [Дата осбледования]
+                        from survey inner join alone on survey.fk_alone = key_alone
+	                        inner join family on family.fk_alone = key_alone
+                        where date_obsl > GETDATE() or date_obsl < '01.01.1990'
+                        order by date_obsl").Tables[0] };
+
 
                     radGridView1.DataSource = _bindingSource;
                     radGridView4.DataSource = _bindingSourcePol;
+                    radGridView5.DataSource = _bindingSourceDate;
 
                     if (radGridView1.Columns.Count > 0)
                     {
@@ -72,6 +80,13 @@ namespace Одиноко_проживающие.service
                     {
                         radGridView4.Columns[0].IsVisible = false;
                         radGridView4.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                    }
+
+                    if (radGridView5.Columns.Count > 0)
+                    {
+                        radGridView5.Columns[0].IsVisible = false;
+                        radGridView5.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                        radGridView5.Columns[2].FormatString = "{0:dd/MM/yyyy}";
                     }
                 }));
             }
@@ -96,6 +111,16 @@ namespace Одиноко_проживающие.service
             radLabel16.Text = dt.Rows[0].ItemArray[4].ToString();
             radLabel15.Text = dt.Rows[0].ItemArray[5].ToString();
             radLabel14.Text = dt.Rows[0].ItemArray[6].ToString();
+
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[7].ToString()))
+                radLabel7.Text = dt.Rows[0].ItemArray[7].ToString().Split(' ')[0];
+            else
+                radLabel7.Text = "";
+
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[8].ToString()))
+                radLabel8.Text = dt.Rows[0].ItemArray[8].ToString().Split(' ')[0];
+            else
+                radLabel8.Text = "";
 
             BindingSource _bs = new BindingSource { DataSource = commandServer.DataGridSet(@"select category.category as [категории]
                 from category
@@ -199,7 +224,7 @@ namespace Одиноко_проживающие.service
             try
             {
                 RadGridView grid = (RadGridView)sender;
-                new Alone(false, Convert.ToInt32(grid.CurrentRow.Cells[0].Value), null, false).ShowDialog();
+                new Alone(false, Convert.ToInt32(grid.CurrentRow.Cells[0].Value), null, false, null).ShowDialog();
             }
             catch (Exception ex)
             {

@@ -6,7 +6,6 @@ namespace Одиноко_проживающие.search
 {
     public partial class SearchFam : RadForm
     {
-        private byte number;
         public SearchFam()
         {
             InitializeComponent();
@@ -24,27 +23,52 @@ namespace Одиноко_проживающие.search
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
+            date_ro_date.Value = DateTime.Now;
+            radCheckBox1.Checked = false;
         }
 
         private void Button1_Click(object sender, System.EventArgs e)
         {
-            if (radRadioButton1.IsChecked)
-                number = 0;
-            else
+            if (string.IsNullOrEmpty(textBox1.Text) && string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text) && string.IsNullOrEmpty(textBox4.Text))
             {
-                if (radRadioButton2.IsChecked)
-                    number = 1;
-                else
-                    number = 2;
+                MessageBox.Show("Вы не ввели данные для поиска.", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
             Hide();
             if (string.IsNullOrEmpty(textBox4.Text))
             {
-                new Result(textBox1.Text, textBox2.Text, textBox3.Text, number, "SearchFamily", true, null).ShowDialog();
+                Result result = null;
+                if (radCheckBox1.Checked)
+                    result = new Result(textBox1.Text, textBox2.Text, textBox3.Text, date_ro_date.Value.ToShortDateString(), "SearchFamily", true, null);
+                else
+                    result = new Result(textBox1.Text, textBox2.Text, textBox3.Text, null, "SearchFamily", true, null);
+                result.ShowDialog();
+                int val = result.Values;
+
+                if(val == 0)
+                {
+                    if (MessageBox.Show("По вашему поиску ничего не найдено. Вы хотите создать личное дело?", "Результат", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        var item = new StructuresAlone
+                        {
+                            Family = textBox1.Text,
+                            Name = textBox2.Text,
+                            Surname = textBox3.Text
+                        };
+
+                        if (date_ro_date.Checked)
+                            item.DateRo = date_ro_date.Value;
+                        else
+                            item.DateRo = null;
+
+                        new Alone(true, 0, null, false, item).ShowDialog();
+                    }
+                }
             }
             else
             {
-                new Alone(false, Convert.ToInt32(textBox4.Text), null, null).ShowDialog();
+                new Alone(false, Convert.ToInt32(textBox4.Text), null, null, null).ShowDialog();
             }
             Show();
             textBox1.Focus();
@@ -72,6 +96,16 @@ namespace Одиноко_проживающие.search
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
+        }
+
+        private void Date_ro_date_ValueChanged(object sender, EventArgs e)
+        {
+            SendKeys.Send(".");
+        }
+
+        private void RadCheckBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            date_ro_date.Enabled = radCheckBox1.Checked;
         }
     }
 }

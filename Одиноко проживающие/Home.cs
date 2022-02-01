@@ -23,7 +23,6 @@ namespace Одиноко_проживающие
 
         private void Home_Load(object sender, EventArgs e)
         {
-            ///TODO отклюючить видимость формы
             Hide();
             _load = new ProgramLoad();
            // programConn = _load.ConfigurationProgramReturn();
@@ -57,33 +56,12 @@ namespace Одиноко_проживающие
         private void Home_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2 && !e.Control) radMenuButtonItem5.PerformClick();
-            if (e.KeyCode == Keys.F3) radMenuButtonItem1.PerformClick();
             if (e.Control && e.KeyCode == Keys.F2) radMenuButtonItem6.PerformClick();
             if (e.Control && e.KeyCode == Keys.M) RadMenuButtonItem20_Click();
         }
         #endregion
 
         #region Меню
-        private void Add(object sender, EventArgs e)
-        {
-            var commandClient = new CommandClient();
-            try
-            {
-                Hide();
-                new Alone(true, 0, null, null).ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                commandClient.WriteFileError(ex, null);
-            }
-            finally
-            {
-                Show();
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-        }
-
         private void ListSurvey(object sender, EventArgs e)
         {
             Hide();
@@ -110,13 +88,6 @@ namespace Одиноко_проживающие
             Show();
             GC.Collect();
             GC.WaitForPendingFinalizers();
-        }
-
-        private void RadMenuItem10_Click(object sender, EventArgs e)
-        {
-            Hide();
-            new Number().ShowDialog();
-            Show();
         }
 
         private void ExendedSearch(object sender, EventArgs e)
