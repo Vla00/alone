@@ -13,12 +13,12 @@ namespace Одиноко_проживающие.Load
         public static string User = null;
         public static SqlConnection Connect;
         public static SqlConnectionStringBuilder ConnectBuilder = new SqlConnectionStringBuilder();
-        private string[] args;
-        private Wait _wait;
+        private readonly string[] args;
+        private readonly Wait _wait;
         public static ConfigurationProgram _confConnection;
-        private BackgroundWorker _backgroundWorker1;
+        private readonly BackgroundWorker _backgroundWorker1;
         private ConfigurationProgramConn programConn;
-        private AutoResetEvent _resetEvent = new AutoResetEvent(false);
+        private readonly AutoResetEvent _resetEvent = new AutoResetEvent(false);
 
         public ProgramLoad()
         {

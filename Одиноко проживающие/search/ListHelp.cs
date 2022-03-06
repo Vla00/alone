@@ -11,8 +11,8 @@ namespace Одиноко_проживающие.search
     public partial class ListHelp : RadForm
     {
         private BindingSource _bindingSource;
-        private DateTime ?dateS;
-        private DateTime ?dateE;
+        private readonly DateTime? dateS;
+        private readonly DateTime ?dateE;
 
         public ListHelp(DateTime start, DateTime end)
         {
@@ -29,8 +29,10 @@ namespace Одиноко_проживающие.search
 
         private void Form_HandleCreated(object sender, EventArgs e)
         {
-            Thread _thread = new Thread(new ThreadStart(fillTheDataGrid));
-            _thread.IsBackground = true;
+            Thread _thread = new Thread(new ThreadStart(fillTheDataGrid))
+            {
+                IsBackground = true
+            };
             _thread.Start();
         }
 

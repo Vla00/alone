@@ -12,18 +12,18 @@ namespace Одиноко_проживающие.search
     public partial class Result : RadForm
     {
         private BindingSource _bindingSource;
-        private BindingSource _bindingSourceParam;
+        private readonly BindingSource _bindingSourceParam;
         BackgroundWorker worker;
-        private string _fun;
+        private readonly string _fun;
 
-        private string _fam;
-        private string _name;
-        private string _surname;
-        private string _fio;
-        private string _dateRo;
-        private string _country;
-        private byte _close;
-        private bool _message = true;
+        private readonly string _fam;
+        private readonly string _name;
+        private readonly string _surname;
+        private readonly string _fio;
+        private readonly string _dateRo;
+        private readonly string _country;
+        private readonly byte _close;
+        private readonly bool _message = true;
 
         public Result(BindingSource _source)
         {

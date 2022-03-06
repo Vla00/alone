@@ -12,8 +12,8 @@ namespace Одиноко_проживающие.Service
 {
     public partial class Dead : Form
     {
-        TelerikMetroTheme theme = new TelerikMetroTheme();
-        BackgroundWorker helpBackgroundWorker;
+        readonly TelerikMetroTheme theme = new TelerikMetroTheme();
+        readonly BackgroundWorker helpBackgroundWorker;
         private BindingSource _bindingSource;
 
         private int date_sm = 0;

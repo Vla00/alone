@@ -38,7 +38,7 @@ namespace Одиноко_проживающие.search
             Hide();
             if (string.IsNullOrEmpty(textBox4.Text))
             {
-                Result result = null;
+                Result result;
                 if (radCheckBox1.Checked)
                     result = new Result(textBox1.Text, textBox2.Text, textBox3.Text, date_ro_date.Value.ToShortDateString(), "SearchFamily", true, null);
                 else

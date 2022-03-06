@@ -13,11 +13,11 @@ namespace Одиноко_проживающие
 {
     public partial class Configuration : RadForm
     {
-        TelerikMetroTheme _theme = new TelerikMetroTheme();
+        readonly TelerikMetroTheme _theme = new TelerikMetroTheme();
         private bool _close;
 
         private string _user;
-        private string _name;
+        //private readonly string _name;
 
         /// <summary>
         /// Конструктор
@@ -32,7 +32,7 @@ namespace Одиноко_проживающие
             ThemeResolutionService.ApplyThemeToControlTree(this, _theme.ThemeName);
             Load_File_Configuration();
             
-            _name = name;
+            //_name = name;
             _close = close;
 
             switch(name)

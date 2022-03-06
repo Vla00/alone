@@ -14,8 +14,7 @@ namespace Одиноко_проживающие
     public partial class Home : Telerik.WinControls.UI.RadForm
     {
         public ProgramLoad _load;
-        
-        TelerikMetroTheme theme = new TelerikMetroTheme();
+        readonly TelerikMetroTheme theme = new TelerikMetroTheme();
 
         public static ConfigurationProgramConn programConn;
 

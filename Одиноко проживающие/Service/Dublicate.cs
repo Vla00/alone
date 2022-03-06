@@ -13,7 +13,7 @@ namespace Одиноко_проживающие.service
         private BindingSource _bindingSourceDublicate;
         private BindingSource _bindingSourcePol;
         private BindingSource _bindingSourceDate;
-        TelerikMetroTheme theme = new TelerikMetroTheme();
+        readonly TelerikMetroTheme theme = new TelerikMetroTheme();
 
         public Dublicate()
         {
@@ -145,9 +145,9 @@ namespace Одиноко_проживающие.service
             if (radGridView2.SelectedRows.Count > 0)
             {
                 var commandServer = new CommandServer();
-                var returnSqlServer = commandServer.ExecNoReturnServer("DublicateDelete", radGridView2.Rows[0].Cells[0].Value.ToString() + "," + radGridView2.Rows[1].Cells[0].Value.ToString() + "," + radGridView2.RowCount);
+                _ = commandServer.ExecNoReturnServer("DublicateDelete", radGridView2.Rows[0].Cells[0].Value.ToString() + "," + radGridView2.Rows[1].Cells[0].Value.ToString() + "," + radGridView2.RowCount);
 
-                    if (radGridView2.RowCount == 2)
+                if (radGridView2.RowCount == 2)
                     {
                         StartDataGrid();
                         radGridView2.DataSource = null;
